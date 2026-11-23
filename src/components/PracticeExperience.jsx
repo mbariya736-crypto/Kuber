@@ -272,56 +272,22 @@ export function AIServicesExperience({ onOpenContact }) {
           className="relative z-10 rounded-[28px] sm:rounded-[36px] bg-white border border-slate-200/90 p-6 sm:p-10 lg:p-12 shadow-xl shadow-blue-900/5 mb-12 sm:mb-16"
         >
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center text-left">
-            {/* Left: Handcrafted Interactive Poster Container */}
+            {/* Left: 3D Interactive AI Neural Face Stage */}
             <div className="lg:col-span-6 flex justify-center w-full">
-              <div
-                className="w-full"
-                style={{ perspective: 1200 }}
+              <div 
+                className="w-full relative rounded-[22px] sm:rounded-[26px] bg-gradient-to-b from-[#020b18] via-[#05152c] to-[#040f22] border border-blue-950/60 shadow-xl overflow-hidden group"
               >
-                <motion.div
-                  ref={posterCardRef}
-                  onMouseMove={handleCardMouseMove}
-                  onMouseLeave={handleCardMouseLeave}
-                  style={(isTouchDevice || shouldReduceMotion) ? {} : {
-                    rotateX,
-                    rotateY,
-                    scale: scrollScale,
-                    transformStyle: 'preserve-3d'
-                  }}
-                  className="relative rounded-[22px] sm:rounded-[26px] aspect-[16/10] w-full bg-slate-100 border border-slate-200 shadow-lg shadow-blue-900/8 group overflow-hidden cursor-default transition-shadow duration-500 hover:shadow-2xl hover:shadow-blue-900/12"
-                >
-                  {/* The Original Poster Image with subtle parallax */}
-                  <motion.img
-                    src="/assets/ai-services.webp"
-                    alt="Business Automation and Workflow Management"
-                    style={(isTouchDevice || shouldReduceMotion) ? {} : {
-                      x: parallaxImgX,
-                      y: parallaxImgY,
-                      scale: 1.05
-                    }}
-                    className="w-full h-full object-cover object-center rounded-[20px] sm:rounded-[24px] relative z-10 pointer-events-none select-none transition-transform duration-700 ease-out"
-                  />
-
-                  {/* Gentle Natural Highlight Sheen (Controlled, No glowing neon) */}
-                  {!isTouchDevice && !shouldReduceMotion && (
-                    <motion.div
-                      style={{
-                        background: `radial-gradient(circle 280px at 50% 50%, rgba(255, 255, 255, 0.16), transparent 70%)`,
-                        x: parallaxImgX,
-                        y: parallaxImgY
-                      }}
-                      className="absolute inset-0 pointer-events-none z-20 mix-blend-overlay opacity-60"
-                    />
-                  )}
-
-                  {/* Clean natural bottom vignette to preserve contrast */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none z-20" />
-                </motion.div>
+                {/* 3D WebGL Neural Head Canvas from recurziv.com */}
+                <RecurzivCyberFace height="340px" />
               </div>
             </div>
 
             {/* Right: Overview Text */}
             <div className="lg:col-span-6 flex flex-col justify-center relative z-20">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold text-[#0866E8] bg-blue-50 border border-blue-200/80 mb-3.5 w-fit">
+                <Brain className="w-3.5 h-3.5" />
+                <span>Automated Business Intelligence</span>
+              </div>
               <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#082B59] mb-4 leading-snug">
                 Practical Workflow Solutions Built for Real Businesses
               </h2>
@@ -482,9 +448,13 @@ export function CyberSecurityExperience({ onOpenContact }) {
               </span>
             </div>
 
-            {/* 3D Interactive Cyber Neural Face / Video Stage */}
-            <div className="my-3 sm:my-4 rounded-2xl overflow-hidden border border-slate-200/90 bg-gradient-to-b from-[#020b18] via-[#05152c] to-[#040f22] shadow-inner relative group">
-              <RecurzivCyberFace height="300px" />
+            {/* Video / Poster Stage */}
+            <div className="my-3 sm:my-4 rounded-2xl overflow-hidden border border-slate-200 bg-slate-100">
+              <ServiceVideoHero
+                serviceKey="cyber-security"
+                poster="/assets/cybersecurity-2023-social_uvx3rt.png"
+                title="Cyber Security"
+              />
             </div>
           </div>
 
