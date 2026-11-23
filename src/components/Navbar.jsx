@@ -238,26 +238,16 @@ export default function Navbar() {
               }`}
             >
               {/* Logo */}
-              <div className="shrink-0 flex items-center">
+              <div className="shrink-0">
                 <Link 
                   to="/" 
                   onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                  className="flex items-center gap-2 group"
+                  className="flex items-center"
                 >
-                  {/* Mobile Circular Logo Badge (Perfect 1:1 circular container, centered, never oval) */}
-                  <div className="flex sm:hidden items-center justify-center w-9 h-9 min-w-[36px] min-h-[36px] max-w-[36px] max-h-[36px] rounded-full bg-white border border-slate-200/90 shadow-xs p-1 overflow-hidden shrink-0 aspect-square select-none">
-                    <img
-                      src="/images/kuber_icon.png"
-                      alt="KUBER AIS Logo"
-                      className="w-full h-full object-contain object-center aspect-square select-none pointer-events-none"
-                    />
-                  </div>
-
-                  {/* Desktop & Tablet Full Wordmark Logo */}
                   <img
                     src="/images/kuber_logo_transparent.png"
                     alt="KUBER AIS TECHNOLOGIES Logo"
-                    className={`hidden sm:block w-auto object-contain transition-all duration-300 ${
+                    className={`w-auto object-contain transition-all duration-300 ${
                       isScrolled ? 'h-7 sm:h-7.5' : 'h-8 sm:h-9'
                     }`}
                     style={{ aspectRatio: '720 / 241' }}
