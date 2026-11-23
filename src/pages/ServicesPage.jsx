@@ -19,7 +19,7 @@ export default function ServicesPage({ onOpenModal }) {
   return (
     <div className="pt-16 sm:pt-20 min-h-screen relative bg-gradient-to-b from-[#F8FAFD] via-white to-[#F0F6FC] text-[#082B59]">
       {/* Dedicated Services Page Hero Header */}
-      <section className="relative pt-4 sm:pt-8 pb-4 sm:pb-6 overflow-hidden text-center bg-transparent z-10">
+      <section className="relative pt-6 sm:pt-10 pb-4 sm:pb-6 overflow-hidden text-center bg-transparent z-10">
         {/* Subtle diffuse gradient highlights preserving white-blue theme */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[320px] bg-gradient-to-b from-blue-100/40 via-cyan-50/30 to-transparent rounded-[100%] blur-[90px] pointer-events-none -z-10" />
         <div className="absolute top-12 right-10 w-[350px] h-[350px] bg-[#00B9E8]/8 rounded-full blur-[80px] pointer-events-none -z-10" />
@@ -31,13 +31,9 @@ export default function ServicesPage({ onOpenModal }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold text-[#0866E8] bg-blue-50 border border-blue-100 mb-3 uppercase tracking-wider">
-              Specialized Solutions
-            </span>
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#082B59] tracking-tight leading-[1.14] max-w-4xl mx-auto mb-3 sm:mb-4">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#082B59] tracking-tight leading-[1.14] max-w-4xl mx-auto mb-2 sm:mb-3">
               Our <span className="text-[#0866E8]">Services</span>
             </h1>
-
           </motion.div>
         </div>
       </section>
