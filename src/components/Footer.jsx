@@ -1,0 +1,34 @@
+import React from 'react';
+import { Mail } from 'lucide-react';
+
+export default function Footer() {
+  return (
+    <footer className="bg-[#082B59] text-white py-10 relative overflow-hidden border-t border-blue-900/60">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-5 text-sm text-slate-300">
+          
+          {/* Essential Contact Information */}
+          <div className="flex flex-wrap items-center justify-center sm:justify-start gap-5 sm:gap-8">
+            <a
+              href="mailto:contact@kuber-ais.com"
+              className="inline-flex items-center gap-2 hover:text-cyan-300 transition-colors"
+            >
+              <Mail className="w-4 h-4 text-[#00B9E8]" />
+              <span>contact@kuber-ais.com</span>
+            </a>
+
+            <span className="text-slate-400 text-xs sm:text-sm">
+              Cyber Crime Helpline: <a href="tel:1930" className="font-semibold text-white hover:text-cyan-300 transition-colors">1930</a>
+            </span>
+          </div>
+
+          {/* Copyright Text */}
+          <div className="text-xs text-slate-400">
+            &copy; Kuber AIS Technologies
+          </div>
+
+        </div>
+      </div>
+    </footer>
+  );
+}

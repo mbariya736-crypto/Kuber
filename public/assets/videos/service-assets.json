@@ -1,0 +1,43 @@
+{
+  "status": "success",
+  "generatedAt": "2026-11-17T14:30:00Z",
+  "storageProvider": "local",
+  "assets": {
+    "business-automation": {
+      "id": "business-automation",
+      "serviceTitle": "Business Automation",
+      "poster": "/assets/ai-services.webp",
+      "videoUrl": "/assets/videos/business-automation.mp4",
+      "videoType": "video/mp4",
+      "aspectRatio": "16:9",
+      "resolution": "1920x1080",
+      "animationDescription": "Animated original AI brain, neural network flow, and laptop dashboard interface.",
+      "hasGeneratedVideo": false,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    "cyber-security": {
+      "id": "cyber-security",
+      "serviceTitle": "Cyber Security",
+      "poster": "/assets/cybersecurity-2023-social_uvx3rt.png",
+      "videoUrl": "/assets/videos/cyber-security.mp4",
+      "videoType": "video/mp4",
+      "aspectRatio": "16:9",
+      "resolution": "1920x1080",
+      "animationDescription": "Animated original security lock, laser scanner sweep, and cybersecurity shield interface.",
+      "hasGeneratedVideo": false,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    "film-production": {
+      "id": "film-production",
+      "serviceTitle": "Film Production",
+      "poster": "/assets/ai-film-studio-hero.webp",
+      "videoUrl": "/assets/videos/film-production.mp4",
+      "videoType": "video/mp4",
+      "aspectRatio": "16:9",
+      "resolution": "1920x1080",
+      "animationDescription": "Animated original camera, virtual studio set, and cinematic spotlight sweeps.",
+      "hasGeneratedVideo": false,
+      "cacheControl": "public, max-age=31536000, immutable"
+    }
+  }
+}
