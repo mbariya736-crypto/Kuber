@@ -87,8 +87,8 @@ export default function Hero({ onOpenModal }) {
       <div className="absolute top-1/4 left-10 w-[360px] h-[360px] bg-blue-50/60 rounded-full blur-2xl pointer-events-none -z-10" />
       <div className="absolute top-1/3 right-10 w-[360px] h-[360px] bg-sky-50/60 rounded-full blur-2xl pointer-events-none -z-10" />
 
-      {/* Aller Studio 3D Human Particle Silhouette Animation */}
-      <div className="absolute top-4 sm:top-2 md:-top-4 right-[-5%] sm:right-[0%] md:right-[2%] lg:right-[6%] w-[280px] sm:w-[380px] md:w-[480px] lg:w-[580px] h-[360px] sm:h-[460px] md:h-[540px] lg:h-[620px] pointer-events-none z-0 opacity-85 sm:opacity-95 overflow-visible">
+      {/* Aller Studio 3D Human Particle Silhouette Animation (Positioned naturally below Navbar) */}
+      <div className="absolute top-24 sm:top-20 md:top-16 lg:top-14 right-[-4%] sm:right-[1%] md:right-[3%] lg:right-[6%] w-[260px] sm:w-[360px] md:w-[440px] lg:w-[540px] h-[340px] sm:h-[440px] md:h-[500px] lg:h-[580px] pointer-events-none z-0 opacity-85 sm:opacity-95 overflow-visible">
         <AllerHumanSilhouette className="w-full h-full" />
       </div>
 
