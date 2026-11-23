@@ -77,7 +77,7 @@ export default function Hero({ onOpenModal }) {
   };
 
   return (
-    <section id="home" className="relative pt-14 pb-8 sm:pt-18 sm:pb-10 md:pt-20 md:pb-12 overflow-hidden bg-gradient-to-b from-[#F4F8FD] via-white to-[#F4F8FD]">
+    <section id="home" className="relative pt-24 pb-10 sm:pt-28 sm:pb-12 md:pt-32 md:pb-14 lg:pt-36 lg:pb-16 overflow-hidden bg-gradient-to-b from-[#F4F8FD] via-white to-[#F4F8FD]">
       
       {/* Subtle Abstract Background Accents */}
       <div className="absolute inset-0 bg-grid-mesh pointer-events-none -z-10 opacity-40" />
