@@ -31,6 +31,7 @@ import {
 } from 'lucide-react';
 import ServiceVideoHero from './ServiceVideoHero';
 import ServiceSpecificBackground from './ServiceSpecificBackground';
+import AllerStudioIntroLoader from './AllerStudioIntroLoader';
 
 /* ========================================================================= */
 /* 1. SUBJECT-BASED BACKGROUND: Business Automation (Light Theme)             */
@@ -110,41 +111,43 @@ function AIFilmStudioBackground() {
 }
 
 /* ========================================================================= */
-/* 4. BUSINESS AUTOMATION SERVICE DETAILS (Aller Studio High-End Motion)     */
+/* 4. BUSINESS AUTOMATION SERVICE DETAILS (Light Theme)                      */
 /* ========================================================================= */
 export function AIServicesExperience({ onOpenContact }) {
   const contentWrapperRef = useRef(null);
   const posterCardRef = useRef(null);
   const shouldReduceMotion = useReducedMotion();
-  const [activeWorkflowTab, setActiveWorkflowTab] = useState(0);
+  const [showAllerIntro, setShowAllerIntro] = useState(true);
 
-  // Smooth mouse coordinates with spring-damping physics for tactile 3D tilting
+  // Smooth mouse coordinates with physics-based springs
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  // Aller Studio spring kinematics (responsive, smooth return without jarring bounce)
-  const springX = useSpring(mouseX, { stiffness: 140, damping: 22, mass: 0.25 });
-  const springY = useSpring(mouseY, { stiffness: 140, damping: 22, mass: 0.25 });
+  // Gentle, restrained springs for handcrafted human feel (no sudden jumps, no rubbery bounce)
+  const springX = useSpring(mouseX, { stiffness: 120, damping: 20, mass: 0.2 });
+  const springY = useSpring(mouseY, { stiffness: 120, damping: 20, mass: 0.2 });
 
-  // 3D perspective transforms
-  const rotateX = useTransform(springY, [-1, 1], [4.5, -4.5]);
-  const rotateY = useTransform(springX, [-1, 1], [-5.5, 5.5]);
+  // Very subtle 3D tilt perspective (max ±4 deg)
+  const rotateX = useTransform(springY, [-1, 1], [3.5, -3.5]);
+  const rotateY = useTransform(springX, [-1, 1], [-4, 4]);
 
-  // Multilayer parallax offset
-  const parallaxImgX = useTransform(springX, [-1, 1], [-8, 8]);
-  const parallaxImgY = useTransform(springY, [-1, 1], [-8, 8]);
-  const parallaxBadgeX = useTransform(springX, [-1, 1], [12, -12]);
-  const parallaxBadgeY = useTransform(springY, [-1, 1], [10, -10]);
+  // Gentle parallax offset for the inner poster image
+  const parallaxImgX = useTransform(springX, [-1, 1], [-6, 6]);
+  const parallaxImgY = useTransform(springY, [-1, 1], [-6, 6]);
 
-  // Spotlight reflection coordinate mapping
-  const spotlightX = useTransform(springX, [-1, 1], ['15%', '85%']);
-  const spotlightY = useTransform(springY, [-1, 1], ['15%', '85%']);
+  // Dynamic natural soft shadow responding to light angle
+  const shadowX = useTransform(springX, [-1, 1], [8, -8]);
+  const shadowY = useTransform(springY, [-1, 1], [16, 6]);
 
-  // Scroll Progress Setup for Cinematic Depth
+  // Subtle natural glare highlight
+  const glareX = useTransform(springX, [-1, 1], [0, 100]);
+  const glareY = useTransform(springY, [-1, 1], [0, 100]);
+
+  // Scroll Progress Setup for Cinematic Scroll
   const scrollYMotion = useMotionValue(0);
   const smoothScroll = useSpring(scrollYMotion, { stiffness: 90, damping: 24, mass: 0.4 });
-  const scrollScale = useTransform(smoothScroll, [0, 600], [1, 1.02]);
-  const scrollTranslateY = useTransform(smoothScroll, [0, 600], [0, -14]);
+  const scrollScale = useTransform(smoothScroll, [0, 600], [1, 1.025]);
+  const scrollTranslateY = useTransform(smoothScroll, [0, 600], [0, -12]);
 
   // Touch device detection to cleanly disable cursor effects on mobile/touch
   const [isTouchDevice, setIsTouchDevice] = useState(false);
@@ -206,131 +209,74 @@ export function AIServicesExperience({ onOpenContact }) {
     mouseY.set(0);
   };
 
-  const workflowStages = [
-    {
-      id: 'capture',
-      tag: '01 / INTAKE',
-      title: 'Multichannel Intake & Lead Capture',
-      desc: 'Connect your website forms, WhatsApp Business API, and official email into a single unified queue so no client message goes unnoticed.',
-      metric: '< 30s',
-      metricLabel: 'Average Acknowledgment',
-      badge: 'Real-time Sync'
-    },
-    {
-      id: 'processing',
-      tag: '02 / PIPELINE',
-      title: 'Smart Routing & Staff Notifications',
-      desc: 'Automatically categorize inquiries by department, alert designated managers via instant notifications, and assign follow-up tasks.',
-      metric: '100%',
-      metricLabel: 'Inquiries Assigned',
-      badge: 'Zero Manual Entry'
-    },
-    {
-      id: 'records',
-      tag: '03 / DATABASE',
-      title: 'Centralized Records & Cloud Sync',
-      desc: 'Seamlessly synchronize customer interactions, lead timelines, and follow-up notes across spreadsheets and your CRM in real-time.',
-      metric: 'Zero Loss',
-      metricLabel: 'Data Retention',
-      badge: 'Secure Cloud Master'
-    }
-  ];
-
   const benefits = [
     {
       icon: Clock,
-      num: '01',
-      title: 'Faster Customer Response',
+      title: 'Faster Customer Response Management',
       description: 'Ensure new inquiries from your website, WhatsApp, and email are acknowledged immediately so potential clients never feel ignored.'
     },
     {
       icon: Inbox,
-      num: '02',
-      title: 'Unified Inquiry Tracking',
+      title: 'Better Inquiry Tracking',
       description: 'Keep all customer contact details, messages, and follow-up notes organized in one clear location instead of lost across separate inboxes.'
     },
     {
       icon: CheckCircle2,
-      num: '03',
-      title: 'Elimination of Manual Tasks',
+      title: 'Reduced Manual Work',
       description: 'Eliminate repetitive copy-pasting between spreadsheets, forms, and email so your team can focus on client service and real business.'
     },
     {
       icon: Users,
-      num: '04',
-      title: 'Coordinated Team Execution',
+      title: 'Improved Team Coordination',
       description: 'Automatically notify the right staff member when action is needed, keeping everyone aligned on next steps and pending tasks.'
     }
   ];
 
+  const depthNodes = [
+    { top: '10%', left: '4%', depth: 0.8, size: 48, label: 'WEB INTAKE' },
+    { top: '34%', right: '5%', depth: 1.2, size: 54, label: 'RECORDS SYNC' },
+    { top: '64%', left: '5%', depth: 1.0, size: 50, label: 'NOTIFICATION' },
+    { top: '82%', right: '7%', depth: 0.7, size: 44, label: 'DATABASE' }
+  ];
+
   return (
     <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 pb-12 sm:pb-16 text-[#082B59]">
+      {showAllerIntro && (
+        <AllerStudioIntroLoader onComplete={() => setShowAllerIntro(false)} />
+      )}
       <AIServicesBackground />
 
-      {/* Hero Header with Aller Studio Kinetic Editorial Hierarchy */}
-      <motion.div
-        initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="text-center max-w-4xl mx-auto mb-10 sm:mb-14 relative z-20"
-      >
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold text-[#0866E8] bg-blue-50/90 border border-blue-200/80 mb-4 tracking-wide shadow-2xs">
-          <span className="w-2 h-2 rounded-full bg-[#0866E8] animate-pulse" />
-          <span className="tracking-widest uppercase text-[11px]">Workflow Architecture</span>
-        </div>
-        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-[#082B59] tracking-tight leading-[1.12] mb-4 sm:mb-5">
-          Business Automation <span className="text-[#0866E8]">&amp; Operations</span>
+      {/* Top Heading */}
+      <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 relative z-20">
+        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold text-[#0866E8] bg-blue-50 border border-blue-200/80 mb-3.5 uppercase tracking-wider">
+          <Bot className="w-3.5 h-3.5" />
+          <span>Workflow Automation</span>
+        </span>
+        <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-[#082B59] tracking-tight leading-[1.15] mb-3.5 sm:mb-4">
+          Business Automation Services
         </h1>
-        <p className="text-slate-600 text-sm sm:text-base lg:text-lg leading-relaxed max-w-2xl mx-auto font-normal">
-          Connected systems and organized automated workflows to help your business respond faster, reduce repetitive data entry, and keep customer records organized.
-        </p>
-      </motion.div>
 
-      {/* Dedicated Content Wrapper with Interactive 3D Card & Spotlight */}
+      </div>
+
+      {/* Dedicated Content Wrapper */}
       <div
         ref={contentWrapperRef}
-        className="relative rounded-[32px] sm:rounded-[40px] p-1 sm:p-4 lg:p-6"
+        className="relative overflow-hidden rounded-[32px] sm:rounded-[40px] p-2 sm:p-5 lg:p-6"
       >
-        {/* Main Overview Showcase Card */}
+        {/* Main Overview Card */}
         <motion.div
           style={{
             y: scrollTranslateY
           }}
-          className="relative z-10 rounded-[28px] sm:rounded-[36px] bg-white border border-slate-200/90 p-6 sm:p-10 lg:p-12 shadow-xl shadow-blue-900/5 mb-12 sm:mb-16 overflow-hidden"
+          className="relative z-10 rounded-[28px] sm:rounded-[36px] bg-white border border-slate-200/90 p-6 sm:p-10 lg:p-12 shadow-xl shadow-blue-900/5 mb-12 sm:mb-16"
         >
-          {/* Subtle Dynamic Ambient Lighting Grid */}
-          <div
-            className="absolute inset-0 pointer-events-none opacity-[0.035]"
-            style={{
-              backgroundImage: `
-                linear-gradient(to right, rgba(8, 102, 232, 0.4) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(8, 102, 232, 0.4) 1px, transparent 1px)
-              `,
-              backgroundSize: '36px 36px'
-            }}
-          />
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center text-left relative z-10">
-            {/* Left: Aller Studio Style Spatial 3D Card with Floating HUD Badges */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center text-left">
+            {/* Left: Handcrafted Interactive Poster Container */}
             <div className="lg:col-span-6 flex justify-center w-full">
               <div 
-                className="w-full relative"
+                className="w-full"
                 style={{ perspective: 1200 }}
               >
-                {/* Floating HUD Indicator (Floating in Front of Card) */}
-                <motion.div
-                  style={(isTouchDevice || shouldReduceMotion) ? {} : {
-                    x: parallaxBadgeX,
-                    y: parallaxBadgeY,
-                    translateZ: 30
-                  }}
-                  className="hidden sm:flex absolute -top-4 -left-3 z-30 pointer-events-none items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 border border-blue-200/90 shadow-lg text-[11px] font-bold text-[#082B59] select-none"
-                >
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                  <span className="tracking-wider uppercase text-[10px]">LIVE WORKFLOW READY</span>
-                </motion.div>
-
-                {/* 3D Interactive Card */}
                 <motion.div
                   ref={posterCardRef}
                   onMouseMove={handleCardMouseMove}
@@ -341,7 +287,7 @@ export function AIServicesExperience({ onOpenContact }) {
                     scale: scrollScale,
                     transformStyle: 'preserve-3d'
                   }}
-                  className="relative rounded-[22px] sm:rounded-[26px] aspect-[16/10] w-full bg-slate-900 border border-slate-200/90 shadow-xl shadow-blue-900/10 group overflow-hidden cursor-default transition-shadow duration-500 hover:shadow-2xl hover:shadow-blue-900/15"
+                  className="relative rounded-[22px] sm:rounded-[26px] aspect-[16/10] w-full bg-slate-100 border border-slate-200 shadow-lg shadow-blue-900/8 group overflow-hidden cursor-default transition-shadow duration-500 hover:shadow-2xl hover:shadow-blue-900/12"
                 >
                   {/* The Original Poster Image with subtle parallax */}
                   <motion.img
@@ -350,38 +296,35 @@ export function AIServicesExperience({ onOpenContact }) {
                     style={(isTouchDevice || shouldReduceMotion) ? {} : {
                       x: parallaxImgX,
                       y: parallaxImgY,
-                      scale: 1.06
+                      scale: 1.05
                     }}
                     className="w-full h-full object-cover object-center rounded-[20px] sm:rounded-[24px] relative z-10 pointer-events-none select-none transition-transform duration-700 ease-out"
                   />
 
-                  {/* Aller Studio Kinetic Spotlight Sheen (Follows Cursor Smoothly) */}
+                  {/* Gentle Natural Highlight Sheen (Controlled, No glowing neon) */}
                   {!isTouchDevice && !shouldReduceMotion && (
                     <motion.div
                       style={{
-                        background: `radial-gradient(circle 280px at ${spotlightX} ${spotlightY}, rgba(255, 255, 255, 0.22), transparent 75%)`,
+                        background: `radial-gradient(circle 280px at 50% 50%, rgba(255, 255, 255, 0.16), transparent 70%)`,
                         x: parallaxImgX,
                         y: parallaxImgY
                       }}
-                      className="absolute inset-0 pointer-events-none z-20 mix-blend-overlay opacity-75"
+                      className="absolute inset-0 pointer-events-none z-20 mix-blend-overlay opacity-60"
                     />
                   )}
 
                   {/* Clean natural bottom vignette to preserve contrast */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none z-20" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none z-20" />
                 </motion.div>
               </div>
             </div>
 
-            {/* Right: Overview Text & Interactive Pillar Tabs */}
+            {/* Right: Overview Text */}
             <div className="lg:col-span-6 flex flex-col justify-center relative z-20">
-              <span className="text-[11px] font-bold uppercase tracking-widest text-[#0866E8] mb-2 block">
-                Enterprise Reliability • Handcrafted Automation
-              </span>
               <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#082B59] mb-4 leading-snug">
                 Practical Workflow Solutions Built for Real Businesses
               </h2>
-              <div className="space-y-3.5 text-slate-600 text-xs sm:text-sm lg:text-base leading-relaxed font-normal mb-6">
+              <div className="space-y-3.5 text-slate-600 text-xs sm:text-sm lg:text-base leading-relaxed font-normal">
                 <p>
                   Everyday operations often get slowed down by missed customer messages, disorganized contact sheets, and repetitive manual tasks that take hours away from serving clients.
                 </p>
@@ -389,107 +332,14 @@ export function AIServicesExperience({ onOpenContact }) {
                   We help businesses connect their existing tools—including website forms, WhatsApp, email, spreadsheets, and CRM—into one reliable, straightforward workflow. Your team stays informed with instant notifications, customer details are saved neatly, and follow-ups happen on time.
                 </p>
               </div>
-
-              {/* Quick Action Button */}
-              <div className="flex items-center gap-3">
-                <button
-                  type="button"
-                  onClick={onOpenContact}
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-xs sm:text-sm font-semibold text-white bg-[#0866E8] hover:bg-[#0756C5] shadow-xs hover:shadow-md transition-all cursor-pointer min-h-[44px]"
-                >
-                  <span>Book Automation Consultation</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </div>
             </div>
           </div>
         </motion.div>
 
-        {/* Aller Studio Style Interactive Workflow Architecture Stage */}
+        {/* Key Business Benefits Cards Grid */}
         <div className="mb-12 sm:mb-16 relative z-10">
           <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#0866E8] mb-1.5 block">
-              Execution Architecture
-            </span>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#082B59] tracking-tight">
-              Three-Stage Automation Flow
-            </h2>
-            <p className="text-slate-600 text-xs sm:text-sm mt-2">
-              Explore how incoming client inquiries are captured, processed, and preserved without friction.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
-            {workflowStages.map((stage, idx) => {
-              const isActive = activeWorkflowTab === idx;
-              return (
-                <motion.div
-                  key={stage.id}
-                  onClick={() => setActiveWorkflowTab(idx)}
-                  whileHover={{ y: -4 }}
-                  transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                  className={`p-6 sm:p-7 rounded-[24px] border transition-all duration-300 cursor-pointer flex flex-col justify-between text-left relative overflow-hidden group ${
-                    isActive
-                      ? 'bg-white border-[#0866E8] shadow-xl shadow-blue-900/8'
-                      : 'bg-white/80 border-slate-200/90 hover:border-slate-300 hover:bg-white shadow-md'
-                  }`}
-                >
-                  {/* Subtle top indicator bar */}
-                  <div className={`h-1 w-12 rounded-full mb-4 transition-all duration-300 ${isActive ? 'bg-[#0866E8] w-20' : 'bg-slate-200'}`} />
-
-                  <div>
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
-                        {stage.tag}
-                      </span>
-                      <span className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full border ${
-                        isActive
-                          ? 'bg-blue-50 text-[#0866E8] border-blue-200'
-                          : 'bg-slate-100 text-slate-500 border-slate-200'
-                      }`}>
-                        {stage.badge}
-                      </span>
-                    </div>
-
-                    <h3 className={`text-base sm:text-lg font-bold mb-2.5 transition-colors leading-snug ${
-                      isActive ? 'text-[#0866E8]' : 'text-[#082B59]'
-                    }`}>
-                      {stage.title}
-                    </h3>
-
-                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal mb-6">
-                      {stage.desc}
-                    </p>
-                  </div>
-
-                  <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
-                    <div>
-                      <span className="text-xs font-bold text-[#082B59] block">
-                        {stage.metric}
-                      </span>
-                      <span className="text-[10px] text-slate-400 block uppercase">
-                        {stage.metricLabel}
-                      </span>
-                    </div>
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${
-                      isActive ? 'bg-[#0866E8] text-white shadow-sm' : 'bg-slate-100 text-slate-400'
-                    }`}>
-                      <ArrowRight className="w-4 h-4" />
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Key Business Benefits Cards Grid with Aller Studio Minimal Numbering & Hover Lift */}
-        <div className="mb-12 sm:mb-16 relative z-10">
-          <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#0866E8] mb-1.5 block">
-              Tangible Value
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#082B59] tracking-tight">
+            <h2 className="text-xl sm:text-3xl font-bold text-[#082B59] tracking-tight">
               Key Business Benefits
             </h2>
           </div>
@@ -500,15 +350,10 @@ export function AIServicesExperience({ onOpenContact }) {
               return (
                 <motion.div
                   key={benefit.title}
-                  whileHover={{ y: -6 }}
+                  whileHover={{ y: -5 }}
                   transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-                  className="rounded-[24px] bg-white border border-slate-200/90 hover:border-blue-300 p-6 sm:p-7 transition-all duration-300 shadow-md hover:shadow-xl flex flex-col justify-between group relative overflow-hidden"
+                  className="rounded-[24px] bg-white border border-slate-200/90 hover:border-blue-300 p-6 sm:p-7 transition-all duration-300 shadow-md hover:shadow-xl flex flex-col justify-between group"
                 >
-                  {/* Subtle Corner Numbering */}
-                  <span className="absolute top-4 right-5 text-xl font-black text-slate-100 group-hover:text-blue-50 transition-colors pointer-events-none select-none">
-                    {benefit.num}
-                  </span>
-
                   <div>
                     <div className="w-12 h-12 rounded-2xl bg-blue-50 text-[#0866E8] border border-blue-200/80 flex items-center justify-center mb-5 group-hover:scale-105 transition-all duration-300">
                       <Icon className="w-6 h-6 text-[#0866E8]" />

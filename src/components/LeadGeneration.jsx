@@ -33,9 +33,7 @@ export default function LeadGeneration({ onOpenModal, className = '' }) {
             <h3 className="text-xl sm:text-2xl font-extrabold text-[#082B59]">
               Solving Everyday Inquiry Bottlenecks
             </h3>
-            <p className="text-xs sm:text-sm text-slate-600 mt-2">
-              Transform chaotic incoming requests into structured, actionable team workflows.
-            </p>
+
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-stretch">
