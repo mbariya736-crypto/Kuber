@@ -17,21 +17,30 @@ export default function ServicesPage({ onOpenModal }) {
   };
 
   return (
-    <div className="pt-16 sm:pt-20 min-h-screen relative bg-gradient-to-b from-[#F8FAFD] via-white to-[#F0F6FC] text-[#082B59]">
+    <div className="pt-16 sm:pt-20 min-h-screen relative bg-gradient-to-b from-[#F9FBFD] via-[#F8F9FA] to-[#F1F4F8] text-[#082B59]">
+      {/* Subtle handcrafted paper texture / tactile noise */}
+      <div 
+        className="absolute inset-0 pointer-events-none opacity-[0.035] mix-blend-multiply z-1"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+          backgroundRepeat: 'repeat'
+        }}
+      />
+
       {/* Dedicated Services Page Hero Header */}
-      <section className="relative pt-6 sm:pt-10 pb-4 sm:pb-6 overflow-hidden text-center bg-transparent z-10">
-        {/* Subtle diffuse gradient highlights preserving white-blue theme */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[320px] bg-gradient-to-b from-blue-100/40 via-cyan-50/30 to-transparent rounded-[100%] blur-[90px] pointer-events-none -z-10" />
-        <div className="absolute top-12 right-10 w-[350px] h-[350px] bg-[#00B9E8]/8 rounded-full blur-[80px] pointer-events-none -z-10" />
-        <div className="absolute top-20 left-8 w-[320px] h-[320px] bg-[#0866E8]/8 rounded-full blur-[85px] pointer-events-none -z-10" />
+      <section className="relative pt-6 sm:pt-10 pb-2 sm:pb-4 overflow-hidden text-center bg-transparent z-10">
+        {/* Subtle diffuse gradient highlights with warm undertone */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[320px] bg-gradient-to-b from-blue-100/35 via-amber-50/25 to-transparent rounded-[100%] blur-[90px] pointer-events-none -z-10" />
+        <div className="absolute top-12 right-10 w-[350px] h-[350px] bg-[#00B9E8]/6 rounded-full blur-[80px] pointer-events-none -z-10" />
+        <div className="absolute top-20 left-8 w-[320px] h-[320px] bg-stone-100/50 rounded-full blur-[85px] pointer-events-none -z-10" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.55, ease: [0.19, 1, 0.22, 1] }}
           >
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#082B59] tracking-tight leading-[1.14] max-w-4xl mx-auto mb-2 sm:mb-3">
+            <h1 className="text-3xl sm:text-5xl lg:text-[3.5rem] font-bold text-[#0B2546] tracking-tight leading-[1.14] max-w-4xl mx-auto mb-2 sm:mb-2.5">
               Our <span className="text-[#0866E8]">Services</span>
             </h1>
           </motion.div>
