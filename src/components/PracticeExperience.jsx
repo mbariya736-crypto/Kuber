@@ -32,6 +32,7 @@ import {
 import ServiceVideoHero from './ServiceVideoHero';
 import ServiceSpecificBackground from './ServiceSpecificBackground';
 import AllerStudioIntroLoader from './AllerStudioIntroLoader';
+import RecurzivCyberFace from './RecurzivCyberFace';
 
 /* ========================================================================= */
 /* 1. SUBJECT-BASED BACKGROUND: Business Automation (Light Theme)             */
@@ -481,13 +482,9 @@ export function CyberSecurityExperience({ onOpenContact }) {
               </span>
             </div>
 
-            {/* Video / Poster Stage */}
-            <div className="my-3 sm:my-4 rounded-2xl overflow-hidden border border-slate-200 bg-slate-100">
-              <ServiceVideoHero
-                serviceKey="cyber-security"
-                poster="/assets/cybersecurity-2023-social_uvx3rt.png"
-                title="Cyber Security"
-              />
+            {/* 3D Interactive Cyber Neural Face / Video Stage */}
+            <div className="my-3 sm:my-4 rounded-2xl overflow-hidden border border-slate-200/90 bg-gradient-to-b from-[#020b18] via-[#05152c] to-[#040f22] shadow-inner relative group">
+              <RecurzivCyberFace height="300px" />
             </div>
           </div>
 
