@@ -273,7 +273,7 @@ export function AIServicesExperience({ onOpenContact }) {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center text-left">
             {/* Left: Handcrafted Interactive Poster Container */}
             <div className="lg:col-span-6 flex justify-center w-full">
-              <div 
+              <div
                 className="w-full"
                 style={{ perspective: 1200 }}
               >
