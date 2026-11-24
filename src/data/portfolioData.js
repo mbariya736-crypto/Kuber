@@ -49,8 +49,8 @@ export const portfolioProjects = [
     icon: Bot,
     badgeColor: 'text-[#0866E8] bg-blue-50 border border-blue-200/80',
     iconColor: 'text-[#0866E8]',
-    image: '/images/ai-lead-engine.png',
-    heroImage: '/images/ai-lead-engine.png',
+    image: '/assets/office-conference-room.jpg',
+    heroImage: '/assets/office-conference-room.jpg',
     description: 'Automated inquiry capture and routing system delivering instant WhatsApp notifications and synchronized lead tracking for service businesses.',
     overview: 'An automated customer intake setup that captures website inquiries, validates essential contact information, and routes real-time alerts to the right team members instantly.',
     challenge: 'Growing service businesses frequently lose prospective clients due to delayed responses. Form submissions were landing in crowded email inboxes where they remained unassigned for hours or lost across separate spreadsheets, causing response times to lag past 24 hours.',
@@ -63,8 +63,8 @@ export const portfolioProjects = [
     ],
     gallery: [
       {
-        src: '/images/ai-lead-engine.png',
-        caption: 'Automated inquiry capture pipeline architecture'
+        src: '/assets/office-conference-room.jpg',
+        caption: 'Client consultation & inquiry workflow strategy'
       },
       {
         src: '/assets/ai-services.webp',
@@ -83,8 +83,8 @@ export const portfolioProjects = [
     icon: ShieldCheck,
     badgeColor: 'text-emerald-700 bg-emerald-50 border border-emerald-200/80',
     iconColor: 'text-emerald-600',
-    image: '/images/cyber-security.png',
-    heroImage: '/images/cyber-security.png',
+    image: '/assets/cybersecurity-2023-social_uvx3rt.png',
+    heroImage: '/assets/cybersecurity-2023-social_uvx3rt.png',
     description: 'Practical cybersecurity audit, multi-factor authentication enforcement, and staff awareness training protecting business accounts and client data.',
     overview: 'A practical security hardening and account review program designed to protect small and mid-sized businesses from credential theft, ransomware, and vendor impersonation.',
     challenge: 'Many small businesses operate under the misconception that cyber criminals only target large corporations. In reality, shared email accounts, lack of multi-factor authentication, and untrained employees make small businesses prime targets for invoice fraud and email account compromise.',
@@ -97,12 +97,8 @@ export const portfolioProjects = [
     ],
     gallery: [
       {
-        src: '/images/cyber-security.png',
-        caption: 'Security architecture audit and access control map'
-      },
-      {
         src: '/assets/cybersecurity-2023-social_uvx3rt.png',
-        caption: 'Staff phishing identification and threat guidance manual'
+        caption: 'Security architecture audit and threat guidance manual'
       }
     ],
     impact: 'Eliminated unauthorized account access attempts, safeguarded company banking credentials, and built lasting employee confidence when handling unfamiliar emails and wire instructions.'
@@ -117,8 +113,8 @@ export const portfolioProjects = [
     icon: Bot,
     badgeColor: 'text-[#0866E8] bg-blue-50 border border-blue-200/80',
     iconColor: 'text-[#0866E8]',
-    image: '/images/ai-services.png',
-    heroImage: '/images/ai-services.png',
+    image: '/assets/ai-services.webp',
+    heroImage: '/assets/ai-services.webp',
     description: 'End-to-end operational pipeline connecting order tracking, database records, and automated weekly summary digests for leadership.',
     overview: 'End-to-end integration linking client records, order tracking, and scheduled operational summaries into a self-managing digital pipeline.',
     challenge: 'Operations teams spent significant portions of each day manually transferring order numbers, delivery dates, and client requests between separate accounting software, customer sheets, and internal communication channels.',
@@ -131,12 +127,8 @@ export const portfolioProjects = [
     ],
     gallery: [
       {
-        src: '/images/ai-services.png',
-        caption: 'Workflow logic mapping and automation triggers'
-      },
-      {
         src: '/assets/ai-services.webp',
-        caption: 'System integration interface and reporting logs'
+        caption: 'Operational workflow mapping and webhook pipeline logs'
       }
     ],
     impact: 'Saved over 25 staff hours per week previously wasted on manual data re-entry, while ensuring company leadership receives transparent, real-time summaries of daily business operations.'
@@ -151,8 +143,8 @@ export const portfolioProjects = [
     icon: Film,
     badgeColor: 'text-cyan-800 bg-cyan-50 border border-cyan-200/80',
     iconColor: 'text-cyan-600',
-    image: '/assets/Futuristic-studio-for-AI-driven-creations.webp',
-    heroImage: '/assets/Futuristic-studio-for-AI-driven-creations.webp',
+    image: '/assets/ai-film-studio-hero.webp',
+    heroImage: '/assets/ai-film-studio-hero.webp',
     description: 'Cinematic corporate profile and commercial narrative production engineered to build viewer trust and highlight unique brand values.',
     overview: 'Professional commercial video production combining narrative scriptwriting, cinematic filming, and high-fidelity sound design for brand campaigns and corporate profiles.',
     challenge: 'Corporate videos often suffer from dry, template-driven presentations that fail to engage viewers or clearly communicate the company’s genuine values and service differentiators in crowded digital markets.',
@@ -165,12 +157,12 @@ export const portfolioProjects = [
     ],
     gallery: [
       {
-        src: '/assets/Futuristic-studio-for-AI-driven-creations.webp',
-        caption: 'Studio grading suite and post-production workspace'
-      },
-      {
         src: '/assets/ai-film-studio-hero.webp',
         caption: 'Cinematography camera rig and production monitor'
+      },
+      {
+        src: '/assets/Futuristic-studio-for-AI-driven-creations.webp',
+        caption: 'Studio grading suite and post-production workspace'
       }
     ],
     impact: 'Delivered an engaging brand media asset that increased visitor engagement on client web platforms and gave leadership a compelling, professional presentation piece for client meetings.'

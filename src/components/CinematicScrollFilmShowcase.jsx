@@ -71,7 +71,7 @@ export default function CinematicScrollFilmShowcase({
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-4 border-t border-slate-100 mb-5">
               <div className="p-3 rounded-xl bg-slate-50 border border-slate-100">
                 <span className="text-[11px] font-bold text-[#0866E8] uppercase tracking-wider block mb-1">
-                  01. UPI &amp; QR Frauds
+                  UPI &amp; QR Frauds
                 </span>
                 <p className="text-xs text-slate-600 leading-snug">
                   Scanning a QR code or entering a PIN only transfers money out, never into your account.
@@ -80,7 +80,7 @@ export default function CinematicScrollFilmShowcase({
 
               <div className="p-3 rounded-xl bg-slate-50 border border-slate-100">
                 <span className="text-[11px] font-bold text-[#0866E8] uppercase tracking-wider block mb-1">
-                  02. Deceptive Links
+                  Deceptive Payment Links
                 </span>
                 <p className="text-xs text-slate-600 leading-snug">
                   Spotting fake SMS delivery notices, prize links, and cloned banking login pages.
@@ -89,7 +89,7 @@ export default function CinematicScrollFilmShowcase({
 
               <div className="p-3 rounded-xl bg-slate-50 border border-slate-100">
                 <span className="text-[11px] font-bold text-[#0866E8] uppercase tracking-wider block mb-1">
-                  03. The Golden Hour
+                  The Golden Hour Protocol
                 </span>
                 <p className="text-xs text-slate-600 leading-snug">
                   Taking immediate action within the first 60 minutes to alert banking teams and freeze illicit transfers.

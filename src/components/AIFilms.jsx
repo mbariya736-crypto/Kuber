@@ -142,14 +142,12 @@ export default function AIFilms({ onOpenModal }) {
                 initial={{ opacity: 1, y: 0 }}
                 animate={{ opacity: 1, y: 0 }}
                 whileHover={{ y: -5, transition: { duration: 0.28, ease: [0.16, 1, 0.3, 1] } }}
-                className="rounded-[28px] bg-white border border-slate-200/90 shadow-[0_10px_30px_rgba(8,43,89,0.06)] hover:shadow-[0_20px_45px_rgba(8,102,232,0.12)] hover:border-blue-300 transition-all duration-300 overflow-hidden flex flex-col justify-between group"
+                onClick={() => handleWatchFilm(film)}
+                className="rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-blue-300 transition-all duration-300 overflow-hidden flex flex-col justify-between group cursor-pointer"
               >
                 <div>
                   {/* Poster Image Container */}
-                  <div
-                    className="relative aspect-[16/9] w-full overflow-hidden bg-slate-900/5 cursor-pointer border-b border-slate-100 group/img"
-                    onClick={() => handleInspectArtwork(film)}
-                  >
+                  <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-900/5 border-b border-slate-100 group/img">
                     <img
                       src={film.image}
                       alt={film.title}
@@ -170,31 +168,11 @@ export default function AIFilms({ onOpenModal }) {
                       {film.title}
                     </h4>
 
-                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal mb-2">
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
                       {film.description}
                     </p>
                   </div>
                 </div>
-
-                {/* Footer Action: Watch Trailer Button */}
-                <div className="px-6 sm:px-7 pb-6 pt-3 border-t border-slate-100 bg-slate-50/50 flex items-center justify-between gap-3 mt-auto">
-                  <button
-                    onClick={() => handleWatchFilm(film)}
-                    className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-[#0866E8] via-[#0878F0] to-[#00B9E8] shadow-xs hover:shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all flex-1 min-h-[40px] cursor-pointer"
-                  >
-                    <Play className="w-3.5 h-3.5 fill-white" />
-                    <span>Watch Trailer</span>
-                  </button>
-
-                  <button
-                    onClick={() => handleInspectArtwork(film)}
-                    className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-xl text-xs font-semibold text-[#082B59] bg-white border border-slate-200 hover:border-blue-300 transition-colors min-h-[40px] cursor-pointer"
-                    title="View Gallery"
-                  >
-                    <Maximize2 className="w-3.5 h-3.5 text-slate-500" />
-                  </button>
-                </div>
-
               </motion.div>
             ))}
           </div>
