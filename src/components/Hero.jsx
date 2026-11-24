@@ -40,13 +40,13 @@ export default function Hero({ onOpenModal }) {
       <div className="absolute top-1/4 left-10 w-[360px] h-[360px] bg-blue-50/60 rounded-full blur-2xl pointer-events-none -z-10" />
       <div className="absolute top-1/3 right-10 w-[360px] h-[360px] bg-sky-50/60 rounded-full blur-2xl pointer-events-none -z-10" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full">
         
         {/* BALANCED EDITORIAL HERO GRID: Content on Left, Sized 3D Silhouette on Right */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-8 lg:gap-10 xl:gap-14">
+        <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-8 lg:gap-8 xl:gap-10">
           
           {/* LEFT COLUMN: Main Value Proposition & CTAs */}
-          <div className="lg:col-span-8 flex flex-col items-center lg:items-start text-center lg:text-left">
+          <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left">
             
             {/* Staggered Natural Headline Reveal */}
             <motion.h1
@@ -101,9 +101,12 @@ export default function Hero({ onOpenModal }) {
 
           </div>
 
-          {/* RIGHT COLUMN: 3D Human Particle Silhouette (Reduced 25-35%, fully inside container, zero overflow/overlap) */}
-          <div className="lg:col-span-4 flex items-center justify-center lg:justify-end w-full">
-            <div className="relative w-[115px] sm:w-[140px] md:w-[170px] lg:w-[205px] xl:w-[225px] h-[160px] sm:h-[195px] md:h-[235px] lg:h-[285px] xl:h-[310px] pointer-events-none z-10 opacity-90 sm:opacity-100">
+          {/* RIGHT COLUMN: 3D Human Particle Silhouette (Properly centered in hero space, filling blank void with ambient depth) */}
+          <div className="lg:col-span-5 flex items-center justify-center w-full relative">
+            {/* Ambient Luminous Halo behind the 3D Bust */}
+            <div className="absolute w-[280px] sm:w-[340px] lg:w-[380px] h-[280px] sm:h-[340px] lg:h-[380px] bg-gradient-to-tr from-blue-100/40 via-sky-100/30 to-transparent rounded-full blur-3xl pointer-events-none -z-10" />
+
+            <div className="relative w-[150px] sm:w-[190px] md:w-[230px] lg:w-[270px] xl:w-[290px] h-[210px] sm:h-[265px] md:h-[320px] lg:h-[375px] xl:h-[400px] pointer-events-none z-10 opacity-95">
               <AllerHumanSilhouette className="w-full h-full" />
             </div>
           </div>
