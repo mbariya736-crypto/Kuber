@@ -59,7 +59,7 @@ export default function ServicePosterSplashScreen({ serviceId = 'ai-services', o
 
   return (
     <motion.div
-      initial={{ opacity: 1 }}
+      initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0, scale: 1.02 }}
       transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}

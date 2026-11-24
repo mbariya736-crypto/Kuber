@@ -81,7 +81,7 @@ export default function ServiceDetailPage({ practiceId: propPracticeId }) {
 
   return (
     <div className="min-h-screen flex flex-col text-[#082B59] bg-[#F8FAFD] relative">
-      {/* 0. POSTER-DRIVEN SPLASH SCREEN (Plays on page open according to the service poster) */}
+      {/* 0. POSTER-DRIVEN SPLASH SCREEN (Plays ONLY on page open according to the service poster) */}
       <AnimatePresence mode="wait">
         {splashVisible && (
           <ServicePosterSplashScreen
@@ -91,9 +91,6 @@ export default function ServiceDetailPage({ practiceId: propPracticeId }) {
           />
         )}
       </AnimatePresence>
-
-      {/* Service-Specific Handcrafted Background Animation (Runs inside the service page) */}
-      <ServiceSpecificBackground serviceId={normalizedId} className="fixed inset-0 w-full h-full pointer-events-none z-0" />
 
       {/* 1. DEDICATED SERVICE DETAIL TOP HEADER */}
       <header className="sticky top-0 z-50 w-full backdrop-blur-md bg-white/90 border-b border-slate-200/80 py-3 px-4 sm:px-8 flex items-center justify-between gap-3 shadow-2xs">

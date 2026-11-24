@@ -38,20 +38,6 @@ import ServiceSpecificBackground from './ServiceSpecificBackground';
 function AIServicesBackground() {
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none z-0 select-none">
-      {/* Holographic Laser Scanning Sweep Across the Neural Network Field */}
-      <motion.div
-        animate={{
-          x: ['-140%', '240%']
-        }}
-        transition={{
-          duration: 3.2,
-          repeat: Infinity,
-          ease: 'easeInOut',
-          repeatDelay: 1.2
-        }}
-        className="absolute inset-y-0 w-64 bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent skew-x-[-20deg]"
-      />
-
       {/* Gentle gradient wash and ambient depth highlights */}
       <motion.div
         animate={{
@@ -99,20 +85,6 @@ function AIServicesBackground() {
 function CyberSecurityBackground() {
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none z-0 select-none">
-      {/* Holographic Radar Scanner Sweep Across the Security Field */}
-      <motion.div
-        animate={{
-          x: ['-140%', '240%']
-        }}
-        transition={{
-          duration: 3.4,
-          repeat: Infinity,
-          ease: 'easeInOut',
-          repeatDelay: 1.0
-        }}
-        className="absolute inset-y-0 w-64 bg-gradient-to-r from-transparent via-emerald-400/20 to-transparent skew-x-[-20deg]"
-      />
-
       {/* Protective Emerald & Teal Ambient Glow Rings */}
       <motion.div
         animate={{
@@ -150,20 +122,6 @@ function CyberSecurityBackground() {
 function AIFilmStudioBackground() {
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none z-0 select-none">
-      {/* Cinematic Anamorphic Light Drift Sweep */}
-      <motion.div
-        animate={{
-          x: ['-140%', '240%']
-        }}
-        transition={{
-          duration: 3.6,
-          repeat: Infinity,
-          ease: 'easeInOut',
-          repeatDelay: 1.4
-        }}
-        className="absolute inset-y-0 w-64 bg-gradient-to-r from-transparent via-amber-400/20 to-transparent skew-x-[-20deg]"
-      />
-
       {/* Warm Ambient Studio Spotlight Accents */}
       <motion.div
         animate={{
@@ -331,6 +289,7 @@ export function AIServicesExperience({ onOpenContact }) {
         <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-[#082B59] tracking-tight leading-[1.15] mb-3.5 sm:mb-4">
           Business Automation Services
         </h1>
+
       </div>
 
       {/* Dedicated Content Wrapper */}
@@ -491,6 +450,7 @@ export function AIServicesExperience({ onOpenContact }) {
               Ready to Discuss Your Business Workflow?
             </h3>
 
+
             <button
               onClick={onOpenContact}
               className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-xl text-sm font-semibold text-white bg-[#0866E8] hover:bg-[#0756C5] shadow-xs hover:shadow-md transition-all cursor-pointer min-h-[44px]"
@@ -553,6 +513,9 @@ export function CyberSecurityExperience({ onOpenContact }) {
             Business Operations
           </span>
         </h1>
+        <p className="text-slate-600 text-xs sm:text-sm lg:text-base leading-relaxed max-w-2xl mx-auto font-normal">
+          Practical account audits, multi-factor authentication, and employee phishing defenses designed to safeguard your business from digital fraud, account takeovers, and scam links.
+        </p>
 
       </motion.div>
 
@@ -564,7 +527,7 @@ export function CyberSecurityExperience({ onOpenContact }) {
         className="rounded-[28px] sm:rounded-[36px] bg-white border border-slate-200/90 p-6 sm:p-10 lg:p-12 shadow-xl shadow-blue-900/5 mb-12 sm:mb-16 text-left"
       >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          
+
           {/* Content Left */}
           <div className="lg:col-span-7 flex flex-col justify-center">
             <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#082B59] mb-4 leading-snug">
@@ -707,6 +670,9 @@ export function CyberSecurityExperience({ onOpenContact }) {
         <h3 className="text-2xl sm:text-3xl font-extrabold text-white mb-3">
           Protect Your Business Operations &amp; Client Trust
         </h3>
+        <p className="text-sm text-slate-300 max-w-xl mx-auto mb-6 leading-relaxed">
+          Schedule a confidential security review with our team to identify vulnerabilities in your business email, accounts, and payment procedures.
+        </p>
 
         <button
           onClick={onOpenContact}
@@ -821,9 +787,8 @@ export function AIFilmStudioExperience({ onOpenContact }) {
             Visual Storytelling
           </span>
         </h1>
-        <p className="text-slate-600 text-xs sm:text-sm lg:text-base leading-relaxed max-w-2xl mx-auto font-normal">
-          We produce brand commercials, corporate documentaries, and awareness films with deliberate creative direction, cinematic production, and polished post-production.
-        </p>
+
+
       </motion.div>
 
       {/* Main Editorial Showcase (Image Left, Content Right) */}
@@ -834,7 +799,7 @@ export function AIFilmStudioExperience({ onOpenContact }) {
         className="rounded-[28px] sm:rounded-[36px] bg-white border border-slate-200/90 p-6 sm:p-10 lg:p-12 shadow-xl shadow-blue-900/5 mb-12 sm:mb-16 text-left"
       >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          
+
           {/* Photographic Image Left */}
           <div className="lg:col-span-5 flex justify-center w-full">
             <div className="relative rounded-[22px] sm:rounded-[26px] aspect-[16/11] sm:aspect-[4/3] w-full bg-slate-100 border border-slate-200 shadow-lg shadow-blue-900/8 overflow-hidden group">
@@ -1077,9 +1042,8 @@ export function AIFilmStudioExperience({ onOpenContact }) {
         <h3 className="text-2xl sm:text-3xl font-extrabold text-white mb-3">
           Bring Your Story to the Screen
         </h3>
-        <p className="text-sm text-slate-300 max-w-xl mx-auto mb-6 leading-relaxed">
-          Tell us about your audience and project goals. We will help you plan, write, and produce video content that strengthens your brand presence.
-        </p>
+
+
         <button
           onClick={onOpenContact}
           className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-xl text-sm font-semibold text-white bg-[#0866E8] hover:bg-[#0756C5] shadow-xs hover:shadow-md transition-all cursor-pointer"
