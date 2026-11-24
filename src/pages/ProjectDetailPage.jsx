@@ -14,7 +14,7 @@ import {
   PhoneCall,
   Globe
 } from 'lucide-react';
-import { portfolioProjects } from '../data/portfolioData';
+import { portfolioProjects, digitalJaalProject } from '../data/portfolioData';
 
 /**
  * ProjectDetailPage
@@ -39,7 +39,8 @@ export default function ProjectDetailPage() {
     window.scrollTo(0, 0);
   }, [projectId]);
 
-  const project = portfolioProjects.find(
+  const allProjects = [digitalJaalProject, ...portfolioProjects];
+  const project = allProjects.find(
     (p) => p.slug === projectId || p.id === projectId
   ) || portfolioProjects[0];
 
@@ -47,7 +48,9 @@ export default function ProjectDetailPage() {
 
   // Next / Previous projects for bottom navigation
   const currentIndex = portfolioProjects.findIndex((p) => p.id === project.id);
-  const nextProject = portfolioProjects[(currentIndex + 1) % portfolioProjects.length];
+  const nextProject = currentIndex >= 0 
+    ? portfolioProjects[(currentIndex + 1) % portfolioProjects.length]
+    : portfolioProjects[0];
 
   return (
     <div className="min-h-screen flex flex-col text-[#082B59] bg-[#F9FBFD] relative">

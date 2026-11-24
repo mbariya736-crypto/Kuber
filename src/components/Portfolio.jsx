@@ -93,9 +93,11 @@ export default function Portfolio({ onOpenModal }) {
         <motion.div
           layout
           className={`grid ${
-            filteredProjects.length > 1
-              ? 'grid-cols-1 md:grid-cols-2 max-w-5xl'
-              : 'grid-cols-1 max-w-xl sm:max-w-2xl'
+            filteredProjects.length > 2
+              ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-6xl'
+              : filteredProjects.length > 1
+                ? 'grid-cols-1 md:grid-cols-2 max-w-5xl'
+                : 'grid-cols-1 max-w-xl sm:max-w-2xl'
           } gap-6 sm:gap-8 items-stretch mx-auto`}
         >
           <AnimatePresence mode="popLayout">
