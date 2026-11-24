@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import {
-  FolderKanban,
   Bot,
   ShieldCheck,
   Film
@@ -59,22 +58,15 @@ export default function Portfolio({ onOpenModal }) {
         {/* 1. SECTION HEADER                                        */}
         {/* ======================================================== */}
         <motion.div
-          initial={{ opacity: 0, y: 18 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-3xl mx-auto text-center mb-8 sm:mb-10"
+          className="max-w-3xl mx-auto text-center mb-7 sm:mb-9"
         >
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/80 text-xs font-semibold text-[#0866E8] mb-3">
-            <FolderKanban className="w-3.5 h-3.5 text-[#0866E8]" />
-            <span>Our Work &amp; Case Studies</span>
-          </div>
-
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#082B59] tracking-tight leading-[1.18]">
             Our <span className="text-[#0866E8]">Portfolio</span> &amp; Case Studies
           </h2>
-
-
         </motion.div>
 
         {/* ======================================================== */}
