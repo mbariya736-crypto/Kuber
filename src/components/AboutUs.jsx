@@ -4,7 +4,6 @@ import {
   Bot,
   ShieldCheck,
   Film,
-  Sparkles,
   ArrowRight
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -56,14 +55,14 @@ export default function AboutUs() {
   ];
 
   return (
-    <section 
-      id="about" 
+    <section
+      id="about"
       className="py-8 sm:py-10 lg:py-12 relative overflow-hidden bg-white text-[#082B59]"
     >
       {/* Subtle Background Decoration: Soft Gradient Blobs & Delicate Dot Pattern */}
       <div className="absolute top-1/4 left-8 w-[320px] h-[320px] bg-blue-50/50 rounded-full blur-3xl pointer-events-none -z-10" />
       <div className="absolute bottom-6 right-8 w-[340px] h-[340px] bg-sky-50/40 rounded-full blur-3xl pointer-events-none -z-10" />
-      <div 
+      <div
         className="absolute inset-0 opacity-[0.16] pointer-events-none"
         style={{
           backgroundImage: `radial-gradient(rgba(8, 102, 232, 0.45) 1px, transparent 1px)`,
@@ -72,7 +71,7 @@ export default function AboutUs() {
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* Compact Two-Column Agency Layout (35% Reduced Whitespace) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 xl:gap-10 items-center">
 
@@ -89,103 +88,59 @@ export default function AboutUs() {
               <div className="absolute top-0 right-0 w-36 h-36 bg-blue-100/40 rounded-full blur-2xl pointer-events-none -z-10" />
               <div className="absolute bottom-0 left-0 w-32 h-32 bg-cyan-100/35 rounded-full blur-2xl pointer-events-none -z-10" />
 
-              {/* Header: Operations & Status Bar */}
-              <div className="flex items-center justify-between pb-3 mb-3.5 border-b border-slate-100 relative z-10">
-                <div className="flex items-center gap-2">
-                  <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-                  <span className="text-xs font-bold text-[#082B59] uppercase tracking-wider">
-                    Operations &amp; Delivery
-                  </span>
-                </div>
-                <span className="text-[10px] font-mono font-medium text-slate-500 bg-slate-100 px-2 py-0.5 rounded-md">
-                  Active Workflows
+              {/* Header: Clean Solutions Overview */}
+              <div className="pb-3 mb-3.5 border-b border-slate-100 relative z-10">
+                <span className="text-xs font-bold text-[#082B59] uppercase tracking-wider">
+                  Everyday Business Solutions
                 </span>
               </div>
 
               {/* Realistic Collaboration Workflow Elements */}
               <div className="space-y-2.5 relative z-10">
                 {/* 1. Workflow: Automation */}
-                <div className="p-3 rounded-xl bg-white/95 border border-blue-100 shadow-xs flex items-center justify-between gap-3 group hover:border-[#0866E8] transition-all">
-                  <div className="flex items-center gap-2.5 min-w-0">
-                    <div className="w-8 h-8 rounded-lg bg-blue-50 text-[#0866E8] flex items-center justify-center shrink-0 border border-blue-100">
-                      <Bot className="w-4 h-4" />
-                    </div>
-                    <div className="min-w-0">
-                      <h4 className="text-xs font-bold text-[#082B59] truncate">
-                        Inquiry Routing &amp; Response Flow
-                      </h4>
-                      <p className="text-[11px] text-slate-500 truncate">
-                        Form submissions &rarr; Instant alerts
-                      </p>
-                    </div>
+                <div className="p-3 rounded-xl bg-white/95 border border-slate-100 shadow-xs flex items-center gap-3 group hover:border-[#0866E8] transition-all">
+                  <div className="w-8 h-8 rounded-lg bg-blue-50 text-[#0866E8] flex items-center justify-center shrink-0 border border-blue-100">
+                    <Bot className="w-4 h-4" />
                   </div>
-                  <span className="text-[10px] font-semibold text-[#0866E8] bg-blue-50 px-2 py-0.5 rounded-full shrink-0">
-                    Automated
-                  </span>
+                  <div className="min-w-0 flex-1">
+                    <h4 className="text-xs font-bold text-[#082B59] truncate">
+                      Inquiry Routing &amp; Response Flow
+                    </h4>
+                    <p className="text-[11px] text-slate-500 truncate">
+                      Form submissions &rarr; Instant alerts
+                    </p>
+                  </div>
                 </div>
 
                 {/* 2. Workflow: Security */}
-                <div className="p-3 rounded-xl bg-white/95 border border-emerald-100 shadow-xs flex items-center justify-between gap-3 group hover:border-emerald-500 transition-all">
-                  <div className="flex items-center gap-2.5 min-w-0">
-                    <div className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 border border-emerald-100">
-                      <ShieldCheck className="w-4 h-4" />
-                    </div>
-                    <div className="min-w-0">
-                      <h4 className="text-xs font-bold text-[#082B59] truncate">
-                        Access Audits &amp; Fraud Defense
-                      </h4>
-                      <p className="text-[11px] text-slate-500 truncate">
-                        Multi-factor &amp; scam verification
-                      </p>
-                    </div>
+                <div className="p-3 rounded-xl bg-white/95 border border-slate-100 shadow-xs flex items-center gap-3 group hover:border-emerald-500 transition-all">
+                  <div className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 border border-emerald-100">
+                    <ShieldCheck className="w-4 h-4" />
                   </div>
-                  <span className="text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full shrink-0">
-                    Protected
-                  </span>
+                  <div className="min-w-0 flex-1">
+                    <h4 className="text-xs font-bold text-[#082B59] truncate">
+                      Access Audits &amp; Fraud Defense
+                    </h4>
+                    <p className="text-[11px] text-slate-500 truncate">
+                      Multi-factor &amp; scam verification
+                    </p>
+                  </div>
                 </div>
 
                 {/* 3. Workflow: Media */}
-                <div className="p-3 rounded-xl bg-white/95 border border-cyan-100 shadow-xs flex items-center justify-between gap-3 group hover:border-cyan-500 transition-all">
-                  <div className="flex items-center gap-2.5 min-w-0">
-                    <div className="w-8 h-8 rounded-lg bg-cyan-50 text-cyan-600 flex items-center justify-center shrink-0 border border-cyan-100">
-                      <Film className="w-4 h-4" />
-                    </div>
-                    <div className="min-w-0">
-                      <h4 className="text-xs font-bold text-[#082B59] truncate">
-                        Campaign Storyboards &amp; Media
-                      </h4>
-                      <p className="text-[11px] text-slate-500 truncate">
-                        Commercial films &amp; awareness
-                      </p>
-                    </div>
+                <div className="p-3 rounded-xl bg-white/95 border border-slate-100 shadow-xs flex items-center gap-3 group hover:border-cyan-500 transition-all">
+                  <div className="w-8 h-8 rounded-lg bg-cyan-50 text-cyan-600 flex items-center justify-center shrink-0 border border-cyan-100">
+                    <Film className="w-4 h-4" />
                   </div>
-                  <span className="text-[10px] font-semibold text-cyan-700 bg-cyan-50 px-2 py-0.5 rounded-full shrink-0">
-                    Production
-                  </span>
-                </div>
-              </div>
-
-              {/* Team Collaboration Avatars & Bottom Status */}
-              <div className="mt-3.5 pt-3 border-t border-slate-100 flex items-center justify-between relative z-10">
-                <div className="flex items-center gap-2">
-                  <div className="flex -space-x-1.5">
-                    <div className="w-6 h-6 rounded-full bg-[#082B59] text-white text-[9px] font-bold flex items-center justify-center ring-2 ring-white">
-                      KB
-                    </div>
-                    <div className="w-6 h-6 rounded-full bg-[#0866E8] text-white text-[9px] font-bold flex items-center justify-center ring-2 ring-white">
-                      AI
-                    </div>
-                    <div className="w-6 h-6 rounded-full bg-[#00B9E8] text-white text-[9px] font-bold flex items-center justify-center ring-2 ring-white">
-                      CS
-                    </div>
+                  <div className="min-w-0 flex-1">
+                    <h4 className="text-xs font-bold text-[#082B59] truncate">
+                      Campaign Storyboards &amp; Media
+                    </h4>
+                    <p className="text-[11px] text-slate-500 truncate">
+                      Commercial films &amp; awareness
+                    </p>
                   </div>
-                  <span className="text-[11px] font-medium text-slate-500">
-                    Collaboration team
-                  </span>
                 </div>
-                <span className="text-[11px] font-semibold text-[#0866E8]">
-                  Verified Systems
-                </span>
               </div>
 
             </motion.div>
@@ -194,7 +149,7 @@ export default function AboutUs() {
           {/* RIGHT: HEADING & STAGGERED PREMIUM SERVICE CARDS */}
           <div className="lg:col-span-7 flex flex-col justify-center text-left">
 
-            {/* Section Badge & Heading */}
+            {/* Section Heading */}
             <motion.div
               initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 14 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -202,21 +157,13 @@ export default function AboutUs() {
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               className="mb-4 sm:mb-5 text-left"
             >
-              {/* Badge: WHAT WE DO */}
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/80 text-[11px] font-bold uppercase tracking-wider text-[#0866E8] mb-2.5">
-                <Sparkles className="w-3 h-3 text-[#0866E8]" />
-                <span>WHAT WE DO</span>
-              </div>
-
               {/* Heading */}
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#082B59] tracking-tight leading-[1.18] mb-2">
                 Our <span className="text-[#0866E8]">Core Services</span>
               </h2>
 
               {/* Subheading */}
-              <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed">
-                Practical solutions for automation, security, and digital storytelling.
-              </p>
+
             </motion.div>
 
             {/* Staggered Service Cards with Hover Lift (-6px) & Subtle Glassmorphism */}
@@ -235,9 +182,9 @@ export default function AboutUs() {
                       delay: shouldReduceMotion ? 0 : index * 0.08,
                       ease: [0.16, 1, 0.3, 1]
                     }}
-                    whileHover={shouldReduceMotion ? {} : { 
-                      y: -6, 
-                      transition: { duration: 0.22, ease: [0.16, 1, 0.3, 1] } 
+                    whileHover={shouldReduceMotion ? {} : {
+                      y: -6,
+                      transition: { duration: 0.22, ease: [0.16, 1, 0.3, 1] }
                     }}
                     className={`group relative rounded-2xl p-4 sm:p-5 bg-white/90 backdrop-blur-md border border-slate-200/90 ${card.hoverBorder} shadow-xs hover:shadow-md transition-all duration-200 overflow-hidden text-left cursor-pointer`}
                   >
