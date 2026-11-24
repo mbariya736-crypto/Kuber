@@ -87,7 +87,7 @@ export default function AIFilms({ onOpenModal }) {
   };
 
   return (
-    <section id="ai-films" className="pt-8 sm:pt-10 pb-12 sm:pb-16 relative bg-white overflow-hidden scroll-mt-24 h-auto">
+    <section id="ai-films" className="pt-2 sm:pt-4 pb-12 sm:pb-16 relative bg-white overflow-hidden scroll-mt-24 h-auto">
 
       {/* Background ambient lighting */}
       <div className="absolute top-1/3 right-1/4 w-[500px] h-[500px] bg-blue-100/40 rounded-full blur-3xl -z-10 pointer-events-none" />
@@ -96,18 +96,6 @@ export default function AIFilms({ onOpenModal }) {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* ======================================================== */}
-        {/* 1. HERO SECTION                                          */}
-        {/* ======================================================== */}
-        <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-12">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#082B59] tracking-tight leading-[1.18] mb-3 sm:mb-4">
-            Creative Video Production &amp;{' '}
-            <span className="bg-gradient-to-r from-[#0866E8] via-[#0878F0] to-[#00B9E8] bg-clip-text text-transparent drop-shadow-sm">
-              Visual Storytelling.
-            </span>
-          </h2>
-
-        </div>
         {/* ======================================================== */}
         {/* 2. FEATURED AI FILM: DIGITAL JAAL (CINEMATIC 3D SCROLL)  */}
         {/* ======================================================== */}

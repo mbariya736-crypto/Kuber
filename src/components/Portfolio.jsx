@@ -16,7 +16,7 @@ export default function Portfolio({ onOpenModal }) {
   return (
     <section
       id="portfolio"
-      className="relative text-[#082B59] overflow-hidden scroll-mt-20 sm:scroll-mt-24 py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-[#F9FBFD] via-[#F8F9FA] to-[#F3F6F9] border-t border-stone-200/80"
+      className="relative text-[#082B59] overflow-hidden scroll-mt-20 sm:scroll-mt-24 pt-10 sm:pt-14 pb-3 sm:pb-4 bg-gradient-to-b from-[#F9FBFD] via-[#F8F9FA] to-white border-t border-stone-200/80"
     >
       {/* Subtle handcrafted paper texture / tactile noise matching Services */}
       <div 
