@@ -14,30 +14,30 @@ export const portfolioProjects = [
     image: '/images/digital-jaal.png',
     heroImage: '/images/digital-jaal.png',
     description: 'Public awareness initiative educating citizens on UPI deception, fake payment links, and rapid response via National Helpline 1930.',
-    overview: 'A public awareness film produced to educate citizens and business owners on emerging digital financial scams, deceptive QR payment schemes, and practical immediate response protocols.',
-    challenge: 'As digital transactions expanded rapidly across micro-enterprises and everyday consumers, cyber criminals increasingly deployed social engineering, unauthorized remote-access apps, and deceptive payment links. Victims frequently lost crucial time during the first critical hour because they did not know where to turn or how to report unauthorized transactions immediately.',
-    solution: 'We conceptualized, wrote, and produced the "DIGITAL JAAL" awareness film. Using relatable everyday scenarios—from urgent vendor payment requests to fake bank KYC alerts—the film clearly demonstrates the exact psychological traps used by scammers and delivers clear, actionable guidance on freezing transactions through the National Cyber Helpline 1930 and the cybercrime.gov.in portal.',
+    overview: 'An educational film produced to inform citizens and business owners about digital financial deception, fraudulent QR payments, and immediate protection steps.',
+    challenge: 'As digital transactions expanded across businesses and consumers, cyber criminals increasingly deployed social engineering, remote-access apps, and deceptive payment links. Victims often lost valuable time during the first critical hour unaware of proper reporting channels.',
+    solution: 'We conceptualized, wrote, and produced the "DIGITAL JAAL" awareness film. Using relatable everyday scenarios—such as urgent vendor payment requests and fake KYC alerts—the film clearly demonstrates scam mechanisms and guides citizens to freeze transactions through National Cyber Helpline 1930 and cybercrime.gov.in.',
     highlights: [
-      'Authentic storytelling based on real-world Indian cyber crime reporting patterns',
-      'Step-by-step guidance on reporting within the golden hour to freeze fraudulent transfers',
-      'Clear demystification of deceptive UPI payment links and unsolicited APK installations',
-      'Optimized multi-format delivery for community screenings, social awareness, and regional outreach'
+      'Storytelling based on real-world Indian cyber crime reporting patterns',
+      'Guidance on reporting within the golden hour to freeze unauthorized transfers',
+      'Demystification of deceptive UPI payment links and unsolicited APK installations',
+      'Multi-format delivery for community screenings, social awareness, and regional outreach'
     ],
     gallery: [
       {
         src: '/images/digital-jaal.png',
-        caption: 'Title screen and awareness initiative poster'
+        caption: 'Campaign title visual and awareness poster'
       },
       {
         src: '/assets/ai-film-studio-hero.webp',
-        caption: 'Production camera framing and cinematic lighting setup'
+        caption: 'Production camera framing and studio lighting setup'
       },
       {
         src: '/assets/Futuristic-studio-for-AI-driven-creations.webp',
         caption: 'Post-production editing and sound mixing suite'
       }
     ],
-    impact: 'The film serves as an accessible educational resource for workshops, local community groups, and business teams. It simplifies legal and technical jargon into straightforward steps that anyone can follow to protect their bank accounts and hard-earned savings.'
+    impact: 'Serves as an accessible educational resource for workshops, local community groups, and business teams, translating legal and cyber concepts into practical protective steps.'
   },
   {
     id: 'lead-generation-campaign',
@@ -52,14 +52,14 @@ export const portfolioProjects = [
     image: '/assets/ai-lead-engine.png',
     heroImage: '/assets/ai-lead-engine.png',
     description: 'Automated pipeline capturing web inquiries, sending instant WhatsApp notifications, and syncing leads to tracking sheets.',
-    overview: 'An automated customer intake setup that captures website inquiries, validates essential contact information, and routes real-time alerts to the right team members instantly.',
-    challenge: 'Growing service businesses frequently lose prospective clients due to delayed responses. Form submissions were landing in crowded email inboxes where they remained unassigned for hours or lost across separate spreadsheets, causing response times to lag past 24 hours.',
-    solution: 'We architected a streamlined inquiry capture pipeline connecting website contact forms, WhatsApp notifications, and centralized management sheets. Each submission undergoes automated format validation, deduplication, and immediate routing to the on-duty staff member with direct one-click WhatsApp reply links.',
+    overview: 'An automated customer intake setup that captures website inquiries, validates essential contact information, and routes real-time alerts to team members instantly.',
+    challenge: 'Growing service businesses frequently miss prospective clients due to delayed responses. Form submissions landed in crowded email inboxes where they remained unassigned or scattered across separate spreadsheets.',
+    solution: 'We structured a streamlined inquiry capture pipeline connecting website contact forms, WhatsApp notifications, and centralized management sheets. Each submission undergoes automated format validation and immediate dispatch to on-duty staff with direct one-click reply links.',
     highlights: [
-      'Instant WhatsApp & email notifications sent to designated team members within 3 seconds',
-      'Automated synchronization into secure Google Sheets / database tables for transparent tracking',
-      'Spam filtering and basic input validation to keep inquiries organized and actionable',
-      'Zero manual copy-pasting required between marketing landing pages and administrative records'
+      'Instant WhatsApp and email notifications sent to designated team members',
+      'Automated synchronization into secure Google Sheets and database tables',
+      'Spam filtering and basic input validation to keep inquiries organized',
+      'Eliminated manual copy-pasting between marketing landing pages and records'
     ],
     gallery: [
       {
@@ -71,7 +71,7 @@ export const portfolioProjects = [
         caption: 'Centralized workflow management and sync overview'
       }
     ],
-    impact: 'Average customer first-response time dropped from over 18 hours to under 15 minutes. Teams reported zero missed leads and eliminated 6+ hours of weekly manual data entry across inboxes and spreadsheets.'
+    impact: 'Delivered immediate inquiry alerts directly to team devices and maintained organized, centralized records with zero missed customer inquiries.'
   },
   {
     id: 'cyber-security-operations',
@@ -86,14 +86,14 @@ export const portfolioProjects = [
     image: '/assets/cybersecurity-2023-social_uvx3rt.png',
     heroImage: '/assets/cybersecurity-2023-social_uvx3rt.png',
     description: 'Practical security review, multi-factor authentication setup, and staff phishing awareness protecting business accounts.',
-    overview: 'A practical security hardening and account review program designed to protect small and mid-sized businesses from credential theft, ransomware, and vendor impersonation.',
-    challenge: 'Many small businesses operate under the misconception that cyber criminals only target large corporations. In reality, shared email accounts, lack of multi-factor authentication, and untrained employees make small businesses prime targets for invoice fraud and email account compromise.',
+    overview: 'A practical security hardening and account review program designed to protect small and mid-sized businesses from credential theft and vendor impersonation.',
+    challenge: 'Shared email accounts, lack of multi-factor authentication, and untrained employees make small businesses prime targets for invoice fraud and email account compromise.',
     solution: 'We conducted thorough access audits of company email accounts, banking portals, and cloud storage. We introduced standardized multi-factor authentication, established role-based permissions, and held interactive employee workshops training staff on identifying malicious attachments and deceptive wire requests.',
     highlights: [
-      'Comprehensive security review of business email suites, domain settings, and administrative accounts',
-      'Implementation of hardware/app-based multi-factor authentication across all critical tools',
-      'Standardized dual-authorization protocol established for external vendor payment modifications',
-      'Practical phishing drills and employee training modules tailored to daily company routines'
+      'Security review of business email suites, domain settings, and administrative accounts',
+      'Implementation of app-based multi-factor authentication across critical tools',
+      'Standardized dual-authorization protocol established for vendor payment modifications',
+      'Practical phishing drills and employee training modules tailored to company routines'
     ],
     gallery: [
       {
@@ -101,37 +101,7 @@ export const portfolioProjects = [
         caption: 'Security architecture audit and threat guidance manual'
       }
     ],
-    impact: 'Eliminated unauthorized account access attempts, safeguarded company banking credentials, and built lasting employee confidence when handling unfamiliar emails and wire instructions.'
-  },
-  {
-    id: 'ai-services-platform',
-    slug: 'ai-services-platform',
-    category: 'ai-services',
-    categoryLabel: 'Business Automation',
-    title: 'Routine Workflow Automation',
-    subtitle: 'Cross-App Synchronization & Reporting',
-    icon: Bot,
-    badgeColor: 'text-[#0866E8] bg-blue-50 border border-blue-200/80',
-    iconColor: 'text-[#0866E8]',
-    image: '/assets/ai-services.webp',
-    heroImage: '/assets/ai-services.webp',
-    description: 'Scheduled data pipeline connecting order tracking, database records, and automated weekly summary digests for leadership.',
-    overview: 'End-to-end integration linking client records, order tracking, and scheduled operational summaries into a self-managing digital pipeline.',
-    challenge: 'Operations teams spent significant portions of each day manually transferring order numbers, delivery dates, and client requests between separate accounting software, customer sheets, and internal communication channels.',
-    solution: 'We mapped the entire operational lifecycle and established webhook-driven automated pipelines. New orders, status changes, and client notes now synchronize automatically across all departments, complete with scheduled weekly summary digests delivered directly to leadership.',
-    highlights: [
-      'Direct webhooks and API connectors linking web forms, databases, and reporting sheets',
-      'Automated customer order confirmation dispatch via email and messaging channels',
-      'Scheduled weekly operations summaries automatically generated for management review',
-      'Error handling and fallback logging to ensure zero data records are lost during network glitches'
-    ],
-    gallery: [
-      {
-        src: '/assets/ai-services.webp',
-        caption: 'Operational workflow mapping and webhook pipeline logs'
-      }
-    ],
-    impact: 'Saved over 25 staff hours per week previously wasted on manual data re-entry, while ensuring company leadership receives transparent, real-time summaries of daily business operations.'
+    impact: 'Safeguarded company email accounts and banking portals, established verified wire payment procedures, and built employee vigilance against deceptive messages.'
   },
   {
     id: 'ai-creative-studio',
@@ -147,13 +117,13 @@ export const portfolioProjects = [
     heroImage: '/assets/ai-film-studio-hero.webp',
     description: 'Narrative video production and corporate brand profiles combining scriptwriting, multi-camera filming, and color mastering.',
     overview: 'Professional commercial video production combining narrative scriptwriting, cinematic filming, and high-fidelity sound design for brand campaigns and corporate profiles.',
-    challenge: 'Corporate videos often suffer from dry, template-driven presentations that fail to engage viewers or clearly communicate the company’s genuine values and service differentiators in crowded digital markets.',
-    solution: 'We partnered closely with the client team to craft an authentic human narrative. From detailed storyboard development and on-location filming to professional color correction and custom audio scoring, every scene was engineered to build emotional connection and viewer trust.',
+    challenge: 'Corporate videos often suffer from dry, template-driven presentations that fail to engage viewers or clearly communicate genuine values in crowded digital markets.',
+    solution: 'We partnered closely with the client team to craft an authentic human narrative. From detailed storyboard development and on-location filming to professional color correction and custom audio scoring, every scene was engineered to build credibility and viewer trust.',
     highlights: [
-      'In-depth script consultation, storyboarding, and pacing designed for business audiences',
+      'Script consultation, storyboarding, and pacing designed for business audiences',
       'High-resolution multi-camera cinematography with professional studio lighting and clean audio',
       'Editorial color grading, licensed audio soundscapes, and clear typographic motion graphics',
-      'Optimized multi-ratio exports formatted for websites, investor presentations, and social channels'
+      'Multi-ratio exports formatted for websites, presentations, and social channels'
     ],
     gallery: [
       {
@@ -165,6 +135,6 @@ export const portfolioProjects = [
         caption: 'Studio grading suite and post-production workspace'
       }
     ],
-    impact: 'Delivered an engaging brand media asset that increased visitor engagement on client web platforms and gave leadership a compelling, professional presentation piece for client meetings.'
+    impact: 'Delivered engaging brand media assets for client web platforms, executive presentations, and investor meetings, presenting company services with cinematic clarity.'
   }
 ];

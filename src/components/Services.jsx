@@ -6,6 +6,7 @@ import {
   Bot,
   ShieldCheck,
   Film,
+  TrendingUp,
   CheckCircle2
 } from 'lucide-react';
 import PracticeExperience from './PracticeExperience';
@@ -81,7 +82,7 @@ function ServiceCard({ service, index, onOpenPractice }) {
           {/* Clean Action CTA Link */}
           <div>
             <Link
-              to={`/services/${service.id}`}
+              to={service.ctaLink || `/services/${service.id}`}
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-white bg-[#0866E8] hover:bg-[#0756C5] shadow-xs hover:shadow-md transition-all group/btn"
             >
               <span>{service.ctaText}</span>
@@ -124,87 +125,119 @@ export default function Services({ onOpenModal, routePracticeId, onPracticeChang
   const services = [
     {
       id: 'ai-services',
-      category: 'Business Automation',
-      title: 'Business Automation',
-      heading: 'Practical Technology Grounded in Everyday Business Reality.',
+      category: 'AI & Business Automation',
+      title: 'AI & Business Automation',
+      heading: 'Practical Business Systems & Everyday Workflow Automation',
       icon: Bot,
       badgeColor: 'text-[#0866E8] bg-blue-50 border border-blue-200/80',
       iconColor: 'text-[#0866E8]',
-      paragraph1: 'Everyday operations often get slowed down by missed customer messages, disorganized contact sheets, and repetitive manual tasks that take hours away from serving clients.',
-      paragraph2: 'We connect your existing tools—including website forms, WhatsApp, email, and spreadsheets—into one reliable, straightforward workflow. Your team stays informed with instant notifications, customer details are saved neatly, and follow-ups happen on time.',
+      paragraph1: 'Routine business operations often get slowed down by missed customer messages, disorganized contact sheets, and repetitive manual tasks that take hours away from serving clients.',
+      paragraph2: 'We connect your existing tools—including website forms, WhatsApp, email, and spreadsheets—into one reliable, synchronized workflow so inquiries are addressed quickly and customer records stay organized.',
       image: '/assets/ai-services.webp',
-      imageTitle: 'Business Automation',
+      imageTitle: 'AI & Business Automation',
       points: [
         {
-          title: 'Instant Response Protocols',
-          desc: 'Automatically capture website submissions and route alerts to WhatsApp and email within 3 seconds.'
+          title: 'Instant Lead Alerts',
+          desc: 'Automatically capture website form submissions and route notifications to WhatsApp and email within seconds.'
         },
         {
-          title: 'Zero Manual Data Entry',
-          desc: 'Seamlessly synchronize customer details, inquiries, and follow-ups directly into organized central spreadsheets.'
+          title: 'Centralized Records',
+          desc: 'Seamlessly synchronize client details, order updates, and follow-ups directly into organized master spreadsheets.'
         },
         {
-          title: 'Reliable Tool Integration',
-          desc: 'Connect your existing web forms, WhatsApp, email, and CRM with zero disruption to daily company routines.'
+          title: 'Tool Integration',
+          desc: 'Connect your existing web forms, messaging channels, and email suites with zero disruption to daily routines.'
         }
       ],
-      ctaText: 'Explore Business Automation'
+      ctaText: 'Explore Business Automation',
+      ctaLink: '/services/ai-services'
     },
     {
       id: 'cyber-security',
-      category: 'Cyber Security Services',
-      title: 'Cyber Security & Protection',
-      heading: 'Strategic Protection Grounded in Active Defense.',
+      category: 'Cyber Security',
+      title: 'Cyber Security',
+      heading: 'Practical Account Defense, Audits & Scam Prevention',
       icon: ShieldCheck,
       badgeColor: 'text-emerald-700 bg-emerald-50 border border-emerald-200/80',
       iconColor: 'text-emerald-600',
-      paragraph1: 'Many small and growing businesses operate under the misconception that cyber threats only target large corporations. In reality, shared email accounts and unverified payment requests make everyday operations prime targets.',
-      paragraph2: 'We conduct practical security reviews of business email suites, cloud storage, and banking portals. We implement multi-factor authentication, establish dual-verification protocols, and train your staff to recognize deceptive scams before losses occur.',
+      paragraph1: 'Small and mid-sized enterprises are prime targets for invoice manipulation, deceptive vendor payment links, and unauthorized email account takeovers.',
+      paragraph2: 'We conduct hands-on security reviews of business email suites, enforce multi-factor authentication, and provide practical employee training to identify social engineering before financial fraud occurs.',
       image: '/assets/cybersecurity-2023-social_uvx3rt.png',
       imageTitle: 'Cyber Security',
       points: [
         {
-          title: 'Proactive Account Audits',
-          desc: 'Comprehensive security reviews of administrative accounts, email suites, and access permissions.'
+          title: 'Account Security Audits',
+          desc: 'Comprehensive reviews of administrative accounts, email suites, and cloud access permissions.'
         },
         {
-          title: 'Staff Scam & Phishing Defense',
-          desc: 'Practical scenario drills training employees to detect deceptive vendor invoices and fake payment links.'
+          title: 'Staff Phishing Defense',
+          desc: 'Practical scenario drills training employees to detect spoofed vendor invoices and deceptive payment links.'
         },
         {
-          title: 'Rapid Incident Recovery',
-          desc: 'Clear, step-by-step guidance to freeze unauthorized transactions and report swiftly via Helpline 1930.'
+          title: 'Helpline 1930 Protocols',
+          desc: 'Structured guidance to freeze unauthorized transactions and report promptly via official cyber crime channels.'
         }
       ],
-      ctaText: 'Explore Cyber Security'
+      ctaText: 'Explore Cyber Security',
+      ctaLink: '/services/cyber-security'
+    },
+    {
+      id: 'digital-marketing',
+      category: 'Digital Marketing & Lead Generation',
+      title: 'Digital Marketing & Lead Generation',
+      heading: 'Targeted Customer Acquisition & High-Intent Inquiries',
+      icon: TrendingUp,
+      badgeColor: 'text-amber-800 bg-amber-50 border border-amber-200/80',
+      iconColor: 'text-amber-600',
+      paragraph1: 'Service businesses need a dependable flow of high-intent inquiries from local clients actively searching for specific solutions, rather than empty website visits.',
+      paragraph2: 'We build focused digital outreach campaigns and high-converting landing pages that attract qualified prospects, validate essential contact information, and deliver actionable leads directly to your sales team.',
+      image: '/assets/ai-lead-engine.png',
+      imageTitle: 'Digital Marketing & Lead Generation',
+      points: [
+        {
+          title: 'Targeted Local Outreach',
+          desc: 'Focused campaigns directed at local clients and businesses actively searching for your services.'
+        },
+        {
+          title: 'High-Converting Landing Pages',
+          desc: 'Fast, clear web pages designed to turn visitors into confirmed inquiries with minimal friction.'
+        },
+        {
+          title: 'Immediate Lead Delivery',
+          desc: 'Instant dispatch of verified prospect contact details directly to on-duty staff phones.'
+        }
+      ],
+      ctaText: 'View Lead Generation Case Study',
+      ctaLink: '/portfolio/lead-generation-campaign'
     },
     {
       id: 'ai-films',
-      category: 'Film Production & Media',
-      title: 'Film Production & Media',
-      heading: 'Cinematic Storytelling Grounded in Human Truth.',
+      category: 'AI Film & Video Production',
+      title: 'AI Film & Video Production',
+      heading: 'Narrative Commercials & Public Awareness Films',
       icon: Film,
       badgeColor: 'text-cyan-800 bg-cyan-50 border border-cyan-200/80',
       iconColor: 'text-cyan-600',
-      paragraph1: 'Commercial brand media and corporate videos often suffer from generic templates that fail to communicate genuine values or build lasting customer connection.',
-      paragraph2: 'We partner closely with your team to produce authentic human stories. From initial script consultation and storyboard development to on-location cinematography and post-production color grading, every frame is crafted to build credibility.',
+      paragraph1: 'Audiences connect with honest, story-driven media rather than generic corporate templates and repetitive stock visuals.',
+      paragraph2: 'From initial script consultation and authentic storyboards to cinematography, studio lighting, color grading, and final sound mastering, we produce compelling commercial media, corporate profiles, and public educational films.',
       image: '/assets/ai-film-studio-hero.webp',
-      imageTitle: 'Film Production',
+      imageTitle: 'AI Film & Video Production',
       points: [
         {
-          title: 'End-to-End Creative Direction',
-          desc: 'Complete script consultation, storyboard pacing, studio cinematography, and lighting.'
+          title: 'Creative Direction',
+          desc: 'Complete script consultation, storyboard pacing, and tailored messaging for target audiences.'
         },
         {
-          title: 'Authentic Narrative Pacing',
-          desc: 'Human-crafted storytelling that builds trust and connects with clients, partners, and investors.'
+          title: 'Cinematic Filming',
+          desc: 'High-resolution multi-camera cinematography with professional lighting and clean sound recording.'
         },
         {
-          title: 'Cinema-Grade Master Cuts',
-          desc: 'Editorial color grading, custom soundscapes, and multi-format exports for web and social broadcasts.'
+          title: 'Editorial Post-Production',
+          desc: 'Color correction, custom soundscapes, and multi-format exports for web and broadcast.'
         }
       ],
-      ctaText: 'Explore Film Production'
+      ctaText: 'Explore Film Production',
+      ctaLink: '/services/ai-films'
     }
   ];
 

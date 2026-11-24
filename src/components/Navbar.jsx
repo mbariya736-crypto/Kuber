@@ -7,7 +7,8 @@ import {
   ChevronDown, 
   Bot, 
   ShieldCheck, 
-  Film
+  Film,
+  TrendingUp
 } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
@@ -117,6 +118,15 @@ export default function Navbar() {
       color: 'text-emerald-600',
       bgColor: 'bg-emerald-50',
       borderColor: 'border-emerald-100',
+    },
+    {
+      name: 'Digital Marketing',
+      path: '/portfolio/lead-generation-campaign',
+      description: 'Customer acquisition & targeted lead generation',
+      icon: TrendingUp,
+      color: 'text-amber-600',
+      bgColor: 'bg-amber-50',
+      borderColor: 'border-amber-100',
     },
     {
       name: 'Film Production',
