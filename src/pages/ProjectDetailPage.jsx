@@ -307,13 +307,15 @@ export default function ProjectDetailPage() {
                 <span>Get in Touch With Us</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
-              <Link
-                to={`/portfolio/${nextProject.slug}`}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold text-white/90 bg-white/10 hover:bg-white/15 border border-white/20 transition-all"
-              >
-                <span>Next: {nextProject.title}</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
+              {portfolioProjects.length > 1 && (
+                <Link
+                  to={`/portfolio/${nextProject.slug}`}
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold text-white/90 bg-white/10 hover:bg-white/15 border border-white/20 transition-all"
+                >
+                  <span>Next: {nextProject.title}</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              )}
             </div>
           </div>
         </div>

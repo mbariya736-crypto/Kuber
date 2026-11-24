@@ -46,12 +46,13 @@ export default function Portfolio({ onOpenModal }) {
     };
   }, [selectedModalProject]);
 
-  // Category Filter Tabs
+  // Category Filter Tabs (only categories with actual projects)
+  const availableCategories = new Set(portfolioProjects.map(p => p.category));
   const filterTabs = [
     { id: 'all', label: 'All Projects' },
-    { id: 'ai-services', label: 'Business Automation' },
-    { id: 'cyber-security', label: 'Cyber Security' },
-    { id: 'ai-films', label: 'Film Production' },
+    ...(availableCategories.has('ai-films') ? [{ id: 'ai-films', label: 'Film & Awareness' }] : []),
+    ...(availableCategories.has('ai-services') ? [{ id: 'ai-services', label: 'Business Automation' }] : []),
+    ...(availableCategories.has('cyber-security') ? [{ id: 'cyber-security', label: 'Cyber Security' }] : []),
   ];
 
   // Filtered Projects
@@ -140,7 +141,11 @@ export default function Portfolio({ onOpenModal }) {
         {/* ======================================================== */}
         <motion.div
           layout
-          className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-stretch max-w-5xl mx-auto"
+          className={`grid ${
+            filteredProjects.length > 1
+              ? 'grid-cols-1 md:grid-cols-2 max-w-5xl'
+              : 'grid-cols-1 max-w-xl sm:max-w-2xl'
+          } gap-6 sm:gap-8 items-stretch mx-auto`}
         >
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project, index) => {
