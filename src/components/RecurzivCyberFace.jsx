@@ -30,8 +30,9 @@ export default function RecurzivCyberFace({ className = '', height = '460px', is
     const heightPx = container.clientHeight || (isBackground ? window.innerHeight : 460);
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(isBackground ? 45 : 40, width / heightPx, 0.1, 100);
-    camera.position.set(0, isBackground ? 0.2 : 0.1, isBackground ? 4.8 : 4.2);
+    const camera = new THREE.PerspectiveCamera(isBackground ? 42 : 40, width / heightPx, 0.1, 100);
+    // Move camera back when in background mode so the entire face, crown, jaw, and ears fit perfectly in the viewport
+    camera.position.set(0, isBackground ? 0.05 : 0.1, isBackground ? 7.2 : 4.2);
 
     const renderer = new THREE.WebGLRenderer({
       antialias: true,
@@ -147,10 +148,10 @@ export default function RecurzivCyberFace({ className = '', height = '460px', is
           const geometry = faceMesh.geometry.clone();
           geometry.center();
 
-          // Scale & position head nicely
-          const scale = 2.1;
+          // Scale & position head nicely (compact scale in background mode so the full face is visible without zooming)
+          const scale = isBackground ? 1.45 : 2.1;
           headGroup.scale.set(scale, scale, scale);
-          headGroup.position.set(0, -0.05, 0);
+          headGroup.position.set(0, isBackground ? -0.1 : -0.05, 0);
 
           // 5a. Cyber Wireframe Layer (Cyan / Electric Blue lines)
           const wireframeMat = new THREE.MeshBasicMaterial({
