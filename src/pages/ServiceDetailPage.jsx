@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { motion, useReducedMotion } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { 
   ArrowLeft, 
   ArrowRight, 
@@ -14,18 +14,21 @@ import {
   AIFilmStudioExperience 
 } from '../components/PracticeExperience';
 import ServiceSpecificBackground from '../components/ServiceSpecificBackground';
+import ServicesSplashScreen from '../components/ServicesSplashScreen';
 
 export default function ServiceDetailPage({ practiceId: propPracticeId }) {
   const { practiceId: paramPracticeId } = useParams();
   const navigate = useNavigate();
   const shouldReduceMotion = useReducedMotion();
+  const [showSplash, setShowSplash] = useState(true);
 
   const activeId = propPracticeId || paramPracticeId || 'ai-services';
   const normalizedId = activeId === 'ai-film-studio' ? 'ai-films' : activeId;
 
-  // Scroll to top on mount / service change
+  // Scroll to top & trigger page-wise poster splash animation on service change
   useEffect(() => {
     window.scrollTo(0, 0);
+    setShowSplash(true);
   }, [normalizedId]);
 
   const serviceMeta = {
@@ -76,6 +79,18 @@ export default function ServiceDetailPage({ practiceId: propPracticeId }) {
 
   return (
     <div className="min-h-screen flex flex-col text-[#082B59] bg-[#F8FAFD] relative">
+      {/* 1.5-Second Poster-Related Splash Screen Animation */}
+      <AnimatePresence mode="wait">
+        {showSplash && (
+          <ServicesSplashScreen
+            key={normalizedId}
+            serviceId={normalizedId}
+            onFinish={() => setShowSplash(false)}
+            duration={1500}
+          />
+        )}
+      </AnimatePresence>
+
       {/* Service-Specific Handcrafted Background Animation (Runs after service page opens) */}
       <ServiceSpecificBackground serviceId={normalizedId} className="fixed inset-0 w-full h-full pointer-events-none z-0" />
 

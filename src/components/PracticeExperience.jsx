@@ -293,14 +293,28 @@ export function AIServicesExperience({ onOpenContact }) {
                 >
                   {/* The Original Poster Image with subtle parallax */}
                   <motion.img
-                    src="/assets/ai-services.webp"
-                    alt="Business Automation and Workflow Management"
+                    src="/assets/services-splash.png"
+                    alt="AI & Business Automation"
                     style={(isTouchDevice || shouldReduceMotion) ? {} : {
                       x: parallaxImgX,
                       y: parallaxImgY,
                       scale: 1.05
                     }}
                     className="w-full h-full object-cover object-center rounded-[20px] sm:rounded-[24px] relative z-10 pointer-events-none select-none transition-transform duration-700 ease-out"
+                  />
+
+                  {/* Laser Scanning Sheen Animation Across Poster Picture */}
+                  <motion.div
+                    animate={{
+                      x: ['-140%', '240%']
+                    }}
+                    transition={{
+                      duration: 2.2,
+                      repeat: Infinity,
+                      ease: 'easeInOut',
+                      repeatDelay: 0.8
+                    }}
+                    className="absolute inset-y-0 w-32 bg-gradient-to-r from-transparent via-cyan-300/30 to-transparent skew-x-[-20deg] pointer-events-none z-20"
                   />
 
                   {/* Gentle Natural Highlight Sheen */}
@@ -537,6 +551,19 @@ export function CyberSecurityExperience({ onOpenContact }) {
                 alt="Cyber Security & Active Risk Protection"
                 className="w-full h-full object-cover object-center rounded-[20px] sm:rounded-[24px] group-hover:scale-[1.02] transition-transform duration-700 ease-out"
               />
+              {/* Laser Scanning Sheen Animation Across Cyber Poster */}
+              <motion.div
+                animate={{
+                  x: ['-140%', '240%']
+                }}
+                transition={{
+                  duration: 2.4,
+                  repeat: Infinity,
+                  ease: 'easeInOut',
+                  repeatDelay: 0.9
+                }}
+                className="absolute inset-y-0 w-32 bg-gradient-to-r from-transparent via-emerald-300/30 to-transparent skew-x-[-20deg] pointer-events-none z-20"
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none" />
             </div>
           </div>
@@ -759,6 +786,19 @@ export function AIFilmStudioExperience({ onOpenContact }) {
                 src="/assets/ai-film-studio-hero.webp"
                 alt="Commercial Film & Video Production"
                 className="w-full h-full object-cover object-center rounded-[20px] sm:rounded-[24px] group-hover:scale-[1.02] transition-transform duration-700 ease-out"
+              />
+              {/* Laser Scanning Sheen Animation Across Film Studio Poster */}
+              <motion.div
+                animate={{
+                  x: ['-140%', '240%']
+                }}
+                transition={{
+                  duration: 2.3,
+                  repeat: Infinity,
+                  ease: 'easeInOut',
+                  repeatDelay: 0.8
+                }}
+                className="absolute inset-y-0 w-32 bg-gradient-to-r from-transparent via-amber-300/30 to-transparent skew-x-[-20deg] pointer-events-none z-20"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none" />
             </div>
