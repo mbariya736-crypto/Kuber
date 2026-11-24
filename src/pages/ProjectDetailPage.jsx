@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion, useReducedMotion } from 'framer-motion';
-import { 
-  ArrowLeft, 
-  ArrowRight, 
-  CheckCircle2, 
-  Layers, 
-  Target, 
-  TrendingUp, 
-  Images, 
+import {
+  ArrowLeft,
+  ArrowRight,
+  CheckCircle2,
+  Layers,
+  Target,
+  TrendingUp,
+  Images,
   MessageSquare,
   Sparkles,
   PhoneCall,
@@ -48,14 +48,14 @@ export default function ProjectDetailPage() {
 
   // Next / Previous projects for bottom navigation
   const currentIndex = allProjects.findIndex((p) => p.id === project.id);
-  const nextProject = currentIndex >= 0 
+  const nextProject = currentIndex >= 0
     ? allProjects[(currentIndex + 1) % allProjects.length]
     : digitalJaalProject;
 
   return (
     <div className="min-h-screen flex flex-col text-[#082B59] bg-[#F9FBFD] relative">
       {/* Subtle handcrafted paper texture / tactile noise */}
-      <div 
+      <div
         className="fixed inset-0 pointer-events-none opacity-[0.035] mix-blend-multiply z-0"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
@@ -91,7 +91,7 @@ export default function ProjectDetailPage() {
 
       {/* 2. MAIN CASE STUDY CONTENT */}
       <main className="flex-1 flex flex-col relative z-10 max-w-5xl mx-auto w-full px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12 pb-16 sm:pb-24">
-        
+
         {/* Title, Subtitle, and Tag */}
         <motion.div
           initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 16 }}
@@ -182,8 +182,8 @@ export default function ProjectDetailPage() {
                 <span className="text-[11px] font-semibold text-stone-500 uppercase tracking-wider block">
                   National Cyber Crime Helpline
                 </span>
-                <a 
-                  href="tel:1930" 
+                <a
+                  href="tel:1930"
                   className="text-base font-bold text-[#082B59] hover:text-rose-600 transition-colors"
                 >
                   1930 (Toll Free)
@@ -225,7 +225,7 @@ export default function ProjectDetailPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
             {project.highlights.map((highlight, idx) => (
-              <div 
+              <div
                 key={idx}
                 className="p-4 rounded-xl bg-stone-50/70 border border-stone-200/70 flex items-start gap-3"
               >
@@ -250,7 +250,7 @@ export default function ProjectDetailPage() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-start">
               {project.gallery.map((item, idx) => (
-                <div 
+                <div
                   key={idx}
                   className="rounded-2xl overflow-hidden border border-stone-200/85 bg-white shadow-xs group"
                 >

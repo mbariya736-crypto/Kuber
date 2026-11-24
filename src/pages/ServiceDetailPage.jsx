@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { motion, useReducedMotion } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import {
   ArrowLeft,
   ArrowRight,
@@ -14,6 +14,7 @@ import {
   AIFilmStudioExperience
 } from '../components/PracticeExperience';
 import ServiceSpecificBackground from '../components/ServiceSpecificBackground';
+import ServicePosterSplashScreen from '../components/ServicePosterSplashScreen';
 
 export default function ServiceDetailPage({ practiceId: propPracticeId }) {
   const { practiceId: paramPracticeId } = useParams();
@@ -23,9 +24,13 @@ export default function ServiceDetailPage({ practiceId: propPracticeId }) {
   const activeId = propPracticeId || paramPracticeId || 'ai-services';
   const normalizedId = activeId === 'ai-film-studio' ? 'ai-films' : activeId;
 
-  // Scroll to top on mount / service change
+  // Poster Splash Screen state: triggers every time a service page opens
+  const [splashVisible, setSplashVisible] = useState(true);
+
+  // Trigger splash animation on mount / service change
   useEffect(() => {
     window.scrollTo(0, 0);
+    setSplashVisible(true);
   }, [normalizedId]);
 
   const serviceMeta = {
@@ -76,7 +81,18 @@ export default function ServiceDetailPage({ practiceId: propPracticeId }) {
 
   return (
     <div className="min-h-screen flex flex-col text-[#082B59] bg-[#F8FAFD] relative">
-      {/* Service-Specific Handcrafted Background Animation (Runs after service page opens) */}
+      {/* 0. POSTER-DRIVEN SPLASH SCREEN (Plays on page open according to the service poster) */}
+      <AnimatePresence mode="wait">
+        {splashVisible && (
+          <ServicePosterSplashScreen
+            key={`splash-${normalizedId}`}
+            serviceId={normalizedId}
+            onComplete={() => setSplashVisible(false)}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Service-Specific Handcrafted Background Animation (Runs inside the service page) */}
       <ServiceSpecificBackground serviceId={normalizedId} className="fixed inset-0 w-full h-full pointer-events-none z-0" />
 
       {/* 1. DEDICATED SERVICE DETAIL TOP HEADER */}

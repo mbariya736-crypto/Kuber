@@ -116,18 +116,66 @@ function AIServicesBackground() {
 }
 
 /* ========================================================================= */
-/* 2. SUBJECT-BASED BACKGROUND: Cyber Security (Light Theme)                 */
+/* 2. SUBJECT-BASED BACKGROUND: Cyber Security (Attached Cyber Poster Visual) */
 /* ========================================================================= */
 function CyberSecurityBackground() {
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10 select-none">
-      <div className="absolute top-1/4 right-1/4 w-[520px] h-[520px] bg-emerald-100/40 rounded-full blur-[140px]" />
-      <div className="absolute bottom-1/4 left-1/4 w-[480px] h-[480px] bg-teal-100/30 rounded-full blur-[150px]" />
-      <div className="absolute top-10 left-10 w-72 h-72 bg-emerald-100/30 rounded-full blur-[100px]" />
+    <div className="fixed inset-0 overflow-hidden pointer-events-none z-0 select-none">
+      {/* Attached Cyber Security Poster Artwork with Animated Breathing / Scale Pulse */}
+      <motion.div
+        animate={{
+          scale: [1, 1.03, 1],
+          opacity: [0.30, 0.42, 0.30]
+        }}
+        transition={{
+          duration: 6,
+          repeat: Infinity,
+          ease: 'easeInOut'
+        }}
+        className="absolute inset-0 w-full h-full flex items-center justify-center"
+      >
+        <img
+          src="/assets/cybersecurity-2023-social_uvx3rt.png"
+          alt="Cyber Security Background Animation"
+          className="w-full h-full object-cover object-center filter saturate-125"
+        />
+        {/* Soft Vignette Overlay to blend seamlessly into the light background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#F8FAFD]/92 via-[#F8FAFD]/65 to-[#F8FAFD]/95" />
+      </motion.div>
+
+      {/* Holographic Radar Scanner Sweep Across the Security Padlock & Threat Grid */}
+      <motion.div
+        animate={{
+          x: ['-140%', '240%']
+        }}
+        transition={{
+          duration: 3.4,
+          repeat: Infinity,
+          ease: 'easeInOut',
+          repeatDelay: 1.0
+        }}
+        className="absolute inset-y-0 w-64 bg-gradient-to-r from-transparent via-emerald-400/20 to-transparent skew-x-[-20deg]"
+      />
+
+      {/* Protective Emerald & Teal Ambient Glow Rings */}
+      <motion.div
+        animate={{
+          scale: [1, 1.2, 1],
+          opacity: [0.25, 0.50, 0.25]
+        }}
+        transition={{
+          duration: 3.5,
+          repeat: Infinity,
+          ease: 'easeInOut'
+        }}
+        className="absolute top-1/4 right-1/4 w-[520px] h-[520px] bg-gradient-to-tr from-emerald-500/20 via-teal-400/20 to-transparent rounded-full blur-[140px]"
+      />
+      <div className="absolute bottom-1/4 left-1/4 w-[480px] h-[480px] bg-emerald-100/35 rounded-full blur-[150px]" />
+      <div className="absolute top-10 left-10 w-72 h-72 bg-teal-100/30 rounded-full blur-[100px]" />
 
       {/* Subtle blueprint security grid */}
       <div
-        className="absolute inset-0 opacity-[0.04]"
+        className="absolute inset-0 opacity-[0.035]"
         style={{
           backgroundImage: `
             linear-gradient(to right, rgba(16, 185, 129, 0.4) 1px, transparent 1px),
@@ -136,27 +184,70 @@ function CyberSecurityBackground() {
           backgroundSize: '40px 40px'
         }}
       />
-
-      {/* Watermark Shield Outline */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-[0.04]">
-        <Shield className="w-[450px] h-[450px] text-emerald-600" />
-      </div>
     </div>
   );
 }
 
 /* ========================================================================= */
-/* 3. SUBJECT-BASED BACKGROUND: Film Production (Light Theme)                */
+/* 3. SUBJECT-BASED BACKGROUND: Film Production (Attached Studio Poster Visual)*/
 /* ========================================================================= */
 function AIFilmStudioBackground() {
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10 select-none">
-      <div className="absolute top-1/4 left-1/4 w-[550px] h-[550px] bg-cyan-100/35 rounded-full blur-[140px]" />
-      <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-blue-100/35 rounded-full blur-[150px]" />
-      <div className="absolute top-1/2 right-10 w-80 h-80 bg-amber-100/25 rounded-full blur-[130px]" />
+    <div className="fixed inset-0 overflow-hidden pointer-events-none z-0 select-none">
+      {/* Attached AI Film Studio Poster Artwork with Animated Breathing / Scale Pulse */}
+      <motion.div
+        animate={{
+          scale: [1, 1.03, 1],
+          opacity: [0.32, 0.44, 0.32]
+        }}
+        transition={{
+          duration: 6,
+          repeat: Infinity,
+          ease: 'easeInOut'
+        }}
+        className="absolute inset-0 w-full h-full flex items-center justify-center"
+      >
+        <img
+          src="/assets/Futuristic-studio-for-AI-driven-creations.webp"
+          alt="AI Film Studio Background Animation"
+          className="w-full h-full object-cover object-center filter saturate-125"
+        />
+        {/* Soft Vignette Overlay to blend seamlessly into the light background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#F8FAFD]/92 via-[#F8FAFD]/65 to-[#F8FAFD]/95" />
+      </motion.div>
+
+      {/* Cinematic Anamorphic Light Drift Sweep */}
+      <motion.div
+        animate={{
+          x: ['-140%', '240%']
+        }}
+        transition={{
+          duration: 3.6,
+          repeat: Infinity,
+          ease: 'easeInOut',
+          repeatDelay: 1.4
+        }}
+        className="absolute inset-y-0 w-64 bg-gradient-to-r from-transparent via-amber-400/20 to-transparent skew-x-[-20deg]"
+      />
+
+      {/* Warm Ambient Studio Spotlight Accents */}
+      <motion.div
+        animate={{
+          scale: [1, 1.18, 1],
+          opacity: [0.25, 0.45, 0.25]
+        }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          ease: 'easeInOut'
+        }}
+        className="absolute top-1/4 left-1/4 w-[550px] h-[550px] bg-gradient-to-tr from-cyan-400/20 via-blue-500/15 to-transparent rounded-full blur-[140px]"
+      />
+      <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-amber-100/30 rounded-full blur-[150px]" />
+      <div className="absolute top-1/2 right-10 w-80 h-80 bg-cyan-100/25 rounded-full blur-[130px]" />
 
       <div
-        className="absolute inset-0 opacity-[0.04]"
+        className="absolute inset-0 opacity-[0.035]"
         style={{
           backgroundImage: `
             linear-gradient(to right, rgba(8, 102, 232, 0.3) 1px, transparent 1px),
