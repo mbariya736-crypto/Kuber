@@ -61,7 +61,7 @@ export default function Navbar() {
         return;
       }
 
-      const sectionIds = ['home', 'about', 'services', 'portfolio', 'faq', 'contact'];
+      const sectionIds = ['home', 'about', 'services', 'faq', 'contact'];
       const scrollPos = window.scrollY + 200;
 
       for (let i = sectionIds.length - 1; i >= 0; i--) {
@@ -140,7 +140,6 @@ export default function Navbar() {
       id: 'services',
       hasDropdown: true 
     },
-    { name: 'Portfolio', path: '/#portfolio', isPage: false, targetId: 'portfolio', id: 'portfolio' },
     { name: 'FAQ', path: '/#faq', isPage: false, targetId: 'faq', id: 'faq' },
     { name: 'Contact', path: '/contact', isPage: true, id: 'contact' },
   ];

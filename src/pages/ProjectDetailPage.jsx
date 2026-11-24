@@ -66,11 +66,11 @@ export default function ProjectDetailPage() {
       {/* 1. DEDICATED STICKY HEADER */}
       <header className="sticky top-0 z-50 w-full backdrop-blur-md bg-white/90 border-b border-stone-200/80 py-3.5 px-4 sm:px-8 flex items-center justify-between gap-3 shadow-2xs">
         <Link
-          to="/#portfolio"
+          to="/"
           className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-[#082B59] bg-white hover:bg-stone-50 border border-stone-200 shadow-2xs transition-all cursor-pointer shrink-0"
         >
           <ArrowLeft className="w-4 h-4 text-[#0866E8]" />
-          <span>Back to Portfolio</span>
+          <span>Back to Home</span>
         </Link>
 
         {/* Center Category Badge */}
@@ -329,11 +329,11 @@ export default function ProjectDetailPage() {
       <footer className="border-t border-stone-200 bg-white/95 backdrop-blur-sm py-6 sm:py-8 px-4 sm:px-8 relative z-20">
         <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <Link
-            to="/#portfolio"
+            to="/"
             className="inline-flex items-center gap-2 text-sm font-semibold text-stone-700 hover:text-[#0866E8] transition-colors"
           >
             <ArrowLeft className="w-4 h-4 text-[#0866E8]" />
-            <span>Return to Portfolio Grid</span>
+            <span>Return to Home</span>
           </Link>
           <div className="flex items-center gap-2 text-xs text-stone-500 font-medium">
             <span>Client Case Study • Kuber AIS Technologies</span>
