@@ -226,7 +226,7 @@ export default function Portfolio({ onOpenModal }) {
         </motion.div>
 
         {/* ======================================================== */}
-        {/* 3. PROJECT GRID (Human-Crafted Editorial Case Studies)   */}
+        {/* 3. PROJECT GRID (Human-Crafted Editorial Showcase)       */}
         {/* ======================================================== */}
         <motion.div
           layout
@@ -235,7 +235,6 @@ export default function Portfolio({ onOpenModal }) {
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project, index) => {
               const Icon = project.icon;
-              const indexNumeral = ['01', '02', '03', '04', '05'][index] || `0${index + 1}`;
 
               return (
                 <motion.article
@@ -255,7 +254,7 @@ export default function Portfolio({ onOpenModal }) {
                     transition: { duration: 0.3, ease: [0.25, 1, 0.5, 1] }
                   }}
                   onClick={() => handleOpenDetails(project)}
-                  className="group relative rounded-2xl bg-[#FCFDFE] border border-stone-200/80 hover:border-blue-400/70 transition-all duration-300 flex flex-col justify-between overflow-hidden text-left h-full cursor-pointer"
+                  className="group relative rounded-2xl bg-[#FCFDFE] border border-stone-200/85 hover:border-blue-400/70 transition-all duration-300 flex flex-col justify-between overflow-hidden text-left h-full cursor-pointer"
                   style={{
                     boxShadow: '0 8px 24px -12px rgba(8, 43, 89, 0.07), 0 3px 8px -3px rgba(8, 43, 89, 0.04), 0 1px 2px 0 rgba(8, 43, 89, 0.03)'
                   }}
@@ -265,7 +264,7 @@ export default function Portfolio({ onOpenModal }) {
 
                   <div className="relative z-10 flex-1 flex flex-col">
                     {/* Project Image Container */}
-                    <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] lg:h-[210px] overflow-hidden bg-stone-100 rounded-t-2xl">
+                    <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] lg:h-[215px] overflow-hidden bg-stone-100 rounded-t-2xl">
                       <img
                         src={project.image}
                         alt={project.title}
@@ -274,59 +273,30 @@ export default function Portfolio({ onOpenModal }) {
 
                       {/* Warm natural vignette */}
                       <div className="absolute inset-0 bg-gradient-to-t from-stone-900/35 via-stone-900/5 to-transparent pointer-events-none" />
-
-                      {/* Editorial Case Study Index Stamp */}
-                      <div className="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-stone-900/50 backdrop-blur-md border border-white/20 text-white/90 text-[11px] font-mono tracking-widest pointer-events-none select-none">
-                        CASE {indexNumeral}
-                      </div>
                     </div>
 
-                    {/* Card Body - Concise, High-Trust Editorial Case Study */}
-                    <div className="p-5 sm:p-6 pb-4 flex-1 flex flex-col justify-between">
+                    {/* Card Body - Focused purely on Image, Category, Title, and Concise Description */}
+                    <div className="p-5 sm:p-6 pb-6 flex-1 flex flex-col justify-between">
                       <div>
-                        {/* Category Tag */}
+                        {/* Clean Category Label */}
                         <div className="mb-2.5">
-                          <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-medium tracking-wide ${project.badgeColor}`}>
+                          <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[11px] font-medium tracking-wide ${project.badgeColor}`}>
                             <Icon className="w-3.5 h-3.5 opacity-90" />
                             <span>{project.categoryLabel}</span>
                           </span>
                         </div>
 
                         {/* Project Title */}
-                        <h3 className="text-xl sm:text-[1.32rem] font-bold text-[#0B2546] leading-snug group-hover:text-[#0866E8] transition-colors duration-200 mb-1.5 tracking-tight">
+                        <h3 className="text-lg sm:text-[1.28rem] font-bold text-[#0B2546] leading-snug group-hover:text-[#0866E8] transition-colors duration-200 mb-2 tracking-tight">
                           {project.title}
                         </h3>
 
-                        {/* Brief Subtitle / Sector */}
-                        {project.subtitle && (
-                          <p className="text-[11px] sm:text-xs font-semibold text-stone-500 uppercase tracking-wider mb-3">
-                            {project.subtitle}
-                          </p>
-                        )}
-
                         {/* Concise 2-3 line human-crafted description */}
-                        <p className="text-xs sm:text-[13px] text-stone-600 leading-relaxed font-normal line-clamp-3">
+                        <p className="text-xs sm:text-[13px] text-stone-600 leading-relaxed font-normal">
                           {project.description}
                         </p>
                       </div>
                     </div>
-                  </div>
-
-                  {/* Refined Case Study Footer Action */}
-                  <div className="p-5 sm:p-6 pt-3 mt-auto relative z-10 border-t border-stone-100 bg-stone-50/50">
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleOpenDetails(project);
-                      }}
-                      className="w-full inline-flex items-center justify-between py-2 px-3.5 rounded-xl text-xs sm:text-[13px] font-semibold text-[#082B59] group-hover:text-[#0866E8] bg-white border border-stone-200/80 group-hover:border-blue-300 shadow-2xs group-hover:shadow-xs transition-all duration-200 cursor-pointer min-h-[40px]"
-                    >
-                      <span>Explore Case Study</span>
-                      <span className="w-6 h-6 rounded-lg bg-stone-100 group-hover:bg-blue-50 flex items-center justify-center transition-colors">
-                        <ArrowRight className="w-3.5 h-3.5 text-stone-600 group-hover:text-[#0866E8] transition-transform duration-200 group-hover:translate-x-0.5" />
-                      </span>
-                    </button>
                   </div>
                 </motion.article>
               );
