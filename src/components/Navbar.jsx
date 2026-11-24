@@ -99,10 +99,10 @@ export default function Navbar() {
     };
   }, [mobileMenuOpen]);
 
-  // Dropdown practice items
+  // Dropdown practice items (Strictly the 3 core services)
   const serviceItems = [
     {
-      name: 'Business Automation',
+      name: 'AI & Business Automation',
       path: '/services/ai-services',
       description: 'Automation, business systems & digital operations',
       icon: Bot,
@@ -111,7 +111,7 @@ export default function Navbar() {
       borderColor: 'border-blue-100',
     },
     {
-      name: 'Cyber Security',
+      name: 'Cyber Security Services',
       path: '/services/cyber-security',
       description: 'Security audits, awareness training & protection',
       icon: ShieldCheck,
@@ -120,16 +120,7 @@ export default function Navbar() {
       borderColor: 'border-emerald-100',
     },
     {
-      name: 'Digital Marketing',
-      path: '/portfolio/lead-generation-campaign',
-      description: 'Customer acquisition & targeted lead generation',
-      icon: TrendingUp,
-      color: 'text-amber-600',
-      bgColor: 'bg-amber-50',
-      borderColor: 'border-amber-100',
-    },
-    {
-      name: 'Film Production',
+      name: 'AI Film & Video Production',
       path: '/services/ai-films',
       description: 'Films, commercials & creative media production',
       icon: Film,

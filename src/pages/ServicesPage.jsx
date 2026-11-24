@@ -4,7 +4,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRight, MessageSquare, Bot, ShieldCheck, Film } from 'lucide-react';
 import Services from '../components/Services';
 import WhyChooseUs from '../components/WhyChooseUs';
-import LeadGeneration from '../components/LeadGeneration';
 
 export default function ServicesPage({ onOpenModal }) {
   const navigate = useNavigate();
@@ -56,10 +55,9 @@ export default function ServicesPage({ onOpenModal }) {
         />
       </div>
 
-      {/* Why Choose Us & Business Capabilities with transparent backgrounds */}
+      {/* Why Choose Us with transparent background */}
       <div className="relative z-10">
         <WhyChooseUs className="bg-transparent" />
-        <LeadGeneration onOpenModal={onOpenModal} className="bg-transparent" />
       </div>
 
       {/* Professional Let's Work Together CTA Section */}

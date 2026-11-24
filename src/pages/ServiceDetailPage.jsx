@@ -30,39 +30,39 @@ export default function ServiceDetailPage({ practiceId: propPracticeId }) {
 
   const serviceMeta = {
     'ai-services': {
-      title: 'Business Automation',
-      category: 'Business Automation',
+      title: 'AI & Business Automation',
+      category: 'AI & Business Automation',
       tag: 'Workflow Automation & Organization',
       icon: Bot,
       accentColor: 'text-[#0866E8]',
       accentBg: 'bg-blue-50 border-blue-200/80',
       nextServices: [
-        { id: 'cyber-security', title: 'Cyber Security', path: '/services/cyber-security' },
-        { id: 'ai-films', title: 'Film Production', path: '/services/ai-films' }
+        { id: 'cyber-security', title: 'Cyber Security Services', path: '/services/cyber-security' },
+        { id: 'ai-films', title: 'AI Film & Video Production', path: '/services/ai-films' }
       ]
     },
     'cyber-security': {
-      title: 'Cyber Security',
+      title: 'Cyber Security Services',
       category: 'Cyber Security Services',
       tag: 'Defense, Audits & Scam Prevention',
       icon: ShieldCheck,
       accentColor: 'text-emerald-600',
       accentBg: 'bg-emerald-50 border-emerald-200/80',
       nextServices: [
-        { id: 'ai-services', title: 'Business Automation', path: '/services/ai-services' },
-        { id: 'ai-films', title: 'Film Production', path: '/services/ai-films' }
+        { id: 'ai-services', title: 'AI & Business Automation', path: '/services/ai-services' },
+        { id: 'ai-films', title: 'AI Film & Video Production', path: '/services/ai-films' }
       ]
     },
     'ai-films': {
-      title: 'Film Production & Media',
-      category: 'Film Production & Media',
+      title: 'AI Film & Video Production',
+      category: 'AI Film & Video Production',
       tag: 'Commercials & Public Awareness Media',
       icon: Film,
       accentColor: 'text-cyan-700',
       accentBg: 'bg-cyan-50 border-cyan-200/80',
       nextServices: [
-        { id: 'ai-services', title: 'Business Automation', path: '/services/ai-services' },
-        { id: 'cyber-security', title: 'Cyber Security', path: '/services/cyber-security' }
+        { id: 'ai-services', title: 'AI & Business Automation', path: '/services/ai-services' },
+        { id: 'cyber-security', title: 'Cyber Security Services', path: '/services/cyber-security' }
       ]
     }
   };
@@ -110,9 +110,9 @@ export default function ServiceDetailPage({ practiceId: propPracticeId }) {
       <div className="sticky top-[57px] z-40 w-full backdrop-blur-md bg-white/95 border-b border-slate-200/90 py-2.5 px-4 shadow-2xs">
         <div className="max-w-4xl mx-auto flex items-center justify-center gap-2 sm:gap-3 overflow-x-auto py-0.5">
           {[
-            { id: 'ai-services', title: 'Business Automation', icon: Bot, path: '/services/ai-services' },
-            { id: 'cyber-security', title: 'Cyber Security', icon: ShieldCheck, path: '/services/cyber-security' },
-            { id: 'ai-films', title: 'Film Production', icon: Film, path: '/services/ai-films' }
+            { id: 'ai-services', title: 'AI & Business Automation', icon: Bot, path: '/services/ai-services' },
+            { id: 'cyber-security', title: 'Cyber Security Services', icon: ShieldCheck, path: '/services/cyber-security' },
+            { id: 'ai-films', title: 'AI Film & Video Production', icon: Film, path: '/services/ai-films' }
           ].map((tab) => {
             const isActive = normalizedId === tab.id;
             const TabIcon = tab.icon;

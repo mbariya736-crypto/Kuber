@@ -19,12 +19,11 @@ function ServiceCard({ service, index }) {
 
   return (
     <motion.article
-      initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 18 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.15 }}
+      initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 14 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{
-        duration: 0.5,
-        delay: shouldReduceMotion ? 0 : index * 0.1,
+        duration: 0.45,
+        delay: shouldReduceMotion ? 0 : index * 0.08,
         ease: [0.19, 1, 0.22, 1]
       }}
       whileHover={shouldReduceMotion ? {} : {
