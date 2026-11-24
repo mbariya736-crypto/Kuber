@@ -31,7 +31,7 @@ export default function Hero({ onOpenModal }) {
   };
 
   return (
-    <section id="home" className="relative pt-24 pb-14 sm:pt-28 sm:pb-16 md:pt-32 md:pb-20 lg:pt-36 lg:pb-24 overflow-hidden bg-gradient-to-b from-[#F4F8FD] via-white to-[#F4F8FD] flex items-center justify-center min-h-[68vh] sm:min-h-[74vh]">
+    <section id="home" className="relative pt-24 pb-14 sm:pt-28 sm:pb-16 md:pt-32 md:pb-20 lg:pt-36 lg:pb-24 overflow-hidden bg-gradient-to-b from-[#F4F8FD] via-white to-[#F4F8FD] flex items-center justify-center min-h-[70vh] sm:min-h-[76vh]">
       
       {/* Subtle Abstract Background Accents */}
       <div className="absolute inset-0 bg-grid-mesh pointer-events-none -z-10 opacity-40" />
@@ -40,8 +40,8 @@ export default function Hero({ onOpenModal }) {
       <div className="absolute top-1/4 left-10 w-[360px] h-[360px] bg-blue-50/60 rounded-full blur-2xl pointer-events-none -z-10" />
       <div className="absolute top-1/3 right-10 w-[360px] h-[360px] bg-sky-50/60 rounded-full blur-2xl pointer-events-none -z-10" />
 
-      {/* Aller Studio 3D Human Particle Silhouette Animation (Compact, clean proportion, fully inside hero) */}
-      <div className="absolute top-1/2 -translate-y-[45%] right-0 sm:right-[15px] md:right-[30px] lg:right-[50px] xl:right-[80px] w-[200px] sm:w-[260px] md:w-[320px] lg:w-[380px] xl:w-[420px] h-[280px] sm:h-[360px] md:h-[440px] lg:h-[500px] xl:h-[540px] pointer-events-none z-0 opacity-80 sm:opacity-95 overflow-visible">
+      {/* Aller Studio 3D Human Particle Silhouette Animation (Compact size, positioned perfectly inside hero section) */}
+      <div className="absolute top-[52%] -translate-y-1/2 right-2 sm:right-6 md:right-10 lg:right-16 xl:right-24 w-[160px] sm:w-[200px] md:w-[250px] lg:w-[290px] xl:w-[320px] h-[220px] sm:h-[280px] md:h-[340px] lg:h-[400px] xl:h-[430px] pointer-events-none z-0 opacity-80 sm:opacity-95 overflow-visible">
         <AllerHumanSilhouette className="w-full h-full" />
       </div>
 
