@@ -20,7 +20,6 @@ import { portfolioProjects } from '../data/portfolioData';
 /* MAIN PORTFOLIO COMPONENT (Human-Crafted Editorial Agency Showcase)         */
 /* ========================================================================= */
 export default function Portfolio({ onOpenModal }) {
-  const [activeFilter, setActiveFilter] = useState('all');
   const [selectedModalProject, setSelectedModalProject] = useState(null);
   const navigate = useNavigate();
   const shouldReduceMotion = useReducedMotion();
@@ -46,19 +45,7 @@ export default function Portfolio({ onOpenModal }) {
     };
   }, [selectedModalProject]);
 
-  // Category Filter Tabs (only categories with actual projects)
-  const availableCategories = new Set(portfolioProjects.map(p => p.category));
-  const filterTabs = [
-    { id: 'all', label: 'All Projects' },
-    ...(availableCategories.has('ai-films') ? [{ id: 'ai-films', label: 'Film & Awareness' }] : []),
-    ...(availableCategories.has('ai-services') ? [{ id: 'ai-services', label: 'Business Automation' }] : []),
-    ...(availableCategories.has('cyber-security') ? [{ id: 'cyber-security', label: 'Cyber Security' }] : []),
-  ];
-
-  // Filtered Projects
-  const filteredProjects = activeFilter === 'all'
-    ? portfolioProjects
-    : portfolioProjects.filter(item => item.category === activeFilter);
+  const filteredProjects = portfolioProjects;
 
   const handleOpenDetails = (project) => {
     setSelectedModalProject(project);
@@ -98,42 +85,6 @@ export default function Portfolio({ onOpenModal }) {
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#082B59] tracking-tight leading-[1.18]">
             Our <span className="text-[#0866E8]">Portfolio</span> &amp; Case Studies
           </h2>
-        </motion.div>
-
-        {/* ======================================================== */}
-        {/* 2. FILTER PILLS (Light Theme)                            */}
-        {/* ======================================================== */}
-        <motion.div
-          initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.45, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-wrap items-center justify-center gap-2 mb-8 sm:mb-12"
-        >
-          {filterTabs.map((tab) => {
-            const isActive = activeFilter === tab.id;
-            return (
-              <button
-                key={tab.id}
-                onClick={() => setActiveFilter(tab.id)}
-                className={`relative px-4 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer ${isActive
-                    ? 'text-white'
-                    : 'text-slate-600 hover:text-[#082B59] hover:bg-slate-50'
-                  }`}
-              >
-                {isActive ? (
-                  <motion.span
-                    layoutId="activePortfolioFilterPill"
-                    className="absolute inset-0 rounded-full bg-[#0866E8] shadow-xs border border-blue-500/40 -z-10"
-                    transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-                  />
-                ) : (
-                  <span className="absolute inset-0 rounded-full bg-white border border-slate-200/90 shadow-xs -z-10 transition-colors" />
-                )}
-                <span className="relative z-10">{tab.label}</span>
-              </button>
-            );
-          })}
         </motion.div>
 
         {/* ======================================================== */}
