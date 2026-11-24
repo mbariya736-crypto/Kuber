@@ -10,8 +10,6 @@ import { Bot, ShieldCheck, Film, ArrowRight, Sparkles } from 'lucide-react';
  * dynamic glowing aura, brand typography, and smooth page entrance transition.
  */
 export default function ServicePosterSplashScreen({ serviceId = 'ai-services', onComplete }) {
-  const [progress, setProgress] = useState(0);
-
   const posterConfigs = {
     'ai-services': {
       title: 'AI & Business Automation',
@@ -52,23 +50,11 @@ export default function ServicePosterSplashScreen({ serviceId = 'ai-services', o
   const Icon = config.icon;
 
   useEffect(() => {
-    const startTime = Date.now();
-    const duration = 1800; // 1.8 seconds total splash duration
+    const timer = setTimeout(() => {
+      onComplete?.();
+    }, 1800);
 
-    const timer = setInterval(() => {
-      const elapsed = Date.now() - startTime;
-      const nextProgress = Math.min(100, Math.round((elapsed / duration) * 100));
-      setProgress(nextProgress);
-
-      if (elapsed >= duration) {
-        clearInterval(timer);
-        if (onComplete) {
-          setTimeout(onComplete, 250);
-        }
-      }
-    }, 20);
-
-    return () => clearInterval(timer);
+    return () => clearTimeout(timer);
   }, [onComplete]);
 
   return (
@@ -158,20 +144,13 @@ export default function ServicePosterSplashScreen({ serviceId = 'ai-services', o
           <div className="absolute bottom-3 right-3 w-4 h-4 border-b-2 border-r-2 border-white/60 pointer-events-none" />
 
           {/* Bottom Overlay Label */}
-          <div className="absolute bottom-3.5 left-4 right-4 flex items-center justify-between text-left pointer-events-none">
-            <div>
-              <p className="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-slate-300">
-                Opening Service Environment
-              </p>
-              <h4 className="text-sm sm:text-base font-bold text-white tracking-wide truncate">
-                {config.title}
-              </h4>
-            </div>
-            <div className="text-right">
-              <span className="text-xs font-mono font-bold text-cyan-300">
-                {progress}%
-              </span>
-            </div>
+          <div className="absolute bottom-3.5 left-4 right-4 text-left pointer-events-none">
+            <p className="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-slate-300">
+              Opening Service Environment
+            </p>
+            <h4 className="text-sm sm:text-base font-bold text-white tracking-wide truncate">
+              {config.title}
+            </h4>
           </div>
         </motion.div>
 
@@ -194,25 +173,14 @@ export default function ServicePosterSplashScreen({ serviceId = 'ai-services', o
           {config.subtitle}
         </motion.p>
 
-        {/* Progress Bar & Skip Button */}
-        <div className="w-full max-w-xs flex items-center gap-3">
-          {/* Progress Track */}
-          <div className="flex-1 h-1.5 bg-white/10 rounded-full overflow-hidden border border-white/10">
-            <motion.div
-              style={{ width: `${progress}%` }}
-              className="h-full bg-gradient-to-r from-blue-500 via-cyan-400 to-emerald-400 rounded-full transition-all duration-75"
-            />
-          </div>
-
-          {/* Direct Skip Button */}
-          <button
-            onClick={() => onComplete?.()}
-            className="text-[11px] font-semibold text-slate-400 hover:text-white transition-colors cursor-pointer px-2 py-1 rounded-md hover:bg-white/5 flex items-center gap-1"
-          >
-            <span>Skip</span>
-            <ArrowRight className="w-3 h-3" />
-          </button>
-        </div>
+        {/* Optional Skip Button (Loading line completely removed) */}
+        <button
+          onClick={() => onComplete?.()}
+          className="text-xs font-semibold text-slate-400 hover:text-white transition-colors cursor-pointer px-3.5 py-1.5 rounded-lg hover:bg-white/10 flex items-center gap-1.5 border border-white/10"
+        >
+          <span>Skip</span>
+          <ArrowRight className="w-3.5 h-3.5" />
+        </button>
 
       </div>
     </motion.div>
