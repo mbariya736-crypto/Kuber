@@ -1,15 +1,13 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
+import React from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRight, MessageSquare, Bot, ShieldCheck, Film } from 'lucide-react';
 import Services from '../components/Services';
 import WhyChooseUs from '../components/WhyChooseUs';
-import ServicesSplashScreen from '../components/ServicesSplashScreen';
 
 export default function ServicesPage({ onOpenModal }) {
   const navigate = useNavigate();
   const shouldReduceMotion = useReducedMotion();
-  const [showSplash, setShowSplash] = useState(true);
 
   const handlePracticeChange = (id) => {
     if (id) {
@@ -19,18 +17,8 @@ export default function ServicesPage({ onOpenModal }) {
 
   return (
     <div className="pt-16 sm:pt-20 min-h-screen relative bg-gradient-to-b from-[#F9FBFD] via-[#F8F9FA] to-[#F1F4F8] text-[#082B59]">
-      {/* 1.5-Second Animated Services Splash Screen on Page Open */}
-      <AnimatePresence>
-        {showSplash && (
-          <ServicesSplashScreen
-            serviceId="services"
-            onFinish={() => setShowSplash(false)}
-            duration={1500}
-          />
-        )}
-      </AnimatePresence>
       {/* Subtle handcrafted paper texture / tactile noise */}
-      <div 
+      <div
         className="absolute inset-0 pointer-events-none opacity-[0.035] mix-blend-multiply z-1"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,

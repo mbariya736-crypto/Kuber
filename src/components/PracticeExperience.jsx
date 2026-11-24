@@ -293,7 +293,7 @@ export function AIServicesExperience({ onOpenContact }) {
                 >
                   {/* The Original Poster Image with subtle parallax */}
                   <motion.img
-                    src="/assets/services-splash.png"
+                    src="/assets/ai-services.webp"
                     alt="AI & Business Automation"
                     style={(isTouchDevice || shouldReduceMotion) ? {} : {
                       x: parallaxImgX,
