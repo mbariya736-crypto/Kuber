@@ -14,7 +14,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
  * - Auto breathing / oscillating subtle idle motion
  * - Safe resource cleanup & performance observer (runs only when visible)
  */
-export default function RecurzivCyberFace({ className = '', height = '460px' }) {
+export default function RecurzivCyberFace({ className = '', height = '460px', isBackground = false }) {
   const mountRef = useRef(null);
   const [loading, setLoading] = useState(true);
 
@@ -26,12 +26,12 @@ export default function RecurzivCyberFace({ className = '', height = '460px' }) 
     let animFrameId = null;
 
     // 1. Scene, Camera, Renderer
-    const width = container.clientWidth || 400;
-    const heightPx = container.clientHeight || 460;
+    const width = container.clientWidth || (isBackground ? window.innerWidth : 400);
+    const heightPx = container.clientHeight || (isBackground ? window.innerHeight : 460);
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(40, width / heightPx, 0.1, 100);
-    camera.position.set(0, 0.1, 4.2);
+    const camera = new THREE.PerspectiveCamera(isBackground ? 45 : 40, width / heightPx, 0.1, 100);
+    camera.position.set(0, isBackground ? 0.2 : 0.1, isBackground ? 4.8 : 4.2);
 
     const renderer = new THREE.WebGLRenderer({
       antialias: true,
@@ -307,35 +307,37 @@ export default function RecurzivCyberFace({ className = '', height = '460px' }) 
   return (
     <div
       className={`relative w-full overflow-hidden select-none flex items-center justify-center ${className}`}
-      style={{ height }}
+      style={isBackground ? { width: '100%', height: '100%' } : { height }}
     >
       {/* 3D WebGL Canvas Container */}
-      <div ref={mountRef} className="w-full h-full relative z-10 cursor-grab active:cursor-grabbing" />
+      <div ref={mountRef} className={`w-full h-full relative z-10 ${isBackground ? 'pointer-events-none' : 'cursor-grab active:cursor-grabbing'}`} />
 
-      {/* Cyber Grid Datum Accents & HUD overlays */}
-      <div className="absolute inset-0 pointer-events-none z-20 flex flex-col justify-between p-4 sm:p-6">
-        <div className="flex items-center justify-between text-[10px] font-mono tracking-wider text-cyan-600/80 uppercase">
-          <span className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-cyan-950/20 border border-cyan-800/30">
-            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
-            AI_VISION // NEURAL_DEFENSE
-          </span>
-          <span className="hidden sm:inline font-mono text-[9px] text-cyan-600/60">
-            FPS // 60 // 3D_VIS
-          </span>
-        </div>
+      {/* Cyber Grid Datum Accents & HUD overlays (only when in standalone card mode) */}
+      {!isBackground && (
+        <div className="absolute inset-0 pointer-events-none z-20 flex flex-col justify-between p-4 sm:p-6">
+          <div className="flex items-center justify-between text-[10px] font-mono tracking-wider text-cyan-600/80 uppercase">
+            <span className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-cyan-950/20 border border-cyan-800/30">
+              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
+              AI_VISION // NEURAL_DEFENSE
+            </span>
+            <span className="hidden sm:inline font-mono text-[9px] text-cyan-600/60">
+              FPS // 60 // 3D_VIS
+            </span>
+          </div>
 
-        <div className="flex items-end justify-between text-[10px] font-mono tracking-wider text-cyan-600/80 uppercase">
-          <span className="text-[9px] text-slate-500">
-            INTERACTIVE // MOVE CURSOR
-          </span>
-          <span className="px-2 py-0.5 rounded bg-blue-950/20 border border-blue-800/30 text-blue-500 text-[9px]">
-            SYNAPSE_GRID ACTIVE
-          </span>
+          <div className="flex items-end justify-between text-[10px] font-mono tracking-wider text-cyan-600/80 uppercase">
+            <span className="text-[9px] text-slate-500">
+              INTERACTIVE // MOVE CURSOR
+            </span>
+            <span className="px-2 py-0.5 rounded bg-blue-950/20 border border-blue-800/30 text-blue-500 text-[9px]">
+              SYNAPSE_GRID ACTIVE
+            </span>
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Loading state indicator */}
-      {loading && (
+      {loading && !isBackground && (
         <div className="absolute inset-0 z-30 flex items-center justify-center bg-slate-900/10 backdrop-blur-2xs">
           <div className="flex items-center gap-2 text-xs font-mono text-cyan-600">
             <span className="w-2 h-2 rounded-full bg-cyan-500 animate-ping" />

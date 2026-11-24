@@ -35,16 +35,22 @@ import AllerStudioIntroLoader from './AllerStudioIntroLoader';
 import RecurzivCyberFace from './RecurzivCyberFace';
 
 /* ========================================================================= */
-/* 1. SUBJECT-BASED BACKGROUND: Business Automation (Light Theme)             */
+/* 1. SUBJECT-BASED BACKGROUND: Business Automation (Full-Page 3D Neural Face)*/
 /* ========================================================================= */
 function AIServicesBackground() {
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10 select-none">
+    <div className="fixed inset-0 overflow-hidden pointer-events-none z-0 select-none">
+      {/* 3D Wireframe Glowing AI Neural Face across entire page background */}
+      <div className="absolute inset-0 w-full h-full opacity-65 flex items-center justify-center">
+        <RecurzivCyberFace isBackground={true} className="w-full h-full" />
+      </div>
+
+      {/* Gentle gradient wash and ambient depth highlights */}
       <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[#0866E8]/10 rounded-full blur-[140px]" />
       <div className="absolute bottom-1/3 right-1/4 w-[480px] h-[480px] bg-[#00B9E8]/10 rounded-full blur-[150px]" />
       <div className="absolute top-10 right-10 w-80 h-80 bg-blue-100/40 rounded-full blur-[120px]" />
       <div
-        className="absolute inset-0 opacity-[0.04]"
+        className="absolute inset-0 opacity-[0.03]"
         style={{
           backgroundImage: `
             linear-gradient(to right, rgba(8, 102, 232, 0.4) 1px, transparent 1px),
@@ -272,13 +278,51 @@ export function AIServicesExperience({ onOpenContact }) {
           className="relative z-10 rounded-[28px] sm:rounded-[36px] bg-white border border-slate-200/90 p-6 sm:p-10 lg:p-12 shadow-xl shadow-blue-900/5 mb-12 sm:mb-16"
         >
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center text-left">
-            {/* Left: 3D Interactive AI Neural Face Stage */}
+            {/* Left: Handcrafted Interactive Poster Container */}
             <div className="lg:col-span-6 flex justify-center w-full">
-              <div 
-                className="w-full relative rounded-[22px] sm:rounded-[26px] bg-gradient-to-b from-[#020b18] via-[#05152c] to-[#040f22] border border-blue-950/60 shadow-xl overflow-hidden group"
+              <div
+                className="w-full"
+                style={{ perspective: 1200 }}
               >
-                {/* 3D WebGL Neural Head Canvas from recurziv.com */}
-                <RecurzivCyberFace height="340px" />
+                <motion.div
+                  ref={posterCardRef}
+                  onMouseMove={handleCardMouseMove}
+                  onMouseLeave={handleCardMouseLeave}
+                  style={(isTouchDevice || shouldReduceMotion) ? {} : {
+                    rotateX,
+                    rotateY,
+                    scale: scrollScale,
+                    transformStyle: 'preserve-3d'
+                  }}
+                  className="relative rounded-[22px] sm:rounded-[26px] aspect-[16/10] w-full bg-slate-100 border border-slate-200 shadow-lg shadow-blue-900/8 group overflow-hidden cursor-default transition-shadow duration-500 hover:shadow-2xl hover:shadow-blue-900/12"
+                >
+                  {/* The Original Poster Image with subtle parallax */}
+                  <motion.img
+                    src="/assets/ai-services.webp"
+                    alt="Business Automation and Workflow Management"
+                    style={(isTouchDevice || shouldReduceMotion) ? {} : {
+                      x: parallaxImgX,
+                      y: parallaxImgY,
+                      scale: 1.05
+                    }}
+                    className="w-full h-full object-cover object-center rounded-[20px] sm:rounded-[24px] relative z-10 pointer-events-none select-none transition-transform duration-700 ease-out"
+                  />
+
+                  {/* Gentle Natural Highlight Sheen */}
+                  {!isTouchDevice && !shouldReduceMotion && (
+                    <motion.div
+                      style={{
+                        background: `radial-gradient(circle 280px at 50% 50%, rgba(255, 255, 255, 0.16), transparent 70%)`,
+                        x: parallaxImgX,
+                        y: parallaxImgY
+                      }}
+                      className="absolute inset-0 pointer-events-none z-20 mix-blend-overlay opacity-60"
+                    />
+                  )}
+
+                  {/* Clean natural bottom vignette to preserve contrast */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none z-20" />
+                </motion.div>
               </div>
             </div>
 
