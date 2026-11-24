@@ -10,7 +10,9 @@ import {
   TrendingUp, 
   Images, 
   MessageSquare,
-  Sparkles
+  Sparkles,
+  PhoneCall,
+  Globe
 } from 'lucide-react';
 import { portfolioProjects } from '../data/portfolioData';
 
@@ -165,6 +167,49 @@ export default function ProjectDetailPage() {
             </p>
           </div>
         </div>
+
+        {/* National Cyber Helpline & Citizen Portal (Digital Jaal Public Awareness Resource) */}
+        {project.id === 'digital-jaal-film' && (
+          <div className="mb-12 sm:mb-16 p-5 sm:p-6 rounded-2xl bg-white border border-stone-200/90 shadow-xs flex flex-wrap items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 border border-rose-200 flex items-center justify-center shrink-0">
+                <PhoneCall className="w-5 h-5 text-rose-600" />
+              </div>
+              <div>
+                <span className="text-[11px] font-semibold text-stone-500 uppercase tracking-wider block">
+                  National Cyber Crime Helpline
+                </span>
+                <a 
+                  href="tel:1930" 
+                  className="text-base font-bold text-[#082B59] hover:text-rose-600 transition-colors"
+                >
+                  1930 (Toll Free)
+                </a>
+              </div>
+            </div>
+
+            <div className="hidden md:block h-8 w-px bg-stone-200" />
+
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#0866E8] border border-blue-200 flex items-center justify-center shrink-0">
+                <Globe className="w-5 h-5 text-[#0866E8]" />
+              </div>
+              <div>
+                <span className="text-[11px] font-semibold text-stone-500 uppercase tracking-wider block">
+                  Official Citizen Reporting Portal
+                </span>
+                <a
+                  href="https://cybercrime.gov.in"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-base font-bold text-[#0866E8] hover:underline transition-colors"
+                >
+                  cybercrime.gov.in
+                </a>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Key Features & Implementation Highlights */}
         <div className="mb-12 sm:mb-16 p-6 sm:p-8 rounded-2xl bg-white border border-stone-200/85 shadow-xs">

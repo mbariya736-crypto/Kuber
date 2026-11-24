@@ -68,13 +68,6 @@ export default function AIFilms({ onOpenModal }) {
       image: '/assets/ai-film-studio-hero.webp',
       description: 'Documentary-style corporate profiles highlighting company milestones, executive vision, and team craftsmanship.',
       videoUrl: null
-    },
-    {
-      id: 'cyber-defense-awareness',
-      title: 'Cyber Safety Awareness',
-      image: '/assets/cybersecurity-2023-social_uvx3rt.png',
-      description: 'Educational short films illustrating practical digital fraud prevention, UPI payment safety, and Helpline 1930 reporting.',
-      videoUrl: null
     }
   ];
 
@@ -135,45 +128,43 @@ export default function AIFilms({ onOpenModal }) {
 
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
-            {additionalFilms.map((film, idx) => (
-              <motion.div
+          <div className="grid grid-cols-1 md:grid-cols-2 max-w-4xl mx-auto gap-6 sm:gap-8 text-left">
+            {additionalFilms.map((film) => (
+              <div
                 key={film.id}
-                initial={{ opacity: 1, y: 0 }}
-                animate={{ opacity: 1, y: 0 }}
-                whileHover={{ y: -5, transition: { duration: 0.28, ease: [0.16, 1, 0.3, 1] } }}
-                onClick={() => handleWatchFilm(film)}
-                className="rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-blue-300 transition-all duration-300 overflow-hidden flex flex-col justify-between group cursor-pointer"
+                className="rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:border-slate-300 transition-all duration-300 overflow-hidden flex flex-col justify-between group"
               >
                 <div>
                   {/* Poster Image Container */}
-                  <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-900/5 border-b border-slate-100 group/img">
+                  <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-100 border-b border-slate-100">
                     <img
                       src={film.image}
                       alt={film.title}
-                      className="w-full h-full object-cover object-center transition-transform duration-600 ease-out group-hover/img:scale-[1.03]"
+                      className="w-full h-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-[1.02]"
                     />
 
-                    <div className="absolute inset-0 bg-slate-900/30 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white gap-2 text-xs font-bold">
-                      <div className="w-10 h-10 rounded-full bg-white/90 backdrop-blur-md text-[#082B59] flex items-center justify-center shadow-lg">
-                        <Play className="w-4 h-4 fill-[#0866E8] text-[#0866E8] ml-0.5" />
+                    {film.videoUrl && (
+                      <div className="absolute inset-0 bg-slate-900/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white gap-2 text-xs font-semibold cursor-pointer" onClick={() => handleWatchFilm(film)}>
+                        <div className="w-9 h-9 rounded-full bg-white/95 text-[#082B59] flex items-center justify-center shadow-md">
+                          <Play className="w-3.5 h-3.5 fill-[#0866E8] text-[#0866E8] ml-0.5" />
+                        </div>
+                        <span>Watch Preview</span>
                       </div>
-                      <span>Watch Preview</span>
-                    </div>
+                    )}
                   </div>
 
                   {/* Card Content */}
-                  <div className="p-6 sm:p-7 flex flex-col flex-grow">
-                    <h4 className="text-xl font-bold text-[#082B59] mb-2 leading-snug group-hover:text-[#0866E8] transition-colors">
+                  <div className="p-5 sm:p-6 flex flex-col flex-grow">
+                    <h4 className="text-lg sm:text-xl font-bold text-[#082B59] mb-2 leading-snug group-hover:text-[#0866E8] transition-colors">
                       {film.title}
                     </h4>
 
-                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                    <p className="text-xs sm:text-[13px] text-slate-600 leading-relaxed font-normal">
                       {film.description}
                     </p>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>

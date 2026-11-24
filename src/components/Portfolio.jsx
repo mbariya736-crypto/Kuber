@@ -164,14 +164,8 @@ export default function Portfolio({ onOpenModal }) {
                     transition: { duration: 0.3, ease: [0.25, 1, 0.5, 1] }
                   }}
                   onClick={() => handleOpenDetails(project)}
-                  className="group relative rounded-2xl bg-[#FCFDFE] border border-stone-200/85 hover:border-blue-400/70 transition-all duration-300 flex flex-col justify-between overflow-hidden text-left h-full cursor-pointer"
-                  style={{
-                    boxShadow: '0 8px 24px -12px rgba(8, 43, 89, 0.07), 0 3px 8px -3px rgba(8, 43, 89, 0.04), 0 1px 2px 0 rgba(8, 43, 89, 0.03)'
-                  }}
+                  className="group relative rounded-2xl bg-white border border-stone-200/90 hover:border-blue-400/80 transition-all duration-300 flex flex-col justify-between overflow-hidden text-left h-full cursor-pointer shadow-xs hover:shadow-md"
                 >
-                  {/* Subtle top bevel highlight */}
-                  <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/80 to-transparent pointer-events-none z-20" />
-
                   <div className="relative z-10 flex-1 flex flex-col">
                     {/* Project Image Container */}
                     <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] lg:h-[215px] overflow-hidden bg-stone-100 rounded-t-2xl">
