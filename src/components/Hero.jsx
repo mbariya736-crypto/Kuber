@@ -31,7 +31,7 @@ export default function Hero({ onOpenModal }) {
   };
 
   return (
-    <section id="home" className="relative pt-28 pb-16 sm:pt-32 sm:pb-20 md:pt-36 md:pb-24 lg:pt-44 lg:pb-32 overflow-hidden bg-gradient-to-b from-[#F4F8FD] via-white to-[#F4F8FD] flex items-center justify-center min-h-[70vh] sm:min-h-[78vh]">
+    <section id="home" className="relative pt-28 pb-16 sm:pt-32 sm:pb-20 md:pt-36 md:pb-24 lg:pt-40 lg:pb-28 overflow-hidden bg-gradient-to-b from-[#F4F8FD] via-white to-[#F4F8FD] flex items-center justify-center min-h-[75vh] sm:min-h-[82vh]">
       
       {/* Subtle Abstract Background Accents */}
       <div className="absolute inset-0 bg-grid-mesh pointer-events-none -z-10 opacity-40" />
@@ -40,28 +40,28 @@ export default function Hero({ onOpenModal }) {
       <div className="absolute top-1/4 left-10 w-[360px] h-[360px] bg-blue-50/60 rounded-full blur-2xl pointer-events-none -z-10" />
       <div className="absolute top-1/3 right-10 w-[360px] h-[360px] bg-sky-50/60 rounded-full blur-2xl pointer-events-none -z-10" />
 
-      {/* Aller Studio 3D Human Particle Silhouette Animation (Positioned naturally below Navbar) */}
-      <div className="absolute top-20 sm:top-16 md:top-12 lg:top-10 right-[-6%] sm:right-[0%] md:right-[2%] lg:right-[6%] w-[260px] sm:w-[380px] md:w-[460px] lg:w-[560px] h-[360px] sm:h-[480px] md:h-[540px] lg:h-[620px] pointer-events-none z-0 opacity-80 sm:opacity-95 overflow-visible">
+      {/* Aller Studio 3D Human Particle Silhouette Animation (Right aligned, full silhouette visible without overlapping headline) */}
+      <div className="absolute top-1/2 -translate-y-[45%] right-[-10px] sm:right-[10px] md:right-[20px] lg:right-[40px] xl:right-[70px] w-[260px] sm:w-[340px] md:w-[420px] lg:w-[480px] xl:w-[520px] h-[360px] sm:h-[460px] md:h-[540px] lg:h-[600px] pointer-events-none z-0 opacity-80 sm:opacity-95 overflow-visible">
         <AllerHumanSilhouette className="w-full h-full" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full">
         
         {/* CENTERED HERO CONTENT */}
-        <div className="max-w-4xl mx-auto text-center flex flex-col items-center justify-center">
+        <div className="max-w-3xl lg:max-w-4xl mx-auto text-center flex flex-col items-center justify-center">
           
           {/* Staggered Natural Headline Reveal */}
           <motion.h1
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="text-3xl sm:text-5xl md:text-6xl lg:text-[4rem] font-bold text-[#082B59] leading-[1.12] tracking-tight mb-5 sm:mb-7 text-center"
+            className="text-3xl sm:text-5xl md:text-5xl lg:text-[3.5rem] xl:text-[3.85rem] font-bold text-[#082B59] leading-[1.14] tracking-tight mb-5 sm:mb-7 text-center"
             style={{ textWrap: 'balance' }}
           >
-            <motion.span variants={textItemVariants} className="inline-block mr-2 sm:mr-3.5">
+            <motion.span variants={textItemVariants} className="inline-block mr-2 sm:mr-3.5 drop-shadow-xs">
               Practical Technology for
             </motion.span>
-            <motion.span variants={textItemVariants} className="inline-block text-[#0866E8]">
+            <motion.span variants={textItemVariants} className="inline-block text-[#0866E8] drop-shadow-xs">
               Modern Businesses.
             </motion.span>
           </motion.h1>
