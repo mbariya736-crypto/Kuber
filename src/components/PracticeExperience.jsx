@@ -394,14 +394,9 @@ export function AIServicesExperience({ onOpenContact }) {
 
       {/* Top Heading */}
       <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 relative z-20">
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold text-[#0866E8] bg-blue-50 border border-blue-200/80 mb-3.5 uppercase tracking-wider">
-          <Bot className="w-3.5 h-3.5" />
-          <span>Workflow Automation</span>
-        </span>
         <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-[#082B59] tracking-tight leading-[1.15] mb-3.5 sm:mb-4">
           Business Automation Services
         </h1>
-
       </div>
 
       {/* Dedicated Content Wrapper */}
@@ -481,10 +476,6 @@ export function AIServicesExperience({ onOpenContact }) {
 
             {/* Right: Overview Text */}
             <div className="lg:col-span-6 flex flex-col justify-center relative z-20">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold text-[#0866E8] bg-blue-50 border border-blue-200/80 mb-3.5 w-fit">
-                <Brain className="w-3.5 h-3.5" />
-                <span>Automated Business Intelligence</span>
-              </div>
               <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#082B59] mb-4 leading-snug">
                 Practical Workflow Solutions Built for Real Businesses
               </h2>
@@ -622,10 +613,6 @@ export function CyberSecurityExperience({ onOpenContact }) {
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         className="text-center max-w-4xl mx-auto mb-8 sm:mb-10 relative"
       >
-        <span className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-emerald-700 bg-emerald-50 border border-emerald-200/80 mb-3.5 sm:mb-4">
-          <ShieldAlert className="w-3.5 h-3.5 text-emerald-600" />
-          <span>Cyber Security &amp; Risk Protection</span>
-        </span>
         <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-[#082B59] tracking-tight leading-[1.15] mb-3.5 sm:mb-5">
           Proactive Security &amp; Protection for{' '}
           <span className="text-emerald-600">
@@ -646,13 +633,8 @@ export function CyberSecurityExperience({ onOpenContact }) {
           
           {/* Content Left */}
           <div className="lg:col-span-7 flex flex-col justify-center">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200/80 mb-3.5 w-fit">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-              <span>Cyber Security Services</span>
-            </div>
-
             <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#082B59] mb-4 leading-snug">
-              Strategic Protection Grounded in Active Defense
+              Account Security, Threat Audits &amp; Risk Prevention
             </h2>
 
             <div className="space-y-3.5 text-slate-600 text-xs sm:text-sm lg:text-base leading-relaxed font-normal mb-6">
@@ -899,10 +881,6 @@ export function AIFilmStudioExperience({ onOpenContact }) {
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         className="text-center max-w-4xl mx-auto mb-8 sm:mb-10 relative"
       >
-        <span className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-cyan-800 bg-cyan-50 border border-cyan-200/80 mb-3.5 sm:mb-4">
-          <Clapperboard className="w-3.5 h-3.5 text-cyan-700" />
-          <span>Film &amp; Video Production</span>
-        </span>
         <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-[#082B59] tracking-tight leading-[1.15] mb-3.5 sm:mb-5">
           Corporate Films, Commercials &amp;{' '}
           <span className="text-[#0866E8]">
@@ -950,13 +928,8 @@ export function AIFilmStudioExperience({ onOpenContact }) {
 
           {/* Editorial Content Right */}
           <div className="lg:col-span-7 flex flex-col justify-center">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold text-cyan-800 bg-cyan-50 border border-cyan-200/80 mb-3.5 w-fit">
-              <Film className="w-3.5 h-3.5 text-cyan-700" />
-              <span>Film Production &amp; Media</span>
-            </div>
-
             <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#082B59] mb-4 leading-snug">
-              Cinematic Storytelling Grounded in Human Truth
+              Brand Commercials &amp; Corporate Media Production
             </h2>
 
             <div className="space-y-3.5 text-slate-600 text-xs sm:text-sm lg:text-base leading-relaxed font-normal mb-6">

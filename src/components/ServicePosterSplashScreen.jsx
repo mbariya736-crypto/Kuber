@@ -93,17 +93,6 @@ export default function ServicePosterSplashScreen({ serviceId = 'ai-services', o
 
       {/* Main Glassmorphic Poster Stage */}
       <div className="relative max-w-lg w-full flex flex-col items-center text-center z-10">
-        
-        {/* Animated Category Chip */}
-        <motion.div
-          initial={{ opacity: 0, y: -16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider mb-5 border backdrop-blur-md ${config.badgeBg}`}
-        >
-          <Icon className="w-3.5 h-3.5" />
-          <span>Kuber AIS • Practice Portal</span>
-        </motion.div>
 
         {/* Poster Showcase Container with Laser Scanning Effect */}
         <motion.div

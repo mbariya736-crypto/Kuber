@@ -106,12 +106,6 @@ export default function ServiceDetailPage({ practiceId: propPracticeId }) {
           <span>Back to Services</span>
         </Link>
 
-        {/* Center: Clean Service Identifier */}
-        <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold text-slate-700 bg-slate-100/80 border border-slate-200">
-          <Icon className={`w-3.5 h-3.5 ${meta.accentColor}`} />
-          <span>{meta.title}</span>
-        </div>
-
         {/* Right Action: Get in Touch */}
         <Link
           to="/contact"
