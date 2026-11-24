@@ -31,7 +31,7 @@ export default function Hero({ onOpenModal }) {
   };
 
   return (
-    <section id="home" className="relative pt-24 pb-14 sm:pt-28 sm:pb-16 md:pt-32 md:pb-20 lg:pt-36 lg:pb-24 overflow-hidden bg-gradient-to-b from-[#F4F8FD] via-white to-[#F4F8FD] flex items-center justify-center min-h-[68vh] sm:min-h-[74vh]">
+    <section id="home" className="relative pt-20 pb-0 sm:pt-28 sm:pb-0 md:pt-32 md:pb-12 lg:pt-36 lg:pb-24 overflow-hidden bg-gradient-to-b from-[#F4F8FD] via-white to-[#F4F8FD] flex items-center justify-center min-h-[68vh] sm:min-h-[74vh]">
       
       {/* Subtle Abstract Background Accents */}
       <div className="absolute inset-0 bg-grid-mesh pointer-events-none -z-10 opacity-40" />
@@ -101,12 +101,12 @@ export default function Hero({ onOpenModal }) {
 
           </div>
 
-          {/* RIGHT COLUMN: 3D Human Particle Silhouette (Filling the designated red square zone down to the hero base) */}
-          <div className="lg:col-span-5 flex items-center lg:items-end justify-center lg:justify-end w-full relative">
+          {/* RIGHT COLUMN: 3D Human Particle Silhouette (Filling the designated zone down to the hero base) */}
+          <div className="lg:col-span-5 flex items-end justify-center lg:justify-end w-full relative mt-4 sm:mt-6 lg:mt-0">
             {/* Ambient Luminous Halo behind the 3D Bust */}
             <div className="absolute w-[320px] sm:w-[400px] lg:w-[480px] h-[320px] sm:h-[400px] lg:h-[480px] bg-gradient-to-tr from-blue-100/40 via-sky-100/30 to-transparent rounded-full blur-3xl pointer-events-none -z-10" />
 
-            <div className="relative w-[220px] sm:w-[280px] md:w-[350px] lg:w-[420px] xl:w-[460px] h-[300px] sm:h-[380px] md:h-[460px] lg:h-[530px] xl:h-[570px] pointer-events-none z-10 opacity-95">
+            <div className="relative w-[290px] xs:w-[320px] sm:w-[380px] md:w-[400px] lg:w-[420px] xl:w-[460px] h-[380px] xs:h-[420px] sm:h-[470px] md:h-[500px] lg:h-[530px] xl:h-[570px] pointer-events-auto z-10 opacity-95 [mask-image:linear-gradient(to_bottom,black_86%,transparent_100%)]">
               <AllerHumanSilhouette className="w-full h-full" />
             </div>
           </div>

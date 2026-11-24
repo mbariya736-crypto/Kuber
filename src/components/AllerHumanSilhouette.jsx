@@ -22,7 +22,7 @@ export default function AllerHumanSilhouette({ className = '' }) {
     let controller = null;
     let cleanup = () => {};
 
-    const isCoarse = window.matchMedia('(max-width: 640px)').matches;
+    const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     (async () => {
       try {
@@ -34,10 +34,10 @@ export default function AllerHumanSilhouette({ className = '' }) {
 
         const meshData = parseMesh(buffer);
 
-        const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        // Always enable full fidelity point cloud & antialiasing on all viewports (desktop & mobile)
         controller = createSilhouette(THREE, canvasRef.current, meshData, {
           reduced: isReduced,
-          light: isCoarse,
+          light: false,
           appear: true,
           glitch: false,
           onGlitch: () => {}
@@ -57,7 +57,7 @@ export default function AllerHumanSilhouette({ className = '' }) {
         const observer = new IntersectionObserver(([entry]) => {
           isIntersecting = entry.isIntersecting;
           updateRunning();
-        });
+        }, { rootMargin: '300px' });
 
         if (containerRef.current) {
           observer.observe(containerRef.current);
@@ -91,7 +91,7 @@ export default function AllerHumanSilhouette({ className = '' }) {
   return (
     <div
       ref={containerRef}
-      className={`relative select-none pointer-events-none overflow-visible ${className}`}
+      className={`relative select-none pointer-events-auto overflow-visible ${className}`}
       aria-hidden="true"
     >
       {/* 3D WebGL Canvas */}
@@ -108,7 +108,7 @@ export default function AllerHumanSilhouette({ className = '' }) {
           src="/assets/silhouette-still.webp"
           alt=""
           decoding="async"
-          className={`absolute inset-0 w-full h-full object-contain object-right pointer-events-none transition-opacity duration-700 ${
+          className={`absolute inset-0 w-full h-full object-contain object-bottom sm:object-right pointer-events-none transition-opacity duration-700 ${
             status === 'ready' ? 'opacity-0' : 'opacity-90'
           }`}
         />
