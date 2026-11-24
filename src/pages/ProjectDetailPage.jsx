@@ -42,15 +42,15 @@ export default function ProjectDetailPage() {
   const allProjects = [digitalJaalProject, ...portfolioProjects];
   const project = allProjects.find(
     (p) => p.slug === projectId || p.id === projectId
-  ) || portfolioProjects[0];
+  ) || digitalJaalProject;
 
   const Icon = project.icon;
 
   // Next / Previous projects for bottom navigation
-  const currentIndex = portfolioProjects.findIndex((p) => p.id === project.id);
+  const currentIndex = allProjects.findIndex((p) => p.id === project.id);
   const nextProject = currentIndex >= 0 
-    ? portfolioProjects[(currentIndex + 1) % portfolioProjects.length]
-    : portfolioProjects[0];
+    ? allProjects[(currentIndex + 1) % allProjects.length]
+    : digitalJaalProject;
 
   return (
     <div className="min-h-screen flex flex-col text-[#082B59] bg-[#F9FBFD] relative">
@@ -310,7 +310,7 @@ export default function ProjectDetailPage() {
                 <span>Get in Touch With Us</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
-              {portfolioProjects.length > 1 && (
+              {allProjects.length > 1 && (
                 <Link
                   to={`/portfolio/${nextProject.slug}`}
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold text-white/90 bg-white/10 hover:bg-white/15 border border-white/20 transition-all"

@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Menu, 
-  X, 
-  ArrowRight, 
-  ChevronDown, 
-  Bot, 
-  ShieldCheck, 
+import {
+  Menu,
+  X,
+  ArrowRight,
+  ChevronDown,
+  Bot,
+  ShieldCheck,
   Film,
   TrendingUp
 } from 'lucide-react';
@@ -20,7 +20,7 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
   const [mobileServicesExpanded, setMobileServicesExpanded] = useState(false);
-  
+
   const dropdownTimeoutRef = useRef(null);
   const location = useLocation();
   const navigate = useNavigate();
@@ -61,7 +61,7 @@ export default function Navbar() {
         return;
       }
 
-      const sectionIds = ['home', 'about', 'services', 'faq', 'contact'];
+      const sectionIds = ['home', 'about', 'services', 'portfolio', 'faq', 'contact'];
       const scrollPos = window.scrollY + 200;
 
       for (let i = sectionIds.length - 1; i >= 0; i--) {
@@ -133,13 +133,14 @@ export default function Navbar() {
   const navLinks = [
     { name: 'Home', path: '/', isPage: true, id: 'home' },
     { name: 'About', path: '/about', isPage: true, id: 'about' },
-    { 
-      name: 'Services', 
-      path: '/services', 
-      isPage: true, 
+    {
+      name: 'Services',
+      path: '/services',
+      isPage: true,
       id: 'services',
-      hasDropdown: true 
+      hasDropdown: true
     },
+    { name: 'Portfolio', path: '/#portfolio', isPage: false, targetId: 'portfolio', id: 'portfolio' },
     { name: 'FAQ', path: '/#faq', isPage: false, targetId: 'faq', id: 'faq' },
     { name: 'Contact', path: '/contact', isPage: true, id: 'contact' },
   ];
@@ -216,40 +217,36 @@ export default function Navbar() {
         )}
       </AnimatePresence>
 
-      <header 
-        className={`fixed top-0 left-0 right-0 z-[90] transition-all duration-300 ease-in-out pointer-events-none ${
-          isScrolled ? 'pt-2.5 sm:pt-3.5 px-3 sm:px-6' : 'pt-0 px-0'
-        }`}
+      <header
+        className={`fixed top-0 left-0 right-0 z-[90] transition-all duration-300 ease-in-out pointer-events-none ${isScrolled ? 'pt-2.5 sm:pt-3.5 px-3 sm:px-6' : 'pt-0 px-0'
+          }`}
         style={{
           paddingTop: isScrolled ? undefined : 'max(0px, env(safe-area-inset-top, 0px))'
         }}
       >
-        <div 
-          className={`pointer-events-auto transition-all duration-300 ease-in-out ${
-            isScrolled 
-              ? 'max-w-5xl mx-auto rounded-full bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-[0_8px_30px_rgba(8,43,89,0.08)] px-4 sm:px-6'
-              : 'w-full bg-white/95 backdrop-blur-sm border-b border-slate-200/80 shadow-[0_2px_12px_rgba(8,43,89,0.03)] px-4 sm:px-6 lg:px-8'
-          }`}
+        <div
+          className={`pointer-events-auto transition-all duration-300 ease-in-out ${isScrolled
+            ? 'max-w-5xl mx-auto rounded-full bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-[0_8px_30px_rgba(8,43,89,0.08)] px-4 sm:px-6'
+            : 'w-full bg-white/95 backdrop-blur-sm border-b border-slate-200/80 shadow-[0_2px_12px_rgba(8,43,89,0.03)] px-4 sm:px-6 lg:px-8'
+            }`}
         >
           <div className={isScrolled ? 'w-full' : 'max-w-7xl mx-auto'}>
-            <nav 
-              className={`flex items-center justify-between transition-all duration-300 ${
-                isScrolled ? 'h-[54px] sm:h-[58px]' : 'h-[68px] sm:h-[72px]'
-              }`}
+            <nav
+              className={`flex items-center justify-between transition-all duration-300 ${isScrolled ? 'h-[54px] sm:h-[58px]' : 'h-[68px] sm:h-[72px]'
+                }`}
             >
               {/* Logo */}
               <div className="shrink-0">
-                <Link 
-                  to="/" 
+                <Link
+                  to="/"
                   onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                   className="flex items-center"
                 >
                   <img
                     src="/images/kuber_logo_transparent.png"
                     alt="KUBER AIS TECHNOLOGIES Logo"
-                    className={`w-auto object-contain transition-all duration-300 ${
-                      isScrolled ? 'h-7 sm:h-7.5' : 'h-8 sm:h-9'
-                    }`}
+                    className={`w-auto object-contain transition-all duration-300 ${isScrolled ? 'h-7 sm:h-7.5' : 'h-8 sm:h-9'
+                      }`}
                     style={{ aspectRatio: '720 / 241' }}
                   />
                 </Link>
@@ -272,19 +269,16 @@ export default function Navbar() {
                         <button
                           type="button"
                           onClick={(e) => handleLinkClick(e, link)}
-                          className={`inline-flex items-center gap-1.5 rounded-full font-medium transition-colors duration-150 cursor-pointer ${
-                            isScrolled ? 'px-2.5 py-1 text-xs' : 'px-3 py-1.5 text-sm'
-                          } ${
-                            active || servicesDropdownOpen
+                          className={`inline-flex items-center gap-1.5 rounded-full font-medium transition-colors duration-150 cursor-pointer ${isScrolled ? 'px-2.5 py-1 text-xs' : 'px-3 py-1.5 text-sm'
+                            } ${active || servicesDropdownOpen
                               ? 'text-[#0866E8] bg-blue-50 font-semibold'
                               : 'text-[#082B59] hover:text-[#0866E8] hover:bg-slate-50'
-                          }`}
+                            }`}
                         >
                           <span>{link.name}</span>
-                          <ChevronDown 
-                            className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                              servicesDropdownOpen ? 'rotate-180 text-[#0866E8]' : 'text-slate-400'
-                            }`} 
+                          <ChevronDown
+                            className={`w-3.5 h-3.5 transition-transform duration-200 ${servicesDropdownOpen ? 'rotate-180 text-[#0866E8]' : 'text-slate-400'
+                              }`}
                           />
                         </button>
 
@@ -312,11 +306,10 @@ export default function Navbar() {
                                       key={item.name}
                                       type="button"
                                       onClick={() => handlePracticeClick(item.path)}
-                                      className={`w-full text-left p-2.5 rounded-xl transition-all duration-150 flex items-start gap-3 cursor-pointer ${
-                                        isItemActive
-                                          ? 'bg-blue-50/80 text-[#0866E8]'
-                                          : 'hover:bg-slate-50 text-slate-700'
-                                      }`}
+                                      className={`w-full text-left p-2.5 rounded-xl transition-all duration-150 flex items-start gap-3 cursor-pointer ${isItemActive
+                                        ? 'bg-blue-50/80 text-[#0866E8]'
+                                        : 'hover:bg-slate-50 text-slate-700'
+                                        }`}
                                     >
                                       <div className={`p-1.5 rounded-md border ${item.borderColor} ${item.bgColor} ${item.color} shrink-0 mt-0.5`}>
                                         <IconComponent className="w-4 h-4" />
@@ -346,13 +339,11 @@ export default function Navbar() {
                       key={link.name}
                       href={link.path}
                       onClick={(e) => handleLinkClick(e, link)}
-                      className={`rounded-full font-medium transition-colors duration-150 cursor-pointer ${
-                        isScrolled ? 'px-2.5 py-1 text-xs' : 'px-3 py-1.5 text-sm'
-                      } ${
-                        active
+                      className={`rounded-full font-medium transition-colors duration-150 cursor-pointer ${isScrolled ? 'px-2.5 py-1 text-xs' : 'px-3 py-1.5 text-sm'
+                        } ${active
                           ? 'text-[#0866E8] bg-blue-50 font-semibold'
                           : 'text-[#082B59] hover:text-[#0866E8] hover:bg-slate-50'
-                      }`}
+                        }`}
                     >
                       {link.name}
                     </a>
@@ -364,9 +355,8 @@ export default function Navbar() {
               <div className="hidden sm:flex items-center shrink-0">
                 <Link
                   to="/contact"
-                  className={`inline-flex items-center gap-1.5 rounded-full font-semibold text-white bg-gradient-to-r from-[#0866E8] via-[#0878F0] to-[#00B9E8] shadow-xs hover:shadow-md hover:opacity-95 transition-all duration-200 cursor-pointer ${
-                    isScrolled ? 'px-3.5 py-1.5 text-xs' : 'px-4.5 py-2 text-xs sm:text-sm'
-                  }`}
+                  className={`inline-flex items-center gap-1.5 rounded-full font-semibold text-white bg-gradient-to-r from-[#0866E8] via-[#0878F0] to-[#00B9E8] shadow-xs hover:shadow-md hover:opacity-95 transition-all duration-200 cursor-pointer ${isScrolled ? 'px-3.5 py-1.5 text-xs' : 'px-4.5 py-2 text-xs sm:text-sm'
+                    }`}
                 >
                   <span>Get Started</span>
                   <ArrowRight className={isScrolled ? 'w-3 h-3' : 'w-3.5 h-3.5'} />
@@ -376,9 +366,8 @@ export default function Navbar() {
               {/* Mobile Menu Button */}
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className={`lg:hidden rounded-full text-[#082B59] hover:text-[#0866E8] hover:bg-slate-100 transition-colors focus:outline-none cursor-pointer flex items-center justify-center shrink-0 ${
-                  isScrolled ? 'w-9 h-9' : 'w-10 h-10'
-                }`}
+                className={`lg:hidden rounded-full text-[#082B59] hover:text-[#0866E8] hover:bg-slate-100 transition-colors focus:outline-none cursor-pointer flex items-center justify-center shrink-0 ${isScrolled ? 'w-9 h-9' : 'w-10 h-10'
+                  }`}
                 aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
               >
                 {mobileMenuOpen ? (
@@ -413,13 +402,12 @@ export default function Navbar() {
                       return (
                         <div key={link.name} className="flex flex-col">
                           <div
-                            className={`px-3.5 py-2.5 rounded-xl text-sm font-semibold transition-colors flex items-center justify-between cursor-pointer ${
-                              active
-                                ? 'text-[#0866E8] bg-blue-50'
-                                : 'text-[#082B59] hover:text-[#0866E8] hover:bg-slate-50'
-                            }`}
+                            className={`px-3.5 py-2.5 rounded-xl text-sm font-semibold transition-colors flex items-center justify-between cursor-pointer ${active
+                              ? 'text-[#0866E8] bg-blue-50'
+                              : 'text-[#082B59] hover:text-[#0866E8] hover:bg-slate-50'
+                              }`}
                           >
-                            <span 
+                            <span
                               onClick={(e) => handleLinkClick(e, link)}
                               className="flex-1"
                             >
@@ -432,10 +420,9 @@ export default function Navbar() {
                               className="p-1.5 rounded-lg text-slate-500 hover:text-[#0866E8] hover:bg-blue-100/50 focus:outline-none transition-colors"
                               aria-label="Toggle Services submenu"
                             >
-                              <ChevronDown 
-                                className={`w-4 h-4 transition-transform duration-200 ${
-                                  mobileServicesExpanded ? 'rotate-180 text-[#0866E8]' : ''
-                                }`} 
+                              <ChevronDown
+                                className={`w-4 h-4 transition-transform duration-200 ${mobileServicesExpanded ? 'rotate-180 text-[#0866E8]' : ''
+                                  }`}
                               />
                             </button>
                           </div>
@@ -459,11 +446,10 @@ export default function Navbar() {
                                       key={item.name}
                                       type="button"
                                       onClick={() => handlePracticeClick(item.path)}
-                                      className={`w-full text-left p-2.5 rounded-xl transition-all duration-150 flex items-start gap-3 cursor-pointer ${
-                                        isItemActive
-                                          ? 'bg-blue-50 text-[#0866E8] font-semibold'
-                                          : 'bg-slate-50/80 hover:bg-blue-50/70 text-slate-700'
-                                      }`}
+                                      className={`w-full text-left p-2.5 rounded-xl transition-all duration-150 flex items-start gap-3 cursor-pointer ${isItemActive
+                                        ? 'bg-blue-50 text-[#0866E8] font-semibold'
+                                        : 'bg-slate-50/80 hover:bg-blue-50/70 text-slate-700'
+                                        }`}
                                     >
                                       <div className={`p-1.5 rounded-lg border ${item.borderColor} ${item.bgColor} ${item.color} shrink-0 mt-0.5`}>
                                         <IconComponent className="w-3.5 h-3.5" />
@@ -492,11 +478,10 @@ export default function Navbar() {
                         key={link.name}
                         href={link.path}
                         onClick={(e) => handleLinkClick(e, link)}
-                        className={`px-3.5 py-2.5 rounded-xl text-sm font-medium transition-colors flex items-center justify-between cursor-pointer ${
-                          active
-                            ? 'text-[#0866E8] bg-blue-50 font-semibold'
-                            : 'text-[#082B59] hover:text-[#0866E8] hover:bg-slate-50'
-                        }`}
+                        className={`px-3.5 py-2.5 rounded-xl text-sm font-medium transition-colors flex items-center justify-between cursor-pointer ${active
+                          ? 'text-[#0866E8] bg-blue-50 font-semibold'
+                          : 'text-[#082B59] hover:text-[#0866E8] hover:bg-slate-50'
+                          }`}
                       >
                         <span>{link.name}</span>
                         <ArrowRight className={`w-3.5 h-3.5 ${active ? 'text-[#0866E8]' : 'text-slate-400'}`} />
@@ -506,7 +491,7 @@ export default function Navbar() {
                 </div>
 
                 {/* Footer Action: Get Started Button (Proper padding, never touches edges) */}
-                <div 
+                <div
                   className="p-3.5 sm:p-4 border-t border-slate-100 bg-slate-50/60 shrink-0"
                   style={{
                     paddingBottom: 'max(14px, env(safe-area-inset-bottom, 14px))'
