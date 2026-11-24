@@ -122,7 +122,7 @@ export default function ProjectDetailPage() {
           className="relative w-full rounded-2xl sm:rounded-3xl overflow-hidden border border-stone-200/90 bg-stone-100 shadow-lg shadow-blue-900/5 mb-12 sm:mb-16 aspect-[16/10] sm:aspect-[16/9] lg:h-[480px]"
         >
           <img
-            src={project.heroImage}
+            src={project.heroImage || project.image}
             alt={project.title}
             className="w-full h-full object-cover object-center"
           />

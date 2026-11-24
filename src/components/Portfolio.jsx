@@ -154,8 +154,9 @@ export default function Portfolio({ onOpenModal }) {
                     {/* Project Image Container */}
                     <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] lg:h-[215px] overflow-hidden bg-stone-100 rounded-t-2xl">
                       <img
-                        src={project.image}
+                        src={project.image || project.heroImage}
                         alt={project.title}
+                        loading="lazy"
                         className="w-full h-full object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-[1.03]"
                       />
 
@@ -181,7 +182,7 @@ export default function Portfolio({ onOpenModal }) {
 
                         {/* Concise 2-3 line human-crafted description */}
                         <p className="text-xs sm:text-[13px] text-stone-600 leading-relaxed font-normal">
-                          {project.description}
+                          {project.description || project.overview}
                         </p>
                       </div>
                     </div>
