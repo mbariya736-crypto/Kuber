@@ -106,6 +106,34 @@ export default function ServiceDetailPage({ practiceId: propPracticeId }) {
         </Link>
       </header>
 
+      {/* 1.5 DEDICATED SWIPE / SWAP SERVICE SWITCHER TAB BAR */}
+      <div className="sticky top-[57px] z-40 w-full backdrop-blur-md bg-white/95 border-b border-slate-200/90 py-2.5 px-4 shadow-2xs">
+        <div className="max-w-4xl mx-auto flex items-center justify-center gap-2 sm:gap-3 overflow-x-auto py-0.5">
+          {[
+            { id: 'ai-services', title: 'Business Automation', icon: Bot, path: '/services/ai-services' },
+            { id: 'cyber-security', title: 'Cyber Security', icon: ShieldCheck, path: '/services/cyber-security' },
+            { id: 'ai-films', title: 'Film Production', icon: Film, path: '/services/ai-films' }
+          ].map((tab) => {
+            const isActive = normalizedId === tab.id;
+            const TabIcon = tab.icon;
+            return (
+              <Link
+                key={tab.id}
+                to={tab.path}
+                className={`relative px-4 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-2 cursor-pointer ${
+                  isActive
+                    ? 'text-white bg-[#0866E8] shadow-xs'
+                    : 'text-stone-600 hover:text-[#082B59] bg-stone-100 hover:bg-stone-200/80 border border-stone-200/90'
+                }`}
+              >
+                <TabIcon className="w-3.5 h-3.5" />
+                <span>{tab.title}</span>
+              </Link>
+            );
+          })}
+        </div>
+      </div>
+
       {/* 2. DEDICATED SERVICE DETAIL BODY */}
       <main className="flex-1 flex flex-col relative z-10">
         {normalizedId === 'ai-services' && (

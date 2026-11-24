@@ -6,127 +6,92 @@ import {
   Bot,
   ShieldCheck,
   Film,
-  Check
+  CheckCircle2
 } from 'lucide-react';
 import PracticeExperience from './PracticeExperience';
 import ServicesMotionBackground from './ServicesMotionBackground';
 
 /* ========================================================================= */
-/* SERVICE CARD COMPONENT (Human-Crafted, Editorial & Tactile Depth)          */
+/* SERVICE CARD COMPONENT (Human-Crafted Editorial & Swapped Layout)          */
 /* ========================================================================= */
 function ServiceCard({ service, index, onOpenPractice }) {
   const shouldReduceMotion = useReducedMotion();
   const Icon = service.icon;
-
-  // Subtle natural asymmetry per card:
-  // Card 0 (Business Automation): grounded standard baseline
-  // Card 1 (Cyber Security - featured middle): slight natural elevation (-translate-y-1.5 lg:-translate-y-2)
-  // Card 2 (Film Production): subtle organic balance (+translate-y-1)
-  const asymmetryOffset = 
-    index === 1 
-      ? 'lg:-translate-y-2 lg:mb-2' 
-      : index === 2 
-      ? 'lg:translate-y-1.5' 
-      : '';
-
-  // Editorial Roman index tag for human-crafted touch
-  const indexNumeral = ['01', '02', '03'][index] || `0${index + 1}`;
+  const isSwapped = index % 2 === 1; // Alternating swapped layout
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 18 }}
+    <motion.article
+      initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.15 }}
       transition={{
-        duration: 0.6,
-        delay: shouldReduceMotion ? 0 : index * 0.12,
+        duration: 0.55,
+        delay: shouldReduceMotion ? 0 : index * 0.1,
         ease: [0.19, 1, 0.22, 1]
       }}
-      whileHover={shouldReduceMotion ? {} : {
-        y: -4,
-        transition: { duration: 0.35, ease: [0.25, 1, 0.5, 1] }
-      }}
-      className={`group relative rounded-2xl bg-[#FCFDFE] border border-stone-200/80 hover:border-blue-400/70 transition-all duration-300 flex flex-col justify-between overflow-hidden text-left h-full ${asymmetryOffset}`}
-      style={{
-        boxShadow: index === 1 
-          ? '0 10px 30px -12px rgba(8, 43, 89, 0.09), 0 4px 12px -4px rgba(8, 43, 89, 0.05), 0 1px 2px 0 rgba(8, 43, 89, 0.04)'
-          : '0 8px 24px -12px rgba(8, 43, 89, 0.07), 0 3px 8px -3px rgba(8, 43, 89, 0.04), 0 1px 2px 0 rgba(8, 43, 89, 0.03)'
-      }}
+      className="rounded-3xl bg-white border border-stone-200/90 shadow-md hover:shadow-xl transition-all duration-300 p-6 sm:p-8 lg:p-10 relative overflow-hidden text-left"
     >
-      {/* Subtle organic card highlight top bevel */}
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/80 to-transparent pointer-events-none z-20" />
-
-      <div className="relative z-10 flex-1 flex flex-col">
-        {/* Service Image with warm vintage lens feel */}
-        <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] lg:h-[205px] overflow-hidden bg-stone-100 rounded-t-2xl">
-          <img
-            src={service.image}
-            alt={service.title}
-            className="w-full h-full object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-[1.03]"
-          />
-
-          {/* Warm organic vignette & soft inner rim */}
-          <div className="absolute inset-0 bg-gradient-to-t from-stone-900/30 via-stone-900/5 to-transparent pointer-events-none" />
-          
-          {/* Handcrafted Editorial Index Stamp */}
-          <div className="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-stone-900/50 backdrop-blur-md border border-white/20 text-white/90 text-[11px] font-mono tracking-widest pointer-events-none select-none">
-            {indexNumeral}
+      <div className={`grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center ${isSwapped ? 'lg:flex-row-reverse' : ''}`}>
+        
+        {/* Photographic Visual (Swapped column order on alternate cards) */}
+        <div className={`lg:col-span-5 w-full ${isSwapped ? 'lg:order-2' : 'lg:order-1'}`}>
+          <div className="relative aspect-[16/11] sm:aspect-[4/3] w-full rounded-2xl sm:rounded-3xl overflow-hidden bg-stone-100 border border-stone-200 shadow-sm group">
+            <img
+              src={service.image}
+              alt={service.title}
+              className="w-full h-full object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-[1.03]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-stone-900/30 via-transparent to-transparent pointer-events-none" />
           </div>
         </div>
 
-        {/* Card Body: Category Badge, Title, Description, and Deliverables */}
-        <div className="p-5 sm:p-6 pb-3 flex-1 flex flex-col">
-          {/* Category Badge & Status Indicator */}
-          <div className="mb-2.5 flex items-center justify-between">
-            <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-medium tracking-wide ${service.badgeColor}`}>
-              <Icon className="w-3.5 h-3.5 opacity-90" />
+        {/* Editorial Content (Heading, Paragraphs, Checkmarks, and Action) */}
+        <div className={`lg:col-span-7 flex flex-col justify-center ${isSwapped ? 'lg:order-1' : 'lg:order-2'}`}>
+          {/* Category Pill Tag */}
+          <div className="mb-3.5">
+            <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold tracking-wide ${service.badgeColor}`}>
+              <Icon className="w-3.5 h-3.5" />
               <span>{service.category}</span>
             </span>
           </div>
 
-          {/* Service Title - Editorial serif-tuned weight and typography */}
-          <h3 className="text-xl sm:text-[1.38rem] font-bold text-[#0B2546] leading-snug group-hover:text-[#0866E8] transition-colors duration-200 mb-2 tracking-tight">
-            {service.title}
+          {/* Large Bold Editorial Headline */}
+          <h3 className="text-2xl sm:text-3xl lg:text-[2rem] font-extrabold text-[#0B2546] tracking-tight leading-[1.2] mb-3.5">
+            {service.heading}
           </h3>
 
-          {/* Human-written Description with warm editorial tone */}
-          <p className="text-xs sm:text-[13px] text-stone-600 leading-relaxed font-normal mb-4">
-            {service.description}
-          </p>
+          {/* 2 Clear, Human-Crafted Descriptive Paragraphs */}
+          <div className="space-y-3 text-stone-600 text-xs sm:text-sm leading-relaxed font-normal mb-5">
+            <p>{service.paragraph1}</p>
+            <p>{service.paragraph2}</p>
+          </div>
 
-          {/* Key Deliverables / Capabilities */}
-          <div className="mt-auto pt-3.5 border-t border-stone-200/70">
-            <div className="flex items-center justify-between mb-2.5">
-              <span className="text-[10px] font-semibold tracking-wider text-stone-500 uppercase">
-                Core Deliverables
-              </span>
-              <span className="w-8 h-px bg-stone-200" />
-            </div>
-            <ul className="space-y-2">
-              {service.items.map((item, idx) => (
-                <li key={idx} className="flex items-start gap-2.5 text-xs text-stone-700 leading-normal">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#0866E8]/70 shrink-0 mt-1.5 group-hover:bg-[#0866E8] transition-colors" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
+          {/* 3 Checkmark Deliverables */}
+          <div className="space-y-2.5 mb-6 pt-3 border-t border-stone-100">
+            {service.points.map((pt, idx) => (
+              <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-[13px] text-stone-700 leading-snug">
+                <CheckCircle2 className={`w-4 h-4 shrink-0 mt-0.5 ${service.iconColor}`} />
+                <span>
+                  <strong className="text-[#0B2546] font-bold">{pt.title}:</strong> {pt.desc}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          {/* Clean Action CTA Link */}
+          <div>
+            <Link
+              to={`/services/${service.id}`}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-white bg-[#0866E8] hover:bg-[#0756C5] shadow-xs hover:shadow-md transition-all group/btn"
+            >
+              <span>{service.ctaText}</span>
+              <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-0.5 transition-transform" />
+            </Link>
           </div>
         </div>
-      </div>
 
-      {/* Footer Action: Explore Service Link with subtle tactile response */}
-      <div className="p-5 sm:p-6 pt-3 mt-auto relative z-10 border-t border-stone-100 bg-stone-50/50">
-        <Link
-          to={`/services/${service.id}`}
-          className="w-full inline-flex items-center justify-between py-2.5 px-4 rounded-xl text-xs sm:text-[13px] font-semibold text-[#082B59] hover:text-[#0866E8] bg-white hover:bg-white border border-stone-200/80 hover:border-blue-300 shadow-2xs hover:shadow-xs transition-all duration-200 group/btn cursor-pointer min-h-[42px]"
-        >
-          <span>{service.ctaText}</span>
-          <span className="w-6 h-6 rounded-lg bg-stone-100 group-hover/btn:bg-blue-50 flex items-center justify-center transition-colors">
-            <ArrowRight className="w-3.5 h-3.5 text-stone-600 group-hover/btn:text-[#0866E8] transition-transform duration-200 group-hover/btn:translate-x-0.5" />
-          </span>
-        </Link>
       </div>
-    </motion.div>
+    </motion.article>
   );
 }
 
@@ -161,16 +126,27 @@ export default function Services({ onOpenModal, routePracticeId, onPracticeChang
       id: 'ai-services',
       category: 'Business Automation',
       title: 'Business Automation',
+      heading: 'Practical Technology Grounded in Everyday Business Reality.',
       icon: Bot,
       badgeColor: 'text-[#0866E8] bg-blue-50 border border-blue-200/80',
       iconColor: 'text-[#0866E8]',
-      description: 'Reliable systems and automated workflows to manage incoming customer inquiries, route communications, and keep your business records organized.',
+      paragraph1: 'Everyday operations often get slowed down by missed customer messages, disorganized contact sheets, and repetitive manual tasks that take hours away from serving clients.',
+      paragraph2: 'We connect your existing tools—including website forms, WhatsApp, email, and spreadsheets—into one reliable, straightforward workflow. Your team stays informed with instant notifications, customer details are saved neatly, and follow-ups happen on time.',
       image: '/assets/ai-services.webp',
       imageTitle: 'Business Automation',
-      items: [
-        'Automatic inquiry capture and instant team notifications',
-        'Connected workflows between email, website forms, and WhatsApp',
-        'Real-time synchronization with spreadsheets and business tools'
+      points: [
+        {
+          title: 'Instant Response Protocols',
+          desc: 'Automatically capture website submissions and route alerts to WhatsApp and email within 3 seconds.'
+        },
+        {
+          title: 'Zero Manual Data Entry',
+          desc: 'Seamlessly synchronize customer details, inquiries, and follow-ups directly into organized central spreadsheets.'
+        },
+        {
+          title: 'Reliable Tool Integration',
+          desc: 'Connect your existing web forms, WhatsApp, email, and CRM with zero disruption to daily company routines.'
+        }
       ],
       ctaText: 'Explore Business Automation'
     },
@@ -178,16 +154,27 @@ export default function Services({ onOpenModal, routePracticeId, onPracticeChang
       id: 'cyber-security',
       category: 'Cyber Security Services',
       title: 'Cyber Security & Protection',
+      heading: 'Strategic Protection Grounded in Active Defense.',
       icon: ShieldCheck,
       badgeColor: 'text-emerald-700 bg-emerald-50 border border-emerald-200/80',
       iconColor: 'text-emerald-600',
-      description: 'Practical security checks, staff training, and safety measures to protect company accounts, prevent scams, and secure transactions.',
+      paragraph1: 'Many small and growing businesses operate under the misconception that cyber threats only target large corporations. In reality, shared email accounts and unverified payment requests make everyday operations prime targets.',
+      paragraph2: 'We conduct practical security reviews of business email suites, cloud storage, and banking portals. We implement multi-factor authentication, establish dual-verification protocols, and train your staff to recognize deceptive scams before losses occur.',
       image: '/assets/cybersecurity-2023-social_uvx3rt.png',
       imageTitle: 'Cyber Security',
-      items: [
-        'Staff awareness training for phishing and scam prevention',
-        'Account safety reviews and access verification',
-        'Incident guidance and reporting support through Helpline 1930'
+      points: [
+        {
+          title: 'Proactive Account Audits',
+          desc: 'Comprehensive security reviews of administrative accounts, email suites, and access permissions.'
+        },
+        {
+          title: 'Staff Scam & Phishing Defense',
+          desc: 'Practical scenario drills training employees to detect deceptive vendor invoices and fake payment links.'
+        },
+        {
+          title: 'Rapid Incident Recovery',
+          desc: 'Clear, step-by-step guidance to freeze unauthorized transactions and report swiftly via Helpline 1930.'
+        }
       ],
       ctaText: 'Explore Cyber Security'
     },
@@ -195,16 +182,27 @@ export default function Services({ onOpenModal, routePracticeId, onPracticeChang
       id: 'ai-films',
       category: 'Film Production & Media',
       title: 'Film Production & Media',
+      heading: 'Cinematic Storytelling Grounded in Human Truth.',
       icon: Film,
       badgeColor: 'text-cyan-800 bg-cyan-50 border border-cyan-200/80',
       iconColor: 'text-cyan-600',
-      description: 'Professional video production for commercials, corporate profiles, and public awareness campaigns from script to finished screen.',
+      paragraph1: 'Commercial brand media and corporate videos often suffer from generic templates that fail to communicate genuine values or build lasting customer connection.',
+      paragraph2: 'We partner closely with your team to produce authentic human stories. From initial script consultation and storyboard development to on-location cinematography and post-production color grading, every frame is crafted to build credibility.',
       image: '/assets/ai-film-studio-hero.webp',
       imageTitle: 'Film Production',
-      items: [
-        'Commercial brand and product video production',
-        'Corporate overview and milestone documentaries',
-        'Public awareness and educational films'
+      points: [
+        {
+          title: 'End-to-End Creative Direction',
+          desc: 'Complete script consultation, storyboard pacing, studio cinematography, and lighting.'
+        },
+        {
+          title: 'Authentic Narrative Pacing',
+          desc: 'Human-crafted storytelling that builds trust and connects with clients, partners, and investors.'
+        },
+        {
+          title: 'Cinema-Grade Master Cuts',
+          desc: 'Editorial color grading, custom soundscapes, and multi-format exports for web and social broadcasts.'
+        }
       ],
       ctaText: 'Explore Film Production'
     }
@@ -255,8 +253,8 @@ export default function Services({ onOpenModal, routePracticeId, onPracticeChang
           </motion.div>
         )}
 
-        {/* 3 Human-Crafted Service Cards with organic rhythm */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-7 items-stretch pt-2 pb-2">
+        {/* Human-Crafted Editorial Service Cards with Alternating Swapped Rhythm */}
+        <div className="flex flex-col gap-8 sm:gap-10 lg:gap-12 pt-2 pb-2">
           {services.map((service, index) => (
             <ServiceCard
               key={service.id}

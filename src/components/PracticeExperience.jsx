@@ -335,13 +335,35 @@ export function AIServicesExperience({ onOpenContact }) {
               <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#082B59] mb-4 leading-snug">
                 Practical Workflow Solutions Built for Real Businesses
               </h2>
-              <div className="space-y-3.5 text-slate-600 text-xs sm:text-sm lg:text-base leading-relaxed font-normal">
+              <div className="space-y-3.5 text-slate-600 text-xs sm:text-sm lg:text-base leading-relaxed font-normal mb-6">
                 <p>
                   Everyday operations often get slowed down by missed customer messages, disorganized contact sheets, and repetitive manual tasks that take hours away from serving clients.
                 </p>
                 <p>
                   We help businesses connect their existing tools—including website forms, WhatsApp, email, spreadsheets, and CRM—into one reliable, straightforward workflow. Your team stays informed with instant notifications, customer details are saved neatly, and follow-ups happen on time.
                 </p>
+              </div>
+
+              {/* 3 Editorial Checkmarked Deliverables */}
+              <div className="space-y-2.5 pt-4 border-t border-slate-100">
+                <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
+                  <CheckCircle2 className="w-4 h-4 text-[#0866E8] shrink-0 mt-0.5" />
+                  <span>
+                    <strong className="text-[#082B59] font-bold">Instant Response Protocols:</strong> Automatically capture website submissions and route alerts to WhatsApp and email within 3 seconds.
+                  </span>
+                </div>
+                <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
+                  <CheckCircle2 className="w-4 h-4 text-[#0866E8] shrink-0 mt-0.5" />
+                  <span>
+                    <strong className="text-[#082B59] font-bold">Zero Manual Data Entry:</strong> Seamlessly synchronize customer details, inquiries, and follow-ups directly into organized central spreadsheets.
+                  </span>
+                </div>
+                <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
+                  <CheckCircle2 className="w-4 h-4 text-[#0866E8] shrink-0 mt-0.5" />
+                  <span>
+                    <strong className="text-[#082B59] font-bold">Reliable Tool Integration:</strong> Connect your existing web forms, WhatsApp, email, and CRM with zero disruption to daily company routines.
+                  </span>
+                </div>
               </div>
             </div>
           </div>
@@ -460,156 +482,98 @@ export function CyberSecurityExperience({ onOpenContact }) {
 
       </motion.div>
 
-      {/* Centerpiece Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-stretch mb-12 sm:mb-16">
-        {/* Left Column: Protection Visual Asset */}
-        <motion.div
-          initial={{ opacity: 1, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:col-span-6 rounded-[24px] sm:rounded-[28px] bg-white border border-slate-200/90 p-5 sm:p-8 relative overflow-hidden shadow-xl shadow-blue-900/5 flex flex-col justify-between"
-        >
-          <div>
-            <div className="flex items-center justify-between mb-5 sm:mb-6">
-              <div className="flex items-center gap-2.5">
-                <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center border border-emerald-200">
-                  <ShieldCheck className="w-5 h-5 text-emerald-600" />
-                </div>
-                <div>
-                  <h3 className="text-xs sm:text-base font-bold text-[#082B59] tracking-wide">
-                    Account &amp; Transaction Protection
-                  </h3>
-                  <span className="text-[10px] sm:text-[11px] font-medium text-emerald-600">
-                    Proactive Safeguards for Day-to-Day Operations
-                  </span>
-                </div>
-              </div>
-              <span className="px-2.5 py-1 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center gap-1.5 shrink-0">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                Active Safeguards
-              </span>
+      {/* Centerpiece Editorial Swapped Showcase (Image Right, Content Left) */}
+      <motion.div
+        initial={{ opacity: 0, y: 18 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        className="rounded-[28px] sm:rounded-[36px] bg-white border border-slate-200/90 p-6 sm:p-10 lg:p-12 shadow-xl shadow-blue-900/5 mb-12 sm:mb-16 text-left"
+      >
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          
+          {/* Content Left */}
+          <div className="lg:col-span-7 flex flex-col justify-center">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200/80 mb-3.5 w-fit">
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+              <span>Cyber Security Services</span>
             </div>
 
-            {/* Video / Poster Stage */}
-            <div className="my-3 sm:my-4 rounded-2xl overflow-hidden border border-slate-200 bg-slate-100">
-              <ServiceVideoHero
-                serviceKey="cyber-security"
-                poster="/assets/cybersecurity-2023-social_uvx3rt.png"
-                title="Cyber Security"
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#082B59] mb-4 leading-snug">
+              Strategic Protection Grounded in Active Defense
+            </h2>
+
+            <div className="space-y-3.5 text-slate-600 text-xs sm:text-sm lg:text-base leading-relaxed font-normal mb-6">
+              <p>
+                Many small and growing businesses operate under the misconception that cyber threats only target large corporations. In reality, shared email accounts and unverified payment requests make everyday operations prime targets for wire fraud and account takeover.
+              </p>
+              <p>
+                We conduct practical security reviews of business email suites, cloud storage, and banking portals. We implement multi-factor authentication, establish dual-verification protocols, and train your staff to recognize deceptive scams before financial losses occur.
+              </p>
+            </div>
+
+            {/* 3 Editorial Checkmarked Deliverables */}
+            <div className="space-y-2.5 pt-4 border-t border-slate-100">
+              <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                <span>
+                  <strong className="text-[#082B59] font-bold">Proactive Account Audits:</strong> Comprehensive security reviews of administrative accounts, email suites, and access permissions.
+                </span>
+              </div>
+              <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                <span>
+                  <strong className="text-[#082B59] font-bold">Staff Scam &amp; Phishing Defense:</strong> Hands-on scenario training helping employees recognize fraudulent vendor invoices and fake payment links.
+                </span>
+              </div>
+              <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                <span>
+                  <strong className="text-[#082B59] font-bold">Rapid Incident Recovery:</strong> Clear, step-by-step guidance to freeze unauthorized transactions and report swiftly via Helpline 1930.
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Photographic Image Right (SWAPPED) */}
+          <div className="lg:col-span-5 flex justify-center w-full">
+            <div className="relative rounded-[22px] sm:rounded-[26px] aspect-[16/11] sm:aspect-[4/3] w-full bg-slate-100 border border-slate-200 shadow-lg shadow-blue-900/8 overflow-hidden group">
+              <img
+                src="/assets/cybersecurity-2023-social_uvx3rt.png"
+                alt="Cyber Security & Active Risk Protection"
+                className="w-full h-full object-cover object-center rounded-[20px] sm:rounded-[24px] group-hover:scale-[1.02] transition-transform duration-700 ease-out"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none" />
             </div>
           </div>
 
-          {/* Quick Metrics Bar */}
-          <div className="grid grid-cols-3 gap-2 sm:gap-3 pt-3.5 sm:pt-4 border-t border-slate-100">
-            <div className="p-2 sm:p-3 rounded-xl bg-slate-50 border border-slate-200 text-center">
-              <span className="text-[9px] sm:text-[10px] uppercase font-semibold text-slate-500 block mb-0.5">Primary Focus</span>
-              <span className="text-xs sm:text-base font-bold text-[#082B59]">Account Safety</span>
-            </div>
-            <div className="p-2 sm:p-3 rounded-xl bg-slate-50 border border-slate-200 text-center">
-              <span className="text-[9px] sm:text-[10px] uppercase font-semibold text-slate-500 block mb-0.5">Staff Training</span>
-              <span className="text-xs sm:text-base font-bold text-emerald-700">Phishing &amp; Scams</span>
-            </div>
-            <div className="p-2 sm:p-3 rounded-xl bg-slate-50 border border-slate-200 text-center">
-              <span className="text-[9px] sm:text-[10px] uppercase font-semibold text-slate-500 block mb-0.5">Helpline Support</span>
-              <span className="text-xs sm:text-base font-bold text-[#0866E8]">Dial 1930</span>
-            </div>
-          </div>
-        </motion.div>
+        </div>
+      </motion.div>
 
-        {/* Right Column: Threat Prevention Checklist & Helpline */}
-        <motion.div
-          initial={{ opacity: 1, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:col-span-6 rounded-[24px] sm:rounded-[28px] bg-white border border-slate-200/90 p-5 sm:p-8 flex flex-col justify-between shadow-xl shadow-blue-900/5 relative overflow-hidden"
-        >
+      {/* National Cyber Helpline Notice */}
+      <div className="mb-12 sm:mb-16 p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-emerald-50 via-teal-50 to-emerald-50/50 border border-emerald-200/90 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold shadow-xs shrink-0">
+            <PhoneCall className="w-5 h-5" />
+          </div>
           <div>
-            <div className="flex items-center justify-between mb-4 sm:mb-5">
-              <div className="flex items-center gap-2.5">
-                <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center border border-emerald-200">
-                  <Radar className="w-5 h-5" />
-                </div>
-                <div>
-                  <h3 className="text-xs sm:text-base font-bold text-[#082B59] tracking-wide">
-                    Common Threats We Help Businesses Prevent
-                  </h3>
-                  <span className="text-[10px] sm:text-[11px] font-medium text-slate-500">
-                    Proactive Defenses for Financial Safety &amp; Business Trust
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Practical Security Checklist */}
-            <div className="space-y-2 text-xs mb-5 sm:mb-6">
-              {protectionAreas.map((item, idx) => (
-                <div
-                  key={idx}
-                  className="p-3 rounded-xl bg-slate-50 border border-slate-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 sm:gap-2 text-slate-700 hover:bg-emerald-50/30 transition-colors"
-                >
-                  <div className="truncate">
-                    <span className="font-bold text-[#082B59] truncate text-[11px] sm:text-xs block mb-0.5">{item.category}</span>
-                    <span className="text-[11px] text-slate-500 block truncate">{item.guidance}</span>
-                  </div>
-                  <div className="flex items-center gap-2 shrink-0">
-                    <span className={`px-2 py-0.5 rounded text-[10px] font-semibold ${item.badgeClass}`}>
-                      {item.status}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* National Cyber Helpline Notice */}
-            <div className="p-4 rounded-2xl bg-gradient-to-r from-emerald-50 via-teal-50 to-emerald-50/50 border border-emerald-200/90 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold shadow-xs shrink-0">
-                  <PhoneCall className="w-5 h-5" />
-                </div>
-                <div>
-                  <p className="text-[11px] text-slate-600 font-medium">National Cyber Crime Helpline</p>
-                  <p className="text-base sm:text-lg font-black text-[#082B59] flex items-center gap-2">
-                    <span>Dial 1930</span>
-                    <span className="px-1.5 py-0.5 rounded text-[9px] bg-emerald-100 text-emerald-800 border border-emerald-300 font-semibold">TOLL FREE</span>
-                  </p>
-                </div>
-              </div>
-              <div className="sm:text-right">
-                <p className="text-[11px] text-slate-600 font-medium">Official Reporting Portal</p>
-                <a
-                  href="https://cybercrime.gov.in"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs sm:text-sm font-bold text-emerald-700 hover:text-emerald-800 underline"
-                >
-                  cybercrime.gov.in
-                </a>
-              </div>
-            </div>
+            <p className="text-[11px] text-slate-600 font-medium">National Cyber Crime Helpline</p>
+            <p className="text-base sm:text-lg font-black text-[#082B59] flex items-center gap-2">
+              <span>Dial 1930</span>
+              <span className="px-1.5 py-0.5 rounded text-[9px] bg-emerald-100 text-emerald-800 border border-emerald-300 font-semibold">TOLL FREE</span>
+            </p>
           </div>
-
-          {/* Defense Best Practices Badges */}
-          <div className="mt-5 sm:mt-6 pt-3.5 sm:pt-4 border-t border-slate-100">
-            <span className="text-[10px] sm:text-[11px] uppercase font-semibold text-slate-500 block mb-2">
-              Security Best Practices
-            </span>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-[11px] font-semibold">
-              <div className="p-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-700">
-                Multi-Factor Logins
-              </div>
-              <div className="p-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-700">
-                Email Authentication
-              </div>
-              <div className="p-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-700">
-                Encrypted Backups
-              </div>
-              <div className="p-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-700">
-                Employee Training
-              </div>
-            </div>
-          </div>
-        </motion.div>
+        </div>
+        <div className="sm:text-right">
+          <p className="text-[11px] text-slate-600 font-medium">Official Reporting Portal</p>
+          <a
+            href="https://cybercrime.gov.in"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs sm:text-sm font-bold text-emerald-700 hover:text-emerald-800 underline"
+          >
+            cybercrime.gov.in
+          </a>
+        </div>
       </div>
 
       {/* Core Practice Capabilities Grid */}
@@ -784,72 +748,81 @@ export function AIFilmStudioExperience({ onOpenContact }) {
         </p>
       </motion.div>
 
-      {/* Main Interactive Stage Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-stretch mb-12 sm:mb-16">
-        {/* Left Column: Camera Viewfinder */}
-        <motion.div
-          style={{ y: leftCardY }}
-          initial={{ opacity: 1, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:col-span-6 rounded-[24px] sm:rounded-[28px] bg-white border border-slate-200/90 p-5 sm:p-8 relative overflow-hidden shadow-xl shadow-blue-900/5 flex flex-col justify-between"
-        >
-          <div>
-            <div className="flex items-center justify-between mb-5 sm:mb-6">
-              <div className="flex items-center gap-2.5">
-                <div className="w-9 h-9 rounded-xl bg-cyan-50 text-cyan-700 flex items-center justify-center border border-cyan-200">
-                  <Aperture className="w-5 h-5 text-cyan-700" />
-                </div>
-                <div>
-                  <h3 className="text-xs sm:text-base font-bold text-[#082B59] tracking-wide">
-                    Commercial &amp; Corporate Production
-                  </h3>
-                  <span className="text-[10px] sm:text-[11px] font-medium text-slate-500">
-                    From Script Development to Final Color Grade
-                  </span>
-                </div>
-              </div>
-              <span className="px-2.5 py-1 rounded-full text-[10px] font-semibold bg-cyan-50 text-cyan-800 border border-cyan-200 flex items-center gap-1.5 shrink-0">
-                <span className="w-1.5 h-1.5 rounded-full bg-cyan-600" />
-                Studio Production
-              </span>
-            </div>
-
-            {/* Video Hero */}
-            <div className="my-3 sm:my-4 rounded-2xl overflow-hidden border border-slate-200 bg-slate-100">
-              <ServiceVideoHero
-                serviceKey="film-production"
-                poster={currentFrame.src || "/assets/ai-film-studio-hero.webp"}
-                title="Film Production"
-                imageMotionStyle={{ y: imageParallaxY, scale: imageScale }}
+      {/* Main Editorial Showcase (Image Left, Content Right) */}
+      <motion.div
+        initial={{ opacity: 0, y: 18 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        className="rounded-[28px] sm:rounded-[36px] bg-white border border-slate-200/90 p-6 sm:p-10 lg:p-12 shadow-xl shadow-blue-900/5 mb-12 sm:mb-16 text-left"
+      >
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          
+          {/* Photographic Image Left */}
+          <div className="lg:col-span-5 flex justify-center w-full">
+            <div className="relative rounded-[22px] sm:rounded-[26px] aspect-[16/11] sm:aspect-[4/3] w-full bg-slate-100 border border-slate-200 shadow-lg shadow-blue-900/8 overflow-hidden group">
+              <img
+                src="/assets/ai-film-studio-hero.webp"
+                alt="Commercial Film & Video Production"
+                className="w-full h-full object-cover object-center rounded-[20px] sm:rounded-[24px] group-hover:scale-[1.02] transition-transform duration-700 ease-out"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none" />
             </div>
           </div>
 
-          {/* Quick Metrics Bar */}
-          <div className="grid grid-cols-3 gap-2 sm:gap-3 pt-3.5 sm:pt-4 border-t border-slate-100">
-            <div className="p-2 sm:p-3 rounded-xl bg-slate-50 border border-slate-200 text-center">
-              <span className="text-[9px] sm:text-[10px] uppercase font-semibold text-slate-500 block mb-0.5">Production Quality</span>
-              <span className="text-xs sm:text-base font-bold text-[#082B59]">Cinema 4K &amp; HD</span>
+          {/* Editorial Content Right */}
+          <div className="lg:col-span-7 flex flex-col justify-center">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold text-cyan-800 bg-cyan-50 border border-cyan-200/80 mb-3.5 w-fit">
+              <Film className="w-3.5 h-3.5 text-cyan-700" />
+              <span>Film Production &amp; Media</span>
             </div>
-            <div className="p-2 sm:p-3 rounded-xl bg-slate-50 border border-slate-200 text-center">
-              <span className="text-[9px] sm:text-[10px] uppercase font-semibold text-slate-500 block mb-0.5">Creative Workflow</span>
-              <span className="text-xs sm:text-base font-bold text-cyan-700">Script to Master</span>
+
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#082B59] mb-4 leading-snug">
+              Cinematic Storytelling Grounded in Human Truth
+            </h2>
+
+            <div className="space-y-3.5 text-slate-600 text-xs sm:text-sm lg:text-base leading-relaxed font-normal mb-6">
+              <p>
+                Commercial brand media and corporate videos often suffer from generic templates that fail to communicate genuine values or build lasting customer connection.
+              </p>
+              <p>
+                We partner closely with your team to produce authentic human stories. From initial script consultation and storyboard development to on-location cinematography and post-production color grading, every frame is crafted to build credibility.
+              </p>
             </div>
-            <div className="p-2 sm:p-3 rounded-xl bg-slate-50 border border-slate-200 text-center">
-              <span className="text-[9px] sm:text-[10px] uppercase font-semibold text-slate-500 block mb-0.5">Audio Mastering</span>
-              <span className="text-xs sm:text-base font-bold text-[#0866E8]">Studio Voice &amp; Mix</span>
+
+            {/* 3 Editorial Checkmarked Deliverables */}
+            <div className="space-y-2.5 pt-4 border-t border-slate-100">
+              <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
+                <CheckCircle2 className="w-4 h-4 text-cyan-700 shrink-0 mt-0.5" />
+                <span>
+                  <strong className="text-[#082B59] font-bold">End-to-End Creative Direction:</strong> Complete script consultation, storyboard pacing, studio cinematography, and lighting.
+                </span>
+              </div>
+              <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
+                <CheckCircle2 className="w-4 h-4 text-cyan-700 shrink-0 mt-0.5" />
+                <span>
+                  <strong className="text-[#082B59] font-bold">Authentic Narrative Pacing:</strong> Human-crafted storytelling that builds trust and connects with clients, partners, and investors.
+                </span>
+              </div>
+              <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
+                <CheckCircle2 className="w-4 h-4 text-cyan-700 shrink-0 mt-0.5" />
+                <span>
+                  <strong className="text-[#082B59] font-bold">Cinema-Grade Master Cuts:</strong> Editorial color grading, custom soundscapes, and multi-format exports for web and social broadcasts.
+                </span>
+              </div>
             </div>
           </div>
-        </motion.div>
 
-        {/* Right Column: Timeline & Production Stages */}
+        </div>
+      </motion.div>
+
+      {/* Interactive Production Timeline Visual */}
+      <div className="mb-12 sm:mb-16">
         <motion.div
           style={{ y: rightCardY }}
-          initial={{ opacity: 1, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 1, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:col-span-6 rounded-[24px] sm:rounded-[28px] bg-white border border-slate-200/90 p-5 sm:p-8 flex flex-col justify-between shadow-xl shadow-blue-900/5 relative overflow-hidden"
+          className="rounded-[24px] sm:rounded-[28px] bg-white border border-slate-200/90 p-5 sm:p-8 flex flex-col justify-between shadow-xl shadow-blue-900/5 relative overflow-hidden"
         >
           <div>
             <div className="flex items-center justify-between mb-4 sm:mb-5">
