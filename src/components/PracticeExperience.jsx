@@ -31,22 +31,75 @@ import {
 } from 'lucide-react';
 import ServiceVideoHero from './ServiceVideoHero';
 import ServiceSpecificBackground from './ServiceSpecificBackground';
-import RecurzivCyberFace from './RecurzivCyberFace';
 
 /* ========================================================================= */
-/* 1. SUBJECT-BASED BACKGROUND: Business Automation (Full-Page 3D Neural Face)*/
+/* 1. SUBJECT-BASED BACKGROUND: Business Automation (Attached AI Poster Visual) */
 /* ========================================================================= */
 function AIServicesBackground() {
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none z-0 select-none">
-      {/* 3D Wireframe Glowing AI Neural Face across entire page background */}
-      <div className="absolute inset-0 w-full h-full opacity-65 flex items-center justify-center">
-        <RecurzivCyberFace isBackground={true} className="w-full h-full" />
-      </div>
+      {/* Attached AI Services Poster Artwork with Animated Breathing / Scale Pulse */}
+      <motion.div
+        animate={{
+          scale: [1, 1.03, 1],
+          opacity: [0.36, 0.46, 0.36]
+        }}
+        transition={{
+          duration: 6,
+          repeat: Infinity,
+          ease: 'easeInOut'
+        }}
+        className="absolute inset-0 w-full h-full flex items-center justify-center"
+      >
+        <img
+          src="/assets/ai-services-poster.jpg"
+          alt="AI Services Background Animation"
+          className="w-full h-full object-cover object-center filter saturate-125"
+        />
+        {/* Soft Vignette Overlay to blend seamlessly into the light background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#F8FAFD]/92 via-[#F8FAFD]/65 to-[#F8FAFD]/95" />
+      </motion.div>
+
+      {/* Holographic Laser Scanning Sweep Across the Neural Face & Laptop Brain */}
+      <motion.div
+        animate={{
+          x: ['-140%', '240%']
+        }}
+        transition={{
+          duration: 3.2,
+          repeat: Infinity,
+          ease: 'easeInOut',
+          repeatDelay: 1.2
+        }}
+        className="absolute inset-y-0 w-64 bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent skew-x-[-20deg]"
+      />
 
       {/* Gentle gradient wash and ambient depth highlights */}
-      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[#0866E8]/10 rounded-full blur-[140px]" />
-      <div className="absolute bottom-1/3 right-1/4 w-[480px] h-[480px] bg-[#00B9E8]/10 rounded-full blur-[150px]" />
+      <motion.div
+        animate={{
+          scale: [1, 1.2, 1],
+          opacity: [0.25, 0.55, 0.25]
+        }}
+        transition={{
+          duration: 3.5,
+          repeat: Infinity,
+          ease: 'easeInOut'
+        }}
+        className="absolute top-1/4 left-1/4 w-[520px] h-[520px] bg-gradient-to-tr from-[#0866E8]/20 via-[#00B9E8]/25 to-transparent rounded-full blur-[140px]"
+      />
+      <motion.div
+        animate={{
+          scale: [1, 1.15, 1],
+          opacity: [0.2, 0.45, 0.2]
+        }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          ease: 'easeInOut',
+          delay: 1
+        }}
+        className="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] bg-gradient-to-tl from-[#00B9E8]/20 via-[#38BDF8]/20 to-transparent rounded-full blur-[150px]"
+      />
       <div className="absolute top-10 right-10 w-80 h-80 bg-blue-100/40 rounded-full blur-[120px]" />
       <div
         className="absolute inset-0 opacity-[0.03]"
@@ -293,7 +346,7 @@ export function AIServicesExperience({ onOpenContact }) {
                 >
                   {/* The Original Poster Image with subtle parallax */}
                   <motion.img
-                    src="/assets/ai-services.webp"
+                    src="/assets/ai-services-poster.jpg"
                     alt="AI & Business Automation"
                     style={(isTouchDevice || shouldReduceMotion) ? {} : {
                       x: parallaxImgX,

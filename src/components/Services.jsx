@@ -8,7 +8,6 @@ import {
   Film
 } from 'lucide-react';
 import PracticeExperience from './PracticeExperience';
-import ServicesMotionBackground from './ServicesMotionBackground';
 
 /* ========================================================================= */
 /* SERVICE CARD COMPONENT (Clean, Focused, Human-Designed)                    */
@@ -136,11 +135,6 @@ export default function Services({ onOpenModal, routePracticeId, onPracticeChang
           : 'py-10 sm:py-14 lg:py-16 bg-gradient-to-b from-[#F9FBFD] via-[#F8F9FA] to-[#F3F6F9]'
       }`}
     >
-      {/* Theme-Matching Smooth Blue Motion Animation (only if not standalone page) */}
-      {!isStandalonePage && (
-        <ServicesMotionBackground className="absolute inset-0 w-full h-full pointer-events-none z-0 opacity-70" />
-      )}
-
       {/* Subtle handcrafted paper texture / tactile noise */}
       <div 
         className="absolute inset-0 pointer-events-none opacity-[0.035] mix-blend-multiply z-1"
