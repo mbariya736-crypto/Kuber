@@ -390,9 +390,7 @@ export function AIServicesExperience({ onOpenContact }) {
             <h3 className="text-2xl sm:text-3xl font-extrabold text-white mb-3">
               Ready to Discuss Your Business Workflow?
             </h3>
-            <p className="text-slate-300 text-sm sm:text-base mb-6 leading-relaxed">
-              Connect with our team to discuss customized workflow setups, data synchronization, or automated customer response systems.
-            </p>
+
             <button
               onClick={onOpenContact}
               className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-xl text-sm font-semibold text-white bg-[#0866E8] hover:bg-[#0756C5] shadow-xs hover:shadow-md transition-all cursor-pointer min-h-[44px]"

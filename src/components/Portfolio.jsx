@@ -149,24 +149,21 @@ export default function Portfolio({ onOpenModal }) {
   return (
     <section
       id="portfolio"
-      className="relative text-[#082B59] overflow-hidden scroll-mt-20 sm:scroll-mt-24 py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-[#F8FAFD] via-white to-[#F1F6FC] border-t border-slate-200/80"
+      className="relative text-[#082B59] overflow-hidden scroll-mt-20 sm:scroll-mt-24 py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-[#F9FBFD] via-[#F8F9FA] to-[#F3F6F9] border-t border-stone-200/80"
     >
-      {/* Subtle blueprint grid overlay matching Services section */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-25"
+      {/* Subtle handcrafted paper texture / tactile noise matching Services */}
+      <div 
+        className="absolute inset-0 pointer-events-none opacity-[0.035] mix-blend-multiply z-1"
         style={{
-          backgroundImage: `
-            linear-gradient(to right, rgba(8, 102, 232, 0.05) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(8, 102, 232, 0.05) 1px, transparent 1px)
-          `,
-          backgroundSize: '48px 48px'
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+          backgroundRepeat: 'repeat'
         }}
       />
 
-      {/* Ambient soft blue lighting highlights */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[720px] h-[340px] bg-gradient-to-b from-blue-100/50 via-cyan-100/30 to-transparent rounded-full blur-[110px] -z-10 pointer-events-none" />
-      <div className="absolute top-1/3 -right-24 w-[420px] h-[420px] bg-cyan-100/30 rounded-full blur-[120px] -z-10 pointer-events-none" />
-      <div className="absolute bottom-10 -left-24 w-[450px] h-[450px] bg-blue-100/40 rounded-full blur-[120px] -z-10 pointer-events-none" />
+      {/* Warm gentle ambient glow replacing harsh neon */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[720px] h-[340px] bg-gradient-to-b from-blue-100/35 via-amber-50/20 to-transparent rounded-full blur-[110px] -z-10 pointer-events-none" />
+      <div className="absolute top-1/3 -right-24 w-[420px] h-[420px] bg-sky-100/25 rounded-full blur-[120px] -z-10 pointer-events-none" />
+      <div className="absolute bottom-10 -left-24 w-[450px] h-[450px] bg-stone-100/50 rounded-full blur-[120px] -z-10 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
@@ -229,7 +226,7 @@ export default function Portfolio({ onOpenModal }) {
         </motion.div>
 
         {/* ======================================================== */}
-        {/* 3. PROJECT GRID (Light Theme Matching Services Section)  */}
+        {/* 3. PROJECT GRID (Human-Crafted Editorial Case Studies)   */}
         {/* ======================================================== */}
         <motion.div
           layout
@@ -238,96 +235,97 @@ export default function Portfolio({ onOpenModal }) {
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project, index) => {
               const Icon = project.icon;
+              const indexNumeral = ['01', '02', '03', '04', '05'][index] || `0${index + 1}`;
 
               return (
                 <motion.article
                   layout
                   key={project.id}
-                  initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
+                  initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.96 }}
                   viewport={{ once: true, amount: 0.15 }}
                   transition={{
-                    duration: 0.45,
+                    duration: 0.5,
                     delay: shouldReduceMotion ? 0 : index * 0.08,
-                    ease: [0.16, 1, 0.3, 1]
+                    ease: [0.19, 1, 0.22, 1]
                   }}
                   whileHover={shouldReduceMotion ? {} : {
-                    y: -5,
-                    transition: { duration: 0.22, ease: [0.16, 1, 0.3, 1] }
+                    y: -4,
+                    transition: { duration: 0.3, ease: [0.25, 1, 0.5, 1] }
                   }}
                   onClick={() => handleOpenDetails(project)}
-                  className="group relative rounded-2xl bg-white border border-slate-200/90 hover:border-blue-300 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden text-left h-full cursor-pointer"
+                  className="group relative rounded-2xl bg-[#FCFDFE] border border-stone-200/80 hover:border-blue-400/70 transition-all duration-300 flex flex-col justify-between overflow-hidden text-left h-full cursor-pointer"
+                  style={{
+                    boxShadow: '0 8px 24px -12px rgba(8, 43, 89, 0.07), 0 3px 8px -3px rgba(8, 43, 89, 0.04), 0 1px 2px 0 rgba(8, 43, 89, 0.03)'
+                  }}
                 >
+                  {/* Subtle top bevel highlight */}
+                  <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/80 to-transparent pointer-events-none z-20" />
+
                   <div className="relative z-10 flex-1 flex flex-col">
                     {/* Project Image Container */}
-                    <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] lg:h-[200px] overflow-hidden bg-slate-100 rounded-t-2xl">
+                    <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] lg:h-[210px] overflow-hidden bg-stone-100 rounded-t-2xl">
                       <img
                         src={project.image}
                         alt={project.title}
-                        className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+                        className="w-full h-full object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-[1.03]"
                       />
 
-                      {/* Subtle Vignette Gradient */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
+                      {/* Warm natural vignette */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-stone-900/35 via-stone-900/5 to-transparent pointer-events-none" />
+
+                      {/* Editorial Case Study Index Stamp */}
+                      <div className="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-stone-900/50 backdrop-blur-md border border-white/20 text-white/90 text-[11px] font-mono tracking-widest pointer-events-none select-none">
+                        CASE {indexNumeral}
+                      </div>
                     </div>
 
-                    {/* Card Body */}
-                    <div className="p-5 sm:p-6 pb-2 flex-1 flex flex-col">
-                      {/* Category Badge */}
-                      <div className="mb-2.5">
-                        <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold uppercase tracking-wider ${project.badgeColor}`}>
-                          <Icon className="w-3.5 h-3.5" />
-                          <span>{project.categoryLabel}</span>
-                        </span>
-                      </div>
+                    {/* Card Body - Concise, High-Trust Editorial Case Study */}
+                    <div className="p-5 sm:p-6 pb-4 flex-1 flex flex-col justify-between">
+                      <div>
+                        {/* Category Tag */}
+                        <div className="mb-2.5">
+                          <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-medium tracking-wide ${project.badgeColor}`}>
+                            <Icon className="w-3.5 h-3.5 opacity-90" />
+                            <span>{project.categoryLabel}</span>
+                          </span>
+                        </div>
 
-                      {/* Title */}
-                      <h3 className="text-xl sm:text-2xl font-bold text-[#082B59] leading-snug group-hover:text-[#0866E8] transition-colors mb-2">
-                        {project.title}
-                      </h3>
+                        {/* Project Title */}
+                        <h3 className="text-xl sm:text-[1.32rem] font-bold text-[#0B2546] leading-snug group-hover:text-[#0866E8] transition-colors duration-200 mb-1.5 tracking-tight">
+                          {project.title}
+                        </h3>
 
-                      {/* Subtitle */}
-                      {project.subtitle && (
-                        <p className="text-xs font-medium text-slate-500 mb-2.5">
-                          {project.subtitle}
+                        {/* Brief Subtitle / Sector */}
+                        {project.subtitle && (
+                          <p className="text-[11px] sm:text-xs font-semibold text-stone-500 uppercase tracking-wider mb-3">
+                            {project.subtitle}
+                          </p>
+                        )}
+
+                        {/* Concise 2-3 line human-crafted description */}
+                        <p className="text-xs sm:text-[13px] text-stone-600 leading-relaxed font-normal line-clamp-3">
+                          {project.description}
                         </p>
-                      )}
-
-                      {/* Description */}
-                      <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal mb-4">
-                        {project.description}
-                      </p>
-
-                      {/* Key Deliverables */}
-                      <div className="mt-auto pt-3 border-t border-slate-100">
-                        <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 block mb-2">
-                          Key Deliverables:
-                        </span>
-                        <ul className="space-y-2">
-                          {project.features.map((feat, idx) => (
-                            <li key={idx} className="flex items-start gap-2 text-xs text-slate-700">
-                              <Check className={`w-3.5 h-3.5 ${project.iconColor} shrink-0 mt-0.5`} />
-                              <span>{feat}</span>
-                            </li>
-                          ))}
-                        </ul>
                       </div>
                     </div>
                   </div>
 
-                  {/* Footer Action Button */}
-                  <div className="p-5 sm:p-6 pt-4 mt-auto relative z-10 border-t border-slate-100">
+                  {/* Refined Case Study Footer Action */}
+                  <div className="p-5 sm:p-6 pt-3 mt-auto relative z-10 border-t border-stone-100 bg-stone-50/50">
                     <button
                       type="button"
                       onClick={(e) => {
                         e.stopPropagation();
                         handleOpenDetails(project);
                       }}
-                      className="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-xs sm:text-sm font-semibold text-white bg-[#0866E8] hover:bg-[#0756C5] shadow-xs hover:shadow-md transition-all duration-200 group/btn cursor-pointer min-h-[42px]"
+                      className="w-full inline-flex items-center justify-between py-2 px-3.5 rounded-xl text-xs sm:text-[13px] font-semibold text-[#082B59] group-hover:text-[#0866E8] bg-white border border-stone-200/80 group-hover:border-blue-300 shadow-2xs group-hover:shadow-xs transition-all duration-200 cursor-pointer min-h-[40px]"
                     >
-                      <span>View Project Details</span>
-                      <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/btn:translate-x-1" />
+                      <span>Explore Case Study</span>
+                      <span className="w-6 h-6 rounded-lg bg-stone-100 group-hover:bg-blue-50 flex items-center justify-center transition-colors">
+                        <ArrowRight className="w-3.5 h-3.5 text-stone-600 group-hover:text-[#0866E8] transition-transform duration-200 group-hover:translate-x-0.5" />
+                      </span>
                     </button>
                   </div>
                 </motion.article>
