@@ -178,6 +178,14 @@ export default function Portfolio({ onOpenModal }) {
                         src={project.image || project.heroImage}
                         alt={project.title}
                         loading="lazy"
+                        onError={(e) => {
+                          const currentSrc = e.currentTarget.getAttribute('src');
+                          if (currentSrc && currentSrc.startsWith('/images/')) {
+                            e.currentTarget.src = currentSrc.replace('/images/', '/assets/');
+                          } else if (currentSrc && currentSrc.startsWith('/assets/')) {
+                            e.currentTarget.src = currentSrc.replace('/assets/', '/images/');
+                          }
+                        }}
                         className="w-full h-full object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-[1.03]"
                       />
 
@@ -269,6 +277,14 @@ export default function Portfolio({ onOpenModal }) {
                   <img
                     src={selectedModalProject.heroImage || selectedModalProject.image}
                     alt={selectedModalProject.title}
+                    onError={(e) => {
+                      const currentSrc = e.currentTarget.getAttribute('src');
+                      if (currentSrc && currentSrc.startsWith('/images/')) {
+                        e.currentTarget.src = currentSrc.replace('/images/', '/assets/');
+                      } else if (currentSrc && currentSrc.startsWith('/assets/')) {
+                        e.currentTarget.src = currentSrc.replace('/assets/', '/images/');
+                      }
+                    }}
                     className="w-full h-full object-cover object-center"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
@@ -348,6 +364,14 @@ export default function Portfolio({ onOpenModal }) {
                             <img
                               src={item.src}
                               alt={item.caption || 'Project visual'}
+                              onError={(e) => {
+                                const currentSrc = e.currentTarget.getAttribute('src');
+                                if (currentSrc && currentSrc.startsWith('/images/')) {
+                                  e.currentTarget.src = currentSrc.replace('/images/', '/assets/');
+                                } else if (currentSrc && currentSrc.startsWith('/assets/')) {
+                                  e.currentTarget.src = currentSrc.replace('/assets/', '/images/');
+                                }
+                              }}
                               className="w-full h-full object-cover"
                             />
                           </div>

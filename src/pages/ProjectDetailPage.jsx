@@ -124,6 +124,14 @@ export default function ProjectDetailPage() {
           <img
             src={project.heroImage || project.image}
             alt={project.title}
+            onError={(e) => {
+              const currentSrc = e.currentTarget.getAttribute('src');
+              if (currentSrc && currentSrc.startsWith('/images/')) {
+                e.currentTarget.src = currentSrc.replace('/images/', '/assets/');
+              } else if (currentSrc && currentSrc.startsWith('/assets/')) {
+                e.currentTarget.src = currentSrc.replace('/assets/', '/images/');
+              }
+            }}
             className="w-full h-full object-cover object-center"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
@@ -202,6 +210,14 @@ export default function ProjectDetailPage() {
                     <img
                       src={item.src}
                       alt={item.caption}
+                      onError={(e) => {
+                        const currentSrc = e.currentTarget.getAttribute('src');
+                        if (currentSrc && currentSrc.startsWith('/images/')) {
+                          e.currentTarget.src = currentSrc.replace('/images/', '/assets/');
+                        } else if (currentSrc && currentSrc.startsWith('/assets/')) {
+                          e.currentTarget.src = currentSrc.replace('/assets/', '/images/');
+                        }
+                      }}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
                     />
                   </div>
