@@ -38,29 +38,7 @@ import ServiceSpecificBackground from './ServiceSpecificBackground';
 function AIServicesBackground() {
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none z-0 select-none">
-      {/* Attached AI Services Poster Artwork with Animated Breathing / Scale Pulse */}
-      <motion.div
-        animate={{
-          scale: [1, 1.03, 1],
-          opacity: [0.36, 0.46, 0.36]
-        }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          ease: 'easeInOut'
-        }}
-        className="absolute inset-0 w-full h-full flex items-center justify-center"
-      >
-        <img
-          src="/assets/ai-services-poster.jpg"
-          alt="AI Services Background Animation"
-          className="w-full h-full object-cover object-center filter saturate-125"
-        />
-        {/* Soft Vignette Overlay to blend seamlessly into the light background */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#F8FAFD]/92 via-[#F8FAFD]/65 to-[#F8FAFD]/95" />
-      </motion.div>
-
-      {/* Holographic Laser Scanning Sweep Across the Neural Face & Laptop Brain */}
+      {/* Holographic Laser Scanning Sweep Across the Neural Network Field */}
       <motion.div
         animate={{
           x: ['-140%', '240%']
@@ -121,29 +99,7 @@ function AIServicesBackground() {
 function CyberSecurityBackground() {
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none z-0 select-none">
-      {/* Attached Cyber Security Poster Artwork with Animated Breathing / Scale Pulse */}
-      <motion.div
-        animate={{
-          scale: [1, 1.03, 1],
-          opacity: [0.30, 0.42, 0.30]
-        }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          ease: 'easeInOut'
-        }}
-        className="absolute inset-0 w-full h-full flex items-center justify-center"
-      >
-        <img
-          src="/assets/cybersecurity-2023-social_uvx3rt.png"
-          alt="Cyber Security Background Animation"
-          className="w-full h-full object-cover object-center filter saturate-125"
-        />
-        {/* Soft Vignette Overlay to blend seamlessly into the light background */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#F8FAFD]/92 via-[#F8FAFD]/65 to-[#F8FAFD]/95" />
-      </motion.div>
-
-      {/* Holographic Radar Scanner Sweep Across the Security Padlock & Threat Grid */}
+      {/* Holographic Radar Scanner Sweep Across the Security Field */}
       <motion.div
         animate={{
           x: ['-140%', '240%']
@@ -194,28 +150,6 @@ function CyberSecurityBackground() {
 function AIFilmStudioBackground() {
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none z-0 select-none">
-      {/* Attached AI Film Studio Poster Artwork with Animated Breathing / Scale Pulse */}
-      <motion.div
-        animate={{
-          scale: [1, 1.03, 1],
-          opacity: [0.32, 0.44, 0.32]
-        }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          ease: 'easeInOut'
-        }}
-        className="absolute inset-0 w-full h-full flex items-center justify-center"
-      >
-        <img
-          src="/assets/Futuristic-studio-for-AI-driven-creations.webp"
-          alt="AI Film Studio Background Animation"
-          className="w-full h-full object-cover object-center filter saturate-125"
-        />
-        {/* Soft Vignette Overlay to blend seamlessly into the light background */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#F8FAFD]/92 via-[#F8FAFD]/65 to-[#F8FAFD]/95" />
-      </motion.div>
-
       {/* Cinematic Anamorphic Light Drift Sweep */}
       <motion.div
         animate={{
