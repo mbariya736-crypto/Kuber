@@ -1,124 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import {
-  X,
-  Check,
-  PhoneCall,
-  ArrowRight,
   FolderKanban,
   Bot,
   ShieldCheck,
   Film
 } from 'lucide-react';
+import { portfolioProjects } from '../data/portfolioData';
 
 /* ========================================================================= */
-/* MAIN PORTFOLIO COMPONENT (Clean Light Theme, Matches Services Exactly)    */
+/* MAIN PORTFOLIO COMPONENT (Human-Crafted Editorial Agency Showcase)         */
 /* ========================================================================= */
 export default function Portfolio({ onOpenModal }) {
   const [activeFilter, setActiveFilter] = useState('all');
-  const [selectedModalProject, setSelectedModalProject] = useState(null);
+  const navigate = useNavigate();
   const shouldReduceMotion = useReducedMotion();
-
-  // Esc key listener to close interactive modal
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape') {
-        setSelectedModalProject(null);
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
-
-  // Genuine Kuber AIS Projects (Human-Written, Accurate, Grounded)
-  const projects = [
-    {
-      id: 'digital-jaal-film',
-      category: 'ai-films',
-      categoryLabel: 'Public Awareness Film',
-      title: 'DIGITAL JAAL',
-      subtitle: 'Official Cyber Fraud Awareness Initiative',
-      icon: Film,
-      badgeColor: 'text-cyan-800 bg-cyan-50 border border-cyan-200/80',
-      iconColor: 'text-cyan-600',
-      image: '/images/digital-jaal.png',
-      description: 'A public awareness film highlighting real-world digital financial fraud, deceptive payment requests, and practical prevention steps via National Cyber Helpline 1930.',
-      features: [
-        'Realistic scenarios covering UPI payment deception and fraudulent QR codes',
-        'Direct guidance on immediate response steps within the first hour of financial fraud',
-        'Official citizen reporting process for cybercrime.gov.in and Helpline 1930'
-      ]
-    },
-    {
-      id: 'lead-generation-campaign',
-      category: 'ai-services',
-      categoryLabel: 'Business Automation',
-      title: 'Customer Inquiry Routing',
-      subtitle: 'Inquiry Management & Notification Flow',
-      icon: Bot,
-      badgeColor: 'text-[#0866E8] bg-blue-50 border border-blue-200/80',
-      iconColor: 'text-[#0866E8]',
-      image: '/images/ai-lead-engine.png',
-      description: 'An automated inquiry handling setup that collects website form submissions, checks basic details, and delivers immediate alerts to team members.',
-      features: [
-        'Consolidated lead tracking organized into a clean spreadsheet view',
-        'Instant WhatsApp and email notifications for fast customer follow-ups',
-        'Basic submission filtering to minimize repetitive spam'
-      ]
-    },
-    {
-      id: 'cyber-security-operations',
-      category: 'cyber-security',
-      categoryLabel: 'Cyber Security',
-      title: 'Digital Account Protection',
-      subtitle: 'Access Audits & Practical Defenses',
-      icon: ShieldCheck,
-      badgeColor: 'text-emerald-700 bg-emerald-50 border border-emerald-200/80',
-      iconColor: 'text-emerald-600',
-      image: '/images/cyber-security.png',
-      description: 'Practical security reviews and account audits helping small teams implement multi-factor authentication, strong password hygiene, and employee phishing awareness.',
-      features: [
-        'Team training sessions on recognizing suspicious emails and malicious attachments',
-        'Step-by-step rollout of multi-factor authentication across essential accounts',
-        'Standard verification guidelines for vendor payment requests'
-      ]
-    },
-    {
-      id: 'ai-services-platform',
-      category: 'ai-services',
-      categoryLabel: 'Business Automation',
-      title: 'Routine Workflow Automation',
-      subtitle: 'Tool Integration & Automated Reporting',
-      icon: Bot,
-      badgeColor: 'text-[#0866E8] bg-blue-50 border border-blue-200/80',
-      iconColor: 'text-[#0866E8]',
-      image: '/images/ai-services.png',
-      description: 'Automated data connections linking everyday tools like email, customer spreadsheets, and messaging to reduce repetitive manual data entry.',
-      features: [
-        'Automated transfer of customer details directly into tracking sheets',
-        'Pre-configured notification templates for standard order and appointment confirmations',
-        'Scheduled weekly summary overviews to keep management informed'
-      ]
-    },
-    {
-      id: 'ai-creative-studio',
-      category: 'ai-films',
-      categoryLabel: 'Film Production',
-      title: 'Commercial Brand Media',
-      subtitle: 'Short-Form Product & Story Videos',
-      icon: Film,
-      badgeColor: 'text-cyan-800 bg-cyan-50 border border-cyan-200/80',
-      iconColor: 'text-cyan-600',
-      image: '/assets/Futuristic-studio-for-AI-driven-creations.webp',
-      description: 'Short promotional films and structured business profiles produced from narrative scriptwriting through professional color correction and sound delivery.',
-      features: [
-        'Storyboarding, script consultation, and narrative pacing tailored for business audiences',
-        'Clean audio recording, licensed backing soundscapes, and color grading',
-        'Export formats optimized for web platforms, presentations, and social channels'
-      ]
-    }
-  ];
 
   // Category Filter Tabs
   const filterTabs = [
@@ -130,20 +27,11 @@ export default function Portfolio({ onOpenModal }) {
 
   // Filtered Projects
   const filteredProjects = activeFilter === 'all'
-    ? projects
-    : projects.filter(item => item.category === activeFilter);
+    ? portfolioProjects
+    : portfolioProjects.filter(item => item.category === activeFilter);
 
   const handleOpenDetails = (project) => {
-    setSelectedModalProject(project);
-    if (onOpenModal) {
-      onOpenModal({
-        imageSrc: project.image,
-        title: project.title,
-        subtitle: project.subtitle,
-        tag: project.categoryLabel,
-        description: project.description
-      });
-    }
+    navigate(`/portfolio/${project.slug}`);
   };
 
   return (
@@ -305,111 +193,6 @@ export default function Portfolio({ onOpenModal }) {
         </motion.div>
 
       </div>
-
-      {/* ======================================================== */}
-      {/* 4. CLEAN LIGHT THEME CASE STUDY MODAL                    */}
-      {/* ======================================================== */}
-      <AnimatePresence>
-        {selectedModalProject && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setSelectedModalProject(null)}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-slate-900/60 backdrop-blur-sm"
-          >
-            <motion.div
-              initial={{ scale: 0.96, opacity: 0, y: 10 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.96, opacity: 0, y: 10 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
-              onClick={(e) => e.stopPropagation()}
-              className="relative max-w-xl w-full max-h-[90vh] bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col border border-slate-200 text-left"
-            >
-              {/* Close Button */}
-              <button
-                onClick={() => setSelectedModalProject(null)}
-                className="absolute top-3.5 right-3.5 z-20 p-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors cursor-pointer"
-                aria-label="Close project modal"
-              >
-                <X className="w-4 h-4" />
-              </button>
-
-              {/* Modal Body */}
-              <div className="overflow-y-auto p-6 sm:p-7">
-                {/* Project Image */}
-                <div className="aspect-[16/10] w-full rounded-xl overflow-hidden bg-slate-100 mb-5 border border-slate-200 relative">
-                  <img
-                    src={selectedModalProject.image}
-                    alt={selectedModalProject.title}
-                    className="w-full h-full object-cover object-center"
-                  />
-                </div>
-
-                {/* Category & Title */}
-                <div className="mb-2">
-                  <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold uppercase tracking-wider ${selectedModalProject.badgeColor}`}>
-                    {selectedModalProject.icon && (
-                      <selectedModalProject.icon className="w-3.5 h-3.5" />
-                    )}
-                    <span>{selectedModalProject.categoryLabel}</span>
-                  </span>
-                </div>
-
-                <h3 className="text-xl sm:text-2xl font-bold text-[#082B59] mb-1">
-                  {selectedModalProject.title}
-                </h3>
-                {selectedModalProject.subtitle && (
-                  <p className="text-xs sm:text-sm font-medium text-slate-500 mb-3.5">
-                    {selectedModalProject.subtitle}
-                  </p>
-                )}
-
-                {/* Description */}
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-5">
-                  {selectedModalProject.description}
-                </p>
-
-                {/* Features & Deliverables */}
-                <div className="mb-6 p-4 rounded-xl bg-slate-50 border border-slate-100">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2.5">
-                    Key Deliverables &amp; Outcomes
-                  </h4>
-                  <ul className="space-y-2">
-                    {selectedModalProject.features.map((feat, idx) => (
-                      <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700">
-                        <Check className="w-4 h-4 text-[#0866E8] shrink-0 mt-0.5" />
-                        <span>{feat}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Action Buttons */}
-                <div className="pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
-                  <Link
-                    to="/contact"
-                    onClick={() => setSelectedModalProject(null)}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-white bg-[#0866E8] hover:bg-[#0756C5] shadow-xs hover:shadow-md transition-all duration-200"
-                  >
-                    <PhoneCall className="w-3.5 h-3.5" />
-                    <span>Inquire About Similar Work</span>
-                  </Link>
-
-                  <button
-                    onClick={() => setSelectedModalProject(null)}
-                    className="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs sm:text-sm font-medium transition-colors cursor-pointer"
-                  >
-                    Close
-                  </button>
-                </div>
-              </div>
-
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
     </section>
   );
 }

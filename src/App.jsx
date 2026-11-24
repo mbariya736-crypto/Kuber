@@ -13,6 +13,7 @@ import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import ServicesPage from './pages/ServicesPage';
 import ServiceDetailPage from './pages/ServiceDetailPage';
+import ProjectDetailPage from './pages/ProjectDetailPage';
 import ContactPage from './pages/ContactPage';
 
 export default function App() {
@@ -20,9 +21,11 @@ export default function App() {
   // Splash screen shown on every fresh load / reload of the website (no sessionStorage or localStorage)
   const [showSplash, setShowSplash] = useState(true);
 
-  // Identify service detail pages to hide the main navbar and provide a focused full-screen experience
+  // Identify service detail or project detail pages to hide the main navbar and provide a focused full-screen experience
   const normalizedPath = location.pathname.replace(/\/+$/, '');
   const isServiceDetailPage = normalizedPath.startsWith('/services/') && normalizedPath !== '/services';
+  const isProjectDetailPage = normalizedPath.startsWith('/portfolio/');
+  const hideMainNavbarAndFooter = isServiceDetailPage || isProjectDetailPage;
   const [modalState, setModalState] = useState({
     isOpen: false,
     imageSrc: '',
@@ -65,8 +68,8 @@ export default function App() {
       {/* Scroll restoration & Anchor handler */}
       <ScrollToTop />
 
-      {/* Floating Rounded Navbar (Hidden on service detail pages) */}
-      {!isServiceDetailPage && <Navbar />}
+      {/* Floating Rounded Navbar (Hidden on service/project detail pages) */}
+      {!hideMainNavbarAndFooter && <Navbar />}
 
       {/* Main Routed Content with Smooth Page Transitions */}
       <main className="flex-grow flex flex-col relative z-10">
@@ -87,6 +90,7 @@ export default function App() {
               <Route path="/services/cyber-security" element={<ServiceDetailPage practiceId="cyber-security" />} />
               <Route path="/services/ai-films" element={<ServiceDetailPage practiceId="ai-films" />} />
               <Route path="/services/:practiceId" element={<ServiceDetailPage />} />
+              <Route path="/portfolio/:projectId" element={<ProjectDetailPage />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
@@ -94,8 +98,8 @@ export default function App() {
         </AnimatePresence>
       </main>
 
-      {/* Corporate Navy Footer (Hidden on service detail pages) */}
-      {!isServiceDetailPage && <Footer />}
+      {/* Corporate Navy Footer (Hidden on service/project detail pages) */}
+      {!hideMainNavbarAndFooter && <Footer />}
 
       {/* Lightbox Modal */}
       <ImageModal
