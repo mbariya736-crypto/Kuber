@@ -5,99 +5,71 @@ import {
   ArrowRight,
   Bot,
   ShieldCheck,
-  Film,
-  TrendingUp,
-  CheckCircle2
+  Film
 } from 'lucide-react';
 import PracticeExperience from './PracticeExperience';
 import ServicesMotionBackground from './ServicesMotionBackground';
 
 /* ========================================================================= */
-/* SERVICE CARD COMPONENT (Human-Crafted Editorial & Swapped Layout)          */
+/* SERVICE CARD COMPONENT (Clean, Focused, Human-Designed)                    */
 /* ========================================================================= */
-function ServiceCard({ service, index, onOpenPractice }) {
+function ServiceCard({ service, index }) {
   const shouldReduceMotion = useReducedMotion();
   const Icon = service.icon;
-  const isSwapped = index % 2 === 1; // Alternating swapped layout
 
   return (
     <motion.article
-      initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
+      initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 18 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.15 }}
       transition={{
-        duration: 0.55,
+        duration: 0.5,
         delay: shouldReduceMotion ? 0 : index * 0.1,
         ease: [0.19, 1, 0.22, 1]
       }}
-      className="rounded-3xl bg-white border border-stone-200/90 shadow-md hover:shadow-xl transition-all duration-300 p-6 sm:p-8 lg:p-10 relative overflow-hidden text-left"
+      whileHover={shouldReduceMotion ? {} : {
+        y: -4,
+        transition: { duration: 0.3, ease: [0.25, 1, 0.5, 1] }
+      }}
+      className="group relative rounded-2xl bg-white border border-stone-200/90 hover:border-[#0866E8]/70 transition-all duration-300 p-5 sm:p-6 shadow-xs hover:shadow-md flex flex-col justify-between text-left h-full"
     >
-      <div className={`grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center ${isSwapped ? 'lg:flex-row-reverse' : ''}`}>
-        
-        {/* Photographic Visual (Swapped column order on alternate cards) */}
-        <div className={`lg:col-span-5 w-full ${isSwapped ? 'lg:order-2' : 'lg:order-1'}`}>
-          <div className="relative aspect-[16/11] sm:aspect-[4/3] w-full rounded-2xl sm:rounded-3xl overflow-hidden bg-stone-100 border border-stone-200 shadow-sm group">
-            <img
-              src={service.image}
-              alt={service.title}
-              className="w-full h-full object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-[1.03]"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-stone-900/30 via-transparent to-transparent pointer-events-none" />
-          </div>
+      <div>
+        {/* Service Visual */}
+        <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden bg-stone-100 border border-stone-200 mb-5">
+          <img
+            src={service.image}
+            alt={service.name}
+            className="w-full h-full object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-[1.03]"
+          />
         </div>
 
-        {/* Editorial Content (Heading, Paragraphs, Checkmarks, and Action) */}
-        <div className={`lg:col-span-7 flex flex-col justify-center ${isSwapped ? 'lg:order-1' : 'lg:order-2'}`}>
-          {/* Category Pill Tag */}
-          <div className="mb-3.5">
-            <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold tracking-wide ${service.badgeColor}`}>
-              <Icon className="w-3.5 h-3.5" />
-              <span>{service.category}</span>
-            </span>
+        {/* Service Icon & Exact Service Name */}
+        <div className="flex items-center gap-3">
+          <div className={`w-10 h-10 rounded-xl ${service.bgColor} ${service.iconColor} flex items-center justify-center border ${service.borderColor} shrink-0`}>
+            <Icon className="w-5 h-5" />
           </div>
-
-          {/* Large Bold Editorial Headline */}
-          <h3 className="text-2xl sm:text-3xl lg:text-[2rem] font-extrabold text-[#0B2546] tracking-tight leading-[1.2] mb-3.5">
-            {service.heading}
+          <h3 className="text-lg sm:text-xl font-bold text-[#0B2546] tracking-tight leading-snug group-hover:text-[#0866E8] transition-colors">
+            {service.name}
           </h3>
-
-          {/* 2 Clear, Human-Crafted Descriptive Paragraphs */}
-          <div className="space-y-3 text-stone-600 text-xs sm:text-sm leading-relaxed font-normal mb-5">
-            <p>{service.paragraph1}</p>
-            <p>{service.paragraph2}</p>
-          </div>
-
-          {/* 3 Checkmark Deliverables */}
-          <div className="space-y-2.5 mb-6 pt-3 border-t border-stone-100">
-            {service.points.map((pt, idx) => (
-              <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-[13px] text-stone-700 leading-snug">
-                <CheckCircle2 className={`w-4 h-4 shrink-0 mt-0.5 ${service.iconColor}`} />
-                <span>
-                  <strong className="text-[#0B2546] font-bold">{pt.title}:</strong> {pt.desc}
-                </span>
-              </div>
-            ))}
-          </div>
-
-          {/* Clean Action CTA Link */}
-          <div>
-            <Link
-              to={service.ctaLink || `/services/${service.id}`}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-white bg-[#0866E8] hover:bg-[#0756C5] shadow-xs hover:shadow-md transition-all group/btn"
-            >
-              <span>{service.ctaText}</span>
-              <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-0.5 transition-transform" />
-            </Link>
-          </div>
         </div>
+      </div>
 
+      {/* Action Link */}
+      <div className="pt-5 mt-5 border-t border-stone-100">
+        <Link
+          to={service.path}
+          className="inline-flex items-center justify-between w-full px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-[#082B59] bg-stone-50 hover:bg-[#0866E8] hover:text-white border border-stone-200 hover:border-[#0866E8] transition-all group/btn"
+        >
+          <span>Explore Service</span>
+          <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+        </Link>
       </div>
     </motion.article>
   );
 }
 
 /* ========================================================================= */
-/* MAIN SERVICES COMPONENT (Light Theme, Consistent with Website)             */
+/* MAIN SERVICES COMPONENT                                                   */
 /* ========================================================================= */
 export default function Services({ onOpenModal, routePracticeId, onPracticeChange, isStandalonePage = false }) {
   const navigate = useNavigate();
@@ -122,122 +94,37 @@ export default function Services({ onOpenModal, routePracticeId, onPracticeChang
     }
   };
 
+  // Exactly the 3 requested services with zero subtitles, descriptions, subtopics, or badges
   const services = [
     {
       id: 'ai-services',
-      category: 'AI & Business Automation',
-      title: 'AI & Business Automation',
-      heading: 'Practical Business Systems & Everyday Workflow Automation',
+      name: 'AI & Business Automation',
       icon: Bot,
-      badgeColor: 'text-[#0866E8] bg-blue-50 border border-blue-200/80',
-      iconColor: 'text-[#0866E8]',
-      paragraph1: 'Routine business operations often get slowed down by missed customer messages, disorganized contact sheets, and repetitive manual tasks that take hours away from serving clients.',
-      paragraph2: 'We connect your existing tools—including website forms, WhatsApp, email, and spreadsheets—into one reliable, synchronized workflow so inquiries are addressed quickly and customer records stay organized.',
+      path: '/services/ai-services',
       image: '/assets/ai-services.webp',
-      imageTitle: 'AI & Business Automation',
-      points: [
-        {
-          title: 'Instant Lead Alerts',
-          desc: 'Automatically capture website form submissions and route notifications to WhatsApp and email within seconds.'
-        },
-        {
-          title: 'Centralized Records',
-          desc: 'Seamlessly synchronize client details, order updates, and follow-ups directly into organized master spreadsheets.'
-        },
-        {
-          title: 'Tool Integration',
-          desc: 'Connect your existing web forms, messaging channels, and email suites with zero disruption to daily routines.'
-        }
-      ],
-      ctaText: 'Explore Business Automation',
-      ctaLink: '/services/ai-services'
+      iconColor: 'text-[#0866E8]',
+      bgColor: 'bg-blue-50',
+      borderColor: 'border-blue-200/80',
     },
     {
       id: 'cyber-security',
-      category: 'Cyber Security',
-      title: 'Cyber Security',
-      heading: 'Practical Account Defense, Audits & Scam Prevention',
+      name: 'Cyber Security Services',
       icon: ShieldCheck,
-      badgeColor: 'text-emerald-700 bg-emerald-50 border border-emerald-200/80',
-      iconColor: 'text-emerald-600',
-      paragraph1: 'Small and mid-sized enterprises are prime targets for invoice manipulation, deceptive vendor payment links, and unauthorized email account takeovers.',
-      paragraph2: 'We conduct hands-on security reviews of business email suites, enforce multi-factor authentication, and provide practical employee training to identify social engineering before financial fraud occurs.',
+      path: '/services/cyber-security',
       image: '/assets/cybersecurity-2023-social_uvx3rt.png',
-      imageTitle: 'Cyber Security',
-      points: [
-        {
-          title: 'Account Security Audits',
-          desc: 'Comprehensive reviews of administrative accounts, email suites, and cloud access permissions.'
-        },
-        {
-          title: 'Staff Phishing Defense',
-          desc: 'Practical scenario drills training employees to detect spoofed vendor invoices and deceptive payment links.'
-        },
-        {
-          title: 'Helpline 1930 Protocols',
-          desc: 'Structured guidance to freeze unauthorized transactions and report promptly via official cyber crime channels.'
-        }
-      ],
-      ctaText: 'Explore Cyber Security',
-      ctaLink: '/services/cyber-security'
-    },
-    {
-      id: 'digital-marketing',
-      category: 'Digital Marketing & Lead Generation',
-      title: 'Digital Marketing & Lead Generation',
-      heading: 'Targeted Customer Acquisition & High-Intent Inquiries',
-      icon: TrendingUp,
-      badgeColor: 'text-amber-800 bg-amber-50 border border-amber-200/80',
-      iconColor: 'text-amber-600',
-      paragraph1: 'Service businesses need a dependable flow of high-intent inquiries from local clients actively searching for specific solutions, rather than empty website visits.',
-      paragraph2: 'We build focused digital outreach campaigns and high-converting landing pages that attract qualified prospects, validate essential contact information, and deliver actionable leads directly to your sales team.',
-      image: '/assets/ai-lead-engine.png',
-      imageTitle: 'Digital Marketing & Lead Generation',
-      points: [
-        {
-          title: 'Targeted Local Outreach',
-          desc: 'Focused campaigns directed at local clients and businesses actively searching for your services.'
-        },
-        {
-          title: 'High-Converting Landing Pages',
-          desc: 'Fast, clear web pages designed to turn visitors into confirmed inquiries with minimal friction.'
-        },
-        {
-          title: 'Immediate Lead Delivery',
-          desc: 'Instant dispatch of verified prospect contact details directly to on-duty staff phones.'
-        }
-      ],
-      ctaText: 'View Lead Generation Case Study',
-      ctaLink: '/portfolio/lead-generation-campaign'
+      iconColor: 'text-emerald-600',
+      bgColor: 'bg-emerald-50',
+      borderColor: 'border-emerald-200/80',
     },
     {
       id: 'ai-films',
-      category: 'AI Film & Video Production',
-      title: 'AI Film & Video Production',
-      heading: 'Narrative Commercials & Public Awareness Films',
+      name: 'AI Film & Video Production',
       icon: Film,
-      badgeColor: 'text-cyan-800 bg-cyan-50 border border-cyan-200/80',
-      iconColor: 'text-cyan-600',
-      paragraph1: 'Audiences connect with honest, story-driven media rather than generic corporate templates and repetitive stock visuals.',
-      paragraph2: 'From initial script consultation and authentic storyboards to cinematography, studio lighting, color grading, and final sound mastering, we produce compelling commercial media, corporate profiles, and public educational films.',
+      path: '/services/ai-films',
       image: '/assets/ai-film-studio-hero.webp',
-      imageTitle: 'AI Film & Video Production',
-      points: [
-        {
-          title: 'Creative Direction',
-          desc: 'Complete script consultation, storyboard pacing, and tailored messaging for target audiences.'
-        },
-        {
-          title: 'Cinematic Filming',
-          desc: 'High-resolution multi-camera cinematography with professional lighting and clean sound recording.'
-        },
-        {
-          title: 'Editorial Post-Production',
-          desc: 'Color correction, custom soundscapes, and multi-format exports for web and broadcast.'
-        }
-      ],
-      ctaText: 'Explore Film Production',
-      ctaLink: '/services/ai-films'
+      iconColor: 'text-cyan-600',
+      bgColor: 'bg-cyan-50',
+      borderColor: 'border-cyan-200/80',
     }
   ];
 
@@ -264,14 +151,14 @@ export default function Services({ onOpenModal, routePracticeId, onPracticeChang
         }}
       />
 
-      {/* Warm gentle ambient glow replacing stark cold blue */}
+      {/* Warm gentle ambient glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[720px] h-[340px] bg-gradient-to-b from-blue-100/35 via-amber-50/20 to-transparent rounded-full blur-[110px] -z-10 pointer-events-none" />
       <div className="absolute top-1/3 -right-24 w-[420px] h-[420px] bg-sky-100/25 rounded-full blur-[120px] -z-10 pointer-events-none" />
       <div className="absolute bottom-10 -left-24 w-[450px] h-[450px] bg-stone-100/50 rounded-full blur-[120px] -z-10 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
-        {/* Section Header (when rendered on landing page or parent container) */}
+        {/* Section Header */}
         {!isStandalonePage && (
           <motion.div 
             initial={{ opacity: 0, y: 16 }}
@@ -286,14 +173,13 @@ export default function Services({ onOpenModal, routePracticeId, onPracticeChang
           </motion.div>
         )}
 
-        {/* Human-Crafted Editorial Service Cards with Alternating Swapped Rhythm */}
-        <div className="flex flex-col gap-8 sm:gap-10 lg:gap-12 pt-2 pb-2">
+        {/* Exactly 3 Service Cards in Clean 3-Column Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 items-stretch pt-2 pb-2">
           {services.map((service, index) => (
             <ServiceCard
               key={service.id}
               service={service}
               index={index}
-              onOpenPractice={handleOpenPractice}
             />
           ))}
         </div>

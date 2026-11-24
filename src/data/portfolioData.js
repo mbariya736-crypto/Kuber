@@ -49,8 +49,8 @@ export const portfolioProjects = [
     icon: Bot,
     badgeColor: 'text-[#0866E8] bg-blue-50 border border-blue-200/80',
     iconColor: 'text-[#0866E8]',
-    image: '/assets/ai-lead-engine.png',
-    heroImage: '/assets/ai-lead-engine.png',
+    image: '/assets/ai-services.webp',
+    heroImage: '/assets/ai-services.webp',
     description: 'Automated pipeline capturing web inquiries, sending instant WhatsApp notifications, and syncing leads to tracking sheets.',
     overview: 'An automated customer intake setup that captures website inquiries, validates essential contact information, and routes real-time alerts to team members instantly.',
     challenge: 'Growing service businesses frequently miss prospective clients due to delayed responses. Form submissions landed in crowded email inboxes where they remained unassigned or scattered across separate spreadsheets.',
@@ -63,12 +63,8 @@ export const portfolioProjects = [
     ],
     gallery: [
       {
-        src: '/assets/ai-lead-engine.png',
-        caption: 'Inquiry routing workflow & automated notification setup'
-      },
-      {
         src: '/assets/ai-services.webp',
-        caption: 'Centralized workflow management and sync overview'
+        caption: 'Inquiry routing workflow & automated notification setup'
       }
     ],
     impact: 'Delivered immediate inquiry alerts directly to team devices and maintained organized, centralized records with zero missed customer inquiries.'

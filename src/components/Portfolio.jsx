@@ -233,7 +233,7 @@ export default function Portfolio({ onOpenModal }) {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.22 }}
                 onClick={() => setSelectedModalProject(null)}
-                className="fixed inset-0 z-[99999] flex items-center justify-center p-3 sm:p-5 pt-16 sm:pt-20 pb-4 sm:pb-6 bg-slate-950/75 backdrop-blur-md overflow-y-auto"
+                className="fixed inset-0 z-[99999] flex items-start justify-center p-3 sm:p-5 pt-20 sm:pt-24 pb-8 sm:pb-12 bg-slate-950/80 backdrop-blur-md overflow-y-auto"
               >
                 <motion.div
                   key="portfolio-modal-dialog"
@@ -242,7 +242,7 @@ export default function Portfolio({ onOpenModal }) {
                   exit={{ scale: 0.95, opacity: 0, y: 12 }}
                   transition={{ duration: 0.24, ease: [0.19, 1, 0.22, 1] }}
                   onClick={(e) => e.stopPropagation()}
-                  className="relative max-w-xl sm:max-w-2xl w-full max-h-[82vh] bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col border border-stone-200 text-left my-auto"
+                  className="relative max-w-lg sm:max-w-xl w-full max-h-[78vh] bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col border border-stone-200 text-left my-auto"
                 >
                   {/* Modal Sticky Header */}
                   <div className="flex items-center justify-between px-4 sm:px-6 py-2.5 sm:py-3 border-b border-stone-200/80 bg-stone-50/80 shrink-0">
