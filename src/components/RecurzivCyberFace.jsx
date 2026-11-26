@@ -27,12 +27,12 @@ export default function RecurzivCyberFace({ className = '', height = '450px', is
     let animFrameId = null;
 
     // 1. Scene, Camera, Renderer
-    const width = mount.clientWidth || 380;
-    const heightPx = mount.clientHeight || 450;
+    const width = mount.clientWidth || 360;
+    const heightPx = mount.clientHeight || 400;
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(isBackground ? 42 : 38, width / heightPx, 0.1, 100);
-    camera.position.set(0, isBackground ? 0.05 : 0.04, isBackground ? 7.2 : 4.4);
+    const camera = new THREE.PerspectiveCamera(isBackground ? 40 : 36, width / heightPx, 0.1, 100);
+    camera.position.set(0, 0, isBackground ? 5.5 : 4.8);
 
     const renderer = new THREE.WebGLRenderer({
       antialias: true,
@@ -65,7 +65,7 @@ export default function RecurzivCyberFace({ className = '', height = '450px', is
     scene.add(headGroup);
 
     // 3. Ambient Cyber Particle Field (Floating Neural Dust)
-    const particleCount = 480;
+    const particleCount = 380;
     const particleGeo = new THREE.BufferGeometry();
     const pPositions = new Float32Array(particleCount * 3);
     const pColors = new Float32Array(particleCount * 3);
@@ -75,9 +75,9 @@ export default function RecurzivCyberFace({ className = '', height = '450px', is
     const color3 = new THREE.Color(0xa855f7);
 
     for (let i = 0; i < particleCount; i++) {
-      pPositions[i * 3] = (Math.random() - 0.5) * 8.5;
-      pPositions[i * 3 + 1] = (Math.random() - 0.5) * 7.5;
-      pPositions[i * 3 + 2] = (Math.random() - 0.5) * 4.5 - 0.5;
+      pPositions[i * 3] = (Math.random() - 0.5) * 7.5;
+      pPositions[i * 3 + 1] = (Math.random() - 0.5) * 6.5;
+      pPositions[i * 3 + 2] = (Math.random() - 0.5) * 3.5 - 0.5;
 
       const pick = Math.random();
       const c = pick < 0.45 ? color1 : pick < 0.75 ? color2 : color3;
@@ -90,7 +90,7 @@ export default function RecurzivCyberFace({ className = '', height = '450px', is
     particleGeo.setAttribute('color', new THREE.BufferAttribute(pColors, 3));
 
     const particleMat = new THREE.PointsMaterial({
-      size: 0.038,
+      size: 0.034,
       vertexColors: true,
       transparent: true,
       opacity: 0.8,
@@ -100,34 +100,46 @@ export default function RecurzivCyberFace({ className = '', height = '450px', is
     const particles = new THREE.Points(particleGeo, particleMat);
     scene.add(particles);
 
-    // 4. Glowing Cyber Eyes (Hexagonal iris + bright pupil core)
+    // 4. Glowing Cyber Eyes (Hexagonal outer iris + rotating inner ring + bright core)
     const eyeGroup = new THREE.Group();
-    const eyeGeo = new THREE.RingGeometry(0.04, 0.088, 6);
+    const eyeOuterGeo = new THREE.RingGeometry(0.5, 1.05, 6);
+    const eyeInnerGeo = new THREE.RingGeometry(0.2, 0.42, 6);
+    const pupilGeo = new THREE.CircleGeometry(0.32, 12);
+
     const eyeMat = new THREE.MeshBasicMaterial({
       color: 0x00f0ff,
       side: THREE.DoubleSide,
       transparent: true,
       opacity: 0.95
     });
-
-    const leftEye = new THREE.Mesh(eyeGeo, eyeMat);
-    const rightEye = new THREE.Mesh(eyeGeo, eyeMat);
-    leftEye.position.set(-0.24, 0.16, 0.62);
-    rightEye.position.set(0.24, 0.16, 0.62);
-
-    const pupilGeo = new THREE.CircleGeometry(0.035, 12);
+    const innerEyeMat = new THREE.MeshBasicMaterial({
+      color: 0x38bdf8,
+      side: THREE.DoubleSide,
+      transparent: true,
+      opacity: 0.9
+    });
     const pupilMat = new THREE.MeshBasicMaterial({
       color: 0xffffff,
       side: THREE.DoubleSide,
       transparent: true,
-      opacity: 0.95
+      opacity: 0.98
     });
+
+    const leftEye = new THREE.Mesh(eyeOuterGeo, eyeMat);
+    const rightEye = new THREE.Mesh(eyeOuterGeo, eyeMat);
+    const leftInnerEye = new THREE.Mesh(eyeInnerGeo, innerEyeMat);
+    const rightInnerEye = new THREE.Mesh(eyeInnerGeo, innerEyeMat);
     const leftPupil = new THREE.Mesh(pupilGeo, pupilMat);
     const rightPupil = new THREE.Mesh(pupilGeo, pupilMat);
-    leftPupil.position.set(-0.24, 0.16, 0.63);
-    rightPupil.position.set(0.24, 0.16, 0.63);
 
-    eyeGroup.add(leftEye, rightEye, leftPupil, rightPupil);
+    leftEye.position.set(-2.5, 2.07, 5.02);
+    rightEye.position.set(2.5, 2.07, 5.02);
+    leftInnerEye.position.set(-2.5, 2.07, 5.03);
+    rightInnerEye.position.set(2.5, 2.07, 5.03);
+    leftPupil.position.set(-2.5, 2.07, 5.04);
+    rightPupil.position.set(2.5, 2.07, 5.04);
+
+    eyeGroup.add(leftEye, rightEye, leftInnerEye, rightInnerEye, leftPupil, rightPupil);
     headGroup.add(eyeGroup);
 
     // 5. Load Recurziv 3D Head GLB
@@ -136,6 +148,19 @@ export default function RecurzivCyberFace({ className = '', height = '450px', is
     let pointsMesh = null;
 
     const setupModel = (gltf) => {
+      gltf.scene.updateMatrixWorld(true);
+
+      // Compute exact bounding box of the whole scene
+      const box = new THREE.Box3().setFromObject(gltf.scene);
+      const size = new THREE.Vector3();
+      box.getSize(size);
+      const center = new THREE.Vector3();
+      box.getCenter(center);
+
+      // Center the head geometry around the origin
+      gltf.scene.position.sub(center);
+
+      // Find mesh inside gltf
       let faceMesh = null;
       gltf.scene.traverse((child) => {
         if (child.isMesh && !faceMesh) {
@@ -144,47 +169,52 @@ export default function RecurzivCyberFace({ className = '', height = '450px', is
       });
 
       if (faceMesh) {
-        const geometry = faceMesh.geometry.clone();
-        geometry.center();
-
-        const scale = isBackground ? 1.45 : 1.8;
-        headGroup.scale.set(scale, scale, scale);
-        headGroup.position.set(0, isBackground ? -0.1 : -0.04, 0);
+        // Dark interior backing to eliminate clutter and provide high contrast depth
+        const innerMat = new THREE.MeshBasicMaterial({
+          color: 0x020b18,
+          transparent: true,
+          opacity: 0.88,
+          side: THREE.FrontSide
+        });
+        faceMesh.material = innerMat;
 
         // 5a. Cyber Wireframe Layer (Cyan / Electric Blue lines)
         const wireframeMat = new THREE.MeshBasicMaterial({
-          color: 0x00e5ff,
+          color: 0x00f0ff,
           wireframe: true,
           transparent: true,
-          opacity: 0.72,
+          opacity: 0.78,
           blending: THREE.AdditiveBlending
         });
-        wireframeMesh = new THREE.Mesh(geometry, wireframeMat);
-        headGroup.add(wireframeMesh);
+        wireframeMesh = new THREE.Mesh(faceMesh.geometry, wireframeMat);
+        wireframeMesh.position.copy(faceMesh.position);
+        wireframeMesh.rotation.copy(faceMesh.rotation);
+        wireframeMesh.scale.copy(faceMesh.scale);
+        faceMesh.parent.add(wireframeMesh);
 
         // 5b. Glowing Nodes on Vertices (Neural Dots)
-        const pMat = new THREE.PointsMaterial({
+        const pointsMat = new THREE.PointsMaterial({
           color: 0x38bdf8,
-          size: 0.024,
+          size: 0.28,
           transparent: true,
-          opacity: 0.9,
+          opacity: 0.85,
           blending: THREE.AdditiveBlending
         });
-        pointsMesh = new THREE.Points(geometry, pMat);
-        headGroup.add(pointsMesh);
-
-        // 5c. Inner subtle translucent depth volume
-        const innerMat = new THREE.MeshPhongMaterial({
-          color: 0x03122b,
-          emissive: 0x061e47,
-          transparent: true,
-          opacity: 0.55,
-          shininess: 45
-        });
-        const innerMesh = new THREE.Mesh(geometry, innerMat);
-        innerMesh.scale.set(0.99, 0.99, 0.99);
-        headGroup.add(innerMesh);
+        pointsMesh = new THREE.Points(faceMesh.geometry, pointsMat);
+        pointsMesh.position.copy(faceMesh.position);
+        pointsMesh.rotation.copy(faceMesh.rotation);
+        pointsMesh.scale.copy(faceMesh.scale);
+        faceMesh.parent.add(pointsMesh);
       }
+
+      // Scale headGroup so the entire head (ears, jaw, forehead, crown) fits 100% inside viewport
+      const maxDim = Math.max(size.x, size.y, size.z) || 33.5;
+      const targetSize = isBackground ? 2.1 : 1.82;
+      const scale = targetSize / maxDim;
+
+      headGroup.scale.set(scale, scale, scale);
+      headGroup.position.set(0, 0, 0);
+      headGroup.add(gltf.scene);
 
       setLoading(false);
     };
@@ -293,12 +323,15 @@ export default function RecurzivCyberFace({ className = '', height = '450px', is
       headGroup.rotation.x = currentRotX + breath;
       headGroup.position.y = Math.sin(elapsed * 1.2) * 0.05;
 
-      // Pulse cyber eyes (luminescence & hexagon rotation)
-      const eyePulse = 0.75 + Math.sin(elapsed * 3.2) * 0.25;
+      // Pulse cyber eyes (luminescence & dual concentric hexagon rotation)
+      const eyePulse = 0.78 + Math.sin(elapsed * 3.2) * 0.22;
       eyeMat.opacity = eyePulse;
-      pupilMat.opacity = 0.75 + Math.sin(elapsed * 3.2) * 0.25;
-      leftEye.rotation.z = elapsed * 0.5;
-      rightEye.rotation.z = -elapsed * 0.5;
+      innerEyeMat.opacity = eyePulse;
+      pupilMat.opacity = 0.85 + Math.sin(elapsed * 3.2) * 0.15;
+      leftEye.rotation.z = elapsed * 0.4;
+      rightEye.rotation.z = -elapsed * 0.4;
+      leftInnerEye.rotation.z = -elapsed * 0.6;
+      rightInnerEye.rotation.z = elapsed * 0.6;
 
       // Slowly rotate background particle cosmos
       particles.rotation.y = elapsed * 0.035;
@@ -331,8 +364,10 @@ export default function RecurzivCyberFace({ className = '', height = '450px', is
       renderer.dispose();
       particleGeo.dispose();
       particleMat.dispose();
-      eyeGeo.dispose();
+      eyeOuterGeo.dispose();
+      eyeInnerGeo.dispose();
       eyeMat.dispose();
+      innerEyeMat.dispose();
       pupilGeo.dispose();
       pupilMat.dispose();
 
@@ -349,7 +384,7 @@ export default function RecurzivCyberFace({ className = '', height = '450px', is
       style={isBackground ? { width: '100%', height: '100%' } : { height }}
     >
       {/* Soft ambient spatial aura behind the 3D face (pure open stage) */}
-      <div className="absolute w-[260px] sm:w-[320px] h-[260px] sm:h-[320px] bg-gradient-to-tr from-cyan-500/15 via-blue-600/10 to-purple-600/15 rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute w-[220px] sm:w-[260px] h-[220px] sm:h-[260px] bg-gradient-to-tr from-cyan-500/15 via-blue-600/10 to-purple-600/15 rounded-full blur-3xl pointer-events-none -z-10" />
 
       {/* 3D WebGL Canvas Container - Frameless & Open */}
       <div
