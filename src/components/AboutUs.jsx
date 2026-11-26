@@ -322,16 +322,11 @@ export default function AboutUs() {
 
                       {/* Content Area */}
                       <div className="flex-1 min-w-0">
-                        {/* Category Label + Active Badge */}
+                        {/* Category Label */}
                         <div className="flex items-center justify-between gap-2 mb-1">
                           <span className={`text-[11px] font-bold tracking-wider uppercase block ${card.categoryColor}`}>
                             {card.category}
                           </span>
-                          {isSelected && (
-                            <span className={`text-[9.5px] font-bold tracking-wide uppercase px-2 py-0.5 rounded-full border ${card.activeBadge}`}>
-                              Active View
-                            </span>
-                          )}
                         </div>
 
                         {/* Title & Arrow */}
