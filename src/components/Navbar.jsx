@@ -8,7 +8,14 @@ import {
   Bot,
   ShieldCheck,
   Film,
-  TrendingUp
+  TrendingUp,
+  Home,
+  Sparkles,
+  Layers,
+  Briefcase,
+  HelpCircle,
+  Mail,
+  Zap
 } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
@@ -131,18 +138,70 @@ export default function Navbar() {
   ];
 
   const navLinks = [
-    { name: 'Home', path: '/', isPage: true, id: 'home' },
-    { name: 'About', path: '/about', isPage: true, id: 'about' },
+    {
+      name: 'Home',
+      subtitle: 'Main overview',
+      path: '/',
+      isPage: true,
+      id: 'home',
+      icon: Home,
+      iconColor: 'text-[#0866E8]',
+      iconBg: 'bg-blue-50 border-blue-100'
+    },
+    {
+      name: 'About',
+      subtitle: 'Our story & tech mission',
+      path: '/about',
+      isPage: true,
+      id: 'about',
+      icon: Sparkles,
+      iconColor: 'text-indigo-600',
+      iconBg: 'bg-indigo-50 border-indigo-100'
+    },
     {
       name: 'Services',
+      subtitle: 'AI, Cyber & Media practices',
       path: '/services',
       isPage: true,
       id: 'services',
-      hasDropdown: true
+      hasDropdown: true,
+      badge: '3 Solutions',
+      icon: Layers,
+      iconColor: 'text-cyan-600',
+      iconBg: 'bg-cyan-50 border-cyan-100'
     },
-    { name: 'Portfolio', path: '/#portfolio', isPage: false, targetId: 'portfolio', id: 'portfolio' },
-    { name: 'FAQ', path: '/#faq', isPage: false, targetId: 'faq', id: 'faq' },
-    { name: 'Contact', path: '/contact', isPage: true, id: 'contact' },
+    {
+      name: 'Portfolio',
+      subtitle: 'Client projects & impact',
+      path: '/#portfolio',
+      isPage: false,
+      targetId: 'portfolio',
+      id: 'portfolio',
+      icon: Briefcase,
+      iconColor: 'text-purple-600',
+      iconBg: 'bg-purple-50 border-purple-100'
+    },
+    {
+      name: 'FAQ',
+      subtitle: 'Answers & common queries',
+      path: '/#faq',
+      isPage: false,
+      targetId: 'faq',
+      id: 'faq',
+      icon: HelpCircle,
+      iconColor: 'text-amber-600',
+      iconBg: 'bg-amber-50 border-amber-100'
+    },
+    {
+      name: 'Contact',
+      subtitle: 'Free consultation & inquiry',
+      path: '/contact',
+      isPage: true,
+      id: 'contact',
+      icon: Mail,
+      iconColor: 'text-emerald-600',
+      iconBg: 'bg-emerald-50 border-emerald-100'
+    },
   ];
 
   const isLinkActive = (link) => {
@@ -400,50 +459,99 @@ export default function Navbar() {
             </nav>
           </div>
 
-          {/* Mobile Drawer */}
+          {/* Mobile Drawer (Dynamic, Interactive & Alive) */}
           <AnimatePresence>
             {mobileMenuOpen && (
               <motion.div
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: 'auto' }}
                 exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.24, ease: [0.16, 1, 0.3, 1] }}
-                className="lg:hidden w-full flex flex-col overflow-hidden bg-white"
+                transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                className="lg:hidden w-full flex flex-col overflow-hidden bg-white relative"
                 style={{
                   maxHeight: 'calc(100vh - 80px - env(safe-area-inset-bottom, 0px))'
                 }}
               >
-                {/* Scrollable Nav Content */}
-                <div className="overflow-y-auto overscroll-contain px-4 py-3 sm:px-5 space-y-1.5 flex-1">
-                  {navLinks.map((link) => {
+                {/* Subtle Ambient Background Aura */}
+                <div className="absolute -top-10 -right-10 w-36 h-36 bg-blue-100/50 rounded-full blur-2xl pointer-events-none" />
+                <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-cyan-100/40 rounded-full blur-2xl pointer-events-none" />
+
+                {/* Live Dynamic Operational Status Pill */}
+                <motion.div
+                  initial={{ opacity: 0, y: -6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.05, duration: 0.2 }}
+                  className="mx-3.5 sm:mx-4 mt-2.5 mb-1 px-3 py-1.5 rounded-full bg-gradient-to-r from-blue-50/90 via-sky-50/70 to-emerald-50/90 border border-blue-100/80 flex items-center justify-between text-[11px] relative z-10"
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                    </span>
+                    <span className="font-semibold text-[#082B59]">AI Systems Operational</span>
+                  </div>
+                  <span className="text-[9.5px] font-mono text-[#0866E8] bg-white px-2 py-0.5 rounded-full border border-blue-100 font-bold shadow-2xs">
+                    Live Active
+                  </span>
+                </motion.div>
+
+                {/* Scrollable Nav Items with Staggered Entrance */}
+                <div className="overflow-y-auto overscroll-contain px-3.5 py-2 sm:px-4 space-y-1 flex-1 relative z-10">
+                  {navLinks.map((link, idx) => {
                     const active = isLinkActive(link);
+                    const IconComponent = link.icon;
 
                     // Mobile Services Accordion
                     if (link.hasDropdown) {
                       return (
-                        <div key={link.name} className="flex flex-col">
+                        <motion.div
+                          key={link.name}
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 0.04 + idx * 0.03, duration: 0.2 }}
+                          className="flex flex-col"
+                        >
                           <div
-                            className={`px-3.5 py-2.5 rounded-xl text-sm font-semibold transition-colors flex items-center justify-between cursor-pointer ${active
-                              ? 'text-[#0866E8] bg-blue-50'
-                              : 'text-[#082B59] hover:text-[#0866E8] hover:bg-slate-50'
-                              }`}
+                            className={`p-2 sm:p-2.5 rounded-xl transition-all flex items-center justify-between cursor-pointer ${
+                              active
+                                ? 'bg-blue-50/90 text-[#0866E8] shadow-xs'
+                                : 'hover:bg-slate-50 text-[#082B59]'
+                            }`}
                           >
-                            <span
+                            <div
                               onClick={(e) => handleLinkClick(e, link)}
-                              className="flex-1"
+                              className="flex items-center gap-3 flex-1 min-w-0"
                             >
-                              {link.name}
-                            </span>
+                              <div className={`w-8 h-8 rounded-lg flex items-center justify-center border shrink-0 ${link.iconBg} ${link.iconColor}`}>
+                                <IconComponent className="w-4 h-4" />
+                              </div>
+                              <div className="flex-1 min-w-0 text-left">
+                                <div className="flex items-center gap-1.5">
+                                  <span className="text-sm font-semibold truncate block">
+                                    {link.name}
+                                  </span>
+                                  {link.badge && (
+                                    <span className="text-[9.5px] font-bold px-1.5 py-0.2 rounded-full bg-cyan-100 text-cyan-700">
+                                      {link.badge}
+                                    </span>
+                                  )}
+                                </div>
+                                <p className="text-[10.5px] text-slate-500 truncate">
+                                  {link.subtitle}
+                                </p>
+                              </div>
+                            </div>
 
                             <button
                               type="button"
                               onClick={() => setMobileServicesExpanded(!mobileServicesExpanded)}
-                              className="p-1.5 rounded-lg text-slate-500 hover:text-[#0866E8] hover:bg-blue-100/50 focus:outline-none transition-colors"
+                              className="p-1.5 rounded-lg text-slate-400 hover:text-[#0866E8] hover:bg-blue-100/50 focus:outline-none transition-colors"
                               aria-label="Toggle Services submenu"
                             >
                               <ChevronDown
-                                className={`w-4 h-4 transition-transform duration-200 ${mobileServicesExpanded ? 'rotate-180 text-[#0866E8]' : ''
-                                  }`}
+                                className={`w-4 h-4 transition-transform duration-200 ${
+                                  mobileServicesExpanded ? 'rotate-180 text-[#0866E8]' : ''
+                                }`}
                               />
                             </button>
                           </div>
@@ -456,30 +564,31 @@ export default function Navbar() {
                                 animate={{ height: 'auto', opacity: 1 }}
                                 exit={{ height: 0, opacity: 0 }}
                                 transition={{ duration: 0.18, ease: "easeOut" }}
-                                className="overflow-hidden pl-2 pr-1 py-1.5 space-y-1.5"
+                                className="overflow-hidden pl-3 pr-1 py-1.5 space-y-1.5"
                               >
                                 {serviceItems.map((item) => {
                                   const isItemActive = location.pathname === item.path;
-                                  const IconComponent = item.icon;
+                                  const SubIcon = item.icon;
 
                                   return (
                                     <button
                                       key={item.name}
                                       type="button"
                                       onClick={() => handlePracticeClick(item.path)}
-                                      className={`w-full text-left p-2.5 rounded-xl transition-all duration-150 flex items-start gap-3 cursor-pointer ${isItemActive
-                                        ? 'bg-blue-50 text-[#0866E8] font-semibold'
-                                        : 'bg-slate-50/80 hover:bg-blue-50/70 text-slate-700'
-                                        }`}
+                                      className={`w-full text-left p-2.5 rounded-xl transition-all duration-150 flex items-start gap-2.5 cursor-pointer ${
+                                        isItemActive
+                                          ? 'bg-blue-50 text-[#0866E8] font-semibold border border-blue-200/60 shadow-xs'
+                                          : 'bg-slate-50/70 hover:bg-blue-50/50 text-slate-700'
+                                      }`}
                                     >
                                       <div className={`p-1.5 rounded-lg border ${item.borderColor} ${item.bgColor} ${item.color} shrink-0 mt-0.5`}>
-                                        <IconComponent className="w-3.5 h-3.5" />
+                                        <SubIcon className="w-3.5 h-3.5" />
                                       </div>
                                       <div className="flex-1 min-w-0">
                                         <span className="text-xs font-semibold text-slate-900 block truncate">
                                           {item.name}
                                         </span>
-                                        <p className="text-[11px] text-slate-500 leading-snug line-clamp-2">
+                                        <p className="text-[10px] text-slate-500 leading-snug line-clamp-1">
                                           {item.description}
                                         </p>
                                       </div>
@@ -489,42 +598,75 @@ export default function Navbar() {
                               </motion.div>
                             )}
                           </AnimatePresence>
-                        </div>
+                        </motion.div>
                       );
                     }
 
-                    // Normal Links
+                    // Normal Links with Icons & Subtitle
                     return (
-                      <a
+                      <motion.a
                         key={link.name}
                         href={link.path}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.04 + idx * 0.03, duration: 0.2 }}
                         onClick={(e) => handleLinkClick(e, link)}
-                        className={`px-3.5 py-2.5 rounded-xl text-sm font-medium transition-colors flex items-center justify-between cursor-pointer ${active
-                          ? 'text-[#0866E8] bg-blue-50 font-semibold'
-                          : 'text-[#082B59] hover:text-[#0866E8] hover:bg-slate-50'
-                          }`}
+                        className={`p-2 sm:p-2.5 rounded-xl transition-all flex items-center justify-between cursor-pointer ${
+                          active
+                            ? 'bg-blue-50/90 text-[#0866E8] shadow-xs'
+                            : 'hover:bg-slate-50 text-[#082B59]'
+                        }`}
                       >
-                        <span>{link.name}</span>
-                        <ArrowRight className={`w-3.5 h-3.5 ${active ? 'text-[#0866E8]' : 'text-slate-400'}`} />
-                      </a>
+                        <div className="flex items-center gap-3 min-w-0">
+                          <div className={`w-8 h-8 rounded-lg flex items-center justify-center border shrink-0 ${link.iconBg} ${link.iconColor}`}>
+                            <IconComponent className="w-4 h-4" />
+                          </div>
+                          <div className="text-left min-w-0">
+                            <span className="text-sm font-semibold block truncate">
+                              {link.name}
+                            </span>
+                            <p className="text-[10.5px] text-slate-500 truncate">
+                              {link.subtitle}
+                            </p>
+                          </div>
+                        </div>
+                        <ArrowRight className={`w-3.5 h-3.5 shrink-0 ${active ? 'text-[#0866E8]' : 'text-slate-300'}`} />
+                      </motion.a>
                     );
                   })}
                 </div>
 
-                {/* Footer Action: Get Started Button (Proper padding, never touches edges) */}
+                {/* Footer Action: Response Time + Shimmering Get Started Button */}
                 <div
-                  className="p-3.5 sm:p-4 border-t border-slate-100 bg-slate-50/60 shrink-0"
+                  className="p-3 sm:p-3.5 border-t border-slate-100 bg-slate-50/80 shrink-0 relative z-10"
                   style={{
-                    paddingBottom: 'max(14px, env(safe-area-inset-bottom, 14px))'
+                    paddingBottom: 'max(12px, env(safe-area-inset-bottom, 12px))'
                   }}
                 >
+                  <div className="flex items-center justify-between px-1 mb-2 text-[10.5px] text-slate-500 font-medium">
+                    <span className="flex items-center gap-1.5">
+                      <Zap className="w-3.5 h-3.5 text-amber-500" />
+                      Free Technical Consultation
+                    </span>
+                    <span className="text-emerald-600 font-semibold flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                      Instant Support
+                    </span>
+                  </div>
+
                   <Link
                     to="/contact"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-[#0866E8] via-[#0878F0] to-[#00B9E8] shadow-md hover:shadow-lg transition-all cursor-pointer min-h-[44px]"
+                    className="relative group overflow-hidden w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-[#0866E8] via-[#0878F0] to-[#00B9E8] shadow-md hover:shadow-lg transition-all cursor-pointer min-h-[44px]"
                   >
-                    <span>Get Started</span>
-                    <ArrowRight className="w-4 h-4" />
+                    {/* Animated Light Shimmer Sweep */}
+                    <motion.div
+                      animate={{ x: ['-120%', '220%'] }}
+                      transition={{ duration: 2.8, repeat: Infinity, ease: 'easeInOut', repeatDelay: 0.8 }}
+                      className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12 pointer-events-none"
+                    />
+                    <span className="relative z-10">Get Started</span>
+                    <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </div>
               </motion.div>
