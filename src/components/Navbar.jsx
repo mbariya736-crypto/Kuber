@@ -448,12 +448,17 @@ export default function Navbar() {
               {/* Mobile Menu Button */}
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className={`lg:hidden rounded-full text-[#082B59] hover:text-[#0866E8] hover:bg-slate-100 transition-colors focus:outline-none cursor-pointer flex items-center justify-center shrink-0 ${isScrolled ? 'w-9 h-9' : 'w-10 h-10'
-                  }`}
+                className={`lg:hidden rounded-full text-[#082B59] hover:text-[#0866E8] transition-colors focus:outline-none cursor-pointer flex items-center justify-center shrink-0 ${
+                  mobileMenuOpen
+                    ? 'w-9 h-9 bg-slate-100/90 hover:bg-slate-200 text-slate-700 shadow-2xs'
+                    : isScrolled
+                    ? 'w-9 h-9 hover:bg-slate-100'
+                    : 'w-10 h-10 hover:bg-slate-100'
+                }`}
                 aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
               >
                 {mobileMenuOpen ? (
-                  <X className="w-5 h-5 sm:w-5.5 sm:h-5.5 text-[#082B59]" />
+                  <X className="w-5 h-5 text-[#082B59]" />
                 ) : (
                   <Menu className="w-5 h-5 sm:w-5.5 sm:h-5.5 text-[#082B59]" />
                 )}
@@ -478,8 +483,8 @@ export default function Navbar() {
                 <div className="absolute -top-12 -right-12 w-44 h-44 bg-blue-100/60 rounded-full blur-3xl pointer-events-none" />
                 <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-cyan-100/50 rounded-full blur-3xl pointer-events-none" />
 
-                {/* Scrollable Nav Items with Staggered Entrance */}
-                <div className="overflow-y-auto overscroll-contain px-3 sm:px-4 py-3 space-y-1.5 flex-1 relative z-10">
+                {/* Scrollable Nav Items with Consistent Human-Made Design */}
+                <div className="overflow-y-auto overscroll-contain px-3.5 sm:px-4 py-3 space-y-2 flex-1 relative z-10">
                   {navLinks.map((link, idx) => {
                     const active = isLinkActive(link);
                     const IconComponent = link.icon;
@@ -492,14 +497,16 @@ export default function Navbar() {
                           initial={{ opacity: 0, x: -8 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: 0.03 + idx * 0.025, duration: 0.22 }}
-                          className="flex flex-col rounded-2xl overflow-hidden border border-slate-100"
+                          className={`flex flex-col rounded-2xl border transition-all ${
+                            active
+                              ? 'bg-blue-50/80 border-blue-200 shadow-xs'
+                              : mobileServicesExpanded
+                              ? 'bg-slate-50/90 border-slate-200'
+                              : 'bg-slate-50/60 hover:bg-slate-100/70 border-slate-200/70'
+                          }`}
                         >
                           <div
-                            className={`p-2.5 transition-all flex items-center justify-between cursor-pointer ${
-                              active
-                                ? 'bg-blue-50/90 text-[#0866E8]'
-                                : 'hover:bg-slate-50 text-[#082B59] bg-white'
-                            }`}
+                            className="p-2.5 sm:p-3 flex items-center justify-between cursor-pointer"
                           >
                             <div
                               onClick={(e) => handleLinkClick(e, link)}
@@ -508,7 +515,7 @@ export default function Navbar() {
                               <div className={`w-9 h-9 rounded-xl flex items-center justify-center border shrink-0 ${link.iconBg} ${link.iconColor} shadow-2xs`}>
                                 <IconComponent className="w-4.5 h-4.5" />
                               </div>
-                              <span className="text-sm font-bold truncate block text-[#082B59]">
+                              <span className={`text-sm font-bold truncate block ${active ? 'text-[#0866E8]' : 'text-[#082B59]'}`}>
                                 {link.name}
                               </span>
                             </div>
@@ -516,12 +523,12 @@ export default function Navbar() {
                             <button
                               type="button"
                               onClick={() => setMobileServicesExpanded(!mobileServicesExpanded)}
-                              className="p-2 rounded-xl text-slate-400 hover:text-[#0866E8] hover:bg-blue-50 focus:outline-none transition-colors ml-1"
+                              className="p-1.5 rounded-lg text-slate-400 hover:text-[#0866E8] hover:bg-white/80 focus:outline-none transition-colors ml-1"
                               aria-label="Toggle Services submenu"
                             >
                               <ChevronDown
                                 className={`w-4 h-4 transition-transform duration-200 ${
-                                  mobileServicesExpanded ? 'rotate-180 text-[#0866E8]' : ''
+                                  mobileServicesExpanded ? 'rotate-180 text-[#0866E8]' : 'text-slate-400'
                                 }`}
                               />
                             </button>
@@ -535,7 +542,7 @@ export default function Navbar() {
                                 animate={{ height: 'auto', opacity: 1 }}
                                 exit={{ height: 0, opacity: 0 }}
                                 transition={{ duration: 0.2, ease: "easeOut" }}
-                                className="overflow-hidden px-2 pb-2.5 pt-1 space-y-1.5 bg-slate-50/70 border-t border-slate-100"
+                                className="overflow-hidden px-2.5 pb-2.5 pt-1 space-y-1.5 border-t border-slate-200/60"
                               >
                                 {serviceItems.map((item) => {
                                   const isItemActive = location.pathname === item.path;
@@ -548,17 +555,17 @@ export default function Navbar() {
                                       onClick={() => handlePracticeClick(item.path)}
                                       className={`w-full text-left p-2.5 rounded-xl transition-all duration-150 flex items-center gap-3 cursor-pointer ${
                                         isItemActive
-                                          ? 'bg-blue-50 text-[#0866E8] font-semibold border border-blue-200/80 shadow-xs'
-                                          : 'bg-white hover:bg-blue-50/40 text-slate-700 border border-slate-200/60 shadow-2xs'
+                                          ? 'bg-blue-50 text-[#0866E8] font-bold border border-blue-200 shadow-xs'
+                                          : 'bg-white hover:bg-slate-50 text-slate-700 border border-slate-200/70 shadow-2xs'
                                       }`}
                                     >
-                                      <div className={`p-2 rounded-lg border ${item.borderColor} ${item.bgColor} ${item.color} shrink-0`}>
+                                      <div className={`p-1.5 rounded-lg border ${item.borderColor} ${item.bgColor} ${item.color} shrink-0`}>
                                         <SubIcon className="w-4 h-4" />
                                       </div>
                                       <span className="text-xs font-bold text-slate-900 block truncate flex-1">
                                         {item.name}
                                       </span>
-                                      <ArrowRight className="w-3.5 h-3.5 text-slate-300 shrink-0" />
+                                      <ArrowRight className="w-3.5 h-3.5 text-slate-400 shrink-0" />
                                     </button>
                                   );
                                 })}
@@ -569,7 +576,7 @@ export default function Navbar() {
                       );
                     }
 
-                    // Normal Links
+                    // Normal Links with Consistent Card Design
                     return (
                       <motion.a
                         key={link.name}
@@ -579,60 +586,60 @@ export default function Navbar() {
                         transition={{ delay: 0.03 + idx * 0.025, duration: 0.22 }}
                         whileTap={{ scale: 0.98 }}
                         onClick={(e) => handleLinkClick(e, link)}
-                        className={`p-2.5 rounded-2xl transition-all flex items-center justify-between cursor-pointer border ${
+                        className={`p-2.5 sm:p-3 rounded-2xl transition-all flex items-center justify-between cursor-pointer border ${
                           active
-                            ? 'bg-blue-50/90 text-[#0866E8] border-blue-200/80 shadow-xs'
-                            : 'hover:bg-slate-50 text-[#082B59] border-transparent'
+                            ? 'bg-blue-50/80 text-[#0866E8] border-blue-200 shadow-xs'
+                            : 'bg-slate-50/60 hover:bg-slate-100/70 border-slate-200/70 text-[#082B59]'
                         }`}
                       >
                         <div className="flex items-center gap-3 min-w-0">
                           <div className={`w-9 h-9 rounded-xl flex items-center justify-center border shrink-0 ${link.iconBg} ${link.iconColor} shadow-2xs`}>
                             <IconComponent className="w-4.5 h-4.5" />
                           </div>
-                          <span className="text-sm font-bold block truncate text-[#082B59]">
+                          <span className={`text-sm font-bold block truncate ${active ? 'text-[#0866E8]' : 'text-[#082B59]'}`}>
                             {link.name}
                           </span>
                         </div>
-                        <ArrowRight className={`w-4 h-4 shrink-0 transition-transform ${active ? 'text-[#0866E8] translate-x-0.5' : 'text-slate-300'}`} />
+                        <ArrowRight className={`w-4 h-4 shrink-0 transition-transform ${active ? 'text-[#0866E8] translate-x-0.5' : 'text-slate-400'}`} />
                       </motion.a>
                     );
                   })}
                 </div>
 
-                {/* Human-Made Quick Touch Direct Connect Bar */}
-                <div className="px-3 sm:px-4 py-2 border-t border-slate-100 bg-slate-50/70 relative z-10">
+                {/* Direct Connect Quick Action Bar */}
+                <div className="px-3.5 sm:px-4 py-2.5 border-t border-slate-100 bg-slate-50/60 relative z-10">
                   <div className="grid grid-cols-3 gap-2">
                     <a
                       href="https://wa.me/?text=Hello%20Kuber%20AIS%20Technologies%2C%20I%20would%20like%20to%20discuss%20a%20project."
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex flex-col items-center justify-center p-2 rounded-xl bg-white border border-emerald-200/70 hover:bg-emerald-50/60 transition-colors shadow-2xs text-center group"
+                      className="flex flex-col items-center justify-center py-2 px-1 rounded-xl bg-emerald-50/70 border border-emerald-200/80 hover:bg-emerald-100/70 transition-colors shadow-2xs text-center group active:scale-95"
                     >
                       <MessageSquare className="w-4 h-4 text-emerald-600 mb-0.5 group-hover:scale-110 transition-transform" />
-                      <span className="text-[10px] font-bold text-slate-700">WhatsApp</span>
+                      <span className="text-[11px] font-bold text-emerald-800">WhatsApp</span>
                     </a>
 
                     <a
                       href="tel:1930"
-                      className="flex flex-col items-center justify-center p-2 rounded-xl bg-white border border-blue-200/70 hover:bg-blue-50/60 transition-colors shadow-2xs text-center group"
+                      className="flex flex-col items-center justify-center py-2 px-1 rounded-xl bg-blue-50/70 border border-blue-200/80 hover:bg-blue-100/70 transition-colors shadow-2xs text-center group active:scale-95"
                     >
                       <Phone className="w-4 h-4 text-[#0866E8] mb-0.5 group-hover:scale-110 transition-transform" />
-                      <span className="text-[10px] font-bold text-slate-700">Helpline</span>
+                      <span className="text-[11px] font-bold text-blue-800">Helpline</span>
                     </a>
 
                     <a
                       href="mailto:contact@kuber-ais.com"
-                      className="flex flex-col items-center justify-center p-2 rounded-xl bg-white border border-indigo-200/70 hover:bg-indigo-50/60 transition-colors shadow-2xs text-center group"
+                      className="flex flex-col items-center justify-center py-2 px-1 rounded-xl bg-indigo-50/70 border border-indigo-200/80 hover:bg-indigo-100/70 transition-colors shadow-2xs text-center group active:scale-95"
                     >
                       <Mail className="w-4 h-4 text-indigo-600 mb-0.5 group-hover:scale-110 transition-transform" />
-                      <span className="text-[10px] font-bold text-slate-700">Email Us</span>
+                      <span className="text-[11px] font-bold text-indigo-800">Email Us</span>
                     </a>
                   </div>
                 </div>
 
-                {/* Footer Action: Shimmering Get Started Button */}
+                {/* Footer Action: Get Free Consultation Button */}
                 <div
-                  className="p-3 sm:p-4 border-t border-slate-100 bg-white shrink-0 relative z-10"
+                  className="p-3.5 sm:p-4 border-t border-slate-100 bg-white shrink-0 relative z-10"
                   style={{
                     paddingBottom: 'max(14px, env(safe-area-inset-bottom, 14px))'
                   }}
