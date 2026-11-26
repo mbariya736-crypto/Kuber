@@ -22,163 +22,9 @@ import { Link } from 'react-router-dom';
 /* 1. INTERACTIVE SERVICE ANIMATIONS (OPEN 3D HOLOGRAPHIC STAGE)             */
 /* ========================================================================= */
 
-// --- AI HUMANOID FACE COMPONENT (CYBERNETIC SYNTHETIC AI AGENT) ---
-function AiHumanoidFace({ shouldReduceMotion, cursor }) {
-  const { layer1X, layer1Y } = cursor;
-  // Eye tracking offset
-  const eyeX = useTransform(layer1X, [-18, 18], [-2.2, 2.2]);
-  const eyeY = useTransform(layer1Y, [-18, 18], [-1.8, 1.8]);
-
-  return (
-    <div className="relative w-20 h-20 sm:w-22 sm:h-22 rounded-3xl bg-gradient-to-b from-[#06152F] via-[#092B5E] to-[#0866E8] p-1.5 shadow-2xl shadow-blue-600/40 border border-cyan-400/35 flex items-center justify-center overflow-hidden transition-all duration-300 group-hover:shadow-blue-500/60 group-hover:border-cyan-300">
-      {/* Background Cyber Grid / Radial Glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(0,229,255,0.22)_0%,_transparent_72%)]" />
-
-      {/* Vertical Scanning Laser Light */}
-      <motion.div
-        animate={shouldReduceMotion ? {} : { top: ['6%', '90%', '6%'], opacity: [0.25, 0.8, 0.25] }}
-        transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute left-1 right-1 h-[2px] bg-gradient-to-r from-transparent via-cyan-300 to-transparent shadow-[0_0_8px_rgba(0,229,255,0.9)] z-20 pointer-events-none"
-      />
-
-      {/* Futuristic AI Humanoid Face Vector */}
-      <svg
-        viewBox="0 0 100 100"
-        className="w-full h-full relative z-10 drop-shadow-[0_2px_8px_rgba(0,229,255,0.45)]"
-        fill="none"
-      >
-        <defs>
-          <linearGradient id="aiFaceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#E0F2FE" />
-            <stop offset="50%" stopColor="#7DD3FC" />
-            <stop offset="100%" stopColor="#38BDF8" />
-          </linearGradient>
-          <linearGradient id="aiGlowGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#00E5FF" stopOpacity="0.85" />
-            <stop offset="100%" stopColor="#0866E8" stopOpacity="0.15" />
-          </linearGradient>
-          <radialGradient id="eyeGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#FFFFFF" />
-            <stop offset="45%" stopColor="#00E5FF" />
-            <stop offset="100%" stopColor="#0866E8" />
-          </radialGradient>
-        </defs>
-
-        {/* Outer Cranium Neural Wireframe Arc */}
-        <motion.path
-          d="M 22 42 C 22 18, 78 18, 78 42 C 78 58, 70 78, 50 92 C 30 78, 22 58, 22 42 Z"
-          stroke="url(#aiGlowGrad)"
-          strokeWidth="1.5"
-          strokeDasharray="4 3"
-          animate={shouldReduceMotion ? {} : { strokeDashoffset: [0, -30] }}
-          transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
-        />
-
-        {/* Sculpted AI Head Shell */}
-        <path
-          d="M 26 40 C 26 20, 74 20, 74 40 C 74 54, 68 74, 50 86 C 32 74, 26 54, 26 40 Z"
-          fill="rgba(10, 37, 80, 0.7)"
-          stroke="url(#aiFaceGrad)"
-          strokeWidth="1.8"
-        />
-
-        {/* Forehead Plate & Central Neural Node */}
-        <path
-          d="M 36 28 Q 50 33 64 28"
-          stroke="#38BDF8"
-          strokeWidth="1.4"
-          strokeLinecap="round"
-        />
-        <circle cx="50" cy="24" r="2.2" fill="#00E5FF" />
-        <motion.circle
-          cx="50"
-          cy="24"
-          r="4"
-          stroke="#00E5FF"
-          strokeWidth="1"
-          animate={shouldReduceMotion ? {} : { scale: [1, 1.8, 1], opacity: [0.85, 0, 0.85] }}
-          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-        />
-
-        {/* Temple Circuit Traces */}
-        <path d="M 50 24 L 50 32" stroke="#38BDF8" strokeWidth="1.2" strokeLinecap="round" />
-        <path d="M 38 29 L 32 35 L 32 44" stroke="#00E5FF" strokeWidth="1" strokeLinecap="round" opacity="0.8" />
-        <path d="M 62 29 L 68 35 L 68 44" stroke="#00E5FF" strokeWidth="1" strokeLinecap="round" opacity="0.8" />
-
-        {/* Cyber Ear/Sensor Ports */}
-        <rect x="22" y="44" width="3" height="8" rx="1.5" fill="#38BDF8" />
-        <rect x="75" y="44" width="3" height="8" rx="1.5" fill="#38BDF8" />
-
-        {/* Eyebrows / Digital Brow Ridge */}
-        <path d="M 33 42 L 44 44" stroke="#7DD3FC" strokeWidth="1.8" strokeLinecap="round" />
-        <path d="M 67 42 L 56 44" stroke="#7DD3FC" strokeWidth="1.8" strokeLinecap="round" />
-
-        {/* Eyes Contour / Eye Sockets */}
-        <path
-          d="M 34 49 Q 40 45 46 49 Q 40 53 34 49 Z"
-          fill="rgba(4, 18, 48, 0.95)"
-          stroke="#38BDF8"
-          strokeWidth="1.2"
-        />
-        <path
-          d="M 54 49 Q 60 45 66 49 Q 60 53 54 49 Z"
-          fill="rgba(4, 18, 48, 0.95)"
-          stroke="#38BDF8"
-          strokeWidth="1.2"
-        />
-
-        {/* Animated Glowing Eyes (Blink & Track Cursor) */}
-        <motion.g
-          animate={shouldReduceMotion ? {} : { scaleY: [1, 1, 0.1, 1] }}
-          transition={{ duration: 3.6, repeat: Infinity, times: [0, 0.9, 0.93, 1] }}
-          style={{ transformOrigin: '50% 49%' }}
-        >
-          <motion.circle
-            cx="40"
-            cy="49"
-            r="2.6"
-            fill="url(#eyeGlow)"
-            style={{
-              x: shouldReduceMotion ? 0 : eyeX,
-              y: shouldReduceMotion ? 0 : eyeY
-            }}
-          />
-          <motion.circle
-            cx="60"
-            cy="49"
-            r="2.6"
-            fill="url(#eyeGlow)"
-            style={{
-              x: shouldReduceMotion ? 0 : eyeX,
-              y: shouldReduceMotion ? 0 : eyeY
-            }}
-          />
-        </motion.g>
-
-        {/* Sculpted Nose Bridge */}
-        <path d="M 50 47 L 50 60 L 47 63 L 53 63" stroke="#38BDF8" strokeWidth="1.2" strokeLinecap="round" />
-
-        {/* Cheekbone Facial Contour Lines */}
-        <path d="M 31 56 Q 36 68 44 75" stroke="#00E5FF" strokeWidth="0.9" strokeDasharray="3 2" opacity="0.65" />
-        <path d="M 69 56 Q 64 68 56 75" stroke="#00E5FF" strokeWidth="0.9" strokeDasharray="3 2" opacity="0.65" />
-
-        {/* Chiseled Cyber Mouth & Lips */}
-        <path d="M 43 71 Q 50 73 57 71" stroke="#BAE6FD" strokeWidth="1.4" strokeLinecap="round" />
-        <line x1="47" y1="76" x2="53" y2="76" stroke="#00E5FF" strokeWidth="1.2" strokeLinecap="round" />
-
-        {/* Chin Sensor Node */}
-        <circle cx="50" cy="82" r="1.8" fill="#38BDF8" />
-      </svg>
-
-      {/* Floating Hologram Sparkles */}
-      <Sparkles className="w-3.5 h-3.5 text-cyan-300 absolute top-2 right-2 animate-pulse pointer-events-none" />
-    </div>
-  );
-}
-
-// --- A. AUTOMATION WORKFLOW ANIMATION ---
+// --- A. AUTOMATION WORKFLOW ANIMATION: ONLY STANDALONE 3D TOUCH-INTERACTIVE AI FACE ---
 function AutomationStageVisual({ shouldReduceMotion, cursor }) {
-  const { rotateX, rotateY, layer1X, layer1Y, layer2X, layer2Y, layer3X, layer3Y, glowX, glowY } = cursor;
+  const { rotateX, rotateY, eyeX, eyeY, glowX, glowY } = cursor;
 
   return (
     <motion.div
@@ -187,7 +33,7 @@ function AutomationStageVisual({ shouldReduceMotion, cursor }) {
         rotateY: shouldReduceMotion ? 0 : rotateY,
         transformStyle: 'preserve-3d'
       }}
-      className="relative w-full h-[380px] sm:h-[430px] flex flex-col justify-between items-center select-none"
+      className="relative w-full h-[380px] sm:h-[440px] flex flex-col items-center justify-center select-none"
     >
       {/* Interactive Cursor Spotlight Aura */}
       <motion.div
@@ -196,144 +42,216 @@ function AutomationStageVisual({ shouldReduceMotion, cursor }) {
           top: glowY,
           transform: 'translate(-50%, -50%)'
         }}
-        className="absolute w-64 h-64 bg-gradient-to-r from-blue-400/25 via-sky-300/20 to-transparent rounded-full blur-3xl pointer-events-none -z-10"
+        className="absolute w-72 h-72 sm:w-84 sm:h-84 bg-gradient-to-r from-blue-400/25 via-cyan-300/20 to-transparent rounded-full blur-3xl pointer-events-none -z-10"
       />
 
-      {/* Floating Top Header Pill */}
+      {/* Dual Outer Gyroscopic Orbit Rings */}
       <motion.div
-        style={{
-          x: shouldReduceMotion ? 0 : layer1X,
-          y: shouldReduceMotion ? 0 : layer1Y
-        }}
-        className="flex items-center justify-between w-full max-w-[340px] px-3.5 py-2 rounded-full bg-white/80 backdrop-blur-md border border-blue-100 shadow-sm"
-      >
-        <div className="flex items-center gap-2">
-          <span className="flex h-2 w-2 rounded-full bg-[#0866E8] animate-pulse" />
-          <span className="text-[11px] font-bold tracking-wider uppercase text-[#0866E8]">
-            AI Automation Engine
-          </span>
-        </div>
-        <span className="text-[10px] font-mono font-medium px-2 py-0.5 rounded-full bg-blue-50 text-[#0866E8] border border-blue-200/60">
-          Latency: 14ms
-        </span>
-      </motion.div>
+        animate={shouldReduceMotion ? {} : { rotate: 360 }}
+        transition={{ duration: 24, repeat: Infinity, ease: 'linear' }}
+        className="absolute w-[290px] h-[290px] sm:w-[350px] sm:h-[350px] rounded-full border border-dashed border-[#0866E8]/35 pointer-events-none"
+      />
+      <motion.div
+        animate={shouldReduceMotion ? {} : { rotate: -360 }}
+        transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
+        className="absolute w-[330px] h-[330px] sm:w-[390px] sm:h-[390px] rounded-full border border-cyan-400/20 pointer-events-none"
+      />
 
-      {/* Center 3D Interactive Node Graph */}
-      <div className="relative my-auto flex flex-col items-center justify-center w-full py-2">
-        {/* Animated Connecting SVG Circuit Lines */}
-        <svg
-          className="absolute inset-0 w-full h-full pointer-events-none stroke-blue-200/90"
-          viewBox="0 0 360 200"
-          fill="none"
-        >
-          <motion.path
-            d="M 60 45 Q 180 100 300 45"
-            strokeWidth="2"
-            strokeDasharray="5 5"
-            animate={shouldReduceMotion ? {} : { strokeDashoffset: [0, -40] }}
-            transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
-          />
-          <motion.path
-            d="M 60 155 Q 180 100 300 155"
-            strokeWidth="2"
-            strokeDasharray="5 5"
-            animate={shouldReduceMotion ? {} : { strokeDashoffset: [0, 40] }}
-            transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
-          />
-        </svg>
-
-        {/* Central Glowing AI Face Core (Reacts strongly to cursor tilt) */}
-        <motion.div
-          style={{
-            x: shouldReduceMotion ? 0 : layer1X,
-            y: shouldReduceMotion ? 0 : layer1Y,
-            translateZ: 50
-          }}
-          className="relative z-20 flex flex-col items-center mb-5 group cursor-pointer"
-        >
-          {/* Outer Dashed Orbit Ring */}
+      {/* 3D AI Face Container */}
+      <div className="relative z-20 flex flex-col items-center justify-center">
+        <div className="relative w-[250px] h-[280px] sm:w-[290px] sm:h-[330px] flex items-center justify-center">
+          {/* Vertical Laser Scan Beam */}
           <motion.div
-            animate={shouldReduceMotion ? {} : { rotate: 360 }}
-            transition={{ duration: 18, repeat: Infinity, ease: 'linear' }}
-            className="absolute -inset-4 rounded-full border border-dashed border-[#0866E8]/40 pointer-events-none"
-          />
-
-          {/* Inner Secondary Rotating Ring */}
-          <motion.div
-            animate={shouldReduceMotion ? {} : { rotate: -360 }}
-            transition={{ duration: 24, repeat: Infinity, ease: 'linear' }}
-            className="absolute -inset-7 rounded-full border border-cyan-300/30 pointer-events-none"
-          />
-
-          {/* AI Humanoid Face Hub */}
-          <motion.div
-            animate={shouldReduceMotion ? {} : { scale: [1, 1.05, 1] }}
+            animate={shouldReduceMotion ? {} : { top: ['6%', '92%', '6%'], opacity: [0.2, 0.85, 0.2] }}
             transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-            whileHover={{ scale: 1.12 }}
-          >
-            <AiHumanoidFace shouldReduceMotion={shouldReduceMotion} cursor={cursor} />
-          </motion.div>
+            className="absolute left-4 right-4 h-[2px] bg-gradient-to-r from-transparent via-cyan-300 to-transparent shadow-[0_0_12px_rgba(0,229,255,0.95)] z-30 pointer-events-none"
+          />
 
-          <span className="mt-2.5 text-xs font-bold text-[#082B59] bg-white/90 px-3 py-0.5 rounded-full shadow-xs border border-blue-100 flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-ping" />
-            AI Intelligence Core
-          </span>
-        </motion.div>
-
-        {/* Floating Active Pipeline Nodes with Opposing Parallax */}
-        <div className="grid grid-cols-2 gap-4 w-full max-w-[370px] relative z-20">
-          <motion.div
-            style={{
-              x: shouldReduceMotion ? 0 : layer2X,
-              y: shouldReduceMotion ? 0 : layer2Y,
-              translateZ: 30
-            }}
-            whileHover={{ scale: 1.06 }}
-            className="p-3 rounded-2xl bg-white/95 backdrop-blur-md border border-blue-100 shadow-md flex items-center gap-2.5"
+          {/* High-Definition 3D Cyber AI Face Vector SVG */}
+          <svg
+            viewBox="0 0 200 240"
+            className="w-full h-full relative z-10 drop-shadow-[0_12px_30px_rgba(8,102,232,0.35)]"
+            fill="none"
           >
-            <div className="w-8 h-8 rounded-xl bg-blue-50 text-[#0866E8] flex items-center justify-center shrink-0 shadow-xs">
-              <Workflow className="w-4 h-4" />
-            </div>
-            <div className="min-w-0">
-              <p className="text-[11px] font-bold text-[#082B59] truncate">Inquiry Ingestion</p>
-              <p className="text-[9.5px] text-emerald-600 font-semibold">Auto-Triggered &bull; Instant</p>
-            </div>
-          </motion.div>
+            <defs>
+              <linearGradient id="aiShellGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#0B2B64" />
+                <stop offset="50%" stopColor="#084EAA" />
+                <stop offset="100%" stopColor="#0866E8" />
+              </linearGradient>
+              <linearGradient id="aiTrimGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#E0F2FE" />
+                <stop offset="50%" stopColor="#7DD3FC" />
+                <stop offset="100%" stopColor="#00E5FF" />
+              </linearGradient>
+              <radialGradient id="pupilGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stopColor="#FFFFFF" />
+                <stop offset="35%" stopColor="#38BDF8" />
+                <stop offset="80%" stopColor="#00E5FF" />
+                <stop offset="100%" stopColor="#0866E8" />
+              </radialGradient>
+              <radialGradient id="coreAura" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stopColor="#00E5FF" stopOpacity="0.9" />
+                <stop offset="100%" stopColor="#0866E8" stopOpacity="0" />
+              </radialGradient>
+            </defs>
 
-          <motion.div
-            style={{
-              x: shouldReduceMotion ? 0 : layer3X,
-              y: shouldReduceMotion ? 0 : layer3Y,
-              translateZ: 30
-            }}
-            whileHover={{ scale: 1.06 }}
-            className="p-3 rounded-2xl bg-white/95 backdrop-blur-md border border-blue-100 shadow-md flex items-center gap-2.5"
-          >
-            <div className="w-8 h-8 rounded-xl bg-blue-50 text-[#0866E8] flex items-center justify-center shrink-0 shadow-xs">
-              <Zap className="w-4 h-4" />
-            </div>
-            <div className="min-w-0">
-              <p className="text-[11px] font-bold text-[#082B59] truncate">CRM &amp; Team Alerts</p>
-              <p className="text-[9.5px] text-blue-600 font-semibold">Synced Across 5 Tools</p>
-            </div>
-          </motion.div>
+            {/* Cranium Halo Wireframe */}
+            <motion.path
+              d="M 46 86 C 46 36, 154 36, 154 86 C 154 125, 142 168, 100 206 C 58 168, 46 125, 46 86 Z"
+              stroke="url(#aiTrimGrad)"
+              strokeWidth="1.5"
+              strokeDasharray="6 4"
+              opacity="0.75"
+              animate={shouldReduceMotion ? {} : { strokeDashoffset: [0, -40] }}
+              transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
+            />
+
+            {/* Sculpted AI Head Shell */}
+            <path
+              d="M 52 82 C 52 38, 148 38, 148 82 C 148 118, 136 158, 100 196 C 64 158, 52 118, 52 82 Z"
+              fill="url(#aiShellGrad)"
+              stroke="url(#aiTrimGrad)"
+              strokeWidth="2.2"
+            />
+
+            {/* Forehead Armor Plate Seams */}
+            <path
+              d="M 68 62 Q 100 70 132 62"
+              stroke="#7DD3FC"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+            />
+            <path
+              d="M 78 50 Q 100 56 122 50"
+              stroke="#38BDF8"
+              strokeWidth="1.2"
+              strokeLinecap="round"
+              opacity="0.8"
+            />
+
+            {/* Forehead Central AI Core Node */}
+            <circle cx="100" cy="52" r="6" fill="url(#coreAura)" />
+            <circle cx="100" cy="52" r="3.2" fill="#00E5FF" />
+            <motion.circle
+              cx="100"
+              cy="52"
+              r="9"
+              stroke="#00E5FF"
+              strokeWidth="1.2"
+              animate={shouldReduceMotion ? {} : { scale: [1, 1.8, 1], opacity: [0.9, 0, 0.9] }}
+              transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
+            />
+
+            {/* Temple Neural Synaptic Circuit Lines */}
+            <path d="M 100 52 L 100 68" stroke="#38BDF8" strokeWidth="1.4" strokeLinecap="round" />
+            <path d="M 74 63 L 64 74 L 64 96" stroke="#00E5FF" strokeWidth="1.2" strokeLinecap="round" opacity="0.85" />
+            <path d="M 126 63 L 136 74 L 136 96" stroke="#00E5FF" strokeWidth="1.2" strokeLinecap="round" opacity="0.85" />
+
+            {/* Cyber Ear/Sensor Ports */}
+            <rect x="44" y="90" width="6" height="18" rx="3" fill="#38BDF8" />
+            <rect x="150" y="90" width="6" height="18" rx="3" fill="#38BDF8" />
+
+            {/* Digital Brow Ridges */}
+            <path d="M 65 88 L 90 92" stroke="#BAE6FD" strokeWidth="2.4" strokeLinecap="round" />
+            <path d="M 135 88 L 110 92" stroke="#BAE6FD" strokeWidth="2.4" strokeLinecap="round" />
+
+            {/* Eye Sockets Contour */}
+            <path
+              d="M 68 104 Q 80 96 92 104 Q 80 112 68 104 Z"
+              fill="#03112E"
+              stroke="#38BDF8"
+              strokeWidth="1.6"
+            />
+            <path
+              d="M 108 104 Q 120 96 132 104 Q 120 112 108 104 Z"
+              fill="#03112E"
+              stroke="#38BDF8"
+              strokeWidth="1.6"
+            />
+
+            {/* Touch/Cursor-Tracking Glowing Pupils with Natural Blink */}
+            <motion.g
+              animate={shouldReduceMotion ? {} : { scaleY: [1, 1, 0.08, 1] }}
+              transition={{ duration: 3.8, repeat: Infinity, times: [0, 0.9, 0.93, 1] }}
+              style={{ transformOrigin: '100px 104px' }}
+            >
+              {/* Left Eye Pupil */}
+              <motion.circle
+                cx="80"
+                cy="104"
+                r="4.2"
+                fill="url(#pupilGlow)"
+                style={{
+                  x: shouldReduceMotion ? 0 : eyeX,
+                  y: shouldReduceMotion ? 0 : eyeY
+                }}
+              />
+              <motion.circle
+                cx="80"
+                cy="104"
+                r="6.5"
+                stroke="#00E5FF"
+                strokeWidth="0.8"
+                opacity="0.75"
+                style={{
+                  x: shouldReduceMotion ? 0 : eyeX,
+                  y: shouldReduceMotion ? 0 : eyeY
+                }}
+              />
+
+              {/* Right Eye Pupil */}
+              <motion.circle
+                cx="120"
+                cy="104"
+                r="4.2"
+                fill="url(#pupilGlow)"
+                style={{
+                  x: shouldReduceMotion ? 0 : eyeX,
+                  y: shouldReduceMotion ? 0 : eyeY
+                }}
+              />
+              <motion.circle
+                cx="120"
+                cy="104"
+                r="6.5"
+                stroke="#00E5FF"
+                strokeWidth="0.8"
+                opacity="0.75"
+                style={{
+                  x: shouldReduceMotion ? 0 : eyeX,
+                  y: shouldReduceMotion ? 0 : eyeY
+                }}
+              />
+            </motion.g>
+
+            {/* Sculpted Nose Bridge */}
+            <path d="M 100 100 L 100 128 L 94 134 L 106 134" stroke="#7DD3FC" strokeWidth="1.6" strokeLinecap="round" />
+
+            {/* Cheekbone Facial Contour Lines */}
+            <path d="M 62 118 Q 74 142 88 156" stroke="#00E5FF" strokeWidth="1.2" strokeDasharray="4 3" opacity="0.7" />
+            <path d="M 138 118 Q 126 142 112 156" stroke="#00E5FF" strokeWidth="1.2" strokeDasharray="4 3" opacity="0.7" />
+
+            {/* Chiseled Cyber Mouth & Lips */}
+            <path d="M 86 150 Q 100 154 114 150" stroke="#BAE6FD" strokeWidth="2" strokeLinecap="round" />
+            <line x1="92" y1="160" x2="108" y2="160" stroke="#00E5FF" strokeWidth="1.4" strokeLinecap="round" />
+
+            {/* Chin Sensor Node */}
+            <circle cx="100" cy="172" r="3.2" fill="#38BDF8" />
+            <circle cx="100" cy="172" r="6" stroke="#00E5FF" strokeWidth="1" strokeDasharray="2 2" opacity="0.8" />
+          </svg>
+
+          {/* Ambient Glowing Hologram Sparkles */}
+          <Sparkles className="w-5 h-5 text-cyan-300 absolute top-2 right-4 animate-pulse pointer-events-none" />
+          <Sparkles className="w-4 h-4 text-blue-300 absolute bottom-6 left-4 animate-pulse pointer-events-none" />
+        </div>
+
+        {/* Touch & Interaction Live Pill */}
+        <div className="mt-4 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-blue-200/80 shadow-sm text-xs font-semibold text-[#082B59]">
+          <span className="w-2 h-2 rounded-full bg-cyan-500 animate-ping" />
+          <span>Interactive AI Face &bull; Touch &amp; Drag</span>
         </div>
       </div>
-
-      {/* Floating Bottom Metrics Pill */}
-      <motion.div
-        style={{
-          x: shouldReduceMotion ? 0 : layer2X,
-          y: shouldReduceMotion ? 0 : layer2Y
-        }}
-        className="flex items-center justify-between w-full max-w-[340px] px-3.5 py-2 rounded-full bg-white/80 backdrop-blur-md border border-slate-200/80 shadow-xs text-[10.5px] font-mono text-slate-600"
-      >
-        <span className="flex items-center gap-1.5 text-[#0866E8] font-bold">
-          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
-          99.8% Process Automation
-        </span>
-        <span className="text-slate-400">Zero Manual Friction</span>
-      </motion.div>
     </motion.div>
   );
 }
@@ -647,10 +565,12 @@ export default function AboutUs() {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  // Spring Physics for smooth fluid cursor responsiveness
-  const springConfig = { damping: 22, stiffness: 140, mass: 0.6 };
-  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [14, -14]), springConfig);
-  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-14, 14]), springConfig);
+  // Spring Physics for smooth fluid cursor & touch responsiveness
+  const springConfig = { damping: 20, stiffness: 140, mass: 0.5 };
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [24, -24]), springConfig);
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-26, 26]), springConfig);
+  const eyeX = useSpring(useTransform(mouseX, [-0.5, 0.5], [-9, 9]), springConfig);
+  const eyeY = useSpring(useTransform(mouseY, [-0.5, 0.5], [-7, 7]), springConfig);
 
   // Multi-depth Parallax Layers
   const layer1X = useSpring(useTransform(mouseX, [-0.5, 0.5], [-18, 18]), springConfig);
@@ -669,6 +589,8 @@ export default function AboutUs() {
   const cursorPhysics = {
     rotateX,
     rotateY,
+    eyeX,
+    eyeY,
     layer1X,
     layer1Y,
     layer2X,
@@ -679,17 +601,27 @@ export default function AboutUs() {
     glowY
   };
 
-  // Track cursor movement across the stage
-  const handlePointerMove = (e) => {
-    if (!stageRef.current) return;
-    const rect = stageRef.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
+  // Coordinate tracking for both mouse pointer and mobile touch
+  const updateCoordinates = (clientX, clientY, currentTarget) => {
+    const rect = currentTarget.getBoundingClientRect();
+    const x = Math.max(-0.5, Math.min(0.5, (clientX - rect.left) / rect.width - 0.5));
+    const y = Math.max(-0.5, Math.min(0.5, (clientY - rect.top) / rect.height - 0.5));
     mouseX.set(x);
     mouseY.set(y);
   };
 
-  const handlePointerLeave = () => {
+  const handlePointerMove = (e) => {
+    if (!stageRef.current) return;
+    updateCoordinates(e.clientX, e.clientY, e.currentTarget);
+  };
+
+  const handleTouchMove = (e) => {
+    if (e.touches && e.touches[0] && stageRef.current) {
+      updateCoordinates(e.touches[0].clientX, e.touches[0].clientY, e.currentTarget);
+    }
+  };
+
+  const handleReset = () => {
     mouseX.set(0);
     mouseY.set(0);
   };
@@ -762,10 +694,15 @@ export default function AboutUs() {
           <div className="lg:col-span-5 flex justify-center w-full">
             <div
               ref={stageRef}
+              onPointerDown={handlePointerMove}
               onPointerMove={handlePointerMove}
-              onPointerLeave={handlePointerLeave}
-              style={{ perspective: 1200 }}
-              className="relative w-full max-w-[460px] flex items-center justify-center p-2 cursor-grab active:cursor-grabbing"
+              onPointerUp={handleReset}
+              onPointerLeave={handleReset}
+              onTouchStart={handleTouchMove}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleReset}
+              style={{ perspective: 1200, touchAction: 'none' }}
+              className="relative w-full max-w-[460px] flex items-center justify-center p-2 cursor-grab active:cursor-grabbing select-none"
             >
               <AnimatePresence mode="wait">
                 {activeServiceId === 'ai-services' && (
