@@ -52,9 +52,6 @@ const SERVICE_THEMES = {
     id: 'ai-services',
     category: 'AUTOMATION',
     title: 'Business Automation',
-    tagline: 'Autonomous AI workflow pipelines engineered to eliminate manual bottlenecks, synchronize systems, and scale operations 10x faster.',
-    badgeIcon: Brain,
-    badgeText: 'Next-Gen Cognitive Automation',
     accentColor: '#0866E8',
     secondaryColor: '#00d2ff',
     gradientText: 'from-[#0866E8] via-blue-600 to-cyan-500',
@@ -67,9 +64,6 @@ const SERVICE_THEMES = {
     id: 'cyber-security',
     category: 'SECURITY',
     title: 'Cyber Security',
-    tagline: 'Military-grade hardware enclave defense, zero-trust cryptographic isolation, and 24/7 active threat hunting telemetry.',
-    badgeIcon: ShieldCheck,
-    badgeText: 'Hardware-Enforced Zero-Trust Security',
     accentColor: '#10B981',
     secondaryColor: '#14b8a6',
     gradientText: 'from-emerald-600 via-teal-600 to-cyan-600',
@@ -82,9 +76,6 @@ const SERVICE_THEMES = {
     id: 'ai-films',
     category: 'MEDIA',
     title: 'Film Production',
-    tagline: 'Commercial-grade virtual cinema, Unreal Engine 5 virtual volumes, and cinematic narrative craft engineered for maximum brand resonance.',
-    badgeIcon: Film,
-    badgeText: 'Virtual Cinema & Cinematic Masterworks',
     accentColor: '#06B6D4',
     secondaryColor: '#38bdf8',
     gradientText: 'from-cyan-600 via-blue-600 to-indigo-600',
@@ -105,7 +96,6 @@ export default function AboutUs() {
   const stageRef = useRef(null);
 
   const activeTheme = SERVICE_THEMES[activeServiceId] || SERVICE_THEMES['ai-services'];
-  const ActiveBadgeIcon = activeTheme.badgeIcon;
 
   // Mouse & Pointer Cursor Motion Values
   const mouseX = useMotionValue(0);
@@ -149,8 +139,7 @@ export default function AboutUs() {
       iconBg: 'bg-blue-50 text-[#0866E8] border border-blue-100',
       activeBorder: 'border-[#0866E8] ring-2 ring-[#0866E8]/20 shadow-lg shadow-blue-500/10 bg-gradient-to-r from-blue-50/40 via-white to-white',
       activeBadge: 'bg-blue-50 text-[#0866E8] border-blue-200',
-      accentColor: '#0866E8',
-      tag: '⚡ 10x Workflow Acceleration'
+      accentColor: '#0866E8'
     },
     {
       id: 'cyber-security',
@@ -163,8 +152,7 @@ export default function AboutUs() {
       iconBg: 'bg-emerald-50 text-emerald-600 border border-emerald-100',
       activeBorder: 'border-emerald-500 ring-2 ring-emerald-500/20 shadow-lg shadow-emerald-500/10 bg-gradient-to-r from-emerald-50/40 via-white to-white',
       activeBadge: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-      accentColor: '#10B981',
-      tag: '🛡️ Zero-Trust Hardware Shield'
+      accentColor: '#10B981'
     },
     {
       id: 'ai-films',
@@ -177,8 +165,7 @@ export default function AboutUs() {
       iconBg: 'bg-cyan-50 text-cyan-600 border border-cyan-100',
       activeBorder: 'border-cyan-500 ring-2 ring-cyan-500/20 shadow-lg shadow-cyan-500/10 bg-gradient-to-r from-cyan-50/40 via-white to-white',
       activeBadge: 'bg-cyan-50 text-cyan-700 border-cyan-200',
-      accentColor: '#06B6D4',
-      tag: '🎬 4K HDR Commercial Grade'
+      accentColor: '#06B6D4'
     }
   ];
 
@@ -218,48 +205,16 @@ export default function AboutUs() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
-        {/* 2. DYNAMIC TOP HEADING & SECTION BADGE */}
-        <div className="mb-8 lg:mb-10 text-left">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={`badge-${activeServiceId}`}
-              initial={{ opacity: 0, y: -6 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 6 }}
-              transition={{ duration: 0.3 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-3 shadow-xs border transition-all"
-              style={{
-                backgroundColor: `${activeTheme.accentColor}12`,
-                borderColor: `${activeTheme.accentColor}40`,
-                color: activeTheme.accentColor
-              }}
-            >
-              <ActiveBadgeIcon className="w-3.5 h-3.5" />
-              <span>{activeTheme.badgeText}</span>
-            </motion.div>
-          </AnimatePresence>
-
+        {/* 2. TOP HEADING & SWITCHER */}
+        <div className="mb-6 lg:mb-8 text-left">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#082B59] tracking-tight leading-[1.18] mb-2">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#082B59] tracking-tight leading-[1.18]">
                 Our{' '}
                 <span className={`bg-gradient-to-r ${activeTheme.gradientText} bg-clip-text text-transparent transition-all duration-500`}>
                   Core Services
                 </span>
               </h2>
-
-              <AnimatePresence mode="wait">
-                <motion.p
-                  key={`tagline-${activeServiceId}`}
-                  initial={{ opacity: 0, y: 6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -6 }}
-                  transition={{ duration: 0.32, ease: 'easeOut' }}
-                  className="text-sm sm:text-base text-slate-600 max-w-2xl font-normal leading-relaxed"
-                >
-                  {activeTheme.tagline}
-                </motion.p>
-              </AnimatePresence>
             </div>
 
             {/* Desktop / Tablet Quick Switcher Indicators */}
@@ -451,15 +406,6 @@ export default function AboutUs() {
                         <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
                           {card.description}
                         </p>
-
-                        {/* Feature Tag */}
-                        {card.tag && (
-                          <div className="mt-2.5 flex items-center">
-                            <span className="inline-flex items-center text-[10px] font-semibold px-2.5 py-0.5 rounded-full bg-slate-100/90 text-slate-700 border border-slate-200/60 shadow-2xs">
-                              {card.tag}
-                            </span>
-                          </div>
-                        )}
                       </div>
                     </div>
                   </motion.div>
