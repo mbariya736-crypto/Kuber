@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
+import React, { useState, useRef } from 'react';
+import { motion, AnimatePresence, useReducedMotion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import {
   Bot,
   ShieldCheck,
@@ -10,28 +10,48 @@ import {
   CheckCircle2,
   Video,
   Sparkles,
-  Cpu,
   Zap,
-  Radio,
   Workflow,
-  Eye
+  Crosshair,
+  Sliders
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 /* ========================================================================= */
-/* 1. INTERACTIVE SERVICE ANIMATIONS (FOR THE LEFT STAGE)                    */
+/* 1. INTERACTIVE SERVICE ANIMATIONS (OPEN 3D HOLOGRAPHIC STAGE)             */
 /* ========================================================================= */
 
 // --- A. AUTOMATION WORKFLOW ANIMATION ---
-function AutomationStageVisual({ shouldReduceMotion }) {
-  return (
-    <div className="relative w-full h-full flex flex-col justify-between select-none">
-      {/* Ambient Blue Backlight */}
-      <div className="absolute -top-10 -right-10 w-44 h-44 bg-blue-400/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-10 -left-10 w-44 h-44 bg-sky-300/20 rounded-full blur-3xl pointer-events-none" />
+function AutomationStageVisual({ shouldReduceMotion, cursor }) {
+  const { rotateX, rotateY, layer1X, layer1Y, layer2X, layer2Y, layer3X, layer3Y, glowX, glowY } = cursor;
 
-      {/* Top Header Badge */}
-      <div className="flex items-center justify-between pb-3 border-b border-blue-100/80">
+  return (
+    <motion.div
+      style={{
+        rotateX: shouldReduceMotion ? 0 : rotateX,
+        rotateY: shouldReduceMotion ? 0 : rotateY,
+        transformStyle: 'preserve-3d'
+      }}
+      className="relative w-full h-[380px] sm:h-[430px] flex flex-col justify-between items-center select-none"
+    >
+      {/* Interactive Cursor Spotlight Aura */}
+      <motion.div
+        style={{
+          left: glowX,
+          top: glowY,
+          transform: 'translate(-50%, -50%)'
+        }}
+        className="absolute w-64 h-64 bg-gradient-to-r from-blue-400/25 via-sky-300/20 to-transparent rounded-full blur-3xl pointer-events-none -z-10"
+      />
+
+      {/* Floating Top Header Pill */}
+      <motion.div
+        style={{
+          x: shouldReduceMotion ? 0 : layer1X,
+          y: shouldReduceMotion ? 0 : layer1Y
+        }}
+        className="flex items-center justify-between w-full max-w-[340px] px-3.5 py-2 rounded-full bg-white/80 backdrop-blur-md border border-blue-100 shadow-sm"
+      >
         <div className="flex items-center gap-2">
           <span className="flex h-2 w-2 rounded-full bg-[#0866E8] animate-pulse" />
           <span className="text-[11px] font-bold tracking-wider uppercase text-[#0866E8]">
@@ -41,89 +61,160 @@ function AutomationStageVisual({ shouldReduceMotion }) {
         <span className="text-[10px] font-mono font-medium px-2 py-0.5 rounded-full bg-blue-50 text-[#0866E8] border border-blue-200/60">
           Latency: 14ms
         </span>
-      </div>
+      </motion.div>
 
-      {/* Center Interactive Node Graph */}
-      <div className="relative my-4 flex flex-col items-center justify-center py-4">
+      {/* Center 3D Interactive Node Graph */}
+      <div className="relative my-auto flex flex-col items-center justify-center w-full py-2">
         {/* Animated Connecting SVG Circuit Lines */}
-        <svg className="absolute inset-0 w-full h-full pointer-events-none stroke-blue-200" viewBox="0 0 320 180" fill="none">
-          <path d="M 50 40 L 160 90 L 270 40" strokeWidth="2" strokeDasharray="4 4" />
-          <path d="M 50 140 L 160 90 L 270 140" strokeWidth="2" strokeDasharray="4 4" />
+        <svg
+          className="absolute inset-0 w-full h-full pointer-events-none stroke-blue-200/90"
+          viewBox="0 0 360 200"
+          fill="none"
+        >
+          <motion.path
+            d="M 60 45 Q 180 100 300 45"
+            strokeWidth="2"
+            strokeDasharray="5 5"
+            animate={shouldReduceMotion ? {} : { strokeDashoffset: [0, -40] }}
+            transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
+          />
+          <motion.path
+            d="M 60 155 Q 180 100 300 155"
+            strokeWidth="2"
+            strokeDasharray="5 5"
+            animate={shouldReduceMotion ? {} : { strokeDashoffset: [0, 40] }}
+            transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
+          />
         </svg>
 
-        {/* Central Glowing AI Core */}
-        <div className="relative z-10 flex flex-col items-center mb-6">
+        {/* Central Glowing AI Core (Reacts strongly to cursor tilt) */}
+        <motion.div
+          style={{
+            x: shouldReduceMotion ? 0 : layer1X,
+            y: shouldReduceMotion ? 0 : layer1Y,
+            translateZ: 50
+          }}
+          className="relative z-20 flex flex-col items-center mb-5 group cursor-pointer"
+        >
+          {/* Outer Dashed Orbit Ring */}
           <motion.div
             animate={shouldReduceMotion ? {} : { rotate: 360 }}
             transition={{ duration: 18, repeat: Infinity, ease: 'linear' }}
-            className="absolute -inset-3 rounded-full border border-dashed border-[#0866E8]/40"
+            className="absolute -inset-4 rounded-full border border-dashed border-[#0866E8]/40 pointer-events-none"
           />
-          <motion.div
-            animate={shouldReduceMotion ? {} : { scale: [1, 1.08, 1] }}
-            transition={{ duration: 2.8, repeat: Infinity, ease: 'easeInOut' }}
-            className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-[#0866E8] to-blue-400 text-white flex items-center justify-center shadow-lg shadow-blue-500/25 relative z-10"
-          >
-            <Bot className="w-8 h-8" />
-          </motion.div>
-          <span className="mt-2 text-xs font-bold text-[#082B59]">Smart Workflow Hub</span>
-        </div>
 
-        {/* Floating Active Pipeline Nodes */}
-        <div className="grid grid-cols-2 gap-3 w-full relative z-10">
+          {/* Inner Secondary Rotating Ring */}
           <motion.div
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.4, delay: 0.1 }}
-            className="p-2.5 rounded-xl bg-white/95 border border-blue-100 shadow-xs flex items-center gap-2.5"
+            animate={shouldReduceMotion ? {} : { rotate: -360 }}
+            transition={{ duration: 24, repeat: Infinity, ease: 'linear' }}
+            className="absolute -inset-7 rounded-full border border-blue-300/30 pointer-events-none"
+          />
+
+          {/* Core Bot Hub Box */}
+          <motion.div
+            animate={shouldReduceMotion ? {} : { scale: [1, 1.05, 1] }}
+            transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+            whileHover={{ scale: 1.15 }}
+            className="w-18 h-18 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-tr from-[#0866E8] via-blue-500 to-sky-400 text-white flex items-center justify-center shadow-xl shadow-blue-500/30 relative z-10 transition-shadow duration-300 group-hover:shadow-blue-500/50"
           >
-            <div className="w-7 h-7 rounded-lg bg-blue-50 text-[#0866E8] flex items-center justify-center shrink-0">
-              <Workflow className="w-3.5 h-3.5" />
+            <Bot className="w-9 h-9 sm:w-10 sm:h-10 text-white drop-shadow-md" />
+            <Sparkles className="w-3.5 h-3.5 text-yellow-300 absolute top-2 right-2 animate-bounce" />
+          </motion.div>
+
+          <span className="mt-2.5 text-xs font-bold text-[#082B59] bg-white/90 px-2.5 py-0.5 rounded-full shadow-xs border border-blue-100">
+            Smart Workflow Hub
+          </span>
+        </motion.div>
+
+        {/* Floating Active Pipeline Nodes with Opposing Parallax */}
+        <div className="grid grid-cols-2 gap-4 w-full max-w-[370px] relative z-20">
+          <motion.div
+            style={{
+              x: shouldReduceMotion ? 0 : layer2X,
+              y: shouldReduceMotion ? 0 : layer2Y,
+              translateZ: 30
+            }}
+            whileHover={{ scale: 1.06 }}
+            className="p-3 rounded-2xl bg-white/95 backdrop-blur-md border border-blue-100 shadow-md flex items-center gap-2.5"
+          >
+            <div className="w-8 h-8 rounded-xl bg-blue-50 text-[#0866E8] flex items-center justify-center shrink-0 shadow-xs">
+              <Workflow className="w-4 h-4" />
             </div>
             <div className="min-w-0">
               <p className="text-[11px] font-bold text-[#082B59] truncate">Inquiry Ingestion</p>
-              <p className="text-[9.5px] text-emerald-600 font-medium">Auto-Triggered &bull; Instant</p>
+              <p className="text-[9.5px] text-emerald-600 font-semibold">Auto-Triggered &bull; Instant</p>
             </div>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 10 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.4, delay: 0.2 }}
-            className="p-2.5 rounded-xl bg-white/95 border border-blue-100 shadow-xs flex items-center gap-2.5"
+            style={{
+              x: shouldReduceMotion ? 0 : layer3X,
+              y: shouldReduceMotion ? 0 : layer3Y,
+              translateZ: 30
+            }}
+            whileHover={{ scale: 1.06 }}
+            className="p-3 rounded-2xl bg-white/95 backdrop-blur-md border border-blue-100 shadow-md flex items-center gap-2.5"
           >
-            <div className="w-7 h-7 rounded-lg bg-blue-50 text-[#0866E8] flex items-center justify-center shrink-0">
-              <Zap className="w-3.5 h-3.5" />
+            <div className="w-8 h-8 rounded-xl bg-blue-50 text-[#0866E8] flex items-center justify-center shrink-0 shadow-xs">
+              <Zap className="w-4 h-4" />
             </div>
             <div className="min-w-0">
               <p className="text-[11px] font-bold text-[#082B59] truncate">CRM &amp; Team Alerts</p>
-              <p className="text-[9.5px] text-blue-600 font-medium">Synced Across 5 Tools</p>
+              <p className="text-[9.5px] text-blue-600 font-semibold">Synced Across 5 Tools</p>
             </div>
           </motion.div>
         </div>
       </div>
 
-      {/* Bottom Live Metrics Bar */}
-      <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[10px] text-slate-500 font-mono">
-        <span className="flex items-center gap-1.5 text-[#0866E8] font-semibold">
+      {/* Floating Bottom Metrics Pill */}
+      <motion.div
+        style={{
+          x: shouldReduceMotion ? 0 : layer2X,
+          y: shouldReduceMotion ? 0 : layer2Y
+        }}
+        className="flex items-center justify-between w-full max-w-[340px] px-3.5 py-2 rounded-full bg-white/80 backdrop-blur-md border border-slate-200/80 shadow-xs text-[10.5px] font-mono text-slate-600"
+      >
+        <span className="flex items-center gap-1.5 text-[#0866E8] font-bold">
           <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
           99.8% Process Automation
         </span>
         <span className="text-slate-400">Zero Manual Friction</span>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
 
 // --- B. CYBER SECURITY DEFENSE ANIMATION ---
-function CyberSecurityStageVisual({ shouldReduceMotion }) {
-  return (
-    <div className="relative w-full h-full flex flex-col justify-between select-none">
-      {/* Ambient Emerald Glow Backlight */}
-      <div className="absolute -top-10 -right-10 w-44 h-44 bg-emerald-400/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-10 -left-10 w-44 h-44 bg-teal-300/20 rounded-full blur-3xl pointer-events-none" />
+function CyberSecurityStageVisual({ shouldReduceMotion, cursor }) {
+  const { rotateX, rotateY, layer1X, layer1Y, layer2X, layer2Y, layer3X, layer3Y, glowX, glowY } = cursor;
 
-      {/* Top Header Badge */}
-      <div className="flex items-center justify-between pb-3 border-b border-emerald-100/80">
+  return (
+    <motion.div
+      style={{
+        rotateX: shouldReduceMotion ? 0 : rotateX,
+        rotateY: shouldReduceMotion ? 0 : rotateY,
+        transformStyle: 'preserve-3d'
+      }}
+      className="relative w-full h-[380px] sm:h-[430px] flex flex-col justify-between items-center select-none"
+    >
+      {/* Interactive Cursor Spotlight Aura */}
+      <motion.div
+        style={{
+          left: glowX,
+          top: glowY,
+          transform: 'translate(-50%, -50%)'
+        }}
+        className="absolute w-64 h-64 bg-gradient-to-r from-emerald-400/25 via-teal-300/20 to-transparent rounded-full blur-3xl pointer-events-none -z-10"
+      />
+
+      {/* Floating Top Header Pill */}
+      <motion.div
+        style={{
+          x: shouldReduceMotion ? 0 : layer1X,
+          y: shouldReduceMotion ? 0 : layer1Y
+        }}
+        className="flex items-center justify-between w-full max-w-[340px] px-3.5 py-2 rounded-full bg-white/80 backdrop-blur-md border border-emerald-100 shadow-sm"
+      >
         <div className="flex items-center gap-2">
           <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
           <span className="text-[11px] font-bold tracking-wider uppercase text-emerald-600">
@@ -133,161 +224,260 @@ function CyberSecurityStageVisual({ shouldReduceMotion }) {
         <span className="text-[10px] font-mono font-medium px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200/60">
           AES-256 Armed
         </span>
-      </div>
+      </motion.div>
 
-      {/* Center Radar Scanner & Shield Matrix */}
-      <div className="relative my-4 flex flex-col items-center justify-center py-4">
-        {/* Concentric Radar Wave Rings */}
+      {/* Center 3D Sonar Radar & Shield Matrix */}
+      <div className="relative my-auto flex flex-col items-center justify-center w-full py-2">
+        {/* Concentric Sonar Wave Rings */}
         <motion.div
-          animate={shouldReduceMotion ? {} : { scale: [1, 1.8], opacity: [0.6, 0] }}
-          transition={{ duration: 2.4, repeat: Infinity, ease: 'easeOut' }}
-          className="absolute w-28 h-28 rounded-full border border-emerald-400/40 pointer-events-none"
+          animate={shouldReduceMotion ? {} : { scale: [1, 2], opacity: [0.65, 0] }}
+          transition={{ duration: 2.6, repeat: Infinity, ease: 'easeOut' }}
+          className="absolute w-32 h-32 rounded-full border-2 border-emerald-400/40 pointer-events-none"
         />
         <motion.div
-          animate={shouldReduceMotion ? {} : { scale: [1, 2.3], opacity: [0.4, 0] }}
-          transition={{ duration: 2.4, delay: 0.8, repeat: Infinity, ease: 'easeOut' }}
-          className="absolute w-28 h-28 rounded-full border border-teal-400/30 pointer-events-none"
+          animate={shouldReduceMotion ? {} : { scale: [1, 2.7], opacity: [0.45, 0] }}
+          transition={{ duration: 2.6, delay: 0.9, repeat: Infinity, ease: 'easeOut' }}
+          className="absolute w-32 h-32 rounded-full border border-teal-400/30 pointer-events-none"
+        />
+
+        {/* Rotating Radar Scanner Sweep */}
+        <motion.div
+          animate={shouldReduceMotion ? {} : { rotate: 360 }}
+          transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
+          className="absolute w-44 h-44 rounded-full border border-emerald-200/60 pointer-events-none opacity-40"
+          style={{
+            background: 'conic-gradient(from 0deg, rgba(16, 185, 129, 0.25) 0deg, transparent 90deg)'
+          }}
         />
 
         {/* Central Armored Shield Icon */}
-        <div className="relative z-10 flex flex-col items-center mb-6">
+        <motion.div
+          style={{
+            x: shouldReduceMotion ? 0 : layer1X,
+            y: shouldReduceMotion ? 0 : layer1Y,
+            translateZ: 50
+          }}
+          className="relative z-20 flex flex-col items-center mb-5 group cursor-pointer"
+        >
           <motion.div
             animate={shouldReduceMotion ? {} : { scale: [1, 1.05, 1] }}
-            transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
-            className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-400 text-white flex items-center justify-center shadow-lg shadow-emerald-500/25 relative z-10"
+            transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+            whileHover={{ scale: 1.15 }}
+            className="w-18 h-18 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-tr from-emerald-600 via-emerald-500 to-teal-400 text-white flex items-center justify-center shadow-xl shadow-emerald-500/30 relative z-10 transition-shadow duration-300 group-hover:shadow-emerald-500/50"
           >
-            <ShieldCheck className="w-8 h-8" />
+            <ShieldCheck className="w-9 h-9 sm:w-10 sm:h-10 text-white drop-shadow-md" />
+            <Lock className="w-3.5 h-3.5 text-white/90 absolute bottom-2 right-2" />
           </motion.div>
-          <span className="mt-2 text-xs font-bold text-[#082B59]">Zero-Trust Perimeter</span>
-        </div>
 
-        {/* Live Defense Metric Badges */}
-        <div className="grid grid-cols-2 gap-3 w-full relative z-10">
+          <span className="mt-2.5 text-xs font-bold text-[#082B59] bg-white/90 px-2.5 py-0.5 rounded-full shadow-xs border border-emerald-100">
+            Zero-Trust Perimeter
+          </span>
+        </motion.div>
+
+        {/* Live Defense Metric Badges with Opposing Parallax */}
+        <div className="grid grid-cols-2 gap-4 w-full max-w-[370px] relative z-20">
           <motion.div
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.4, delay: 0.1 }}
-            className="p-2.5 rounded-xl bg-white/95 border border-emerald-100 shadow-xs flex items-center gap-2.5"
+            style={{
+              x: shouldReduceMotion ? 0 : layer2X,
+              y: shouldReduceMotion ? 0 : layer2Y,
+              translateZ: 30
+            }}
+            whileHover={{ scale: 1.06 }}
+            className="p-3 rounded-2xl bg-white/95 backdrop-blur-md border border-emerald-100 shadow-md flex items-center gap-2.5"
           >
-            <div className="w-7 h-7 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
-              <Lock className="w-3.5 h-3.5" />
+            <div className="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 shadow-xs">
+              <Lock className="w-4 h-4" />
             </div>
             <div className="min-w-0">
               <p className="text-[11px] font-bold text-[#082B59] truncate">2FA / Access Guard</p>
-              <p className="text-[9.5px] text-emerald-600 font-medium">100% Enforced</p>
+              <p className="text-[9.5px] text-emerald-600 font-semibold">100% Enforced</p>
             </div>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 10 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.4, delay: 0.2 }}
-            className="p-2.5 rounded-xl bg-white/95 border border-emerald-100 shadow-xs flex items-center gap-2.5"
+            style={{
+              x: shouldReduceMotion ? 0 : layer3X,
+              y: shouldReduceMotion ? 0 : layer3Y,
+              translateZ: 30
+            }}
+            whileHover={{ scale: 1.06 }}
+            className="p-3 rounded-2xl bg-white/95 backdrop-blur-md border border-emerald-100 shadow-md flex items-center gap-2.5"
           >
-            <div className="w-7 h-7 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
-              <Activity className="w-3.5 h-3.5" />
+            <div className="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 shadow-xs">
+              <Activity className="w-4 h-4" />
             </div>
             <div className="min-w-0">
-              <p className="text-[11px] font-bold text-[#082B59] truncate">Anti-Phishing Shield</p>
-              <p className="text-[9.5px] text-teal-600 font-medium">Active Threat Filter</p>
+              <p className="text-[11px] font-bold text-[#082B59] truncate">Anti-Phishing Filter</p>
+              <p className="text-[9.5px] text-teal-600 font-semibold">Active Threat Shield</p>
             </div>
           </motion.div>
         </div>
       </div>
 
-      {/* Bottom Live Metrics Bar */}
-      <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[10px] text-slate-500 font-mono">
-        <span className="flex items-center gap-1.5 text-emerald-600 font-semibold">
+      {/* Floating Bottom Metrics Pill */}
+      <motion.div
+        style={{
+          x: shouldReduceMotion ? 0 : layer2X,
+          y: shouldReduceMotion ? 0 : layer2Y
+        }}
+        className="flex items-center justify-between w-full max-w-[340px] px-3.5 py-2 rounded-full bg-white/80 backdrop-blur-md border border-slate-200/80 shadow-xs text-[10.5px] font-mono text-slate-600"
+      >
+        <span className="flex items-center gap-1.5 text-emerald-600 font-bold">
           <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
-          Threat Level: 0 (Protected)
+          Threat Level: 0 (Secured)
         </span>
         <span className="text-slate-400">Zero Compromise</span>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
 
 // --- C. FILM PRODUCTION ANIMATION ---
-function FilmProductionStageVisual({ shouldReduceMotion }) {
-  return (
-    <div className="relative w-full h-full flex flex-col justify-between select-none">
-      {/* Ambient Cyan Backlight */}
-      <div className="absolute -top-10 -right-10 w-44 h-44 bg-cyan-400/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-10 -left-10 w-44 h-44 bg-indigo-300/20 rounded-full blur-3xl pointer-events-none" />
+function FilmProductionStageVisual({ shouldReduceMotion, cursor }) {
+  const { rotateX, rotateY, layer1X, layer1Y, layer2X, layer2Y, layer3X, layer3Y, glowX, glowY } = cursor;
 
-      {/* Top Header Badge */}
-      <div className="flex items-center justify-between pb-3 border-b border-cyan-100/80">
+  return (
+    <motion.div
+      style={{
+        rotateX: shouldReduceMotion ? 0 : rotateX,
+        rotateY: shouldReduceMotion ? 0 : rotateY,
+        transformStyle: 'preserve-3d'
+      }}
+      className="relative w-full h-[380px] sm:h-[430px] flex flex-col justify-between items-center select-none"
+    >
+      {/* Interactive Cursor Spotlight Aura */}
+      <motion.div
+        style={{
+          left: glowX,
+          top: glowY,
+          transform: 'translate(-50%, -50%)'
+        }}
+        className="absolute w-64 h-64 bg-gradient-to-r from-cyan-400/25 via-sky-300/20 to-transparent rounded-full blur-3xl pointer-events-none -z-10"
+      />
+
+      {/* Floating Top Header Pill */}
+      <motion.div
+        style={{
+          x: shouldReduceMotion ? 0 : layer1X,
+          y: shouldReduceMotion ? 0 : layer1Y
+        }}
+        className="flex items-center justify-between w-full max-w-[340px] px-3.5 py-2 rounded-full bg-white/80 backdrop-blur-md border border-cyan-100 shadow-sm"
+      >
         <div className="flex items-center gap-2">
-          <span className="flex h-2 w-2 rounded-full bg-red-500 animate-pulse" />
-          <span className="text-[11px] font-bold tracking-wider uppercase text-cyan-700">
+          <span className="flex h-2 w-2 rounded-full bg-red-500 animate-ping" />
+          <span className="text-[11px] font-bold tracking-wider uppercase text-cyan-800">
             4K Cinematic Studio
           </span>
         </div>
         <span className="text-[10px] font-mono font-medium px-2 py-0.5 rounded-full bg-cyan-50 text-cyan-700 border border-cyan-200/60">
           REC &bull; 60 FPS HDR
         </span>
-      </div>
+      </motion.div>
 
-      {/* Center Viewfinder & Audio Equalizer Bars */}
-      <div className="relative my-4 flex flex-col items-center justify-center py-4">
-        {/* Viewfinder Corner Framing Brackets */}
-        <div className="absolute inset-0 pointer-events-none flex flex-col justify-between p-1 opacity-70">
+      {/* Center 3D Viewfinder & Audio Equalizer Bars */}
+      <div className="relative my-auto flex flex-col items-center justify-center w-full py-2">
+        {/* Viewfinder Corner Framing Brackets with Parallax */}
+        <motion.div
+          style={{
+            x: shouldReduceMotion ? 0 : layer3X,
+            y: shouldReduceMotion ? 0 : layer3Y
+          }}
+          className="absolute inset-0 pointer-events-none flex flex-col justify-between p-2 max-w-[370px] mx-auto opacity-75"
+        >
           <div className="flex justify-between">
-            <span className="w-4 h-4 border-t-2 border-l-2 border-cyan-400" />
-            <span className="w-4 h-4 border-t-2 border-r-2 border-cyan-400" />
+            <span className="w-5 h-5 border-t-2 border-l-2 border-cyan-500 rounded-tl-sm" />
+            <span className="w-5 h-5 border-t-2 border-r-2 border-cyan-500 rounded-tr-sm" />
           </div>
           <div className="flex justify-between">
-            <span className="w-4 h-4 border-b-2 border-l-2 border-cyan-400" />
-            <span className="w-4 h-4 border-b-2 border-r-2 border-cyan-400" />
+            <span className="w-5 h-5 border-b-2 border-l-2 border-cyan-500 rounded-bl-sm" />
+            <span className="w-5 h-5 border-b-2 border-r-2 border-cyan-500 rounded-br-sm" />
           </div>
-        </div>
+        </motion.div>
 
         {/* Central Camera / Film Reel Hub */}
-        <div className="relative z-10 flex flex-col items-center mb-6">
+        <motion.div
+          style={{
+            x: shouldReduceMotion ? 0 : layer1X,
+            y: shouldReduceMotion ? 0 : layer1Y,
+            translateZ: 50
+          }}
+          className="relative z-20 flex flex-col items-center mb-5 group cursor-pointer"
+        >
+          {/* Outer Dashed Orbit Ring */}
           <motion.div
             animate={shouldReduceMotion ? {} : { rotate: 360 }}
             transition={{ duration: 16, repeat: Infinity, ease: 'linear' }}
-            className="absolute -inset-3 rounded-full border border-dashed border-cyan-400/40"
+            className="absolute -inset-4 rounded-full border border-dashed border-cyan-400/50 pointer-events-none"
           />
-          <motion.div
-            animate={shouldReduceMotion ? {} : { scale: [1, 1.06, 1] }}
-            transition={{ duration: 2.6, repeat: Infinity, ease: 'easeInOut' }}
-            className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-cyan-600 to-sky-400 text-white flex items-center justify-center shadow-lg shadow-cyan-500/25 relative z-10"
-          >
-            <Film className="w-8 h-8" />
-          </motion.div>
-          <span className="mt-2 text-xs font-bold text-[#082B59]">Commercial Storytelling</span>
-        </div>
 
-        {/* Live Audio & Motion Equalizer Waves */}
-        <div className="flex items-center justify-center gap-1.5 w-full h-10 px-4 relative z-10">
-          {[16, 28, 40, 22, 34, 46, 30, 20, 38, 24].map((h, i) => (
+          <motion.div
+            animate={shouldReduceMotion ? {} : { scale: [1, 1.05, 1] }}
+            transition={{ duration: 2.8, repeat: Infinity, ease: 'easeInOut' }}
+            whileHover={{ scale: 1.15 }}
+            className="w-18 h-18 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-tr from-cyan-600 via-sky-500 to-blue-400 text-white flex items-center justify-center shadow-xl shadow-cyan-500/30 relative z-10 transition-shadow duration-300 group-hover:shadow-cyan-500/50"
+          >
+            <Film className="w-9 h-9 sm:w-10 sm:h-10 text-white drop-shadow-md" />
+            <Video className="w-3.5 h-3.5 text-cyan-100 absolute top-2 right-2" />
+          </motion.div>
+
+          <span className="mt-2.5 text-xs font-bold text-[#082B59] bg-white/90 px-2.5 py-0.5 rounded-full shadow-xs border border-cyan-100">
+            Commercial Storytelling
+          </span>
+        </motion.div>
+
+        {/* Live Audio Equalizer Frequency Bars that dynamically bounce */}
+        <motion.div
+          style={{
+            x: shouldReduceMotion ? 0 : layer2X,
+            y: shouldReduceMotion ? 0 : layer2Y,
+            translateZ: 25
+          }}
+          className="flex items-end justify-center gap-2 w-full max-w-[340px] h-12 px-4 py-1.5 rounded-2xl bg-white/90 backdrop-blur-md border border-cyan-100 shadow-md relative z-20"
+        >
+          {[18, 30, 42, 24, 38, 48, 32, 22, 40, 26, 44, 32].map((baseHeight, i) => (
             <motion.span
               key={i}
-              animate={shouldReduceMotion ? {} : { height: [h * 0.4, h, h * 0.3, h * 0.8] }}
+              animate={
+                shouldReduceMotion
+                  ? {}
+                  : {
+                      height: [
+                        `${baseHeight * 0.35}px`,
+                        `${baseHeight}px`,
+                        `${baseHeight * 0.55}px`,
+                        `${baseHeight * 0.9}px`
+                      ]
+                    }
+              }
               transition={{
-                duration: 1.2,
+                duration: 1.1,
                 repeat: Infinity,
                 repeatType: 'mirror',
-                delay: i * 0.1,
+                delay: i * 0.08,
                 ease: 'easeInOut'
               }}
-              className="w-1.5 rounded-full bg-gradient-to-t from-cyan-600 to-sky-300"
-              style={{ height: `${h}px` }}
+              className="w-2 rounded-full bg-gradient-to-t from-cyan-600 to-sky-300"
+              style={{ height: `${baseHeight}px` }}
             />
           ))}
-        </div>
+        </motion.div>
       </div>
 
-      {/* Bottom Live Metrics Bar */}
-      <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[10px] text-slate-500 font-mono">
-        <span className="flex items-center gap-1.5 text-cyan-700 font-semibold">
-          <Video className="w-3.5 h-3.5 text-cyan-500" />
+      {/* Floating Bottom Metrics Pill */}
+      <motion.div
+        style={{
+          x: shouldReduceMotion ? 0 : layer2X,
+          y: shouldReduceMotion ? 0 : layer2Y
+        }}
+        className="flex items-center justify-between w-full max-w-[340px] px-3.5 py-2 rounded-full bg-white/80 backdrop-blur-md border border-slate-200/80 shadow-xs text-[10.5px] font-mono text-slate-600"
+      >
+        <span className="flex items-center gap-1.5 text-cyan-700 font-bold">
+          <Crosshair className="w-3.5 h-3.5 text-cyan-500" />
           Master: 2.39:1 Anamorphic
         </span>
         <span className="text-slate-400">Color Graded</span>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
 
@@ -297,6 +487,58 @@ function FilmProductionStageVisual({ shouldReduceMotion }) {
 export default function AboutUs() {
   const shouldReduceMotion = useReducedMotion();
   const [activeServiceId, setActiveServiceId] = useState('ai-services');
+  const stageRef = useRef(null);
+
+  // Mouse & Pointer Cursor Motion Values
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  // Spring Physics for smooth fluid cursor responsiveness
+  const springConfig = { damping: 22, stiffness: 140, mass: 0.6 };
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [14, -14]), springConfig);
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-14, 14]), springConfig);
+
+  // Multi-depth Parallax Layers
+  const layer1X = useSpring(useTransform(mouseX, [-0.5, 0.5], [-18, 18]), springConfig);
+  const layer1Y = useSpring(useTransform(mouseY, [-0.5, 0.5], [-18, 18]), springConfig);
+
+  const layer2X = useSpring(useTransform(mouseX, [-0.5, 0.5], [16, -16]), springConfig);
+  const layer2Y = useSpring(useTransform(mouseY, [-0.5, 0.5], [16, -16]), springConfig);
+
+  const layer3X = useSpring(useTransform(mouseX, [-0.5, 0.5], [-28, 28]), springConfig);
+  const layer3Y = useSpring(useTransform(mouseY, [-0.5, 0.5], [-28, 28]), springConfig);
+
+  // Smooth Cursor Spotlight Tracking
+  const glowX = useSpring(useTransform(mouseX, [-0.5, 0.5], ['20%', '80%']), springConfig);
+  const glowY = useSpring(useTransform(mouseY, [-0.5, 0.5], ['20%', '80%']), springConfig);
+
+  const cursorPhysics = {
+    rotateX,
+    rotateY,
+    layer1X,
+    layer1Y,
+    layer2X,
+    layer2Y,
+    layer3X,
+    layer3Y,
+    glowX,
+    glowY
+  };
+
+  // Track cursor movement across the stage
+  const handlePointerMove = (e) => {
+    if (!stageRef.current) return;
+    const rect = stageRef.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    mouseX.set(x);
+    mouseY.set(y);
+  };
+
+  const handlePointerLeave = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+  };
 
   // The 3 Core Services
   const serviceCards = [
@@ -344,13 +586,13 @@ export default function AboutUs() {
   return (
     <section
       id="about"
-      className="py-8 sm:py-10 lg:py-12 relative overflow-hidden bg-white text-[#082B59]"
+      className="py-10 sm:py-14 lg:py-16 relative overflow-hidden bg-white text-[#082B59]"
     >
       {/* Subtle Background Decoration: Soft Gradient Blobs & Delicate Dot Pattern */}
-      <div className="absolute top-1/4 left-8 w-[320px] h-[320px] bg-blue-50/50 rounded-full blur-3xl pointer-events-none -z-10" />
-      <div className="absolute bottom-6 right-8 w-[340px] h-[340px] bg-sky-50/40 rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute top-1/4 left-8 w-[340px] h-[340px] bg-blue-50/60 rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute bottom-6 right-8 w-[360px] h-[360px] bg-sky-50/50 rounded-full blur-3xl pointer-events-none -z-10" />
       <div
-        className="absolute inset-0 opacity-[0.16] pointer-events-none"
+        className="absolute inset-0 opacity-[0.14] pointer-events-none"
         style={{
           backgroundImage: `radial-gradient(rgba(8, 102, 232, 0.45) 1px, transparent 1px)`,
           backgroundSize: '28px 28px'
@@ -360,83 +602,67 @@ export default function AboutUs() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Two-Column Responsive Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 xl:gap-10 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-center">
 
-          {/* LEFT: DYNAMIC SERVICE ANIMATION STAGE (RED SQUARE ZONE) */}
+          {/* LEFT: OPEN 3D HOLOGRAPHIC ANIMATION STAGE (SQUARE BOX REMOVED, CURSOR INTERACTIVE) */}
           <div className="lg:col-span-5 flex justify-center w-full">
-            <motion.div
-              initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-full max-w-[440px] min-h-[380px] sm:min-h-[420px] rounded-2xl sm:rounded-3xl p-5 sm:p-6 bg-gradient-to-br from-[#F8FAFD] via-white to-blue-50/30 border border-slate-200/90 shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden text-left flex flex-col justify-between"
+            <div
+              ref={stageRef}
+              onPointerMove={handlePointerMove}
+              onPointerLeave={handlePointerLeave}
+              style={{ perspective: 1200 }}
+              className="relative w-full max-w-[460px] flex items-center justify-center p-2 cursor-grab active:cursor-grabbing"
             >
-              {/* Service Tab Switchers for Direct Tap Access */}
-              <div className="flex items-center gap-1.5 p-1 rounded-xl bg-slate-100/80 mb-3 border border-slate-200/60 z-20">
-                {serviceCards.map(s => {
-                  const Icon = s.icon;
-                  const isActive = s.id === activeServiceId;
-                  return (
-                    <button
-                      key={s.id}
-                      type="button"
-                      onClick={() => setActiveServiceId(s.id)}
-                      className={`flex-1 py-1.5 px-2 rounded-lg text-[10.5px] font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${isActive
-                          ? 'bg-white text-[#082B59] shadow-xs'
-                          : 'text-slate-500 hover:text-[#082B59]'
-                        }`}
-                    >
-                      <Icon className={`w-3.5 h-3.5 ${isActive ? s.categoryColor : 'text-slate-400'}`} />
-                      <span className="truncate">{s.category}</span>
-                    </button>
-                  );
-                })}
-              </div>
+              <AnimatePresence mode="wait">
+                {activeServiceId === 'ai-services' && (
+                  <motion.div
+                    key="ai-services"
+                    initial={{ opacity: 0, scale: 0.94 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.94 }}
+                    transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                    className="w-full"
+                  >
+                    <AutomationStageVisual
+                      shouldReduceMotion={shouldReduceMotion}
+                      cursor={cursorPhysics}
+                    />
+                  </motion.div>
+                )}
 
-              {/* Dynamic Animated Scene based on Clicked Service */}
-              <div className="flex-1 relative min-h-[260px] flex items-center justify-center">
-                <AnimatePresence mode="wait">
-                  {activeServiceId === 'ai-services' && (
-                    <motion.div
-                      key="ai-services"
-                      initial={{ opacity: 0, scale: 0.96 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.96 }}
-                      transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                      className="w-full h-full"
-                    >
-                      <AutomationStageVisual shouldReduceMotion={shouldReduceMotion} />
-                    </motion.div>
-                  )}
+                {activeServiceId === 'cyber-security' && (
+                  <motion.div
+                    key="cyber-security"
+                    initial={{ opacity: 0, scale: 0.94 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.94 }}
+                    transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                    className="w-full"
+                  >
+                    <CyberSecurityStageVisual
+                      shouldReduceMotion={shouldReduceMotion}
+                      cursor={cursorPhysics}
+                    />
+                  </motion.div>
+                )}
 
-                  {activeServiceId === 'cyber-security' && (
-                    <motion.div
-                      key="cyber-security"
-                      initial={{ opacity: 0, scale: 0.96 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.96 }}
-                      transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                      className="w-full h-full"
-                    >
-                      <CyberSecurityStageVisual shouldReduceMotion={shouldReduceMotion} />
-                    </motion.div>
-                  )}
-
-                  {activeServiceId === 'ai-films' && (
-                    <motion.div
-                      key="ai-films"
-                      initial={{ opacity: 0, scale: 0.96 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.96 }}
-                      transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                      className="w-full h-full"
-                    >
-                      <FilmProductionStageVisual shouldReduceMotion={shouldReduceMotion} />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            </motion.div>
+                {activeServiceId === 'ai-films' && (
+                  <motion.div
+                    key="ai-films"
+                    initial={{ opacity: 0, scale: 0.94 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.94 }}
+                    transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                    className="w-full"
+                  >
+                    <FilmProductionStageVisual
+                      shouldReduceMotion={shouldReduceMotion}
+                      cursor={cursorPhysics}
+                    />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </div>
 
           {/* RIGHT: HEADING & INTERACTIVE SERVICE SELECTOR CARDS */}
@@ -453,7 +679,9 @@ export default function AboutUs() {
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#082B59] tracking-tight leading-[1.18] mb-1.5">
                 Our <span className="text-[#0866E8]">Core Services</span>
               </h2>
-
+              <p className="text-xs sm:text-sm text-slate-500 font-normal">
+                Click any service below to explore its live interactive capability showcase. Move your cursor to inspect in 3D.
+              </p>
             </motion.div>
 
             {/* Clickable Service Cards */}
@@ -478,10 +706,11 @@ export default function AboutUs() {
                       transition: { duration: 0.22, ease: [0.16, 1, 0.3, 1] }
                     }}
                     onClick={() => setActiveServiceId(card.id)}
-                    className={`group relative rounded-2xl p-4 sm:p-5 bg-white/95 backdrop-blur-md border transition-all duration-300 overflow-hidden text-left cursor-pointer ${isSelected
+                    className={`group relative rounded-2xl p-4 sm:p-5 bg-white/95 backdrop-blur-md border transition-all duration-300 overflow-hidden text-left cursor-pointer ${
+                      isSelected
                         ? card.activeBorder
                         : 'border-slate-200/90 hover:border-slate-300 shadow-xs hover:shadow-md'
-                      }`}
+                    }`}
                   >
                     {/* Active Accent Indicator Bar */}
                     {isSelected && (
