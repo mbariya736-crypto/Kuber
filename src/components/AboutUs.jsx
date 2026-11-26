@@ -319,8 +319,8 @@ export default function AboutUs() {
               </AnimatePresence>
             </div>
 
-            {/* Quick Switcher Indicators */}
-            <div className="flex items-center gap-1.5 p-1 rounded-xl bg-slate-100/80 border border-slate-200/80 self-start md:self-auto">
+            {/* Desktop / Tablet Quick Switcher Indicators */}
+            <div className="hidden sm:flex items-center gap-1.5 p-1 rounded-xl bg-slate-100/80 border border-slate-200/80 self-start md:self-auto">
               {serviceCards.map((card) => {
                 const isCur = card.id === activeServiceId;
                 const Icon = card.icon;
@@ -328,18 +328,44 @@ export default function AboutUs() {
                   <button
                     key={card.id}
                     onClick={() => setActiveServiceId(card.id)}
-                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 ${
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 cursor-pointer ${
                       isCur
                         ? 'bg-white text-[#082B59] shadow-xs font-bold'
                         : 'text-slate-500 hover:text-slate-800'
                     }`}
                   >
                     <Icon className="w-3.5 h-3.5" style={{ color: isCur ? card.accentColor : undefined }} />
-                    <span className="hidden sm:inline">{card.category}</span>
+                    <span>{card.category}</span>
                   </button>
                 );
               })}
             </div>
+          </div>
+
+          {/* Dedicated Mobile Thumb-Friendly Segmented Switcher (Instant one-tap toggle on mobile) */}
+          <div className="sm:hidden mt-3.5 w-full flex items-center justify-between p-1 rounded-2xl bg-slate-100/90 border border-slate-200/80 shadow-xs gap-1">
+            {serviceCards.map((card) => {
+              const isCur = card.id === activeServiceId;
+              const Icon = card.icon;
+              return (
+                <button
+                  key={card.id}
+                  onClick={() => setActiveServiceId(card.id)}
+                  className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer active:scale-95 ${
+                    isCur
+                      ? 'bg-white shadow-xs'
+                      : 'text-slate-600 hover:text-slate-900 bg-transparent'
+                  }`}
+                  style={{
+                    color: isCur ? card.accentColor : undefined,
+                    boxShadow: isCur ? `0 2px 8px -2px ${card.accentColor}30` : undefined
+                  }}
+                >
+                  <Icon className="w-3.5 h-3.5 shrink-0" />
+                  <span className="text-[11px] truncate">{card.category}</span>
+                </button>
+              );
+            })}
           </div>
         </div>
 
@@ -410,7 +436,7 @@ export default function AboutUs() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.28 }}
-                className="mt-2.5 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 text-white backdrop-blur-md border border-white/10 shadow-md text-[11px]"
+                className="mt-2.5 inline-flex items-center justify-center flex-wrap gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-slate-900/95 text-white backdrop-blur-md border border-white/10 shadow-md text-[10px] sm:text-[11px] max-w-full text-center"
               >
                 <span
                   className="w-2 h-2 rounded-full animate-pulse"
@@ -449,6 +475,7 @@ export default function AboutUs() {
                       y: -3,
                       transition: { duration: 0.22, ease: [0.16, 1, 0.3, 1] }
                     }}
+                    whileTap={{ scale: 0.98 }}
                     onClick={() => setActiveServiceId(card.id)}
                     className={`group relative rounded-2xl p-4 sm:p-5 bg-white/95 backdrop-blur-md border transition-all duration-300 overflow-hidden text-left cursor-pointer ${
                       isSelected

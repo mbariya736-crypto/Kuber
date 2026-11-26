@@ -15,7 +15,9 @@ import {
   Briefcase,
   HelpCircle,
   Mail,
-  Zap
+  Zap,
+  Phone,
+  MessageSquare
 } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
@@ -270,7 +272,7 @@ export default function Navbar() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             onClick={() => setMobileMenuOpen(false)}
-            className="fixed inset-0 z-[80] bg-slate-900/40 backdrop-blur-xs lg:hidden"
+            className="fixed inset-0 z-[80] bg-slate-950/50 backdrop-blur-sm lg:hidden"
             aria-hidden="true"
           />
         )}
@@ -459,25 +461,41 @@ export default function Navbar() {
             </nav>
           </div>
 
-          {/* Mobile Drawer (Clean, Streamlined & Interactive) */}
+          {/* Mobile Drawer (Dynamic, Unique & Human-Crafted) */}
           <AnimatePresence>
             {mobileMenuOpen && (
               <motion.div
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: 'auto' }}
                 exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                className="lg:hidden w-full flex flex-col overflow-hidden bg-white relative"
+                transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+                className="lg:hidden w-full flex flex-col overflow-hidden bg-white/98 backdrop-blur-2xl relative"
                 style={{
-                  maxHeight: 'calc(100vh - 80px - env(safe-area-inset-bottom, 0px))'
+                  maxHeight: 'calc(100vh - 84px - env(safe-area-inset-bottom, 0px))'
                 }}
               >
-                {/* Subtle Ambient Background Aura */}
-                <div className="absolute -top-10 -right-10 w-36 h-36 bg-blue-100/50 rounded-full blur-2xl pointer-events-none" />
-                <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-cyan-100/40 rounded-full blur-2xl pointer-events-none" />
+                {/* Dynamic Ambient Background Aura */}
+                <div className="absolute -top-12 -right-12 w-44 h-44 bg-blue-100/60 rounded-full blur-3xl pointer-events-none" />
+                <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-cyan-100/50 rounded-full blur-3xl pointer-events-none" />
+
+                {/* Human-Crafted Live Status Strip */}
+                <div className="px-4 py-2 border-b border-slate-100/80 bg-slate-50/60 flex items-center justify-between text-[11px] relative z-10">
+                  <div className="flex items-center gap-2">
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                    </span>
+                    <span className="font-semibold text-slate-700 tracking-wide">
+                      AI Core Active & Ready
+                    </span>
+                  </div>
+                  <span className="text-[10px] font-mono text-slate-600 bg-white/90 px-2 py-0.5 rounded-full border border-slate-200/60 shadow-2xs">
+                    Next-Gen Tech
+                  </span>
+                </div>
 
                 {/* Scrollable Nav Items with Staggered Entrance */}
-                <div className="overflow-y-auto overscroll-contain px-3.5 py-3 sm:px-4 space-y-1.5 flex-1 relative z-10">
+                <div className="overflow-y-auto overscroll-contain px-3 sm:px-4 py-2.5 space-y-1.5 flex-1 relative z-10">
                   {navLinks.map((link, idx) => {
                     const active = isLinkActive(link);
                     const IconComponent = link.icon;
@@ -487,34 +505,39 @@ export default function Navbar() {
                       return (
                         <motion.div
                           key={link.name}
-                          initial={{ opacity: 0, x: -10 }}
+                          initial={{ opacity: 0, x: -8 }}
                           animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: 0.04 + idx * 0.03, duration: 0.2 }}
-                          className="flex flex-col"
+                          transition={{ delay: 0.03 + idx * 0.025, duration: 0.22 }}
+                          className="flex flex-col rounded-2xl overflow-hidden border border-slate-100"
                         >
                           <div
-                            className={`p-2.5 rounded-xl transition-all flex items-center justify-between cursor-pointer ${
+                            className={`p-2.5 transition-all flex items-center justify-between cursor-pointer ${
                               active
-                                ? 'bg-blue-50/90 text-[#0866E8] shadow-xs'
-                                : 'hover:bg-slate-50 text-[#082B59]'
+                                ? 'bg-blue-50/90 text-[#0866E8]'
+                                : 'hover:bg-slate-50 text-[#082B59] bg-white'
                             }`}
                           >
                             <div
                               onClick={(e) => handleLinkClick(e, link)}
                               className="flex items-center gap-3 flex-1 min-w-0"
                             >
-                              <div className={`w-8 h-8 rounded-lg flex items-center justify-center border shrink-0 ${link.iconBg} ${link.iconColor}`}>
-                                <IconComponent className="w-4 h-4" />
+                              <div className={`w-9 h-9 rounded-xl flex items-center justify-center border shrink-0 ${link.iconBg} ${link.iconColor} shadow-2xs`}>
+                                <IconComponent className="w-4.5 h-4.5" />
                               </div>
-                              <span className="text-sm font-semibold truncate block">
-                                {link.name}
-                              </span>
+                              <div className="min-w-0 flex-1">
+                                <span className="text-sm font-bold truncate block text-[#082B59]">
+                                  {link.name}
+                                </span>
+                                <span className="text-[11px] text-slate-600 truncate block">
+                                  {link.subtitle || 'Explore 3 Core Practices'}
+                                </span>
+                              </div>
                             </div>
 
                             <button
                               type="button"
                               onClick={() => setMobileServicesExpanded(!mobileServicesExpanded)}
-                              className="p-1.5 rounded-lg text-slate-400 hover:text-[#0866E8] hover:bg-blue-100/50 focus:outline-none transition-colors"
+                              className="p-2 rounded-xl text-slate-400 hover:text-[#0866E8] hover:bg-blue-50 focus:outline-none transition-colors ml-1"
                               aria-label="Toggle Services submenu"
                             >
                               <ChevronDown
@@ -532,8 +555,8 @@ export default function Navbar() {
                                 initial={{ height: 0, opacity: 0 }}
                                 animate={{ height: 'auto', opacity: 1 }}
                                 exit={{ height: 0, opacity: 0 }}
-                                transition={{ duration: 0.18, ease: "easeOut" }}
-                                className="overflow-hidden pl-3 pr-1 py-1.5 space-y-1.5"
+                                transition={{ duration: 0.2, ease: "easeOut" }}
+                                className="overflow-hidden px-2 pb-2.5 pt-1 space-y-1.5 bg-slate-50/70 border-t border-slate-100"
                               >
                                 {serviceItems.map((item) => {
                                   const isItemActive = location.pathname === item.path;
@@ -544,18 +567,24 @@ export default function Navbar() {
                                       key={item.name}
                                       type="button"
                                       onClick={() => handlePracticeClick(item.path)}
-                                      className={`w-full text-left p-2.5 rounded-xl transition-all duration-150 flex items-center gap-2.5 cursor-pointer ${
+                                      className={`w-full text-left p-2.5 rounded-xl transition-all duration-150 flex items-center gap-3 cursor-pointer ${
                                         isItemActive
-                                          ? 'bg-blue-50 text-[#0866E8] font-semibold border border-blue-200/60 shadow-xs'
-                                          : 'bg-slate-50/70 hover:bg-blue-50/50 text-slate-700'
+                                          ? 'bg-blue-50 text-[#0866E8] font-semibold border border-blue-200/80 shadow-xs'
+                                          : 'bg-white hover:bg-blue-50/40 text-slate-700 border border-slate-200/60 shadow-2xs'
                                       }`}
                                     >
-                                      <div className={`p-1.5 rounded-lg border ${item.borderColor} ${item.bgColor} ${item.color} shrink-0`}>
-                                        <SubIcon className="w-3.5 h-3.5" />
+                                      <div className={`p-2 rounded-lg border ${item.borderColor} ${item.bgColor} ${item.color} shrink-0`}>
+                                        <SubIcon className="w-4 h-4" />
                                       </div>
-                                      <span className="text-xs font-semibold text-slate-900 block truncate flex-1">
-                                        {item.name}
-                                      </span>
+                                      <div className="min-w-0 flex-1">
+                                        <span className="text-xs font-bold text-slate-900 block truncate">
+                                          {item.name}
+                                        </span>
+                                        <span className="text-[10px] text-slate-600 block truncate">
+                                          {item.description}
+                                        </span>
+                                      </div>
+                                      <ArrowRight className="w-3.5 h-3.5 text-slate-300 shrink-0" />
                                     </button>
                                   );
                                 })}
@@ -566,38 +595,75 @@ export default function Navbar() {
                       );
                     }
 
-                    // Normal Links with Icons
+                    // Normal Links with Human Micro-Subtitles
                     return (
                       <motion.a
                         key={link.name}
                         href={link.path}
-                        initial={{ opacity: 0, x: -10 }}
+                        initial={{ opacity: 0, x: -8 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.04 + idx * 0.03, duration: 0.2 }}
+                        transition={{ delay: 0.03 + idx * 0.025, duration: 0.22 }}
+                        whileTap={{ scale: 0.98 }}
                         onClick={(e) => handleLinkClick(e, link)}
-                        className={`p-2.5 rounded-xl transition-all flex items-center justify-between cursor-pointer ${
+                        className={`p-2.5 rounded-2xl transition-all flex items-center justify-between cursor-pointer border ${
                           active
-                            ? 'bg-blue-50/90 text-[#0866E8] shadow-xs'
-                            : 'hover:bg-slate-50 text-[#082B59]'
+                            ? 'bg-blue-50/90 text-[#0866E8] border-blue-200/80 shadow-xs'
+                            : 'hover:bg-slate-50 text-[#082B59] border-transparent'
                         }`}
                       >
                         <div className="flex items-center gap-3 min-w-0">
-                          <div className={`w-8 h-8 rounded-lg flex items-center justify-center border shrink-0 ${link.iconBg} ${link.iconColor}`}>
-                            <IconComponent className="w-4 h-4" />
+                          <div className={`w-9 h-9 rounded-xl flex items-center justify-center border shrink-0 ${link.iconBg} ${link.iconColor} shadow-2xs`}>
+                            <IconComponent className="w-4.5 h-4.5" />
                           </div>
-                          <span className="text-sm font-semibold block truncate">
-                            {link.name}
-                          </span>
+                          <div className="min-w-0 flex-1">
+                            <span className="text-sm font-bold block truncate text-[#082B59]">
+                              {link.name}
+                            </span>
+                            <span className="text-[11px] text-slate-600 block truncate">
+                              {link.subtitle}
+                            </span>
+                          </div>
                         </div>
-                        <ArrowRight className={`w-3.5 h-3.5 shrink-0 ${active ? 'text-[#0866E8]' : 'text-slate-300'}`} />
+                        <ArrowRight className={`w-4 h-4 shrink-0 transition-transform ${active ? 'text-[#0866E8] translate-x-0.5' : 'text-slate-300'}`} />
                       </motion.a>
                     );
                   })}
                 </div>
 
+                {/* Human-Made Quick Touch Direct Connect Bar */}
+                <div className="px-3 sm:px-4 py-2 border-t border-slate-100 bg-slate-50/70 relative z-10">
+                  <div className="grid grid-cols-3 gap-2">
+                    <a
+                      href="https://wa.me/?text=Hello%20Kuber%20AIS%20Technologies%2C%20I%20would%20like%20to%20discuss%20a%20project."
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex flex-col items-center justify-center p-2 rounded-xl bg-white border border-emerald-200/70 hover:bg-emerald-50/60 transition-colors shadow-2xs text-center group"
+                    >
+                      <MessageSquare className="w-4 h-4 text-emerald-600 mb-0.5 group-hover:scale-110 transition-transform" />
+                      <span className="text-[10px] font-bold text-slate-700">WhatsApp</span>
+                    </a>
+
+                    <a
+                      href="tel:1930"
+                      className="flex flex-col items-center justify-center p-2 rounded-xl bg-white border border-blue-200/70 hover:bg-blue-50/60 transition-colors shadow-2xs text-center group"
+                    >
+                      <Phone className="w-4 h-4 text-[#0866E8] mb-0.5 group-hover:scale-110 transition-transform" />
+                      <span className="text-[10px] font-bold text-slate-700">Helpline</span>
+                    </a>
+
+                    <a
+                      href="mailto:contact@kuber-ais.com"
+                      className="flex flex-col items-center justify-center p-2 rounded-xl bg-white border border-indigo-200/70 hover:bg-indigo-50/60 transition-colors shadow-2xs text-center group"
+                    >
+                      <Mail className="w-4 h-4 text-indigo-600 mb-0.5 group-hover:scale-110 transition-transform" />
+                      <span className="text-[10px] font-bold text-slate-700">Email Us</span>
+                    </a>
+                  </div>
+                </div>
+
                 {/* Footer Action: Shimmering Get Started Button */}
                 <div
-                  className="p-3.5 sm:p-4 border-t border-slate-100 bg-slate-50/80 shrink-0 relative z-10"
+                  className="p-3 sm:p-4 border-t border-slate-100 bg-white shrink-0 relative z-10"
                   style={{
                     paddingBottom: 'max(14px, env(safe-area-inset-bottom, 14px))'
                   }}
@@ -605,7 +671,7 @@ export default function Navbar() {
                   <Link
                     to="/contact"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="relative group overflow-hidden w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-[#0866E8] via-[#0878F0] to-[#00B9E8] shadow-md hover:shadow-lg transition-all cursor-pointer min-h-[46px]"
+                    className="relative group overflow-hidden w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-sm font-bold text-white bg-gradient-to-r from-[#0866E8] via-[#0878F0] to-[#00B9E8] shadow-md hover:shadow-lg transition-all cursor-pointer min-h-[46px]"
                   >
                     {/* Animated Light Shimmer Sweep */}
                     <motion.div
@@ -613,7 +679,7 @@ export default function Navbar() {
                       transition={{ duration: 2.8, repeat: Infinity, ease: 'easeInOut', repeatDelay: 0.8 }}
                       className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12 pointer-events-none"
                     />
-                    <span className="relative z-10">Get Started</span>
+                    <span className="relative z-10">Get Free Consultation</span>
                     <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </div>
