@@ -104,9 +104,9 @@ export default function Hero({ onOpenModal }) {
           {/* RIGHT COLUMN: 3D Human Particle Silhouette */}
           <div className="col-span-5 xs:col-span-5 sm:col-span-5 md:col-span-5 flex items-end justify-end w-full relative mt-0">
             {/* Ambient Luminous Halo behind the 3D Bust */}
-            <div className="absolute w-[160px] xs:w-[200px] sm:w-[280px] md:w-[360px] lg:w-[420px] h-[160px] xs:h-[200px] sm:h-[280px] md:h-[360px] lg:h-[420px] bg-gradient-to-tr from-blue-100/40 via-sky-100/30 to-transparent rounded-full blur-2xl sm:blur-3xl pointer-events-none -z-10" />
+            <div className="absolute w-[120px] xs:w-[150px] sm:w-[220px] md:w-[360px] lg:w-[420px] h-[120px] xs:h-[150px] sm:h-[220px] md:h-[360px] lg:h-[420px] bg-gradient-to-tr from-blue-100/40 via-sky-100/30 to-transparent rounded-full blur-2xl sm:blur-3xl pointer-events-none -z-10" />
 
-            <div className="relative w-[140px] xs:w-[170px] sm:w-[240px] md:w-[350px] lg:w-[390px] xl:w-[430px] h-[180px] xs:h-[220px] sm:h-[300px] md:h-[420px] lg:h-[480px] xl:h-[510px] pointer-events-auto z-10">
+            <div className="relative w-[110px] xs:w-[135px] sm:w-[200px] md:w-[350px] lg:w-[390px] xl:w-[430px] h-[145px] xs:h-[175px] sm:h-[250px] md:h-[420px] lg:h-[480px] xl:h-[510px] pointer-events-auto z-10">
               <AllerHumanSilhouette className="w-full h-full" />
             </div>
           </div>
