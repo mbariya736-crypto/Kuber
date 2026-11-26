@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence, useReducedMotion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import {
   Bot,
+  Brain,
   ShieldCheck,
   Film,
   ArrowRight,
@@ -20,6 +21,160 @@ import { Link } from 'react-router-dom';
 /* ========================================================================= */
 /* 1. INTERACTIVE SERVICE ANIMATIONS (OPEN 3D HOLOGRAPHIC STAGE)             */
 /* ========================================================================= */
+
+// --- AI HUMANOID FACE COMPONENT (CYBERNETIC SYNTHETIC AI AGENT) ---
+function AiHumanoidFace({ shouldReduceMotion, cursor }) {
+  const { layer1X, layer1Y } = cursor;
+  // Eye tracking offset
+  const eyeX = useTransform(layer1X, [-18, 18], [-2.2, 2.2]);
+  const eyeY = useTransform(layer1Y, [-18, 18], [-1.8, 1.8]);
+
+  return (
+    <div className="relative w-20 h-20 sm:w-22 sm:h-22 rounded-3xl bg-gradient-to-b from-[#06152F] via-[#092B5E] to-[#0866E8] p-1.5 shadow-2xl shadow-blue-600/40 border border-cyan-400/35 flex items-center justify-center overflow-hidden transition-all duration-300 group-hover:shadow-blue-500/60 group-hover:border-cyan-300">
+      {/* Background Cyber Grid / Radial Glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(0,229,255,0.22)_0%,_transparent_72%)]" />
+
+      {/* Vertical Scanning Laser Light */}
+      <motion.div
+        animate={shouldReduceMotion ? {} : { top: ['6%', '90%', '6%'], opacity: [0.25, 0.8, 0.25] }}
+        transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute left-1 right-1 h-[2px] bg-gradient-to-r from-transparent via-cyan-300 to-transparent shadow-[0_0_8px_rgba(0,229,255,0.9)] z-20 pointer-events-none"
+      />
+
+      {/* Futuristic AI Humanoid Face Vector */}
+      <svg
+        viewBox="0 0 100 100"
+        className="w-full h-full relative z-10 drop-shadow-[0_2px_8px_rgba(0,229,255,0.45)]"
+        fill="none"
+      >
+        <defs>
+          <linearGradient id="aiFaceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#E0F2FE" />
+            <stop offset="50%" stopColor="#7DD3FC" />
+            <stop offset="100%" stopColor="#38BDF8" />
+          </linearGradient>
+          <linearGradient id="aiGlowGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#00E5FF" stopOpacity="0.85" />
+            <stop offset="100%" stopColor="#0866E8" stopOpacity="0.15" />
+          </linearGradient>
+          <radialGradient id="eyeGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#FFFFFF" />
+            <stop offset="45%" stopColor="#00E5FF" />
+            <stop offset="100%" stopColor="#0866E8" />
+          </radialGradient>
+        </defs>
+
+        {/* Outer Cranium Neural Wireframe Arc */}
+        <motion.path
+          d="M 22 42 C 22 18, 78 18, 78 42 C 78 58, 70 78, 50 92 C 30 78, 22 58, 22 42 Z"
+          stroke="url(#aiGlowGrad)"
+          strokeWidth="1.5"
+          strokeDasharray="4 3"
+          animate={shouldReduceMotion ? {} : { strokeDashoffset: [0, -30] }}
+          transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+        />
+
+        {/* Sculpted AI Head Shell */}
+        <path
+          d="M 26 40 C 26 20, 74 20, 74 40 C 74 54, 68 74, 50 86 C 32 74, 26 54, 26 40 Z"
+          fill="rgba(10, 37, 80, 0.7)"
+          stroke="url(#aiFaceGrad)"
+          strokeWidth="1.8"
+        />
+
+        {/* Forehead Plate & Central Neural Node */}
+        <path
+          d="M 36 28 Q 50 33 64 28"
+          stroke="#38BDF8"
+          strokeWidth="1.4"
+          strokeLinecap="round"
+        />
+        <circle cx="50" cy="24" r="2.2" fill="#00E5FF" />
+        <motion.circle
+          cx="50"
+          cy="24"
+          r="4"
+          stroke="#00E5FF"
+          strokeWidth="1"
+          animate={shouldReduceMotion ? {} : { scale: [1, 1.8, 1], opacity: [0.85, 0, 0.85] }}
+          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+        />
+
+        {/* Temple Circuit Traces */}
+        <path d="M 50 24 L 50 32" stroke="#38BDF8" strokeWidth="1.2" strokeLinecap="round" />
+        <path d="M 38 29 L 32 35 L 32 44" stroke="#00E5FF" strokeWidth="1" strokeLinecap="round" opacity="0.8" />
+        <path d="M 62 29 L 68 35 L 68 44" stroke="#00E5FF" strokeWidth="1" strokeLinecap="round" opacity="0.8" />
+
+        {/* Cyber Ear/Sensor Ports */}
+        <rect x="22" y="44" width="3" height="8" rx="1.5" fill="#38BDF8" />
+        <rect x="75" y="44" width="3" height="8" rx="1.5" fill="#38BDF8" />
+
+        {/* Eyebrows / Digital Brow Ridge */}
+        <path d="M 33 42 L 44 44" stroke="#7DD3FC" strokeWidth="1.8" strokeLinecap="round" />
+        <path d="M 67 42 L 56 44" stroke="#7DD3FC" strokeWidth="1.8" strokeLinecap="round" />
+
+        {/* Eyes Contour / Eye Sockets */}
+        <path
+          d="M 34 49 Q 40 45 46 49 Q 40 53 34 49 Z"
+          fill="rgba(4, 18, 48, 0.95)"
+          stroke="#38BDF8"
+          strokeWidth="1.2"
+        />
+        <path
+          d="M 54 49 Q 60 45 66 49 Q 60 53 54 49 Z"
+          fill="rgba(4, 18, 48, 0.95)"
+          stroke="#38BDF8"
+          strokeWidth="1.2"
+        />
+
+        {/* Animated Glowing Eyes (Blink & Track Cursor) */}
+        <motion.g
+          animate={shouldReduceMotion ? {} : { scaleY: [1, 1, 0.1, 1] }}
+          transition={{ duration: 3.6, repeat: Infinity, times: [0, 0.9, 0.93, 1] }}
+          style={{ transformOrigin: '50% 49%' }}
+        >
+          <motion.circle
+            cx="40"
+            cy="49"
+            r="2.6"
+            fill="url(#eyeGlow)"
+            style={{
+              x: shouldReduceMotion ? 0 : eyeX,
+              y: shouldReduceMotion ? 0 : eyeY
+            }}
+          />
+          <motion.circle
+            cx="60"
+            cy="49"
+            r="2.6"
+            fill="url(#eyeGlow)"
+            style={{
+              x: shouldReduceMotion ? 0 : eyeX,
+              y: shouldReduceMotion ? 0 : eyeY
+            }}
+          />
+        </motion.g>
+
+        {/* Sculpted Nose Bridge */}
+        <path d="M 50 47 L 50 60 L 47 63 L 53 63" stroke="#38BDF8" strokeWidth="1.2" strokeLinecap="round" />
+
+        {/* Cheekbone Facial Contour Lines */}
+        <path d="M 31 56 Q 36 68 44 75" stroke="#00E5FF" strokeWidth="0.9" strokeDasharray="3 2" opacity="0.65" />
+        <path d="M 69 56 Q 64 68 56 75" stroke="#00E5FF" strokeWidth="0.9" strokeDasharray="3 2" opacity="0.65" />
+
+        {/* Chiseled Cyber Mouth & Lips */}
+        <path d="M 43 71 Q 50 73 57 71" stroke="#BAE6FD" strokeWidth="1.4" strokeLinecap="round" />
+        <line x1="47" y1="76" x2="53" y2="76" stroke="#00E5FF" strokeWidth="1.2" strokeLinecap="round" />
+
+        {/* Chin Sensor Node */}
+        <circle cx="50" cy="82" r="1.8" fill="#38BDF8" />
+      </svg>
+
+      {/* Floating Hologram Sparkles */}
+      <Sparkles className="w-3.5 h-3.5 text-cyan-300 absolute top-2 right-2 animate-pulse pointer-events-none" />
+    </div>
+  );
+}
 
 // --- A. AUTOMATION WORKFLOW ANIMATION ---
 function AutomationStageVisual({ shouldReduceMotion, cursor }) {
@@ -87,7 +242,7 @@ function AutomationStageVisual({ shouldReduceMotion, cursor }) {
           />
         </svg>
 
-        {/* Central Glowing AI Core (Reacts strongly to cursor tilt) */}
+        {/* Central Glowing AI Face Core (Reacts strongly to cursor tilt) */}
         <motion.div
           style={{
             x: shouldReduceMotion ? 0 : layer1X,
@@ -107,22 +262,21 @@ function AutomationStageVisual({ shouldReduceMotion, cursor }) {
           <motion.div
             animate={shouldReduceMotion ? {} : { rotate: -360 }}
             transition={{ duration: 24, repeat: Infinity, ease: 'linear' }}
-            className="absolute -inset-7 rounded-full border border-blue-300/30 pointer-events-none"
+            className="absolute -inset-7 rounded-full border border-cyan-300/30 pointer-events-none"
           />
 
-          {/* Core Bot Hub Box */}
+          {/* AI Humanoid Face Hub */}
           <motion.div
             animate={shouldReduceMotion ? {} : { scale: [1, 1.05, 1] }}
             transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-            whileHover={{ scale: 1.15 }}
-            className="w-18 h-18 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-tr from-[#0866E8] via-blue-500 to-sky-400 text-white flex items-center justify-center shadow-xl shadow-blue-500/30 relative z-10 transition-shadow duration-300 group-hover:shadow-blue-500/50"
+            whileHover={{ scale: 1.12 }}
           >
-            <Bot className="w-9 h-9 sm:w-10 sm:h-10 text-white drop-shadow-md" />
-            <Sparkles className="w-3.5 h-3.5 text-yellow-300 absolute top-2 right-2 animate-bounce" />
+            <AiHumanoidFace shouldReduceMotion={shouldReduceMotion} cursor={cursor} />
           </motion.div>
 
-          <span className="mt-2.5 text-xs font-bold text-[#082B59] bg-white/90 px-2.5 py-0.5 rounded-full shadow-xs border border-blue-100">
-            Smart Workflow Hub
+          <span className="mt-2.5 text-xs font-bold text-[#082B59] bg-white/90 px-3 py-0.5 rounded-full shadow-xs border border-blue-100 flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-ping" />
+            AI Intelligence Core
           </span>
         </motion.div>
 
@@ -548,7 +702,7 @@ export default function AboutUs() {
       title: 'Business Automation',
       description: 'Connected systems to streamline customer inquiries, communication, and routine business workflows.',
       path: '/services/ai-services',
-      icon: Bot,
+      icon: Brain,
       categoryColor: 'text-[#0866E8]',
       iconBg: 'bg-blue-50 text-[#0866E8] border border-blue-100',
       activeBorder: 'border-[#0866E8] ring-2 ring-[#0866E8]/20 shadow-md',
