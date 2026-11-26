@@ -113,6 +113,12 @@ export default function AllerHumanSilhouette({ className = '' }) {
           }`}
         />
       )}
+
+      {/* Gentle bottom feather fade to ensure the human silhouette never displays a harsh or broken cut-off */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-10 sm:h-14 pointer-events-none bg-gradient-to-t from-[#F4F8FD] via-[#F4F8FD]/80 to-transparent z-10"
+        aria-hidden="true"
+      />
     </div>
   );
 }
