@@ -1,21 +1,20 @@
 import React, { useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring, useTransform, useReducedMotion } from 'framer-motion';
-import { ShieldCheck, Lock, Cpu } from 'lucide-react';
 
 /**
  * CyberSecurityChip
  * 
- * Apple / Stripe / Modern SaaS level Cyber Security Interactive Card:
- * - Subtle 3D perspective tilt (strictly clamped to max 5 deg)
- * - Soft cursor-following light reflection / specular sheen
- * - Delicate multi-layer parallax depth
- * - Gentle image zoom on interaction (1.02x)
- * - Calm, realistic floating animation
- * - Smooth spring physics with graceful return on mouse leave
- * - Human-made, refined typography and quiet, executive aesthetic (no gaming neon/flashy effects)
+ * Frameless, Open 3D Circuit Processor with Live Interactive Energy:
+ * - NO outer card shell, NO heavy header/footer pills (Pure Frameless Floating Visual)
+ * - Live animated electrical signal pulses travelling along radiating circuit buses
+ * - Central processor clock energy heartbeat
+ * - Subtle 3D perspective tilt (max 5 deg) tracking mouse cursor
+ * - Delicate specular light reflection following cursor smoothly
+ * - Gentle 1.02x hover zoom with smooth spring return on mouse leave
+ * - Organic soft perimeter fade floating directly on the stage
  */
 export default function CyberSecurityChip({ className = '' }) {
-  const cardRef = useRef(null);
+  const containerRef = useRef(null);
   const shouldReduceMotion = useReducedMotion();
   const [isHovered, setIsHovered] = useState(false);
 
@@ -23,28 +22,24 @@ export default function CyberSecurityChip({ className = '' }) {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  // Premium, silky smooth Apple-style spring physics
+  // Smooth, premium spring physics
   const springConfig = { damping: 28, stiffness: 180, mass: 0.6 };
 
   // 1. Tilt strictly clamped to maximum 5 degrees (realistic, non-gaming)
   const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [5, -5]), springConfig);
   const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-5, 5]), springConfig);
 
-  // 2. Subtle parallax displacement (delicate 4px - 8px depth)
-  const layerImageX = useSpring(useTransform(mouseX, [-0.5, 0.5], [-4, 4]), springConfig);
-  const layerImageY = useSpring(useTransform(mouseY, [-0.5, 0.5], [-4, 4]), springConfig);
+  // 2. Subtle parallax depth layers
+  const chipX = useSpring(useTransform(mouseX, [-0.5, 0.5], [-4, 4]), springConfig);
+  const chipY = useSpring(useTransform(mouseY, [-0.5, 0.5], [-4, 4]), springConfig);
 
-  const layerBadgeX = useSpring(useTransform(mouseX, [-0.5, 0.5], [-8, 8]), springConfig);
-  const layerBadgeY = useSpring(useTransform(mouseY, [-0.5, 0.5], [-8, 8]), springConfig);
-
-  // 3. Soft specular light reflection tracking cursor in percentages
+  // 3. Specular light reflection tracking cursor in percentages
   const lightX = useSpring(useTransform(mouseX, [-0.5, 0.5], ['20%', '80%']), springConfig);
   const lightY = useSpring(useTransform(mouseY, [-0.5, 0.5], ['20%', '80%']), springConfig);
 
-  // Mouse & Touch interaction handlers
   const handlePointerMove = (e) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
     const x = Math.max(-0.5, Math.min(0.5, (e.clientX - rect.left) / rect.width - 0.5));
     const y = Math.max(-0.5, Math.min(0.5, (e.clientY - rect.top) / rect.height - 0.5));
     mouseX.set(x);
@@ -54,17 +49,47 @@ export default function CyberSecurityChip({ className = '' }) {
 
   const handlePointerLeave = () => {
     setIsHovered(false);
-    // Smoothly return to baseline original position
     mouseX.set(0);
     mouseY.set(0);
   };
+
+  // SVG Circuit bus paths radiating from the central chip
+  // ViewBox: 0 0 100 100, Chip Center: ~(51, 53)
+  const cyanTracks = [
+    { d: 'M 38 57 L 24 64 L 5 71', delay: 0 },
+    { d: 'M 40 54 L 23 57 L 3 59', delay: 0.4 },
+    { d: 'M 42 51 L 24 50 L 4 47', delay: 0.8 },
+    { d: 'M 44 48 L 26 43 L 6 35', delay: 1.2 },
+    { d: 'M 46 45 L 29 36 L 10 24', delay: 0.3 },
+    { d: 'M 48 43 L 34 30 L 18 14', delay: 0.7 },
+    { d: 'M 51 41 L 40 25 L 28 8', delay: 1.1 }
+  ];
+
+  const redTracks = [
+    { d: 'M 64 49 L 78 40 L 96 34', delay: 0.2 },
+    { d: 'M 62 52 L 77 47 L 97 44', delay: 0.6 },
+    { d: 'M 60 55 L 75 56 L 98 56', delay: 1.0 },
+    { d: 'M 58 58 L 73 64 L 95 70', delay: 0.5 },
+    { d: 'M 56 61 L 70 72 L 91 83', delay: 0.9 },
+    { d: 'M 54 64 L 64 78 L 83 93', delay: 1.3 },
+    { d: 'M 52 65 L 56 82 L 69 97', delay: 0.4 }
+  ];
+
+  const topTracks = [
+    { d: 'M 53 42 L 56 26 L 62 8', delay: 0.3 },
+    { d: 'M 57 44 L 66 28 L 76 12', delay: 0.8 },
+    { d: 'M 60 46 L 73 32 L 85 18', delay: 1.2 }
+  ];
 
   return (
     <div
       style={{ perspective: 1200 }}
       className={`relative w-full max-w-[440px] flex items-center justify-center select-none ${className}`}
     >
-      {/* Gentle, calm floating animation wrapper */}
+      {/* Soft spatial atmosphere aura behind the circuit board */}
+      <div className="absolute w-[320px] sm:w-[360px] h-[320px] sm:h-[360px] bg-gradient-to-tr from-cyan-500/15 via-rose-500/10 to-blue-600/15 rounded-full blur-3xl pointer-events-none -z-10" />
+
+      {/* Gentle floating animation wrapper */}
       <motion.div
         animate={
           shouldReduceMotion
@@ -80,9 +105,9 @@ export default function CyberSecurityChip({ className = '' }) {
         }}
         className="w-full flex justify-center"
       >
-        {/* Main 3D Card Shell */}
+        {/* Main Frameless 3D Tilt Stage */}
         <motion.div
-          ref={cardRef}
+          ref={containerRef}
           onPointerMove={handlePointerMove}
           onPointerEnter={() => setIsHovered(true)}
           onPointerLeave={handlePointerLeave}
@@ -91,105 +116,250 @@ export default function CyberSecurityChip({ className = '' }) {
             rotateY: shouldReduceMotion ? 0 : rotateY,
             transformStyle: 'preserve-3d'
           }}
-          className="relative w-full h-[400px] sm:h-[450px] rounded-3xl overflow-hidden bg-[#0c101a] border border-slate-800/80 shadow-[0_20px_50px_rgba(0,0,0,0.45)] flex flex-col justify-between p-5 cursor-default transition-colors duration-500 hover:border-slate-700/80"
+          className="relative w-full max-w-[420px] h-[320px] sm:h-[360px] flex items-center justify-center cursor-default"
         >
-          {/* Subtle Ambient Background Gradient (Deep, quiet graphite & navy) */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#111726]/80 via-[#0c101a] to-[#070a12] pointer-events-none -z-10" />
-
-          {/* 1. Header: Quiet, Executive Apple-like Security Pill */}
-          <div className="relative z-20 flex items-center justify-between w-full px-3.5 py-2 rounded-full bg-white/[0.04] backdrop-blur-md border border-white/[0.08]">
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-emerald-400/90 shadow-[0_0_8px_rgba(52,211,153,0.5)]" />
-              <span className="text-[11px] font-semibold tracking-wide text-slate-200 flex items-center gap-1.5">
-                <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-                Hardware Security Architecture
-              </span>
-            </div>
-            <span className="text-[10px] font-mono font-medium px-2 py-0.5 rounded-full bg-white/[0.06] text-slate-300 border border-white/[0.08]">
-              AES-256 GCM
-            </span>
-          </div>
-
-          {/* 2. Microchip Center Showcase */}
-          <div className="relative flex-1 flex items-center justify-center my-auto w-full py-2">
-            <motion.div
-              style={{
-                x: shouldReduceMotion ? 0 : layerImageX,
-                y: shouldReduceMotion ? 0 : layerImageY,
-                transformStyle: 'preserve-3d'
+          {/* Frameless Circuit Board Canvas with Subtle Vignette Mask */}
+          <motion.div
+            style={{
+              x: shouldReduceMotion ? 0 : chipX,
+              y: shouldReduceMotion ? 0 : chipY,
+              transformStyle: 'preserve-3d'
+            }}
+            className="relative w-full h-full rounded-3xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.5)] border border-slate-700/40 bg-[#060812]"
+          >
+            {/* The High-Resolution Microchip Hardware Image with 1.02x Zoom on Hover */}
+            <motion.img
+              src="/images/cyber-chip.jpg"
+              alt="Cybersecurity Microchip Architecture"
+              animate={{
+                scale: isHovered ? 1.025 : 1.0
               }}
-              className="relative w-full max-w-[360px] h-[240px] sm:h-[260px] rounded-2xl overflow-hidden border border-white/[0.08] shadow-[0_12px_36px_rgba(0,0,0,0.6)] bg-black"
+              transition={{
+                duration: 0.55,
+                ease: [0.16, 1, 0.3, 1]
+              }}
+              className="w-full h-full object-cover object-center pointer-events-none select-none"
+              draggable={false}
+            />
+
+            {/* Seamless Dark Bottom Gradient to conceal watermark cleanly */}
+            <div className="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-[#060812] via-[#060812]/85 to-transparent pointer-events-none" />
+
+            {/* SVG Live Circuit Electricity Pulse Overlay */}
+            <svg
+              viewBox="0 0 100 100"
+              preserveAspectRatio="none"
+              className="absolute inset-0 w-full h-full pointer-events-none mix-blend-screen overflow-visible"
             >
-              {/* Microchip Processor Image with 1.02x Zoom on Interaction */}
-              <motion.img
-                src="/images/cyber-chip.jpg"
-                alt="Cybersecurity Microchip Processor"
-                animate={{
-                  scale: isHovered ? 1.025 : 1.0
-                }}
+              <defs>
+                {/* Cyan Glow Filter */}
+                <filter id="cyanGlow" x="-30%" y="-30%" width="160%" height="160%">
+                  <feGaussianBlur stdDeviation="0.6" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+
+                {/* Crimson Glow Filter */}
+                <filter id="redGlow" x="-30%" y="-30%" width="160%" height="160%">
+                  <feGaussianBlur stdDeviation="0.6" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+
+              {/* 1. Left Cyan Circuit Traces - Inward / Outward Data Flow */}
+              {cyanTracks.map((track, i) => (
+                <g key={`cyan-${i}`}>
+                  {/* Subtle static trace guide */}
+                  <path
+                    d={track.d}
+                    fill="none"
+                    stroke="#00f0ff"
+                    strokeWidth="0.35"
+                    strokeOpacity="0.18"
+                  />
+                  {/* Traveling Electrical Signal Pulse */}
+                  <motion.path
+                    d={track.d}
+                    fill="none"
+                    stroke="#00ffff"
+                    strokeWidth="0.8"
+                    strokeLinecap="round"
+                    filter="url(#cyanGlow)"
+                    pathLength="1"
+                    strokeDasharray="0.12 0.88"
+                    animate={
+                      shouldReduceMotion
+                        ? {}
+                        : {
+                            strokeDashoffset: [1, 0]
+                          }
+                    }
+                    transition={{
+                      duration: 2.2,
+                      repeat: Infinity,
+                      ease: 'easeInOut',
+                      delay: track.delay
+                    }}
+                  />
+                </g>
+              ))}
+
+              {/* 2. Right Red Circuit Traces - Outward Power & Signal Surge */}
+              {redTracks.map((track, i) => (
+                <g key={`red-${i}`}>
+                  {/* Subtle static trace guide */}
+                  <path
+                    d={track.d}
+                    fill="none"
+                    stroke="#ff3366"
+                    strokeWidth="0.35"
+                    strokeOpacity="0.18"
+                  />
+                  {/* Traveling Electrical Signal Pulse */}
+                  <motion.path
+                    d={track.d}
+                    fill="none"
+                    stroke="#ff2d55"
+                    strokeWidth="0.8"
+                    strokeLinecap="round"
+                    filter="url(#redGlow)"
+                    pathLength="1"
+                    strokeDasharray="0.12 0.88"
+                    animate={
+                      shouldReduceMotion
+                        ? {}
+                        : {
+                            strokeDashoffset: [0, -1]
+                          }
+                    }
+                    transition={{
+                      duration: 2.2,
+                      repeat: Infinity,
+                      ease: 'easeInOut',
+                      delay: track.delay
+                    }}
+                  />
+                </g>
+              ))}
+
+              {/* 3. Top Circuit Traces */}
+              {topTracks.map((track, i) => (
+                <g key={`top-${i}`}>
+                  <path
+                    d={track.d}
+                    fill="none"
+                    stroke="#38bdf8"
+                    strokeWidth="0.35"
+                    strokeOpacity="0.18"
+                  />
+                  <motion.path
+                    d={track.d}
+                    fill="none"
+                    stroke="#7dd3fc"
+                    strokeWidth="0.75"
+                    strokeLinecap="round"
+                    filter="url(#cyanGlow)"
+                    pathLength="1"
+                    strokeDasharray="0.12 0.88"
+                    animate={
+                      shouldReduceMotion
+                        ? {}
+                        : {
+                            strokeDashoffset: [1, 0]
+                          }
+                    }
+                    transition={{
+                      duration: 2.4,
+                      repeat: Infinity,
+                      ease: 'easeInOut',
+                      delay: track.delay
+                    }}
+                  />
+                </g>
+              ))}
+
+              {/* 4. Central Processor Perimeter Clock Pulse Ring */}
+              <motion.polygon
+                points="51,41 64,49 51,65 38,57"
+                fill="none"
+                stroke="#00ffff"
+                strokeWidth="0.65"
+                filter="url(#cyanGlow)"
+                animate={
+                  shouldReduceMotion
+                    ? {}
+                    : {
+                        strokeOpacity: [0.2, 0.9, 0.2],
+                        strokeWidth: [0.5, 0.9, 0.5]
+                      }
+                }
                 transition={{
-                  duration: 0.55,
-                  ease: [0.16, 1, 0.3, 1]
+                  duration: 2.4,
+                  repeat: Infinity,
+                  ease: 'easeInOut'
                 }}
-                className="w-full h-full object-cover object-center pointer-events-none select-none"
-                draggable={false}
               />
 
-              {/* Bottom Dark Gradient to seamlessly blend edge & cover watermark */}
-              <div className="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-[#070a12] via-[#070a12]/80 to-transparent pointer-events-none" />
+              {/* 5. Glowing Pin Contact Nodes (Energy Terminals) */}
+              {[
+                { cx: 38, cy: 57, fill: '#00ffff' },
+                { cx: 40, cy: 54, fill: '#00ffff' },
+                { cx: 44, cy: 48, fill: '#00ffff' },
+                { cx: 48, cy: 43, fill: '#00ffff' },
+                { cx: 51, cy: 41, fill: '#38bdf8' },
+                { cx: 57, cy: 44, fill: '#ff2d55' },
+                { cx: 64, cy: 49, fill: '#ff2d55' },
+                { cx: 60, cy: 55, fill: '#ff2d55' },
+                { cx: 56, cy: 61, fill: '#ff2d55' },
+                { cx: 51, cy: 65, fill: '#ff2d55' }
+              ].map((pin, idx) => (
+                <motion.circle
+                  key={`pin-${idx}`}
+                  cx={pin.cx}
+                  cy={pin.cy}
+                  r="0.7"
+                  fill={pin.fill}
+                  animate={
+                    shouldReduceMotion
+                      ? {}
+                      : {
+                          r: [0.6, 1.1, 0.6],
+                          opacity: [0.5, 1, 0.5]
+                        }
+                  }
+                  transition={{
+                    duration: 1.8,
+                    repeat: Infinity,
+                    delay: idx * 0.15,
+                    ease: 'easeInOut'
+                  }}
+                />
+              ))}
+            </svg>
 
-              {/* Soft Specular Light Reflection Sheen (Follows Cursor Smoothly) */}
-              <motion.div
-                animate={{
-                  opacity: isHovered ? 0.85 : 0
-                }}
-                transition={{ duration: 0.4, ease: 'easeOut' }}
-                style={{
-                  left: lightX,
-                  top: lightY,
-                  transform: 'translate(-50%, -50%)',
-                  translateZ: 15
-                }}
-                className="absolute w-56 h-56 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.14)_0%,rgba(147,197,253,0.06)_40%,transparent_70%)] pointer-events-none mix-blend-screen"
-              />
-
-              {/* Subtle Polished Glass Edge Glare */}
-              <div className="absolute inset-0 rounded-2xl border border-white/[0.08] pointer-events-none" />
-            </motion.div>
-
-            {/* 3. Refined Hardware Enclave Badge (Minimalist Parallax Floating Plaque) */}
+            {/* Soft Specular Light Reflection Sheen (Follows Cursor Smoothly) */}
             <motion.div
-              style={{
-                x: shouldReduceMotion ? 0 : layerBadgeX,
-                y: shouldReduceMotion ? 0 : layerBadgeY,
-                translateZ: 25
+              animate={{
+                opacity: isHovered ? 0.75 : 0
               }}
-              className="absolute top-[48%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[140px] sm:w-[152px] py-2 px-3 rounded-xl bg-[#090d16]/90 backdrop-blur-md border border-white/[0.12] shadow-[0_8px_24px_rgba(0,0,0,0.5)] flex flex-col items-center justify-center text-center pointer-events-none z-20"
-            >
-              <div className="flex items-center gap-1.5 mb-0.5">
-                <Cpu className="w-3.5 h-3.5 text-sky-400" />
-                <span className="text-[10px] font-bold tracking-wider text-slate-200 uppercase">
-                  Secure Enclave
-                </span>
-              </div>
-              <div className="w-full h-[1px] bg-white/[0.08] my-1" />
-              <div className="flex items-center gap-1 text-[8.5px] font-mono text-emerald-400/90 font-medium tracking-wide">
-                <Lock className="w-2.5 h-2.5 inline" />
-                <span>ROOT OF TRUST</span>
-              </div>
-            </motion.div>
-          </div>
+              transition={{ duration: 0.35, ease: 'easeOut' }}
+              style={{
+                left: lightX,
+                top: lightY,
+                transform: 'translate(-50%, -50%)',
+                translateZ: 15
+              }}
+              className="absolute w-56 h-56 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.16)_0%,rgba(147,197,253,0.08)_40%,transparent_70%)] pointer-events-none mix-blend-screen"
+            />
 
-          {/* 4. Footer: Minimal, Human-Made Executive Telemetry */}
-          <div className="relative z-20 flex items-center justify-between w-full px-3.5 py-2 rounded-full bg-white/[0.02] border border-white/[0.06] text-[10.5px] text-slate-400 font-medium">
-            <span className="flex items-center gap-1.5 text-slate-300">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-              Zero-Trust Isolation
-            </span>
-            <span className="text-slate-400 text-[10px] font-mono">
-              Enterprise Verified
-            </span>
-          </div>
+            {/* Subtle refined perimeter bevel border */}
+            <div className="absolute inset-0 rounded-3xl border border-white/10 pointer-events-none" />
+          </motion.div>
         </motion.div>
       </motion.div>
     </div>
