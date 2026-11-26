@@ -459,7 +459,7 @@ export default function Navbar() {
             </nav>
           </div>
 
-          {/* Mobile Drawer (Dynamic, Interactive & Alive) */}
+          {/* Mobile Drawer (Clean, Streamlined & Interactive) */}
           <AnimatePresence>
             {mobileMenuOpen && (
               <motion.div
@@ -476,27 +476,8 @@ export default function Navbar() {
                 <div className="absolute -top-10 -right-10 w-36 h-36 bg-blue-100/50 rounded-full blur-2xl pointer-events-none" />
                 <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-cyan-100/40 rounded-full blur-2xl pointer-events-none" />
 
-                {/* Live Dynamic Operational Status Pill */}
-                <motion.div
-                  initial={{ opacity: 0, y: -6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.05, duration: 0.2 }}
-                  className="mx-3.5 sm:mx-4 mt-2.5 mb-1 px-3 py-1.5 rounded-full bg-gradient-to-r from-blue-50/90 via-sky-50/70 to-emerald-50/90 border border-blue-100/80 flex items-center justify-between text-[11px] relative z-10"
-                >
-                  <div className="flex items-center gap-2">
-                    <span className="relative flex h-2 w-2">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                      <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-                    </span>
-                    <span className="font-semibold text-[#082B59]">AI Systems Operational</span>
-                  </div>
-                  <span className="text-[9.5px] font-mono text-[#0866E8] bg-white px-2 py-0.5 rounded-full border border-blue-100 font-bold shadow-2xs">
-                    Live Active
-                  </span>
-                </motion.div>
-
                 {/* Scrollable Nav Items with Staggered Entrance */}
-                <div className="overflow-y-auto overscroll-contain px-3.5 py-2 sm:px-4 space-y-1 flex-1 relative z-10">
+                <div className="overflow-y-auto overscroll-contain px-3.5 py-3 sm:px-4 space-y-1.5 flex-1 relative z-10">
                   {navLinks.map((link, idx) => {
                     const active = isLinkActive(link);
                     const IconComponent = link.icon;
@@ -512,7 +493,7 @@ export default function Navbar() {
                           className="flex flex-col"
                         >
                           <div
-                            className={`p-2 sm:p-2.5 rounded-xl transition-all flex items-center justify-between cursor-pointer ${
+                            className={`p-2.5 rounded-xl transition-all flex items-center justify-between cursor-pointer ${
                               active
                                 ? 'bg-blue-50/90 text-[#0866E8] shadow-xs'
                                 : 'hover:bg-slate-50 text-[#082B59]'
@@ -525,21 +506,9 @@ export default function Navbar() {
                               <div className={`w-8 h-8 rounded-lg flex items-center justify-center border shrink-0 ${link.iconBg} ${link.iconColor}`}>
                                 <IconComponent className="w-4 h-4" />
                               </div>
-                              <div className="flex-1 min-w-0 text-left">
-                                <div className="flex items-center gap-1.5">
-                                  <span className="text-sm font-semibold truncate block">
-                                    {link.name}
-                                  </span>
-                                  {link.badge && (
-                                    <span className="text-[9.5px] font-bold px-1.5 py-0.2 rounded-full bg-cyan-100 text-cyan-700">
-                                      {link.badge}
-                                    </span>
-                                  )}
-                                </div>
-                                <p className="text-[10.5px] text-slate-500 truncate">
-                                  {link.subtitle}
-                                </p>
-                              </div>
+                              <span className="text-sm font-semibold truncate block">
+                                {link.name}
+                              </span>
                             </div>
 
                             <button
@@ -575,23 +544,18 @@ export default function Navbar() {
                                       key={item.name}
                                       type="button"
                                       onClick={() => handlePracticeClick(item.path)}
-                                      className={`w-full text-left p-2.5 rounded-xl transition-all duration-150 flex items-start gap-2.5 cursor-pointer ${
+                                      className={`w-full text-left p-2.5 rounded-xl transition-all duration-150 flex items-center gap-2.5 cursor-pointer ${
                                         isItemActive
                                           ? 'bg-blue-50 text-[#0866E8] font-semibold border border-blue-200/60 shadow-xs'
                                           : 'bg-slate-50/70 hover:bg-blue-50/50 text-slate-700'
                                       }`}
                                     >
-                                      <div className={`p-1.5 rounded-lg border ${item.borderColor} ${item.bgColor} ${item.color} shrink-0 mt-0.5`}>
+                                      <div className={`p-1.5 rounded-lg border ${item.borderColor} ${item.bgColor} ${item.color} shrink-0`}>
                                         <SubIcon className="w-3.5 h-3.5" />
                                       </div>
-                                      <div className="flex-1 min-w-0">
-                                        <span className="text-xs font-semibold text-slate-900 block truncate">
-                                          {item.name}
-                                        </span>
-                                        <p className="text-[10px] text-slate-500 leading-snug line-clamp-1">
-                                          {item.description}
-                                        </p>
-                                      </div>
+                                      <span className="text-xs font-semibold text-slate-900 block truncate flex-1">
+                                        {item.name}
+                                      </span>
                                     </button>
                                   );
                                 })}
@@ -602,7 +566,7 @@ export default function Navbar() {
                       );
                     }
 
-                    // Normal Links with Icons & Subtitle
+                    // Normal Links with Icons
                     return (
                       <motion.a
                         key={link.name}
@@ -611,7 +575,7 @@ export default function Navbar() {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.04 + idx * 0.03, duration: 0.2 }}
                         onClick={(e) => handleLinkClick(e, link)}
-                        className={`p-2 sm:p-2.5 rounded-xl transition-all flex items-center justify-between cursor-pointer ${
+                        className={`p-2.5 rounded-xl transition-all flex items-center justify-between cursor-pointer ${
                           active
                             ? 'bg-blue-50/90 text-[#0866E8] shadow-xs'
                             : 'hover:bg-slate-50 text-[#082B59]'
@@ -621,14 +585,9 @@ export default function Navbar() {
                           <div className={`w-8 h-8 rounded-lg flex items-center justify-center border shrink-0 ${link.iconBg} ${link.iconColor}`}>
                             <IconComponent className="w-4 h-4" />
                           </div>
-                          <div className="text-left min-w-0">
-                            <span className="text-sm font-semibold block truncate">
-                              {link.name}
-                            </span>
-                            <p className="text-[10.5px] text-slate-500 truncate">
-                              {link.subtitle}
-                            </p>
-                          </div>
+                          <span className="text-sm font-semibold block truncate">
+                            {link.name}
+                          </span>
                         </div>
                         <ArrowRight className={`w-3.5 h-3.5 shrink-0 ${active ? 'text-[#0866E8]' : 'text-slate-300'}`} />
                       </motion.a>
@@ -636,28 +595,17 @@ export default function Navbar() {
                   })}
                 </div>
 
-                {/* Footer Action: Response Time + Shimmering Get Started Button */}
+                {/* Footer Action: Shimmering Get Started Button */}
                 <div
-                  className="p-3 sm:p-3.5 border-t border-slate-100 bg-slate-50/80 shrink-0 relative z-10"
+                  className="p-3.5 sm:p-4 border-t border-slate-100 bg-slate-50/80 shrink-0 relative z-10"
                   style={{
-                    paddingBottom: 'max(12px, env(safe-area-inset-bottom, 12px))'
+                    paddingBottom: 'max(14px, env(safe-area-inset-bottom, 14px))'
                   }}
                 >
-                  <div className="flex items-center justify-between px-1 mb-2 text-[10.5px] text-slate-500 font-medium">
-                    <span className="flex items-center gap-1.5">
-                      <Zap className="w-3.5 h-3.5 text-amber-500" />
-                      Free Technical Consultation
-                    </span>
-                    <span className="text-emerald-600 font-semibold flex items-center gap-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                      Instant Support
-                    </span>
-                  </div>
-
                   <Link
                     to="/contact"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="relative group overflow-hidden w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-[#0866E8] via-[#0878F0] to-[#00B9E8] shadow-md hover:shadow-lg transition-all cursor-pointer min-h-[44px]"
+                    className="relative group overflow-hidden w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-[#0866E8] via-[#0878F0] to-[#00B9E8] shadow-md hover:shadow-lg transition-all cursor-pointer min-h-[46px]"
                   >
                     {/* Animated Light Shimmer Sweep */}
                     <motion.div
