@@ -275,9 +275,10 @@ export default function AboutUs() {
       icon: Brain,
       categoryColor: 'text-[#0866E8]',
       iconBg: 'bg-blue-50 text-[#0866E8] border border-blue-100',
-      activeBorder: 'border-[#0866E8] ring-2 ring-[#0866E8]/20 shadow-md',
+      activeBorder: 'border-[#0866E8] ring-2 ring-[#0866E8]/20 shadow-lg shadow-blue-500/10 bg-gradient-to-r from-blue-50/40 via-white to-white',
       activeBadge: 'bg-blue-50 text-[#0866E8] border-blue-200',
-      accentColor: '#0866E8'
+      accentColor: '#0866E8',
+      tag: '⚡ 10x Workflow Acceleration'
     },
     {
       id: 'cyber-security',
@@ -288,9 +289,10 @@ export default function AboutUs() {
       icon: ShieldCheck,
       categoryColor: 'text-emerald-600',
       iconBg: 'bg-emerald-50 text-emerald-600 border border-emerald-100',
-      activeBorder: 'border-emerald-500 ring-2 ring-emerald-500/20 shadow-md',
+      activeBorder: 'border-emerald-500 ring-2 ring-emerald-500/20 shadow-lg shadow-emerald-500/10 bg-gradient-to-r from-emerald-50/40 via-white to-white',
       activeBadge: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-      accentColor: '#10B981'
+      accentColor: '#10B981',
+      tag: '🛡️ Zero-Trust Hardware Shield'
     },
     {
       id: 'ai-films',
@@ -301,9 +303,10 @@ export default function AboutUs() {
       icon: Film,
       categoryColor: 'text-cyan-600',
       iconBg: 'bg-cyan-50 text-cyan-600 border border-cyan-100',
-      activeBorder: 'border-cyan-500 ring-2 ring-cyan-500/20 shadow-md',
+      activeBorder: 'border-cyan-500 ring-2 ring-cyan-500/20 shadow-lg shadow-cyan-500/10 bg-gradient-to-r from-cyan-50/40 via-white to-white',
       activeBadge: 'bg-cyan-50 text-cyan-700 border-cyan-200',
-      accentColor: '#06B6D4'
+      accentColor: '#06B6D4',
+      tag: '🎬 4K HDR Commercial Grade'
     }
   ];
 
@@ -340,7 +343,7 @@ export default function AboutUs() {
               onTouchMove={handleTouchMove}
               onTouchEnd={handleReset}
               style={{ perspective: 1200, touchAction: 'none' }}
-              className="relative w-full max-w-[460px] flex items-center justify-center p-2 cursor-grab active:cursor-grabbing select-none"
+              className="relative w-full max-w-[460px] flex items-center justify-center p-2 select-none"
             >
               <AnimatePresence mode="wait">
                 {activeServiceId === 'ai-services' && (
@@ -397,18 +400,24 @@ export default function AboutUs() {
           {/* RIGHT: HEADING & INTERACTIVE SERVICE SELECTOR CARDS */}
           <div className="lg:col-span-7 flex flex-col justify-center text-left">
 
-            {/* Section Heading */}
+            {/* Section Heading with Modern Badge */}
             <motion.div
               initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 14 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="mb-4 sm:mb-5 text-left"
+              className="mb-5 sm:mb-6 text-left"
             >
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#082B59] tracking-tight leading-[1.18] mb-1.5">
-                Our <span className="text-[#0866E8]">Core Services</span>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50/90 border border-blue-200/70 text-[#0866E8] text-xs font-semibold uppercase tracking-wider mb-2.5 shadow-xs">
+                <Sparkles className="w-3.5 h-3.5 text-[#0866E8]" />
+                <span>Next-Gen Enterprise Solutions</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#082B59] tracking-tight leading-[1.18] mb-2">
+                Our <span className="bg-gradient-to-r from-[#0866E8] via-blue-600 to-cyan-500 bg-clip-text text-transparent">Core Services</span>
               </h2>
-
+              <p className="text-xs sm:text-sm text-slate-600 max-w-xl font-normal leading-relaxed">
+                Autonomous workflow intelligence, zero-trust hardware security, and commercial-grade cinematic storytelling engineered to drive measurable business transformation.
+              </p>
             </motion.div>
 
             {/* Clickable Service Cards */}
@@ -487,6 +496,15 @@ export default function AboutUs() {
                         <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
                           {card.description}
                         </p>
+
+                        {/* Feature Tag */}
+                        {card.tag && (
+                          <div className="mt-2.5 flex items-center">
+                            <span className="inline-flex items-center text-[10px] font-semibold px-2.5 py-0.5 rounded-full bg-slate-100/90 text-slate-700 border border-slate-200/60 shadow-2xs">
+                              {card.tag}
+                            </span>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </motion.div>

@@ -5,11 +5,11 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 /**
  * RecurzivCyberFace
  * 
- * Exact real-time 3D WebGL Wireframe Cyber Face matching recurziv.com (DAINA):
- * - Real 3D polygon mesh loaded from /assets/v16.glb
- * - Iridescent electric cyan / neon blue wireframe mesh (MeshBasicMaterial wireframe)
- * - Exact socket-aligned dual glowing hexagonal cyber eyes with counter-rotating concentric rings
- * - Deep space cosmic starfield & floating neural dust particles
+ * Frameless, Open 3D WebGL Wireframe Cyber Face (matching recurziv.com DAINA):
+ * - NO dark card box, NO hard frame borders (100% frameless open stage)
+ * - High-contrast electric blue & cyan wireframe with crystalline depth
+ * - Exact socket-aligned dual glowing hexagonal cyber eyes with live rotation & pulse
+ * - Ambient floating neural particles
  * - Full page mouse & touch 3D parallax pitch / yaw tracking
  * - Autonomous breathing oscillation & eye luminescence pulsing
  */
@@ -41,30 +41,34 @@ export default function RecurzivCyberFace({ className = '', height = '420px', is
     });
     renderer.setSize(width, heightPx);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setClearColor(0x000000, 0);
+    renderer.setClearColor(0x000000, 0); // 100% transparent frameless stage
     mount.appendChild(renderer.domElement);
 
     // 2. Lights
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.85);
     scene.add(ambientLight);
 
-    const dirLight = new THREE.DirectionalLight(0x00f0ff, 0.8);
-    dirLight.position.set(3, 6, 5);
+    const dirLight = new THREE.DirectionalLight(0x0866e8, 1.2);
+    dirLight.position.set(4, 6, 8);
     scene.add(dirLight);
+
+    const cyanPointLight = new THREE.PointLight(0x00d2ff, 1.5, 50);
+    cyanPointLight.position.set(-5, -2, 10);
+    scene.add(cyanPointLight);
 
     // Group for head transformations and parallax
     const headGroup = new THREE.Group();
     scene.add(headGroup);
 
     // 3. Ambient Cyber Particle Field (Floating Neural Dust)
-    const particleCount = 280;
+    const particleCount = 240;
     const particleGeo = new THREE.BufferGeometry();
     const pPositions = new Float32Array(particleCount * 3);
     const pColors = new Float32Array(particleCount * 3);
 
-    const color1 = new THREE.Color(0x00f0ff);
-    const color2 = new THREE.Color(0x38bdf8);
-    const color3 = new THREE.Color(0xa855f7);
+    const color1 = new THREE.Color(0x0866e8);
+    const color2 = new THREE.Color(0x00b4d8);
+    const color3 = new THREE.Color(0x4f46e5);
 
     for (let i = 0; i < particleCount; i++) {
       pPositions[i * 3] = (Math.random() - 0.5) * 80;
@@ -82,11 +86,11 @@ export default function RecurzivCyberFace({ className = '', height = '420px', is
     particleGeo.setAttribute('color', new THREE.BufferAttribute(pColors, 3));
 
     const particleMat = new THREE.PointsMaterial({
-      size: 0.45,
+      size: 0.5,
       vertexColors: true,
       transparent: true,
-      opacity: 0.85,
-      blending: THREE.AdditiveBlending
+      opacity: 0.75,
+      blending: THREE.NormalBlending
     });
 
     const particles = new THREE.Points(particleGeo, particleMat);
@@ -99,19 +103,19 @@ export default function RecurzivCyberFace({ className = '', height = '420px', is
     const pupilGeo = new THREE.CircleGeometry(0.36, 12);
 
     const eyeMat = new THREE.MeshBasicMaterial({
-      color: 0x00f0ff,
+      color: 0x00b4d8,
       side: THREE.DoubleSide,
       transparent: true,
       opacity: 0.95
     });
     const innerEyeMat = new THREE.MeshBasicMaterial({
-      color: 0x38bdf8,
+      color: 0x0866e8,
       side: THREE.DoubleSide,
       transparent: true,
-      opacity: 0.9
+      opacity: 0.92
     });
     const pupilMat = new THREE.MeshBasicMaterial({
-      color: 0xffffff,
+      color: 0x00f0ff,
       side: THREE.DoubleSide,
       transparent: true,
       opacity: 0.98
@@ -157,12 +161,27 @@ export default function RecurzivCyberFace({ className = '', height = '420px', is
         if (child.isMesh) {
           faceMesh = child;
           child.frustumCulled = false;
+          // Primary High-Contrast Electric Blue Wireframe (visible on white and dark)
           child.material = new THREE.MeshBasicMaterial({
-            color: new THREE.Color(0x00f0ff),
+            color: new THREE.Color(0x0866e8),
             wireframe: true,
             transparent: true,
-            opacity: 0.8
+            opacity: 0.88
           });
+
+          // Subtle crystalline holographic inner fill for 3D depth
+          const innerGeo = child.geometry.clone();
+          const innerMat = new THREE.MeshPhongMaterial({
+            color: 0x93c5fd,
+            emissive: 0x3b82f6,
+            shininess: 45,
+            transparent: true,
+            opacity: 0.16,
+            side: THREE.FrontSide
+          });
+          const innerMesh = new THREE.Mesh(innerGeo, innerMat);
+          innerMesh.scale.set(0.994, 0.994, 0.994);
+          child.parent.add(innerMesh);
         }
       });
 
@@ -282,10 +301,10 @@ export default function RecurzivCyberFace({ className = '', height = '420px', is
       headGroup.position.y = Math.sin(elapsed * 1.2) * 1.0;
 
       // Pulse cyber eyes (luminescence & dual concentric hexagon rotation)
-      const eyePulse = 0.78 + Math.sin(elapsed * 3.2) * 0.22;
+      const eyePulse = 0.8 + Math.sin(elapsed * 3.2) * 0.2;
       eyeMat.opacity = eyePulse;
       innerEyeMat.opacity = eyePulse;
-      pupilMat.opacity = 0.85 + Math.sin(elapsed * 3.2) * 0.15;
+      pupilMat.opacity = 0.88 + Math.sin(elapsed * 3.2) * 0.12;
       leftEye.rotation.z = elapsed * 0.4;
       rightEye.rotation.z = -elapsed * 0.4;
       leftInnerEye.rotation.z = -elapsed * 0.6;
@@ -295,10 +314,10 @@ export default function RecurzivCyberFace({ className = '', height = '420px', is
       particles.rotation.y = elapsed * 0.035;
       particles.rotation.x = elapsed * 0.015;
 
-      // Iridescent cyan/blue color shift (pure recurziv style)
+      // Dynamic iridescent cyan to royal blue wireframe shift
       if (faceMesh && faceMesh.material) {
-        const hue = 0.52 + Math.sin(elapsed * 0.35) * 0.06;
-        faceMesh.material.color.setHSL(hue, 1, 0.55);
+        const hue = 0.57 + Math.sin(elapsed * 0.35) * 0.04;
+        faceMesh.material.color.setHSL(hue, 0.95, 0.48);
       }
 
       renderer.render(scene, camera);
@@ -338,35 +357,27 @@ export default function RecurzivCyberFace({ className = '', height = '420px', is
   return (
     <div
       ref={containerRef}
-      className={`relative w-full ${isBackground ? 'h-full' : 'max-w-[440px] h-[400px] sm:h-[450px] rounded-3xl overflow-hidden bg-gradient-to-b from-[#030718] via-[#060c24] to-[#020512] border border-cyan-500/30 shadow-[0_20px_50px_rgba(6,182,212,0.2)]'} select-none flex items-center justify-center cursor-grab active:cursor-grabbing touch-none ${className}`}
-      style={isBackground ? { width: '100%', height: '100%' } : { height: '100%', minHeight: '380px' }}
+      className={`relative w-full max-w-[440px] h-[380px] sm:h-[430px] select-none flex items-center justify-center cursor-grab active:cursor-grabbing touch-none ${className}`}
+      style={isBackground ? { width: '100%', height: '100%' } : { height }}
     >
-      {/* Deep cosmic nebula glow effects */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(6,182,212,0.18),transparent_65%)] pointer-events-none -z-10" />
-      <div className="absolute -top-12 -right-12 w-56 h-56 bg-purple-600/20 rounded-full blur-3xl pointer-events-none -z-10" />
-      <div className="absolute -bottom-12 -left-12 w-56 h-56 bg-cyan-600/20 rounded-full blur-3xl pointer-events-none -z-10" />
+      {/* 1. Soft Ambient Holographic Spatial Aura (100% Frameless & Open) */}
+      <div className="absolute w-[300px] sm:w-[360px] h-[300px] sm:h-[360px] bg-gradient-to-tr from-blue-500/15 via-cyan-400/12 to-indigo-500/10 rounded-full blur-3xl pointer-events-none -z-10" />
 
-      {/* 3D WebGL Canvas Container */}
+      {/* 2. Delicate Concentric Holographic Orbital Projector Rings */}
+      <div className="absolute w-[280px] sm:w-[330px] h-[280px] sm:h-[330px] rounded-full border border-dashed border-blue-400/25 pointer-events-none animate-spin" style={{ animationDuration: '32s' }} />
+      <div className="absolute w-[210px] sm:w-[250px] h-[210px] sm:h-[250px] rounded-full border border-cyan-400/20 pointer-events-none" />
+
+      {/* 3. 3D WebGL Canvas Container - Pure Frameless */}
       <div
         ref={mountRef}
         className={`w-full h-full relative z-10 flex items-center justify-center ${isBackground ? 'pointer-events-none' : 'cursor-grab active:cursor-grabbing'}`}
       />
 
-      {/* Subtle bottom cyber status pill (pure recurziv DAINA style) */}
-      {!isBackground && (
-        <div className="absolute bottom-3.5 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#030a1c]/80 backdrop-blur-md border border-cyan-500/30 shadow-md pointer-events-none">
-          <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
-          <span className="text-[10px] font-mono font-bold tracking-widest uppercase text-cyan-300">
-            DAINA &bull; 3D Neural Face
-          </span>
-        </div>
-      )}
-
-      {/* Subtle non-intrusive loading state indicator */}
+      {/* 4. Subtle non-intrusive loading state indicator */}
       {loading && !isBackground && (
         <div className="absolute inset-0 z-30 flex items-center justify-center pointer-events-none">
-          <div className="flex items-center gap-2 text-xs font-mono text-cyan-400">
-            <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping" />
+          <div className="flex items-center gap-2 text-xs font-mono text-blue-600">
+            <span className="w-2.5 h-2.5 rounded-full bg-blue-500 animate-ping" />
             <span className="font-semibold tracking-wider">3D NEURAL MESH LOADING...</span>
           </div>
         </div>
