@@ -24,11 +24,11 @@ import CyberSecurityChip from './CyberSecurityChip';
 /* 1. INTERACTIVE SERVICE ANIMATIONS (OPEN 3D HOLOGRAPHIC STAGE)             */
 /* ========================================================================= */
 
-// --- A. AUTOMATION WORKFLOW ANIMATION: EXACT RECURZIV 3D NEURAL CYBER FACE ---
+// --- A. AUTOMATION WORKFLOW ANIMATION: EXACT RECURZIV 3D NEURAL CYBER FACE (FRAMELESS / ONLY FACE) ---
 function AutomationStageVisual() {
   return (
-    <div className="w-full flex justify-center items-center">
-      <RecurzivCyberFace className="w-full max-w-[420px]" height="450px" />
+    <div className="w-full h-[440px] sm:h-[490px] flex justify-center items-center">
+      <RecurzivCyberFace className="w-full max-w-[480px]" height="100%" />
     </div>
   );
 }

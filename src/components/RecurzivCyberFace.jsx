@@ -31,8 +31,8 @@ export default function RecurzivCyberFace({ className = '', height = '450px', is
     const heightPx = mount.clientHeight || 450;
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(isBackground ? 42 : 40, width / heightPx, 0.1, 100);
-    camera.position.set(0, isBackground ? 0.05 : 0.08, isBackground ? 7.2 : 4.3);
+    const camera = new THREE.PerspectiveCamera(isBackground ? 42 : 38, width / heightPx, 0.1, 100);
+    camera.position.set(0, isBackground ? 0.05 : 0.04, isBackground ? 7.2 : 3.8);
 
     const renderer = new THREE.WebGLRenderer({
       antialias: true,
@@ -147,9 +147,9 @@ export default function RecurzivCyberFace({ className = '', height = '450px', is
         const geometry = faceMesh.geometry.clone();
         geometry.center();
 
-        const scale = isBackground ? 1.45 : 2.15;
+        const scale = isBackground ? 1.45 : 2.45;
         headGroup.scale.set(scale, scale, scale);
-        headGroup.position.set(0, isBackground ? -0.1 : -0.06, 0);
+        headGroup.position.set(0, isBackground ? -0.1 : -0.04, 0);
 
         // 5a. Cyber Wireframe Layer (Cyan / Electric Blue lines)
         const wireframeMat = new THREE.MeshBasicMaterial({
@@ -345,54 +345,24 @@ export default function RecurzivCyberFace({ className = '', height = '450px', is
   return (
     <div
       ref={containerRef}
-      className={`relative w-full max-w-[420px] rounded-3xl overflow-hidden select-none flex flex-col justify-between p-4 bg-gradient-to-b from-[#030616] via-[#050b28] to-[#14062d] border border-cyan-500/35 shadow-[0_15px_50px_rgba(0,180,255,0.25)] ${className}`}
+      className={`relative w-full h-full select-none flex items-center justify-center ${className}`}
       style={isBackground ? { width: '100%', height: '100%' } : { height }}
     >
-      {/* Deep Space Cosmic Nebula Atmosphere (Matching Recurziv attached picture) */}
-      <div className="absolute top-1/4 -right-12 w-64 h-64 bg-purple-600/35 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-0 -left-12 w-56 h-56 bg-cyan-600/25 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(0,229,255,0.08)_0%,_transparent_75%)] pointer-events-none" />
+      {/* Soft ambient spatial aura behind the 3D face (pure open stage) */}
+      <div className="absolute w-[340px] sm:w-[420px] h-[340px] sm:h-[420px] bg-gradient-to-tr from-cyan-500/15 via-blue-600/10 to-purple-600/15 rounded-full blur-3xl pointer-events-none -z-10" />
 
-      {/* Top Status Header */}
-      {!isBackground && (
-        <div className="relative z-20 flex items-center justify-between w-full px-3 py-1.5 rounded-full bg-[#0a0f28]/85 backdrop-blur-md border border-cyan-500/30 text-[10.5px] font-mono text-cyan-300 shadow-md">
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
-            <span className="font-bold tracking-wider uppercase text-cyan-200">
-              DAINA // NEURAL CORE
-            </span>
-          </div>
-          <span className="text-[9.5px] px-2 py-0.5 rounded-full bg-cyan-950/80 text-cyan-300 border border-cyan-500/40 font-semibold">
-            REAL 3D WebGL
-          </span>
-        </div>
-      )}
-
-      {/* 3D WebGL Canvas Container */}
+      {/* 3D WebGL Canvas Container - Frameless & Open */}
       <div
         ref={mountRef}
-        className={`w-full flex-1 relative z-10 ${isBackground ? 'pointer-events-none' : 'cursor-grab active:cursor-grabbing'}`}
+        className={`w-full h-full relative z-10 flex items-center justify-center ${isBackground ? 'pointer-events-none' : 'cursor-grab active:cursor-grabbing'}`}
       />
 
-      {/* Bottom Interactive HUD Bar */}
-      {!isBackground && (
-        <div className="relative z-20 flex items-center justify-between w-full px-3.5 py-1.5 rounded-full bg-[#0a0f28]/85 backdrop-blur-md border border-slate-700/60 text-[10px] font-mono text-slate-300 shadow-md">
-          <span className="flex items-center gap-1.5 text-cyan-300 font-semibold">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-            3D Wireframe Active
-          </span>
-          <span className="text-cyan-400 font-bold animate-pulse">
-            Move cursor to rotate 3D
-          </span>
-        </div>
-      )}
-
-      {/* Loading state indicator */}
+      {/* Subtle non-intrusive loading state indicator */}
       {loading && !isBackground && (
-        <div className="absolute inset-0 z-30 flex items-center justify-center bg-[#030616]/70 backdrop-blur-xs">
-          <div className="flex items-center gap-2 text-xs font-mono text-cyan-300">
+        <div className="absolute inset-0 z-30 flex items-center justify-center pointer-events-none">
+          <div className="flex items-center gap-2 text-xs font-mono text-cyan-600">
             <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping" />
-            <span>SYNCHRONIZING 3D NEURAL MESH...</span>
+            <span className="font-semibold tracking-wider">3D NEURAL MESH LOADING...</span>
           </div>
         </div>
       )}
