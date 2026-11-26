@@ -19,6 +19,7 @@ import {
 import { Link } from 'react-router-dom';
 import RecurzivCyberFace from './RecurzivCyberFace';
 import CyberSecurityChip from './CyberSecurityChip';
+import CinematicFilmStudio from './CinematicFilmStudio';
 
 /* ========================================================================= */
 /* 1. INTERACTIVE SERVICE ANIMATIONS (OPEN 3D HOLOGRAPHIC STAGE)             */
@@ -42,152 +43,12 @@ function CyberSecurityStageVisual() {
   );
 }
 
-// --- C. FILM PRODUCTION ANIMATION ---
-function FilmProductionStageVisual({ shouldReduceMotion, cursor }) {
-  const { rotateX, rotateY, layer1X, layer1Y, layer2X, layer2Y, layer3X, layer3Y, glowX, glowY } = cursor;
-
+// --- C. FILM PRODUCTION ANIMATION: 4K VIRTUAL PRODUCTION CINEMA STAGE ---
+function FilmProductionStageVisual() {
   return (
-    <motion.div
-      style={{
-        rotateX: shouldReduceMotion ? 0 : rotateX,
-        rotateY: shouldReduceMotion ? 0 : rotateY,
-        transformStyle: 'preserve-3d'
-      }}
-      className="relative w-full h-[380px] sm:h-[430px] flex flex-col justify-between items-center select-none"
-    >
-      {/* Interactive Cursor Spotlight Aura */}
-      <motion.div
-        style={{
-          left: glowX,
-          top: glowY,
-          transform: 'translate(-50%, -50%)'
-        }}
-        className="absolute w-64 h-64 bg-gradient-to-r from-cyan-400/25 via-sky-300/20 to-transparent rounded-full blur-3xl pointer-events-none -z-10"
-      />
-
-      {/* Floating Top Header Pill */}
-      <motion.div
-        style={{
-          x: shouldReduceMotion ? 0 : layer1X,
-          y: shouldReduceMotion ? 0 : layer1Y
-        }}
-        className="flex items-center justify-between w-full max-w-[340px] px-3.5 py-2 rounded-full bg-white/80 backdrop-blur-md border border-cyan-100 shadow-sm"
-      >
-        <div className="flex items-center gap-2">
-          <span className="flex h-2 w-2 rounded-full bg-red-500 animate-ping" />
-          <span className="text-[11px] font-bold tracking-wider uppercase text-cyan-800">
-            4K Cinematic Studio
-          </span>
-        </div>
-        <span className="text-[10px] font-mono font-medium px-2 py-0.5 rounded-full bg-cyan-50 text-cyan-700 border border-cyan-200/60">
-          REC &bull; 60 FPS HDR
-        </span>
-      </motion.div>
-
-      {/* Center 3D Viewfinder & Audio Equalizer Bars */}
-      <div className="relative my-auto flex flex-col items-center justify-center w-full py-2">
-        {/* Viewfinder Corner Framing Brackets with Parallax */}
-        <motion.div
-          style={{
-            x: shouldReduceMotion ? 0 : layer3X,
-            y: shouldReduceMotion ? 0 : layer3Y
-          }}
-          className="absolute inset-0 pointer-events-none flex flex-col justify-between p-2 max-w-[370px] mx-auto opacity-75"
-        >
-          <div className="flex justify-between">
-            <span className="w-5 h-5 border-t-2 border-l-2 border-cyan-500 rounded-tl-sm" />
-            <span className="w-5 h-5 border-t-2 border-r-2 border-cyan-500 rounded-tr-sm" />
-          </div>
-          <div className="flex justify-between">
-            <span className="w-5 h-5 border-b-2 border-l-2 border-cyan-500 rounded-bl-sm" />
-            <span className="w-5 h-5 border-b-2 border-r-2 border-cyan-500 rounded-br-sm" />
-          </div>
-        </motion.div>
-
-        {/* Central Camera / Film Reel Hub */}
-        <motion.div
-          style={{
-            x: shouldReduceMotion ? 0 : layer1X,
-            y: shouldReduceMotion ? 0 : layer1Y,
-            translateZ: 50
-          }}
-          className="relative z-20 flex flex-col items-center mb-5 group cursor-pointer"
-        >
-          {/* Outer Dashed Orbit Ring */}
-          <motion.div
-            animate={shouldReduceMotion ? {} : { rotate: 360 }}
-            transition={{ duration: 16, repeat: Infinity, ease: 'linear' }}
-            className="absolute -inset-4 rounded-full border border-dashed border-cyan-400/50 pointer-events-none"
-          />
-
-          <motion.div
-            animate={shouldReduceMotion ? {} : { scale: [1, 1.05, 1] }}
-            transition={{ duration: 2.8, repeat: Infinity, ease: 'easeInOut' }}
-            whileHover={{ scale: 1.15 }}
-            className="w-18 h-18 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-tr from-cyan-600 via-sky-500 to-blue-400 text-white flex items-center justify-center shadow-xl shadow-cyan-500/30 relative z-10 transition-shadow duration-300 group-hover:shadow-cyan-500/50"
-          >
-            <Film className="w-9 h-9 sm:w-10 sm:h-10 text-white drop-shadow-md" />
-            <Video className="w-3.5 h-3.5 text-cyan-100 absolute top-2 right-2" />
-          </motion.div>
-
-          <span className="mt-2.5 text-xs font-bold text-[#082B59] bg-white/90 px-2.5 py-0.5 rounded-full shadow-xs border border-cyan-100">
-            Commercial Storytelling
-          </span>
-        </motion.div>
-
-        {/* Live Audio Equalizer Frequency Bars that dynamically bounce */}
-        <motion.div
-          style={{
-            x: shouldReduceMotion ? 0 : layer2X,
-            y: shouldReduceMotion ? 0 : layer2Y,
-            translateZ: 25
-          }}
-          className="flex items-end justify-center gap-2 w-full max-w-[340px] h-12 px-4 py-1.5 rounded-2xl bg-white/90 backdrop-blur-md border border-cyan-100 shadow-md relative z-20"
-        >
-          {[18, 30, 42, 24, 38, 48, 32, 22, 40, 26, 44, 32].map((baseHeight, i) => (
-            <motion.span
-              key={i}
-              animate={
-                shouldReduceMotion
-                  ? {}
-                  : {
-                    height: [
-                      `${baseHeight * 0.35}px`,
-                      `${baseHeight}px`,
-                      `${baseHeight * 0.55}px`,
-                      `${baseHeight * 0.9}px`
-                    ]
-                  }
-              }
-              transition={{
-                duration: 1.1,
-                repeat: Infinity,
-                repeatType: 'mirror',
-                delay: i * 0.08,
-                ease: 'easeInOut'
-              }}
-              className="w-2 rounded-full bg-gradient-to-t from-cyan-600 to-sky-300"
-              style={{ height: `${baseHeight}px` }}
-            />
-          ))}
-        </motion.div>
-      </div>
-
-      {/* Floating Bottom Metrics Pill */}
-      <motion.div
-        style={{
-          x: shouldReduceMotion ? 0 : layer2X,
-          y: shouldReduceMotion ? 0 : layer2Y
-        }}
-        className="flex items-center justify-between w-full max-w-[340px] px-3.5 py-2 rounded-full bg-white/80 backdrop-blur-md border border-slate-200/80 shadow-xs text-[10.5px] font-mono text-slate-600"
-      >
-        <span className="flex items-center gap-1.5 text-cyan-700 font-bold">
-          <Crosshair className="w-3.5 h-3.5 text-cyan-500" />
-          Master: 2.39:1 Anamorphic
-        </span>
-        <span className="text-slate-400">Color Graded</span>
-      </motion.div>
-    </motion.div>
+    <div className="w-full flex justify-center items-center">
+      <CinematicFilmStudio />
+    </div>
   );
 }
 
@@ -353,12 +214,9 @@ export default function AboutUs() {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.94 }}
                     transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                    className="w-full"
+                    className="w-full flex justify-center items-center"
                   >
-                    <AutomationStageVisual
-                      shouldReduceMotion={shouldReduceMotion}
-                      cursor={cursorPhysics}
-                    />
+                    <AutomationStageVisual />
                   </motion.div>
                 )}
 
@@ -369,12 +227,9 @@ export default function AboutUs() {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.94 }}
                     transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                    className="w-full"
+                    className="w-full flex justify-center items-center"
                   >
-                    <CyberSecurityStageVisual
-                      shouldReduceMotion={shouldReduceMotion}
-                      cursor={cursorPhysics}
-                    />
+                    <CyberSecurityStageVisual />
                   </motion.div>
                 )}
 
@@ -385,12 +240,9 @@ export default function AboutUs() {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.94 }}
                     transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                    className="w-full"
+                    className="w-full flex justify-center items-center"
                   >
-                    <FilmProductionStageVisual
-                      shouldReduceMotion={shouldReduceMotion}
-                      cursor={cursorPhysics}
-                    />
+                    <FilmProductionStageVisual />
                   </motion.div>
                 )}
               </AnimatePresence>
