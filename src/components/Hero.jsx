@@ -31,7 +31,7 @@ export default function Hero({ onOpenModal }) {
   };
 
   return (
-    <section id="home" className="relative pt-16 pb-4 sm:pt-20 sm:pb-6 md:pt-24 md:pb-8 lg:pt-24 lg:pb-8 overflow-hidden bg-gradient-to-b from-[#F4F8FD] via-white to-[#F4F8FD] flex items-center justify-center min-h-0 sm:min-h-[55vh] lg:min-h-[60vh]">
+    <section id="home" className="relative pt-28 pb-6 sm:pt-32 sm:pb-8 md:pt-28 md:pb-8 lg:pt-24 lg:pb-8 overflow-hidden bg-gradient-to-b from-[#F4F8FD] via-white to-[#F4F8FD] flex items-center justify-center min-h-0 sm:min-h-[55vh] lg:min-h-[60vh]">
       
       {/* Subtle Abstract Background Accents */}
       <div className="absolute inset-0 bg-grid-mesh pointer-events-none -z-10 opacity-40" />
@@ -53,7 +53,7 @@ export default function Hero({ onOpenModal }) {
               variants={containerVariants}
               initial="hidden"
               animate="visible"
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-[2.85rem] xl:text-[3.25rem] font-bold text-[#082B59] leading-[1.16] tracking-tight mb-4 sm:mb-5"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-[2.85rem] xl:text-[3.25rem] font-bold text-[#082B59] leading-[1.16] tracking-tight mb-3.5 sm:mb-4"
               style={{ textWrap: 'balance' }}
             >
               <motion.span variants={textItemVariants} className="inline-block mr-2 sm:mr-3 drop-shadow-xs">
@@ -112,11 +112,11 @@ export default function Hero({ onOpenModal }) {
           </div>
 
           {/* RIGHT COLUMN: 3D Human Particle Silhouette */}
-          <div className="lg:col-span-5 flex items-end justify-center lg:justify-end w-full relative mt-2 sm:mt-4 lg:mt-0">
+          <div className="lg:col-span-5 flex items-end justify-center lg:justify-end w-full relative mt-4 sm:mt-6 lg:mt-0">
             {/* Ambient Luminous Halo behind the 3D Bust */}
-            <div className="absolute w-[300px] sm:w-[360px] lg:w-[420px] h-[300px] sm:h-[360px] lg:h-[420px] bg-gradient-to-tr from-blue-100/40 via-sky-100/30 to-transparent rounded-full blur-3xl pointer-events-none -z-10" />
+            <div className="absolute w-[280px] sm:w-[360px] lg:w-[420px] h-[280px] sm:h-[360px] lg:h-[420px] bg-gradient-to-tr from-blue-100/40 via-sky-100/30 to-transparent rounded-full blur-3xl pointer-events-none -z-10" />
 
-            <div className="relative w-[280px] xs:w-[310px] sm:w-[350px] md:w-[380px] lg:w-[400px] xl:w-[430px] h-[350px] xs:h-[390px] sm:h-[430px] md:h-[460px] lg:h-[480px] xl:h-[510px] pointer-events-auto z-10 opacity-95 [mask-image:linear-gradient(to_bottom,black_86%,transparent_100%)]">
+            <div className="relative w-[260px] xs:w-[280px] sm:w-[320px] md:w-[360px] lg:w-[390px] xl:w-[430px] h-[320px] xs:h-[350px] sm:h-[400px] md:h-[440px] lg:h-[480px] xl:h-[510px] pointer-events-auto z-10">
               <AllerHumanSilhouette className="w-full h-full" />
             </div>
           </div>

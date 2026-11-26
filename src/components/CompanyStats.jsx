@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion, useReducedMotion } from 'framer-motion';
 import { Bot, ShieldCheck, Film, Cog } from 'lucide-react';
 
-export default function CompanyStats({ className = "relative -mt-4 sm:-mt-6 z-20 px-4 sm:px-6 lg:px-8" }) {
+export default function CompanyStats({ className = "relative mt-6 sm:mt-8 lg:-mt-4 z-20 px-4 sm:px-6 lg:px-8" }) {
   const shouldReduceMotion = useReducedMotion();
 
   const pillars = [
