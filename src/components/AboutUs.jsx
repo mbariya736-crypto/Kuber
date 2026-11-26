@@ -1,20 +1,20 @@
 import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence, useReducedMotion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import {
-  Bot,
   Brain,
   ShieldCheck,
   Film,
   ArrowRight,
-  Lock,
-  Activity,
-  CheckCircle2,
-  Video,
   Sparkles,
   Zap,
-  Workflow,
-  Crosshair,
-  Sliders
+  Lock,
+  Video,
+  Activity,
+  Layers,
+  CheckCircle2,
+  Cpu,
+  Radio,
+  ExternalLink
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import RecurzivCyberFace from './RecurzivCyberFace';
@@ -53,52 +53,120 @@ function FilmProductionStageVisual() {
 }
 
 /* ========================================================================= */
-/* 2. MAIN ABOUT US / OUR CORE SERVICES COMPONENT                             */
+/* 2. DYNAMIC SERVICE THEMES & INTELLIGENCE DATA                             */
 /* ========================================================================= */
+
+const SERVICE_THEMES = {
+  'ai-services': {
+    id: 'ai-services',
+    category: 'AUTOMATION',
+    title: 'Business Automation',
+    tagline: 'Autonomous AI workflow pipelines engineered to eliminate manual bottlenecks, synchronize systems, and scale operations 10x faster.',
+    badgeIcon: Brain,
+    badgeText: 'Next-Gen Cognitive Automation',
+    accentColor: '#0866E8',
+    secondaryColor: '#00d2ff',
+    gradientText: 'from-[#0866E8] via-blue-600 to-cyan-500',
+    bgAura: 'from-blue-600/12 via-indigo-500/8 to-cyan-400/10',
+    blob1: 'bg-blue-100/60',
+    blob2: 'bg-sky-100/50',
+    gridColor: 'rgba(8, 102, 232, 0.45)',
+    liveStageBadge: 'DAINA • RECURZIV NEURAL ENGINE',
+    liveStageStatus: '99.98% Model Synchronized',
+    path: '/services/ai-services',
+    exploreLabel: 'Explore Automation Architecture',
+    metrics: [
+      { label: 'Workflow Acceleration', value: '10x', sub: 'vs manual operations' },
+      { label: 'Process Precision', value: '99.8%', sub: 'error elimination' },
+      { label: 'Autonomous Operation', value: '24/7', sub: 'self-healing pipelines' },
+      { label: 'API Integrations', value: '500+', sub: 'ERP, CRM, cloud databases' }
+    ],
+    capabilities: [
+      'Autonomous Agent Swarms',
+      'Self-Healing Workflows',
+      'Cognitive Data Extraction',
+      'Intelligent CRM Sync'
+    ]
+  },
+  'cyber-security': {
+    id: 'cyber-security',
+    category: 'SECURITY',
+    title: 'Cyber Security',
+    tagline: 'Military-grade hardware enclave defense, zero-trust cryptographic isolation, and 24/7 active threat hunting telemetry.',
+    badgeIcon: ShieldCheck,
+    badgeText: 'Hardware-Enforced Zero-Trust Security',
+    accentColor: '#10B981',
+    secondaryColor: '#14b8a6',
+    gradientText: 'from-emerald-600 via-teal-600 to-cyan-600',
+    bgAura: 'from-emerald-600/14 via-teal-500/10 to-slate-900/6',
+    blob1: 'bg-emerald-100/60',
+    blob2: 'bg-teal-100/50',
+    gridColor: 'rgba(16, 185, 129, 0.45)',
+    liveStageBadge: 'HARDWARE ENCLAVE • ZERO-TRUST SHIELD',
+    liveStageStatus: 'Active Threat Neutralization (Touch to Surge)',
+    path: '/services/cyber-security',
+    exploreLabel: 'Inspect Cyber Security Protocols',
+    metrics: [
+      { label: 'Hardware Encryption', value: 'AES-256', sub: 'GCM quantum-resistant' },
+      { label: 'Threat Response', value: '< 15ms', sub: 'instant automated isolation' },
+      { label: 'Zero-Day Shield', value: '100%', sub: 'heuristics coverage' },
+      { label: 'Compliance Level', value: 'SOC2 / ISO', sub: 'enterprise verified' }
+    ],
+    capabilities: [
+      'Hardware Enclave Isolation',
+      'Zero-Day Vulnerability Shield',
+      'Automated Penetration Tests',
+      'Multi-Factor Cryptographic IAM'
+    ]
+  },
+  'ai-films': {
+    id: 'ai-films',
+    category: 'MEDIA',
+    title: 'Film Production',
+    tagline: 'Commercial-grade virtual cinema, Unreal Engine 5 virtual volumes, and cinematic narrative craft engineered for maximum brand resonance.',
+    badgeIcon: Film,
+    badgeText: 'Virtual Cinema & Cinematic Masterworks',
+    accentColor: '#06B6D4',
+    secondaryColor: '#38bdf8',
+    gradientText: 'from-cyan-600 via-blue-600 to-indigo-600',
+    bgAura: 'from-cyan-500/12 via-blue-500/8 to-indigo-500/12',
+    blob1: 'bg-cyan-100/60',
+    blob2: 'bg-blue-100/50',
+    gridColor: 'rgba(6, 182, 212, 0.45)',
+    liveStageBadge: 'VIRTUAL STUDIO • 4K HDR MASTER',
+    liveStageStatus: 'Real-Time Unreal Engine 5 Volume',
+    path: '/services/ai-films',
+    exploreLabel: 'View Virtual Studio Showreel',
+    metrics: [
+      { label: 'Master Resolution', value: '4K / 6K', sub: 'HDR commercial master' },
+      { label: 'In-Camera VFX', value: 'Real-Time', sub: 'zero green-screen artifacting' },
+      { label: 'Spatial Soundscape', value: 'Dolby Atmos', sub: '3D immersive acoustic mix' },
+      { label: 'Turnkey Delivery', value: '100%', sub: 'concept to final premiere' }
+    ],
+    capabilities: [
+      'Unreal Engine 5 Virtual Sets',
+      'Anamorphic Optical Simulation',
+      'Generative Visual Effects',
+      'Hollywood Color Science'
+    ]
+  }
+};
+
+/* ========================================================================= */
+/* 3. MAIN ABOUT US / DYNAMIC CORE SERVICES SECTION                          */
+/* ========================================================================= */
+
 export default function AboutUs() {
   const shouldReduceMotion = useReducedMotion();
   const [activeServiceId, setActiveServiceId] = useState('ai-services');
   const stageRef = useRef(null);
 
+  const activeTheme = SERVICE_THEMES[activeServiceId] || SERVICE_THEMES['ai-services'];
+  const ActiveBadgeIcon = activeTheme.badgeIcon;
+
   // Mouse & Pointer Cursor Motion Values
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-
-  // Spring Physics for smooth fluid cursor & touch responsiveness
-  const springConfig = { damping: 20, stiffness: 140, mass: 0.5 };
-  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [24, -24]), springConfig);
-  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-26, 26]), springConfig);
-  const eyeX = useSpring(useTransform(mouseX, [-0.5, 0.5], [-9, 9]), springConfig);
-  const eyeY = useSpring(useTransform(mouseY, [-0.5, 0.5], [-7, 7]), springConfig);
-
-  // Multi-depth Parallax Layers
-  const layer1X = useSpring(useTransform(mouseX, [-0.5, 0.5], [-18, 18]), springConfig);
-  const layer1Y = useSpring(useTransform(mouseY, [-0.5, 0.5], [-18, 18]), springConfig);
-
-  const layer2X = useSpring(useTransform(mouseX, [-0.5, 0.5], [16, -16]), springConfig);
-  const layer2Y = useSpring(useTransform(mouseY, [-0.5, 0.5], [16, -16]), springConfig);
-
-  const layer3X = useSpring(useTransform(mouseX, [-0.5, 0.5], [-28, 28]), springConfig);
-  const layer3Y = useSpring(useTransform(mouseY, [-0.5, 0.5], [-28, 28]), springConfig);
-
-  // Smooth Cursor Spotlight Tracking
-  const glowX = useSpring(useTransform(mouseX, [-0.5, 0.5], ['20%', '80%']), springConfig);
-  const glowY = useSpring(useTransform(mouseY, [-0.5, 0.5], ['20%', '80%']), springConfig);
-
-  const cursorPhysics = {
-    rotateX,
-    rotateY,
-    eyeX,
-    eyeY,
-    layer1X,
-    layer1Y,
-    layer2X,
-    layer2Y,
-    layer3X,
-    layer3Y,
-    glowX,
-    glowY
-  };
 
   // Coordinate tracking for both mouse pointer and mobile touch
   const updateCoordinates = (clientX, clientY, currentTarget) => {
@@ -125,7 +193,7 @@ export default function AboutUs() {
     mouseY.set(0);
   };
 
-  // The 3 Core Services
+  // The 3 Core Services list
   const serviceCards = [
     {
       id: 'ai-services',
@@ -174,26 +242,112 @@ export default function AboutUs() {
   return (
     <section
       id="about"
-      className="py-10 sm:py-14 lg:py-16 relative overflow-hidden bg-white text-[#082B59]"
+      className="py-10 sm:py-14 lg:py-16 relative overflow-hidden bg-white text-[#082B59] transition-colors duration-500"
     >
-      {/* Subtle Background Decoration: Soft Gradient Blobs & Delicate Dot Pattern */}
-      <div className="absolute top-1/4 left-8 w-[340px] h-[340px] bg-blue-50/60 rounded-full blur-3xl pointer-events-none -z-10" />
-      <div className="absolute bottom-6 right-8 w-[360px] h-[360px] bg-sky-50/50 rounded-full blur-3xl pointer-events-none -z-10" />
-      <div
-        className="absolute inset-0 opacity-[0.14] pointer-events-none"
-        style={{
-          backgroundImage: `radial-gradient(rgba(8, 102, 232, 0.45) 1px, transparent 1px)`,
-          backgroundSize: '28px 28px'
-        }}
-      />
+      {/* 1. DYNAMIC BACKGROUND AURA: Morphs smoothly with the selected service */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={`bg-${activeServiceId}`}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.6, ease: 'easeInOut' }}
+          className="absolute inset-0 pointer-events-none -z-10"
+        >
+          {/* Top-Left Ambient Orb */}
+          <div
+            className={`absolute top-1/6 left-6 w-[380px] h-[380px] ${activeTheme.blob1} rounded-full blur-3xl pointer-events-none transition-all duration-700`}
+          />
+          {/* Bottom-Right Ambient Orb */}
+          <div
+            className={`absolute bottom-6 right-6 w-[420px] h-[420px] ${activeTheme.blob2} rounded-full blur-3xl pointer-events-none transition-all duration-700`}
+          />
+          {/* Dynamic Grid Pattern with matching theme tint */}
+          <div
+            className="absolute inset-0 opacity-[0.14] pointer-events-none"
+            style={{
+              backgroundImage: `radial-gradient(${activeTheme.gridColor} 1px, transparent 1px)`,
+              backgroundSize: '28px 28px'
+            }}
+          />
+        </motion.div>
+      </AnimatePresence>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
-        {/* Two-Column Responsive Layout */}
+        {/* 2. DYNAMIC TOP HEADING & SECTION BADGE */}
+        <div className="mb-8 lg:mb-10 text-left">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={`badge-${activeServiceId}`}
+              initial={{ opacity: 0, y: -6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 6 }}
+              transition={{ duration: 0.3 }}
+              className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-3 shadow-xs border transition-all"
+              style={{
+                backgroundColor: `${activeTheme.accentColor}12`,
+                borderColor: `${activeTheme.accentColor}40`,
+                color: activeTheme.accentColor
+              }}
+            >
+              <ActiveBadgeIcon className="w-3.5 h-3.5" />
+              <span>{activeTheme.badgeText}</span>
+            </motion.div>
+          </AnimatePresence>
+
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#082B59] tracking-tight leading-[1.18] mb-2">
+                Our{' '}
+                <span className={`bg-gradient-to-r ${activeTheme.gradientText} bg-clip-text text-transparent transition-all duration-500`}>
+                  Core Services
+                </span>
+              </h2>
+
+              <AnimatePresence mode="wait">
+                <motion.p
+                  key={`tagline-${activeServiceId}`}
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.32, ease: 'easeOut' }}
+                  className="text-sm sm:text-base text-slate-600 max-w-2xl font-normal leading-relaxed"
+                >
+                  {activeTheme.tagline}
+                </motion.p>
+              </AnimatePresence>
+            </div>
+
+            {/* Quick Switcher Indicators */}
+            <div className="flex items-center gap-1.5 p-1 rounded-xl bg-slate-100/80 border border-slate-200/80 self-start md:self-auto">
+              {serviceCards.map((card) => {
+                const isCur = card.id === activeServiceId;
+                const Icon = card.icon;
+                return (
+                  <button
+                    key={card.id}
+                    onClick={() => setActiveServiceId(card.id)}
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 ${
+                      isCur
+                        ? 'bg-white text-[#082B59] shadow-xs font-bold'
+                        : 'text-slate-500 hover:text-slate-800'
+                    }`}
+                  >
+                    <Icon className="w-3.5 h-3.5" style={{ color: isCur ? card.accentColor : undefined }} />
+                    <span className="hidden sm:inline">{card.category}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
+        {/* 3. TWO-COLUMN RESPONSIVE LAYOUT */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-center">
 
-          {/* LEFT: OPEN 3D HOLOGRAPHIC ANIMATION STAGE (SQUARE BOX REMOVED, CURSOR INTERACTIVE) */}
-          <div className="lg:col-span-5 flex justify-center w-full">
+          {/* LEFT: OPEN 3D HOLOGRAPHIC ANIMATION STAGE (FRAMELESS, TOUCH-INTERACTIVE) */}
+          <div className="lg:col-span-5 flex flex-col justify-center items-center w-full">
             <div
               ref={stageRef}
               onPointerDown={handlePointerMove}
@@ -247,32 +401,34 @@ export default function AboutUs() {
                 )}
               </AnimatePresence>
             </div>
+
+            {/* Stage Live Telemetry Pill */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`telemetry-${activeServiceId}`}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.28 }}
+                className="mt-2.5 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 text-white backdrop-blur-md border border-white/10 shadow-md text-[11px]"
+              >
+                <span
+                  className="w-2 h-2 rounded-full animate-pulse"
+                  style={{ backgroundColor: activeTheme.accentColor }}
+                />
+                <span className="font-mono font-semibold tracking-wider text-slate-300">
+                  {activeTheme.liveStageBadge}
+                </span>
+                <span className="text-slate-500">•</span>
+                <span className="text-slate-400 font-mono text-[10px]">
+                  {activeTheme.liveStageStatus}
+                </span>
+              </motion.div>
+            </AnimatePresence>
           </div>
 
-          {/* RIGHT: HEADING & INTERACTIVE SERVICE SELECTOR CARDS */}
+          {/* RIGHT: CLICKABLE SERVICE SELECTOR CARDS */}
           <div className="lg:col-span-7 flex flex-col justify-center text-left">
-
-            {/* Section Heading with Modern Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 14 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="mb-5 sm:mb-6 text-left"
-            >
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50/90 border border-blue-200/70 text-[#0866E8] text-xs font-semibold uppercase tracking-wider mb-2.5 shadow-xs">
-                <Sparkles className="w-3.5 h-3.5 text-[#0866E8]" />
-                <span>Next-Gen Enterprise Solutions</span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#082B59] tracking-tight leading-[1.18] mb-2">
-                Our <span className="bg-gradient-to-r from-[#0866E8] via-blue-600 to-cyan-500 bg-clip-text text-transparent">Core Services</span>
-              </h2>
-              <p className="text-xs sm:text-sm text-slate-600 max-w-xl font-normal leading-relaxed">
-                Autonomous workflow intelligence, zero-trust hardware security, and commercial-grade cinematic storytelling engineered to drive measurable business transformation.
-              </p>
-            </motion.div>
-
-            {/* Clickable Service Cards */}
             <div className="flex flex-col gap-3.5 sm:gap-4 w-full">
               {serviceCards.map((card, index) => {
                 const Icon = card.icon;
@@ -290,14 +446,15 @@ export default function AboutUs() {
                       ease: [0.16, 1, 0.3, 1]
                     }}
                     whileHover={shouldReduceMotion ? {} : {
-                      y: -4,
+                      y: -3,
                       transition: { duration: 0.22, ease: [0.16, 1, 0.3, 1] }
                     }}
                     onClick={() => setActiveServiceId(card.id)}
-                    className={`group relative rounded-2xl p-4 sm:p-5 bg-white/95 backdrop-blur-md border transition-all duration-300 overflow-hidden text-left cursor-pointer ${isSelected
+                    className={`group relative rounded-2xl p-4 sm:p-5 bg-white/95 backdrop-blur-md border transition-all duration-300 overflow-hidden text-left cursor-pointer ${
+                      isSelected
                         ? card.activeBorder
                         : 'border-slate-200/90 hover:border-slate-300 shadow-xs hover:shadow-md'
-                      }`}
+                    }`}
                   >
                     {/* Active Accent Indicator Bar */}
                     {isSelected && (
@@ -363,10 +520,101 @@ export default function AboutUs() {
                 );
               })}
             </div>
-
           </div>
 
         </div>
+
+        {/* 4. DYNAMIC SERVICE INTELLIGENCE PANEL: METRICS, CAPABILITIES & EXPLORE CTA */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={`panel-${activeServiceId}`}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -16 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="mt-10 lg:mt-12 rounded-2xl p-5 sm:p-6 lg:p-7 bg-gradient-to-br from-white/95 via-slate-50/90 to-white/95 border border-slate-200/80 shadow-md backdrop-blur-md relative overflow-hidden"
+          >
+            {/* Subtle Accent Glow Line at Top */}
+            <div
+              className="absolute top-0 left-0 right-0 h-1"
+              style={{
+                background: `linear-gradient(90deg, transparent, ${activeTheme.accentColor}, transparent)`
+              }}
+            />
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+
+              {/* 4.1 Key Performance Metrics (4 Columns on Desktop) */}
+              <div className="lg:col-span-8">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+                  {activeTheme.metrics.map((metric, idx) => (
+                    <div
+                      key={idx}
+                      className="p-3 sm:p-3.5 rounded-xl bg-white border border-slate-200/70 shadow-2xs text-left"
+                    >
+                      <div
+                        className="text-xl sm:text-2xl font-black tracking-tight"
+                        style={{ color: activeTheme.accentColor }}
+                      >
+                        {metric.value}
+                      </div>
+                      <div className="text-xs font-bold text-[#082B59] mt-0.5">
+                        {metric.label}
+                      </div>
+                      <div className="text-[10px] text-slate-500 font-medium">
+                        {metric.sub}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* 4.2 Capabilities Tags */}
+                <div className="mt-4 flex flex-wrap items-center gap-2">
+                  <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1 mr-1">
+                    <Layers className="w-3.5 h-3.5" /> Capabilities:
+                  </span>
+                  {activeTheme.capabilities.map((cap, i) => (
+                    <span
+                      key={i}
+                      className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-100/90 text-slate-700 border border-slate-200/60"
+                    >
+                      <CheckCircle2
+                        className="w-3 h-3"
+                        style={{ color: activeTheme.accentColor }}
+                      />
+                      <span>{cap}</span>
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* 4.3 Action CTA Button & Link */}
+              <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col justify-center items-start lg:items-end gap-3 border-t lg:border-t-0 lg:border-l border-slate-200/70 pt-4 lg:pt-0 lg:pl-6">
+                <div className="text-left lg:text-right">
+                  <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                    Dedicated Solution
+                  </div>
+                  <div className="text-sm font-bold text-[#082B59]">
+                    {activeTheme.title} Architecture
+                  </div>
+                </div>
+
+                <Link
+                  to={activeTheme.path}
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-white font-semibold text-sm shadow-md hover:shadow-lg transition-all transform active:scale-95"
+                  style={{
+                    backgroundColor: activeTheme.accentColor,
+                    boxShadow: `0 8px 20px -4px ${activeTheme.accentColor}40`
+                  }}
+                >
+                  <span>{activeTheme.exploreLabel}</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+
+            </div>
+          </motion.div>
+        </AnimatePresence>
 
       </div>
     </section>
