@@ -102,9 +102,9 @@ export default function RecurzivCyberFace({ className = '', height = '450px', is
 
     // 4. Glowing Cyber Eyes (Hexagonal outer iris + rotating inner ring + bright core)
     const eyeGroup = new THREE.Group();
-    const eyeOuterGeo = new THREE.RingGeometry(0.5, 1.05, 6);
-    const eyeInnerGeo = new THREE.RingGeometry(0.2, 0.42, 6);
-    const pupilGeo = new THREE.CircleGeometry(0.32, 12);
+    const eyeOuterGeo = new THREE.RingGeometry(0.28, 0.58, 6);
+    const eyeInnerGeo = new THREE.RingGeometry(0.12, 0.24, 6);
+    const pupilGeo = new THREE.CircleGeometry(0.18, 12);
 
     const eyeMat = new THREE.MeshBasicMaterial({
       color: 0x00f0ff,
@@ -132,12 +132,13 @@ export default function RecurzivCyberFace({ className = '', height = '450px', is
     const leftPupil = new THREE.Mesh(pupilGeo, pupilMat);
     const rightPupil = new THREE.Mesh(pupilGeo, pupilMat);
 
-    leftEye.position.set(-2.5, 2.07, 5.02);
-    rightEye.position.set(2.5, 2.07, 5.02);
-    leftInnerEye.position.set(-2.5, 2.07, 5.03);
-    rightInnerEye.position.set(2.5, 2.07, 5.03);
-    leftPupil.position.set(-2.5, 2.07, 5.04);
-    rightPupil.position.set(2.5, 2.07, 5.04);
+    // Exact eye socket coordinates derived from 3D model geometry
+    leftEye.position.set(-1.60, 2.38, 4.42);
+    rightEye.position.set(1.60, 2.38, 4.42);
+    leftInnerEye.position.set(-1.60, 2.38, 4.43);
+    rightInnerEye.position.set(1.60, 2.38, 4.43);
+    leftPupil.position.set(-1.60, 2.38, 4.44);
+    rightPupil.position.set(1.60, 2.38, 4.44);
 
     eyeGroup.add(leftEye, rightEye, leftInnerEye, rightInnerEye, leftPupil, rightPupil);
     headGroup.add(eyeGroup);
@@ -169,11 +170,19 @@ export default function RecurzivCyberFace({ className = '', height = '450px', is
       });
 
       if (faceMesh) {
-        // Dark interior backing to eliminate clutter and provide high contrast depth
-        const innerMat = new THREE.MeshBasicMaterial({
-          color: 0x020b18,
+        // IMPORTANT: Delete vertex color attribute from GLTF geometry to eliminate
+        // the black forehead patch and allow uniform cybernetic luminous shading
+        if (faceMesh.geometry.attributes.color) {
+          faceMesh.geometry.deleteAttribute('color');
+        }
+
+        // Dark interior volume backing to eliminate line clutter and provide high contrast depth
+        const innerMat = new THREE.MeshPhongMaterial({
+          color: 0x061838,
+          emissive: 0x030d22,
+          shininess: 35,
           transparent: true,
-          opacity: 0.88,
+          opacity: 0.90,
           side: THREE.FrontSide
         });
         faceMesh.material = innerMat;
@@ -183,7 +192,7 @@ export default function RecurzivCyberFace({ className = '', height = '450px', is
           color: 0x00f0ff,
           wireframe: true,
           transparent: true,
-          opacity: 0.78,
+          opacity: 0.82,
           blending: THREE.AdditiveBlending
         });
         wireframeMesh = new THREE.Mesh(faceMesh.geometry, wireframeMat);
@@ -195,9 +204,9 @@ export default function RecurzivCyberFace({ className = '', height = '450px', is
         // 5b. Glowing Nodes on Vertices (Neural Dots)
         const pointsMat = new THREE.PointsMaterial({
           color: 0x38bdf8,
-          size: 0.28,
+          size: 0.22,
           transparent: true,
-          opacity: 0.85,
+          opacity: 0.9,
           blending: THREE.AdditiveBlending
         });
         pointsMesh = new THREE.Points(faceMesh.geometry, pointsMat);
@@ -380,22 +389,34 @@ export default function RecurzivCyberFace({ className = '', height = '450px', is
   return (
     <div
       ref={containerRef}
-      className={`relative w-full h-full select-none flex items-center justify-center ${className}`}
-      style={isBackground ? { width: '100%', height: '100%' } : { height }}
+      className={`relative w-full ${isBackground ? 'h-full' : 'max-w-[440px] h-[400px] sm:h-[450px] rounded-3xl overflow-hidden bg-gradient-to-b from-[#030718] via-[#060c24] to-[#020512] border border-cyan-500/30 shadow-[0_20px_50px_rgba(6,182,212,0.2)]'} select-none flex items-center justify-center cursor-grab active:cursor-grabbing touch-none ${className}`}
+      style={isBackground ? { width: '100%', height: '100%' } : { height: '100%', minHeight: '380px' }}
     >
-      {/* Soft ambient spatial aura behind the 3D face (pure open stage) */}
-      <div className="absolute w-[220px] sm:w-[260px] h-[220px] sm:h-[260px] bg-gradient-to-tr from-cyan-500/15 via-blue-600/10 to-purple-600/15 rounded-full blur-3xl pointer-events-none -z-10" />
+      {/* Deep cosmic nebula glow effects */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(6,182,212,0.18),transparent_65%)] pointer-events-none -z-10" />
+      <div className="absolute -top-12 -right-12 w-56 h-56 bg-purple-600/20 rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute -bottom-12 -left-12 w-56 h-56 bg-cyan-600/20 rounded-full blur-3xl pointer-events-none -z-10" />
 
-      {/* 3D WebGL Canvas Container - Frameless & Open */}
+      {/* 3D WebGL Canvas Container */}
       <div
         ref={mountRef}
         className={`w-full h-full relative z-10 flex items-center justify-center ${isBackground ? 'pointer-events-none' : 'cursor-grab active:cursor-grabbing'}`}
       />
 
+      {/* Subtle bottom cyber status pill (pure recurziv DAINA style) */}
+      {!isBackground && (
+        <div className="absolute bottom-3.5 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#030a1c]/80 backdrop-blur-md border border-cyan-500/30 shadow-md pointer-events-none">
+          <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
+          <span className="text-[10px] font-mono font-bold tracking-widest uppercase text-cyan-300">
+            DAINA &bull; 3D Neural Face
+          </span>
+        </div>
+      )}
+
       {/* Subtle non-intrusive loading state indicator */}
       {loading && !isBackground && (
         <div className="absolute inset-0 z-30 flex items-center justify-center pointer-events-none">
-          <div className="flex items-center gap-2 text-xs font-mono text-cyan-600">
+          <div className="flex items-center gap-2 text-xs font-mono text-cyan-400">
             <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping" />
             <span className="font-semibold tracking-wider">3D NEURAL MESH LOADING...</span>
           </div>
