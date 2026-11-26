@@ -478,24 +478,8 @@ export default function Navbar() {
                 <div className="absolute -top-12 -right-12 w-44 h-44 bg-blue-100/60 rounded-full blur-3xl pointer-events-none" />
                 <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-cyan-100/50 rounded-full blur-3xl pointer-events-none" />
 
-                {/* Human-Crafted Live Status Strip */}
-                <div className="px-4 py-2 border-b border-slate-100/80 bg-slate-50/60 flex items-center justify-between text-[11px] relative z-10">
-                  <div className="flex items-center gap-2">
-                    <span className="relative flex h-2 w-2">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                      <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-                    </span>
-                    <span className="font-semibold text-slate-700 tracking-wide">
-                      AI Core Active & Ready
-                    </span>
-                  </div>
-                  <span className="text-[10px] font-mono text-slate-600 bg-white/90 px-2 py-0.5 rounded-full border border-slate-200/60 shadow-2xs">
-                    Next-Gen Tech
-                  </span>
-                </div>
-
                 {/* Scrollable Nav Items with Staggered Entrance */}
-                <div className="overflow-y-auto overscroll-contain px-3 sm:px-4 py-2.5 space-y-1.5 flex-1 relative z-10">
+                <div className="overflow-y-auto overscroll-contain px-3 sm:px-4 py-3 space-y-1.5 flex-1 relative z-10">
                   {navLinks.map((link, idx) => {
                     const active = isLinkActive(link);
                     const IconComponent = link.icon;
@@ -524,14 +508,9 @@ export default function Navbar() {
                               <div className={`w-9 h-9 rounded-xl flex items-center justify-center border shrink-0 ${link.iconBg} ${link.iconColor} shadow-2xs`}>
                                 <IconComponent className="w-4.5 h-4.5" />
                               </div>
-                              <div className="min-w-0 flex-1">
-                                <span className="text-sm font-bold truncate block text-[#082B59]">
-                                  {link.name}
-                                </span>
-                                <span className="text-[11px] text-slate-600 truncate block">
-                                  {link.subtitle || 'Explore 3 Core Practices'}
-                                </span>
-                              </div>
+                              <span className="text-sm font-bold truncate block text-[#082B59]">
+                                {link.name}
+                              </span>
                             </div>
 
                             <button
@@ -576,14 +555,9 @@ export default function Navbar() {
                                       <div className={`p-2 rounded-lg border ${item.borderColor} ${item.bgColor} ${item.color} shrink-0`}>
                                         <SubIcon className="w-4 h-4" />
                                       </div>
-                                      <div className="min-w-0 flex-1">
-                                        <span className="text-xs font-bold text-slate-900 block truncate">
-                                          {item.name}
-                                        </span>
-                                        <span className="text-[10px] text-slate-600 block truncate">
-                                          {item.description}
-                                        </span>
-                                      </div>
+                                      <span className="text-xs font-bold text-slate-900 block truncate flex-1">
+                                        {item.name}
+                                      </span>
                                       <ArrowRight className="w-3.5 h-3.5 text-slate-300 shrink-0" />
                                     </button>
                                   );
@@ -595,7 +569,7 @@ export default function Navbar() {
                       );
                     }
 
-                    // Normal Links with Human Micro-Subtitles
+                    // Normal Links
                     return (
                       <motion.a
                         key={link.name}
@@ -615,14 +589,9 @@ export default function Navbar() {
                           <div className={`w-9 h-9 rounded-xl flex items-center justify-center border shrink-0 ${link.iconBg} ${link.iconColor} shadow-2xs`}>
                             <IconComponent className="w-4.5 h-4.5" />
                           </div>
-                          <div className="min-w-0 flex-1">
-                            <span className="text-sm font-bold block truncate text-[#082B59]">
-                              {link.name}
-                            </span>
-                            <span className="text-[11px] text-slate-600 block truncate">
-                              {link.subtitle}
-                            </span>
-                          </div>
+                          <span className="text-sm font-bold block truncate text-[#082B59]">
+                            {link.name}
+                          </span>
                         </div>
                         <ArrowRight className={`w-4 h-4 shrink-0 transition-transform ${active ? 'text-[#0866E8] translate-x-0.5' : 'text-slate-300'}`} />
                       </motion.a>
