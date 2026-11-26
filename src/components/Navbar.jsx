@@ -218,35 +218,56 @@ export default function Navbar() {
       </AnimatePresence>
 
       <header
-        className={`fixed top-0 left-0 right-0 z-[90] transition-all duration-300 ease-in-out pointer-events-none ${isScrolled ? 'pt-2.5 sm:pt-3.5 px-3 sm:px-6' : 'pt-0 px-0'
-          }`}
+        className={`fixed top-0 left-0 right-0 z-[90] transition-all duration-300 ease-in-out pointer-events-none ${
+          mobileMenuOpen
+            ? 'pt-2.5 sm:pt-3.5 px-3 sm:px-6'
+            : isScrolled
+            ? 'pt-2.5 sm:pt-3.5 px-3 sm:px-6'
+            : 'pt-0 px-0'
+        }`}
         style={{
-          paddingTop: isScrolled ? undefined : 'max(0px, env(safe-area-inset-top, 0px))'
+          paddingTop: mobileMenuOpen || isScrolled ? 'max(10px, env(safe-area-inset-top, 10px))' : 'max(0px, env(safe-area-inset-top, 0px))'
         }}
       >
         <div
-          className={`pointer-events-auto transition-all duration-300 ease-in-out ${isScrolled
-            ? 'max-w-5xl mx-auto rounded-full bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-[0_8px_30px_rgba(8,43,89,0.08)] px-4 sm:px-6'
-            : 'w-full bg-white/95 backdrop-blur-sm border-b border-slate-200/80 shadow-[0_2px_12px_rgba(8,43,89,0.03)] px-4 sm:px-6 lg:px-8'
-            }`}
+          className={`pointer-events-auto transition-all duration-300 ease-in-out ${
+            mobileMenuOpen
+              ? 'w-full max-w-lg mx-auto rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-2xl overflow-hidden'
+              : isScrolled
+              ? 'max-w-5xl mx-auto rounded-full bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-[0_8px_30px_rgba(8,43,89,0.08)] px-4 sm:px-6'
+              : 'w-full bg-white/95 backdrop-blur-sm border-b border-slate-200/80 shadow-[0_2px_12px_rgba(8,43,89,0.03)] px-4 sm:px-6 lg:px-8'
+          }`}
         >
-          <div className={isScrolled ? 'w-full' : 'max-w-7xl mx-auto'}>
+          <div className={mobileMenuOpen ? 'w-full' : isScrolled ? 'w-full' : 'max-w-7xl mx-auto'}>
             <nav
-              className={`flex items-center justify-between transition-all duration-300 ${isScrolled ? 'h-[54px] sm:h-[58px]' : 'h-[68px] sm:h-[72px]'
-                }`}
+              className={`flex items-center justify-between transition-all duration-300 ${
+                mobileMenuOpen
+                  ? 'h-[58px] sm:h-[62px] px-4 sm:px-5 border-b border-slate-100 bg-white'
+                  : isScrolled
+                  ? 'h-[54px] sm:h-[58px]'
+                  : 'h-[68px] sm:h-[72px]'
+              }`}
             >
               {/* Logo */}
-              <div className="shrink-0">
+              <div className="shrink-0 flex items-center">
                 <Link
                   to="/"
-                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
                   className="flex items-center"
                 >
                   <img
                     src="/images/kuber_logo_transparent.png"
                     alt="KUBER AIS TECHNOLOGIES Logo"
-                    className={`w-auto object-contain transition-all duration-300 ${isScrolled ? 'h-7 sm:h-7.5' : 'h-8 sm:h-9'
-                      }`}
+                    className={`w-auto object-contain transition-all duration-300 ${
+                      mobileMenuOpen
+                        ? 'h-7 sm:h-7.5'
+                        : isScrolled
+                        ? 'h-7 sm:h-7.5'
+                        : 'h-8 sm:h-9'
+                    }`}
                     style={{ aspectRatio: '720 / 241' }}
                   />
                 </Link>
@@ -379,21 +400,21 @@ export default function Navbar() {
             </nav>
           </div>
 
-          {/* Mobile Drawer (Centrally Positioned Floating Panel with Safe Margins & Viewport Bounds) */}
+          {/* Mobile Drawer */}
           <AnimatePresence>
             {mobileMenuOpen && (
               <motion.div
-                initial={{ opacity: 0, y: -8, scale: 0.98 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -6, scale: 0.98 }}
-                transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-                className="lg:hidden mt-2.5 mb-3 w-full rounded-2xl bg-white border border-slate-200/90 shadow-2xl overflow-hidden flex flex-col z-[100]"
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.24, ease: [0.16, 1, 0.3, 1] }}
+                className="lg:hidden w-full flex flex-col overflow-hidden bg-white"
                 style={{
-                  maxHeight: 'calc(100vh - 95px - env(safe-area-inset-bottom, 0px))'
+                  maxHeight: 'calc(100vh - 80px - env(safe-area-inset-bottom, 0px))'
                 }}
               >
-                {/* Scrollable Nav Content inside the isolated Drawer */}
-                <div className="overflow-y-auto overscroll-contain px-4 py-4 sm:px-5 space-y-1.5 flex-1">
+                {/* Scrollable Nav Content */}
+                <div className="overflow-y-auto overscroll-contain px-4 py-3 sm:px-5 space-y-1.5 flex-1">
                   {navLinks.map((link) => {
                     const active = isLinkActive(link);
 
