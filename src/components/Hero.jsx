@@ -31,19 +31,19 @@ export default function Hero({ onOpenModal }) {
   };
 
   return (
-    <section id="home" className="relative pt-20 pb-0 sm:pt-28 sm:pb-0 md:pt-32 md:pb-12 lg:pt-36 lg:pb-24 overflow-hidden bg-gradient-to-b from-[#F4F8FD] via-white to-[#F4F8FD] flex items-center justify-center min-h-[68vh] sm:min-h-[74vh]">
+    <section id="home" className="relative pt-16 pb-4 sm:pt-20 sm:pb-6 md:pt-24 md:pb-8 lg:pt-24 lg:pb-8 overflow-hidden bg-gradient-to-b from-[#F4F8FD] via-white to-[#F4F8FD] flex items-center justify-center min-h-0 sm:min-h-[55vh] lg:min-h-[60vh]">
       
       {/* Subtle Abstract Background Accents */}
       <div className="absolute inset-0 bg-grid-mesh pointer-events-none -z-10 opacity-40" />
       
-      <div className="absolute top-8 left-1/2 -translate-x-1/2 w-[600px] sm:w-[750px] h-[300px] bg-gradient-to-b from-blue-100/25 via-slate-100/20 to-transparent rounded-[100%] blur-3xl pointer-events-none -z-10" />
-      <div className="absolute top-1/4 left-10 w-[360px] h-[360px] bg-blue-50/60 rounded-full blur-2xl pointer-events-none -z-10" />
-      <div className="absolute top-1/3 right-10 w-[360px] h-[360px] bg-sky-50/60 rounded-full blur-2xl pointer-events-none -z-10" />
+      <div className="absolute top-6 left-1/2 -translate-x-1/2 w-[600px] sm:w-[750px] h-[260px] bg-gradient-to-b from-blue-100/25 via-slate-100/20 to-transparent rounded-[100%] blur-3xl pointer-events-none -z-10" />
+      <div className="absolute top-1/4 left-10 w-[300px] h-[300px] bg-blue-50/60 rounded-full blur-2xl pointer-events-none -z-10" />
+      <div className="absolute top-1/3 right-10 w-[300px] h-[300px] bg-sky-50/60 rounded-full blur-2xl pointer-events-none -z-10" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full">
         
         {/* BALANCED EDITORIAL HERO GRID: Content on Left, Sized 3D Silhouette on Right */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-8 lg:gap-8 xl:gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-6 lg:gap-6 xl:gap-8">
           
           {/* LEFT COLUMN: Main Value Proposition & CTAs */}
           <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left">
@@ -53,10 +53,10 @@ export default function Hero({ onOpenModal }) {
               variants={containerVariants}
               initial="hidden"
               animate="visible"
-              className="text-3xl sm:text-5xl md:text-5xl lg:text-[3.25rem] xl:text-[3.65rem] font-bold text-[#082B59] leading-[1.14] tracking-tight mb-6 sm:mb-8"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-[2.85rem] xl:text-[3.25rem] font-bold text-[#082B59] leading-[1.16] tracking-tight mb-4 sm:mb-5"
               style={{ textWrap: 'balance' }}
             >
-              <motion.span variants={textItemVariants} className="inline-block mr-2 sm:mr-3.5 drop-shadow-xs">
+              <motion.span variants={textItemVariants} className="inline-block mr-2 sm:mr-3 drop-shadow-xs">
                 Practical Technology for
               </motion.span>
               <motion.span variants={textItemVariants} className="inline-block text-[#0866E8] drop-shadow-xs">
@@ -64,11 +64,21 @@ export default function Hero({ onOpenModal }) {
               </motion.span>
             </motion.h1>
 
+            {/* Clear Supporting Subtitle */}
+            <motion.p
+              initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: shouldReduceMotion ? 0 : 0.15, ease: [0.16, 1, 0.3, 1] }}
+              className="text-slate-600 text-sm sm:text-base lg:text-lg max-w-xl mb-6 sm:mb-7 leading-relaxed font-normal"
+            >
+              Empowering growing businesses with intelligent automation, proactive cyber defense, and high-impact commercial media.
+            </motion.p>
+
             {/* CTA Buttons with Tactile Hover Interaction */}
             <motion.div
               initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 14 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: shouldReduceMotion ? 0 : 0.2, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.5, delay: shouldReduceMotion ? 0 : 0.25, ease: [0.16, 1, 0.3, 1] }}
               className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5 w-full sm:w-auto"
             >
               <motion.div
@@ -101,12 +111,12 @@ export default function Hero({ onOpenModal }) {
 
           </div>
 
-          {/* RIGHT COLUMN: 3D Human Particle Silhouette (Filling the designated zone down to the hero base) */}
-          <div className="lg:col-span-5 flex items-end justify-center lg:justify-end w-full relative mt-4 sm:mt-6 lg:mt-0">
+          {/* RIGHT COLUMN: 3D Human Particle Silhouette */}
+          <div className="lg:col-span-5 flex items-end justify-center lg:justify-end w-full relative mt-2 sm:mt-4 lg:mt-0">
             {/* Ambient Luminous Halo behind the 3D Bust */}
-            <div className="absolute w-[320px] sm:w-[400px] lg:w-[480px] h-[320px] sm:h-[400px] lg:h-[480px] bg-gradient-to-tr from-blue-100/40 via-sky-100/30 to-transparent rounded-full blur-3xl pointer-events-none -z-10" />
+            <div className="absolute w-[300px] sm:w-[360px] lg:w-[420px] h-[300px] sm:h-[360px] lg:h-[420px] bg-gradient-to-tr from-blue-100/40 via-sky-100/30 to-transparent rounded-full blur-3xl pointer-events-none -z-10" />
 
-            <div className="relative w-[290px] xs:w-[320px] sm:w-[380px] md:w-[400px] lg:w-[420px] xl:w-[460px] h-[380px] xs:h-[420px] sm:h-[470px] md:h-[500px] lg:h-[530px] xl:h-[570px] pointer-events-auto z-10 opacity-95 [mask-image:linear-gradient(to_bottom,black_86%,transparent_100%)]">
+            <div className="relative w-[280px] xs:w-[310px] sm:w-[350px] md:w-[380px] lg:w-[400px] xl:w-[430px] h-[350px] xs:h-[390px] sm:h-[430px] md:h-[460px] lg:h-[480px] xl:h-[510px] pointer-events-auto z-10 opacity-95 [mask-image:linear-gradient(to_bottom,black_86%,transparent_100%)]">
               <AllerHumanSilhouette className="w-full h-full" />
             </div>
           </div>

@@ -451,6 +451,7 @@ export function AIServicesExperience({ onOpenContact }) {
             </h3>
 
 
+
             <button
               onClick={onOpenContact}
               className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-xl text-sm font-semibold text-white bg-[#0866E8] hover:bg-[#0756C5] shadow-xs hover:shadow-md transition-all cursor-pointer min-h-[44px]"
@@ -513,9 +514,7 @@ export function CyberSecurityExperience({ onOpenContact }) {
             Business Operations
           </span>
         </h1>
-        <p className="text-slate-600 text-xs sm:text-sm lg:text-base leading-relaxed max-w-2xl mx-auto font-normal">
-          Practical account audits, multi-factor authentication, and employee phishing defenses designed to safeguard your business from digital fraud, account takeovers, and scam links.
-        </p>
+
 
       </motion.div>
 
@@ -670,9 +669,7 @@ export function CyberSecurityExperience({ onOpenContact }) {
         <h3 className="text-2xl sm:text-3xl font-extrabold text-white mb-3">
           Protect Your Business Operations &amp; Client Trust
         </h3>
-        <p className="text-sm text-slate-300 max-w-xl mx-auto mb-6 leading-relaxed">
-          Schedule a confidential security review with our team to identify vulnerabilities in your business email, accounts, and payment procedures.
-        </p>
+
 
         <button
           onClick={onOpenContact}
@@ -787,6 +784,7 @@ export function AIFilmStudioExperience({ onOpenContact }) {
             Visual Storytelling
           </span>
         </h1>
+
 
 
       </motion.div>
@@ -1042,6 +1040,7 @@ export function AIFilmStudioExperience({ onOpenContact }) {
         <h3 className="text-2xl sm:text-3xl font-extrabold text-white mb-3">
           Bring Your Story to the Screen
         </h3>
+
 
 
         <button
