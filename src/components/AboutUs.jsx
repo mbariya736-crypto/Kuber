@@ -17,18 +17,18 @@ import {
   Sliders
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import AiWireframeFace from './AiWireframeFace';
+import RecurzivCyberFace from './RecurzivCyberFace';
 import CyberSecurityChip from './CyberSecurityChip';
 
 /* ========================================================================= */
 /* 1. INTERACTIVE SERVICE ANIMATIONS (OPEN 3D HOLOGRAPHIC STAGE)             */
 /* ========================================================================= */
 
-// --- A. AUTOMATION WORKFLOW ANIMATION: EXACT 3D ATTACHED AI WIREFRAME FACE ---
+// --- A. AUTOMATION WORKFLOW ANIMATION: EXACT RECURZIV 3D NEURAL CYBER FACE ---
 function AutomationStageVisual() {
   return (
     <div className="w-full flex justify-center items-center">
-      <AiWireframeFace />
+      <RecurzivCyberFace className="w-full max-w-[420px]" height="450px" />
     </div>
   );
 }
