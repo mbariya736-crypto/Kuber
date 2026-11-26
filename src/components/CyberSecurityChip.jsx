@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { motion, useMotionValue, useSpring, useTransform, useReducedMotion } from 'framer-motion';
 import { ShieldCheck, Lock, Cpu, Zap, Activity, CheckCircle2 } from 'lucide-react';
 
@@ -7,7 +7,7 @@ import { ShieldCheck, Lock, Cpu, Zap, Activity, CheckCircle2 } from 'lucide-reac
  * 
  * Interactive 3D Cybersecurity Hardware Processor Visual:
  * - Uses exact user attached image: /images/cyber-chip.jpg
- * - Full 3D perspective rotation (pitch, yaw, roll) tracking mouse cursor & mobile touch gestures
+ * - Full 3D perspective rotation (pitch, yaw, roll) tracking mouse cursor across the page & mobile touch gestures
  * - Dynamic specular laser & photon glare following pointer across circuit buses
  * - Holographic KUBER AIS Security badge overlaid over the chip center
  * - Bottom telemetry bar covering watermark cleanly
@@ -23,7 +23,7 @@ export default function CyberSecurityChip({ className = '' }) {
   const mouseY = useMotionValue(0);
 
   // Smooth fluid spring physics
-  const springConfig = { damping: 22, stiffness: 160, mass: 0.55 };
+  const springConfig = { damping: 24, stiffness: 150, mass: 0.55 };
   const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [24, -24]), springConfig);
   const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-28, 28]), springConfig);
   const rotateZ = useSpring(useTransform(mouseX, [-0.5, 0.5], [-6, 6]), springConfig);
@@ -38,6 +38,25 @@ export default function CyberSecurityChip({ className = '' }) {
   // Specular light sheen coordinates
   const glareX = useSpring(useTransform(mouseX, [-0.5, 0.5], ['15%', '85%']), springConfig);
   const glareY = useSpring(useTransform(mouseY, [-0.5, 0.5], ['15%', '85%']), springConfig);
+
+  // Page-wide mouse tracking so moving cursor ANYWHERE on the page tilts the chip in 3D
+  useEffect(() => {
+    if (shouldReduceMotion) return;
+
+    const handleGlobalPointerMove = (e) => {
+      if (!containerRef.current) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      const x = Math.max(-0.5, Math.min(0.5, (e.clientX - centerX) / (window.innerWidth * 0.75)));
+      const y = Math.max(-0.5, Math.min(0.5, (e.clientY - centerY) / (window.innerHeight * 0.75)));
+      mouseX.set(x);
+      mouseY.set(y);
+    };
+
+    window.addEventListener('pointermove', handleGlobalPointerMove, { passive: true });
+    return () => window.removeEventListener('pointermove', handleGlobalPointerMove);
+  }, [mouseX, mouseY, shouldReduceMotion]);
 
   const updateCoords = (clientX, clientY, currentTarget) => {
     const rect = currentTarget.getBoundingClientRect();

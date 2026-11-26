@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { motion, useMotionValue, useSpring, useTransform, useReducedMotion } from 'framer-motion';
 
 /**
@@ -6,7 +6,7 @@ import { motion, useMotionValue, useSpring, useTransform, useReducedMotion } fro
  * 
  * Interactive 3D Cyber Polygonal AI Face Mesh using the exact attached user picture:
  * - Exact source picture: /images/ai-face-wireframe.jpg
- * - Full 3D perspective rotation (yaw, pitch, roll) tracking mouse cursor & mobile touch drag
+ * - Full 3D perspective rotation (yaw, pitch, roll) tracking mouse cursor across the page & mobile touch drag
  * - Dynamic specular light sheen that follows the pointer across the face
  * - Living animated glowing cyber eyes aligned with the ocular optics
  * - Vertical biometric laser scanline sweep
@@ -22,7 +22,7 @@ export default function AiWireframeFace({ className = '' }) {
   const mouseY = useMotionValue(0);
 
   // Spring physics for smooth fluid responsiveness
-  const springConfig = { damping: 22, stiffness: 150, mass: 0.5 };
+  const springConfig = { damping: 24, stiffness: 140, mass: 0.5 };
   const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [26, -26]), springConfig);
   const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-30, 30]), springConfig);
   const rotateZ = useSpring(useTransform(mouseX, [-0.5, 0.5], [-8, 8]), springConfig);
@@ -38,7 +38,27 @@ export default function AiWireframeFace({ className = '' }) {
   const glareX = useSpring(useTransform(mouseX, [-0.5, 0.5], ['10%', '90%']), springConfig);
   const glareY = useSpring(useTransform(mouseY, [-0.5, 0.5], ['10%', '90%']), springConfig);
 
-  // Coordinate tracking for both mouse and mobile touch
+  // Page-wide mouse tracking so moving cursor ANYWHERE on the page moves the AI face in 3D
+  useEffect(() => {
+    if (shouldReduceMotion) return;
+
+    const handleGlobalPointerMove = (e) => {
+      if (!containerRef.current) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      // Calculate normalized delta relative to viewport width/height
+      const x = Math.max(-0.5, Math.min(0.5, (e.clientX - centerX) / (window.innerWidth * 0.75)));
+      const y = Math.max(-0.5, Math.min(0.5, (e.clientY - centerY) / (window.innerHeight * 0.75)));
+      mouseX.set(x);
+      mouseY.set(y);
+    };
+
+    window.addEventListener('pointermove', handleGlobalPointerMove, { passive: true });
+    return () => window.removeEventListener('pointermove', handleGlobalPointerMove);
+  }, [mouseX, mouseY, shouldReduceMotion]);
+
+  // Direct coordinate tracking for hover / touch drag
   const updateCoords = (clientX, clientY, currentTarget) => {
     const rect = currentTarget.getBoundingClientRect();
     const x = Math.max(-0.5, Math.min(0.5, (clientX - rect.left) / rect.width - 0.5));
@@ -162,9 +182,9 @@ export default function AiWireframeFace({ className = '' }) {
               shouldReduceMotion
                 ? {}
                 : {
-                    top: ['2%', '94%', '2%'],
-                    opacity: [0.2, 0.85, 0.2]
-                  }
+                  top: ['2%', '94%', '2%'],
+                  opacity: [0.2, 0.85, 0.2]
+                }
             }
             transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut' }}
             style={{ translateZ: 40 }}

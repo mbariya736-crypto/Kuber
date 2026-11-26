@@ -14,285 +14,31 @@ import {
   Zap,
   Workflow,
   Crosshair,
-  Sliders,
-  Cpu
+  Sliders
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import AiWireframeFace from './AiWireframeFace';
+import CyberSecurityChip from './CyberSecurityChip';
 
 /* ========================================================================= */
 /* 1. INTERACTIVE SERVICE ANIMATIONS (OPEN 3D HOLOGRAPHIC STAGE)             */
 /* ========================================================================= */
 
-// --- A. AUTOMATION WORKFLOW ANIMATION: ONLY STANDALONE 3D TOUCH-INTERACTIVE AI FACE ---
-function AutomationStageVisual({ shouldReduceMotion, cursor }) {
-  const { rotateX, rotateY, eyeX, eyeY, glowX, glowY } = cursor;
-
+// --- A. AUTOMATION WORKFLOW ANIMATION: EXACT 3D ATTACHED AI WIREFRAME FACE ---
+function AutomationStageVisual() {
   return (
-    <motion.div
-      style={{
-        rotateX: shouldReduceMotion ? 0 : rotateX,
-        rotateY: shouldReduceMotion ? 0 : rotateY,
-        transformStyle: 'preserve-3d'
-      }}
-      className="relative w-full h-[380px] sm:h-[440px] flex flex-col items-center justify-center select-none"
-    >
-      {/* Interactive Cursor Spotlight Aura */}
-      <motion.div
-        style={{
-          left: glowX,
-          top: glowY,
-          transform: 'translate(-50%, -50%)'
-        }}
-        className="absolute w-72 h-72 sm:w-84 sm:h-84 bg-gradient-to-r from-blue-400/25 via-cyan-300/20 to-transparent rounded-full blur-3xl pointer-events-none -z-10"
-      />
-
-      {/* Dual Outer Gyroscopic Orbit Rings */}
-      <motion.div
-        animate={shouldReduceMotion ? {} : { rotate: 360 }}
-        transition={{ duration: 24, repeat: Infinity, ease: 'linear' }}
-        className="absolute w-[290px] h-[290px] sm:w-[350px] sm:h-[350px] rounded-full border border-dashed border-[#0866E8]/35 pointer-events-none"
-      />
-      <motion.div
-        animate={shouldReduceMotion ? {} : { rotate: -360 }}
-        transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
-        className="absolute w-[330px] h-[330px] sm:w-[390px] sm:h-[390px] rounded-full border border-cyan-400/20 pointer-events-none"
-      />
-
-      {/* 3D AI Wireframe Face Container (Exact Attached AI Mesh Face) */}
-      <div className="relative z-20 flex flex-col items-center justify-center">
-        <div
-          className="relative w-[260px] h-[300px] sm:w-[290px] sm:h-[340px] rounded-2xl overflow-hidden shadow-2xl shadow-cyan-900/40 flex items-center justify-center border border-cyan-500/30"
-          style={{
-            maskImage: 'radial-gradient(ellipse at 50% 50%, black 72%, transparent 100%)',
-            WebkitMaskImage: 'radial-gradient(ellipse at 50% 50%, black 72%, transparent 100%)'
-          }}
-        >
-          {/* Exact Attached Wireframe Face Image */}
-          <img
-            src="/images/ai-face-wireframe.jpg"
-            alt="AI Wireframe Mesh Face"
-            className="w-full h-full object-cover object-center pointer-events-none select-none scale-105"
-            draggable={false}
-          />
-
-          {/* Living Glowing Cyan Pupil Lens Flares with Parallax Tracking */}
-          <motion.div
-            style={{
-              x: shouldReduceMotion ? 0 : eyeX,
-              y: shouldReduceMotion ? 0 : eyeY
-            }}
-            className="absolute inset-0 pointer-events-none"
-          >
-            {/* Left Eye Pupil Flare */}
-            <div className="absolute top-[43.5%] left-[34%] -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-cyan-300 shadow-[0_0_16px_#00F0FF] mix-blend-screen animate-pulse" />
-            <div className="absolute top-[43.5%] left-[34%] -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-cyan-400/30 blur-sm mix-blend-screen" />
-
-            {/* Right Eye Pupil Flare */}
-            <div className="absolute top-[43.5%] right-[34%] translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-cyan-300 shadow-[0_0_16px_#00F0FF] mix-blend-screen animate-pulse" />
-            <div className="absolute top-[43.5%] right-[34%] translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-cyan-400/30 blur-sm mix-blend-screen" />
-          </motion.div>
-
-          {/* Vertical Laser Scan Beam */}
-          <motion.div
-            animate={shouldReduceMotion ? {} : { top: ['6%', '92%', '6%'], opacity: [0.2, 0.85, 0.2] }}
-            transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-            className="absolute left-4 right-4 h-[2px] bg-gradient-to-r from-transparent via-cyan-300 to-transparent shadow-[0_0_12px_rgba(0,229,255,0.95)] z-30 pointer-events-none"
-          />
-
-          {/* Dynamic Interactive Light Sheen Glare */}
-          <motion.div
-            style={{
-              left: glowX,
-              top: glowY,
-              transform: 'translate(-50%, -50%)',
-              translateZ: 30
-            }}
-            className="absolute w-44 h-44 rounded-full bg-gradient-to-r from-cyan-400/25 via-blue-400/15 to-transparent blur-xl pointer-events-none mix-blend-screen"
-          />
-        </div>
-
-        {/* Ambient Glowing Hologram Sparkles */}
-        <Sparkles className="w-5 h-5 text-cyan-300 absolute -top-2 right-4 animate-pulse pointer-events-none" />
-        <Sparkles className="w-4 h-4 text-blue-300 absolute bottom-12 left-4 animate-pulse pointer-events-none" />
-
-        {/* Touch & Interaction Live Pill */}
-        <div className="mt-4 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-blue-200/80 shadow-sm text-xs font-semibold text-[#082B59]">
-          <span className="w-2 h-2 rounded-full bg-cyan-500 animate-ping" />
-          <span>Interactive AI Face &bull; Touch &amp; Drag</span>
-        </div>
-      </div>
-    </motion.div>
+    <div className="w-full flex justify-center items-center">
+      <AiWireframeFace />
+    </div>
   );
 }
 
-// --- B. CYBER SECURITY DEFENSE ANIMATION (EXACT ATTACHED MICROCHIP PROCESSOR 3D VISUAL) ---
-function CyberSecurityStageVisual({ shouldReduceMotion, cursor }) {
-  const { rotateX, rotateY, layer1X, layer1Y, layer2X, layer2Y, layer3X, layer3Y, glowX, glowY } = cursor;
-
+// --- B. CYBER SECURITY DEFENSE ANIMATION: EXACT 3D ATTACHED MICROCHIP PROCESSOR ---
+function CyberSecurityStageVisual() {
   return (
-    <motion.div
-      style={{
-        rotateX: shouldReduceMotion ? 0 : rotateX,
-        rotateY: shouldReduceMotion ? 0 : rotateY,
-        transformStyle: 'preserve-3d'
-      }}
-      className="relative w-full h-[380px] sm:h-[440px] flex flex-col justify-between items-center select-none"
-    >
-      {/* Interactive Cursor Spotlight Aura */}
-      <motion.div
-        style={{
-          left: glowX,
-          top: glowY,
-          transform: 'translate(-50%, -50%)'
-        }}
-        className="absolute w-72 h-72 bg-gradient-to-r from-red-500/25 via-cyan-400/20 to-transparent rounded-full blur-3xl pointer-events-none -z-10"
-      />
-
-      {/* Floating Top Header Pill */}
-      <motion.div
-        style={{
-          x: shouldReduceMotion ? 0 : layer1X,
-          y: shouldReduceMotion ? 0 : layer1Y
-        }}
-        className="flex items-center justify-between w-full max-w-[350px] px-3.5 py-2 rounded-full bg-[#0a0f24]/90 backdrop-blur-md border border-red-500/35 shadow-lg z-20"
-      >
-        <div className="flex items-center gap-2">
-          <span className="flex h-2 w-2 rounded-full bg-red-500 animate-ping" />
-          <span className="text-[11px] font-bold tracking-wider uppercase text-red-400 flex items-center gap-1.5">
-            <ShieldCheck className="w-3.5 h-3.5 text-red-400" />
-            Hardware Security Core
-          </span>
-        </div>
-        <span className="text-[10px] font-mono font-medium px-2 py-0.5 rounded-full bg-red-950/80 text-red-300 border border-red-500/50">
-          AES-256 Armed
-        </span>
-      </motion.div>
-
-      {/* Center 3D Interactive Cyber Chip Stage */}
-      <div className="relative my-auto flex items-center justify-center w-full py-2">
-        <motion.div
-          style={{
-            x: shouldReduceMotion ? 0 : layer1X,
-            y: shouldReduceMotion ? 0 : layer1Y,
-            translateZ: 30,
-            transformStyle: 'preserve-3d'
-          }}
-          className="relative w-[300px] sm:w-[350px] h-[210px] sm:h-[240px] flex items-center justify-center"
-        >
-          {/* Microchip Image Container with Mask & Watermark Concealment */}
-          <div
-            className="relative w-full h-full rounded-2xl overflow-hidden border border-red-500/40 shadow-2xl shadow-red-950/70"
-            style={{
-              maskImage: 'radial-gradient(ellipse at 50% 50%, black 78%, transparent 100%)',
-              WebkitMaskImage: 'radial-gradient(ellipse at 50% 50%, black 78%, transparent 100%)'
-            }}
-          >
-            <img
-              src="/images/cyber-chip.jpg"
-              alt="Cybersecurity Microchip Processor"
-              className="w-full h-full object-cover object-center pointer-events-none select-none scale-105"
-              draggable={false}
-            />
-
-            {/* Traveling Laser / Electrical Pulse Effect */}
-            <motion.div
-              animate={shouldReduceMotion ? {} : {
-                x: ['-100%', '200%'],
-                opacity: [0, 0.75, 0]
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: 'easeInOut'
-              }}
-              className="absolute inset-y-0 w-32 bg-gradient-to-r from-transparent via-red-500/40 to-transparent skew-x-12 pointer-events-none mix-blend-screen"
-            />
-
-            {/* Bottom Gradient Concealing Watermark */}
-            <div className="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-[#040612] via-[#040612]/90 to-transparent pointer-events-none" />
-          </div>
-
-          {/* Sleek Holographic Security Shield Label overlaid over chip center */}
-          <motion.div
-            style={{
-              x: shouldReduceMotion ? 0 : layer2X,
-              y: shouldReduceMotion ? 0 : layer2Y,
-              translateZ: 50
-            }}
-            className="absolute top-[46%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[124px] sm:w-[136px] h-[80px] sm:h-[88px] rounded-xl bg-gradient-to-b from-[#0a0f24]/95 via-[#0d132c]/95 to-[#060814]/98 border border-cyan-400/60 shadow-[0_0_20px_rgba(0,229,255,0.45)] flex flex-col items-center justify-center p-2 backdrop-blur-sm pointer-events-none z-20"
-          >
-            <div className="absolute top-1 left-1 w-2 h-2 border-t border-l border-cyan-300" />
-            <div className="absolute top-1 right-1 w-2 h-2 border-t border-r border-cyan-300" />
-            <div className="absolute bottom-1 left-1 w-2 h-2 border-b border-l border-cyan-300" />
-            <div className="absolute bottom-1 right-1 w-2 h-2 border-b border-r border-cyan-300" />
-
-            <div className="flex items-center gap-1 mb-1">
-              <Cpu className="w-3.5 h-3.5 text-cyan-400 animate-pulse" />
-              <span className="text-[9.5px] font-black tracking-widest text-cyan-300 uppercase">
-                KUBER SEC
-              </span>
-            </div>
-
-            <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-cyan-400/60 to-transparent my-0.5" />
-
-            <p className="text-[7.5px] font-mono tracking-widest text-emerald-400 font-bold uppercase mt-0.5 flex items-center gap-1">
-              <Lock className="w-2.5 h-2.5 text-emerald-400 inline" />
-              HARDWARE SHIELD
-            </p>
-
-            <span className="text-[7px] font-mono text-slate-300/80 mt-0.5">
-              ZERO-TRUST ACTIVE
-            </span>
-          </motion.div>
-
-          {/* Floating Parallax Defense Badges */}
-          <motion.div
-            style={{
-              x: shouldReduceMotion ? 0 : layer2X,
-              y: shouldReduceMotion ? 0 : layer3Y,
-              translateZ: 40
-            }}
-            className="absolute -bottom-2 left-1 sm:left-2 px-2.5 py-1 rounded-lg bg-[#0b1026]/90 border border-cyan-500/40 backdrop-blur-md shadow-lg flex items-center gap-1.5 z-20"
-          >
-            <Activity className="w-3 h-3 text-cyan-400" />
-            <span className="text-[9px] font-mono font-semibold text-cyan-200">
-              Bus: 100% Encrypted
-            </span>
-          </motion.div>
-
-          <motion.div
-            style={{
-              x: shouldReduceMotion ? 0 : layer3X,
-              y: shouldReduceMotion ? 0 : layer2Y,
-              translateZ: 40
-            }}
-            className="absolute -top-2 right-1 sm:right-2 px-2.5 py-1 rounded-lg bg-[#14081c]/90 border border-red-500/40 backdrop-blur-md shadow-lg flex items-center gap-1.5 z-20"
-          >
-            <Zap className="w-3 h-3 text-red-400" />
-            <span className="text-[9px] font-mono font-semibold text-red-200">
-              Active Threat Filter
-            </span>
-          </motion.div>
-        </motion.div>
-      </div>
-
-      {/* Floating Bottom Metrics Pill */}
-      <motion.div
-        style={{
-          x: shouldReduceMotion ? 0 : layer2X,
-          y: shouldReduceMotion ? 0 : layer2Y
-        }}
-        className="flex items-center justify-between w-full max-w-[350px] px-3.5 py-2 rounded-full bg-[#0a0f24]/90 backdrop-blur-md border border-slate-700/60 shadow-lg text-[10px] font-mono text-slate-300 z-20"
-      >
-        <span className="flex items-center gap-1.5 text-emerald-400 font-bold">
-          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-          Threat Level: 0 (Secured)
-        </span>
-        <span className="text-cyan-300 font-semibold animate-pulse">
-          Live 3D Cursor Control
-        </span>
-      </motion.div>
-    </motion.div>
+    <div className="w-full flex justify-center items-center">
+      <CyberSecurityChip />
+    </div>
   );
 }
 
