@@ -4,19 +4,21 @@ import { motion, useMotionValue, useSpring, useTransform, useReducedMotion } fro
 /**
  * CyberSecurityChip
  * 
- * Pure Frameless Circuit Board with Contained Cursor Energy Interaction:
+ * Pure Frameless Circuit Board with Interactive Touch-Reactive Current Surge:
  * - NO outer frame, NO header pills, NO footer bars (100% Frameless)
- * - All circuit animations and cursor energy are strictly contained inside (Zero overflow)
- * - Cursor acts as an electromagnetic catalyst: glowing energy beam & circuit sparks track the pointer
- * - Live animated electrical signal pulses travelling along motherboard circuit traces
+ * - WHEREVER TOUCHED OR HOVERED: Localized electrical current surges, intense lightning arcs,
+ *   expanding voltage shockwaves, and accelerated circuit pulses ignite right under the finger / cursor!
+ * - Strictly contained inside the circuit board (Zero overflow / zero spill)
+ * - Full touch gesture support for mobile + pointer tracking for desktop
  * - Central processor clock pulse ring & glowing pin contact nodes
- * - Subtle 3D perspective tilt (clamped to max 5 deg) tracking cursor
- * - Gentle floating oscillation & 1.025x hover zoom
+ * - Subtle 3D perspective tilt (clamped to max 5 deg) & gentle floating oscillation
  */
 export default function CyberSecurityChip({ className = '' }) {
   const containerRef = useRef(null);
   const shouldReduceMotion = useReducedMotion();
   const [isHovered, setIsHovered] = useState(false);
+  const [isSurging, setIsSurging] = useState(false);
+  const [touchPos, setTouchPos] = useState({ x: 50, y: 50 });
 
   // Normalized pointer coordinates [-0.5, 0.5]
   const mouseX = useMotionValue(0);
@@ -39,17 +41,60 @@ export default function CyberSecurityChip({ className = '' }) {
   const lightX = useSpring(rawLightX, springConfig);
   const lightY = useSpring(rawLightY, springConfig);
 
+  // Unified coordinate update for pointer, click and touch
+  const updateTouchLocation = (clientX, clientY, currentTarget, surge = false) => {
+    const rect = currentTarget.getBoundingClientRect();
+    const relX = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+    const relY = Math.max(0, Math.min(1, (clientY - rect.top) / rect.height));
+
+    const normX = relX - 0.5;
+    const normY = relY - 0.5;
+
+    mouseX.set(normX);
+    mouseY.set(normY);
+
+    setTouchPos({ x: relX * 100, y: relY * 100 });
+    setIsHovered(true);
+    if (surge) {
+      setIsSurging(true);
+    }
+  };
+
   const handlePointerMove = (e) => {
     if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = Math.max(-0.5, Math.min(0.5, (e.clientX - rect.left) / rect.width - 0.5));
-    const y = Math.max(-0.5, Math.min(0.5, (e.clientY - rect.top) / rect.height - 0.5));
-    mouseX.set(x);
-    mouseY.set(y);
-    setIsHovered(true);
+    updateTouchLocation(e.clientX, e.clientY, e.currentTarget, false);
+  };
+
+  const handlePointerDown = (e) => {
+    if (!containerRef.current) return;
+    updateTouchLocation(e.clientX, e.clientY, e.currentTarget, true);
+  };
+
+  const handlePointerUp = () => {
+    setIsSurging(false);
   };
 
   const handlePointerLeave = () => {
+    setIsHovered(false);
+    setIsSurging(false);
+    mouseX.set(0);
+    mouseY.set(0);
+  };
+
+  const handleTouchStart = (e) => {
+    if (e.touches && e.touches[0] && containerRef.current) {
+      updateTouchLocation(e.touches[0].clientX, e.touches[0].clientY, e.currentTarget, true);
+    }
+  };
+
+  const handleTouchMove = (e) => {
+    if (e.touches && e.touches[0] && containerRef.current) {
+      updateTouchLocation(e.touches[0].clientX, e.touches[0].clientY, e.currentTarget, true);
+    }
+  };
+
+  const handleTouchEnd = () => {
+    setIsSurging(false);
     setIsHovered(false);
     mouseX.set(0);
     mouseY.set(0);
@@ -59,28 +104,28 @@ export default function CyberSecurityChip({ className = '' }) {
   // ViewBox: 0 0 100 100, Chip Center: ~(51, 53)
   const cyanTracks = [
     { d: 'M 38 57 L 24 64 L 5 71', delay: 0 },
-    { d: 'M 40 54 L 23 57 L 3 59', delay: 0.4 },
-    { d: 'M 42 51 L 24 50 L 4 47', delay: 0.8 },
-    { d: 'M 44 48 L 26 43 L 6 35', delay: 1.2 },
-    { d: 'M 46 45 L 29 36 L 10 24', delay: 0.3 },
-    { d: 'M 48 43 L 34 30 L 18 14', delay: 0.7 },
-    { d: 'M 51 41 L 40 25 L 28 8', delay: 1.1 }
+    { d: 'M 40 54 L 23 57 L 3 59', delay: 0.3 },
+    { d: 'M 42 51 L 24 50 L 4 47', delay: 0.6 },
+    { d: 'M 44 48 L 26 43 L 6 35', delay: 0.9 },
+    { d: 'M 46 45 L 29 36 L 10 24', delay: 0.2 },
+    { d: 'M 48 43 L 34 30 L 18 14', delay: 0.5 },
+    { d: 'M 51 41 L 40 25 L 28 8', delay: 0.8 }
   ];
 
   const redTracks = [
-    { d: 'M 64 49 L 78 40 L 96 34', delay: 0.2 },
-    { d: 'M 62 52 L 77 47 L 97 44', delay: 0.6 },
-    { d: 'M 60 55 L 75 56 L 98 56', delay: 1.0 },
-    { d: 'M 58 58 L 73 64 L 95 70', delay: 0.5 },
-    { d: 'M 56 61 L 70 72 L 91 83', delay: 0.9 },
-    { d: 'M 54 64 L 64 78 L 83 93', delay: 1.3 },
-    { d: 'M 52 65 L 56 82 L 69 97', delay: 0.4 }
+    { d: 'M 64 49 L 78 40 L 96 34', delay: 0.15 },
+    { d: 'M 62 52 L 77 47 L 97 44', delay: 0.45 },
+    { d: 'M 60 55 L 75 56 L 98 56', delay: 0.75 },
+    { d: 'M 58 58 L 73 64 L 95 70', delay: 0.35 },
+    { d: 'M 56 61 L 70 72 L 91 83', delay: 0.65 },
+    { d: 'M 54 64 L 64 78 L 83 93', delay: 0.95 },
+    { d: 'M 52 65 L 56 82 L 69 97', delay: 0.3 }
   ];
 
   const topTracks = [
-    { d: 'M 53 42 L 56 26 L 62 8', delay: 0.3 },
-    { d: 'M 57 44 L 66 28 L 76 12', delay: 0.8 },
-    { d: 'M 60 46 L 73 32 L 85 18', delay: 1.2 }
+    { d: 'M 53 42 L 56 26 L 62 8', delay: 0.2 },
+    { d: 'M 57 44 L 66 28 L 76 12', delay: 0.6 },
+    { d: 'M 60 46 L 73 32 L 85 18', delay: 0.9 }
   ];
 
   return (
@@ -111,14 +156,20 @@ export default function CyberSecurityChip({ className = '' }) {
         <motion.div
           ref={containerRef}
           onPointerMove={handlePointerMove}
+          onPointerDown={handlePointerDown}
+          onPointerUp={handlePointerUp}
           onPointerEnter={() => setIsHovered(true)}
           onPointerLeave={handlePointerLeave}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
           style={{
             rotateX: shouldReduceMotion ? 0 : rotateX,
             rotateY: shouldReduceMotion ? 0 : rotateY,
-            transformStyle: 'preserve-3d'
+            transformStyle: 'preserve-3d',
+            touchAction: 'none'
           }}
-          className="relative w-full max-w-[430px] h-[300px] sm:h-[340px] flex items-center justify-center cursor-default"
+          className="relative w-full max-w-[430px] h-[300px] sm:h-[340px] flex items-center justify-center cursor-crosshair touch-none"
         >
           {/* Frameless Circuit Board Canvas - STRICTLY CONTAINED (overflow-hidden, zero spill) */}
           <motion.div
@@ -169,27 +220,35 @@ export default function CyberSecurityChip({ className = '' }) {
                     <feMergeNode in="SourceGraphic" />
                   </feMerge>
                 </filter>
+
+                <filter id="surgeGlow" x="-50%" y="-50%" width="200%" height="200%">
+                  <feGaussianBlur stdDeviation="1.2" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
               </defs>
 
-              {/* 1. Left Cyan Circuit Traces - Inward / Outward Data Flow */}
+              {/* 1. Left Cyan Circuit Traces - Current Flows Faster When Hovered/Surging */}
               {cyanTracks.map((track, i) => (
                 <g key={`cyan-${i}`}>
                   <path
                     d={track.d}
                     fill="none"
                     stroke="#00f0ff"
-                    strokeWidth="0.35"
-                    strokeOpacity="0.18"
+                    strokeWidth={isHovered ? '0.45' : '0.35'}
+                    strokeOpacity={isHovered ? '0.35' : '0.18'}
                   />
                   <motion.path
                     d={track.d}
                     fill="none"
                     stroke="#00ffff"
-                    strokeWidth="0.85"
+                    strokeWidth={isSurging ? '1.25' : isHovered ? '1.0' : '0.85'}
                     strokeLinecap="round"
                     filter="url(#cyanGlow)"
                     pathLength="1"
-                    strokeDasharray="0.12 0.88"
+                    strokeDasharray="0.14 0.86"
                     animate={
                       shouldReduceMotion
                         ? {}
@@ -198,7 +257,7 @@ export default function CyberSecurityChip({ className = '' }) {
                           }
                     }
                     transition={{
-                      duration: 2.2,
+                      duration: isSurging ? 1.0 : isHovered ? 1.5 : 2.2,
                       repeat: Infinity,
                       ease: 'easeInOut',
                       delay: track.delay
@@ -207,25 +266,25 @@ export default function CyberSecurityChip({ className = '' }) {
                 </g>
               ))}
 
-              {/* 2. Right Red Circuit Traces - Outward Power & Signal Surge */}
+              {/* 2. Right Red Circuit Traces - Current Flows Faster When Hovered/Surging */}
               {redTracks.map((track, i) => (
                 <g key={`red-${i}`}>
                   <path
                     d={track.d}
                     fill="none"
                     stroke="#ff3366"
-                    strokeWidth="0.35"
-                    strokeOpacity="0.18"
+                    strokeWidth={isHovered ? '0.45' : '0.35'}
+                    strokeOpacity={isHovered ? '0.35' : '0.18'}
                   />
                   <motion.path
                     d={track.d}
                     fill="none"
                     stroke="#ff2d55"
-                    strokeWidth="0.85"
+                    strokeWidth={isSurging ? '1.25' : isHovered ? '1.0' : '0.85'}
                     strokeLinecap="round"
                     filter="url(#redGlow)"
                     pathLength="1"
-                    strokeDasharray="0.12 0.88"
+                    strokeDasharray="0.14 0.86"
                     animate={
                       shouldReduceMotion
                         ? {}
@@ -234,7 +293,7 @@ export default function CyberSecurityChip({ className = '' }) {
                           }
                     }
                     transition={{
-                      duration: 2.2,
+                      duration: isSurging ? 1.0 : isHovered ? 1.5 : 2.2,
                       repeat: Infinity,
                       ease: 'easeInOut',
                       delay: track.delay
@@ -257,11 +316,11 @@ export default function CyberSecurityChip({ className = '' }) {
                     d={track.d}
                     fill="none"
                     stroke="#7dd3fc"
-                    strokeWidth="0.75"
+                    strokeWidth={isSurging ? '1.1' : '0.75'}
                     strokeLinecap="round"
                     filter="url(#cyanGlow)"
                     pathLength="1"
-                    strokeDasharray="0.12 0.88"
+                    strokeDasharray="0.14 0.86"
                     animate={
                       shouldReduceMotion
                         ? {}
@@ -270,7 +329,7 @@ export default function CyberSecurityChip({ className = '' }) {
                           }
                     }
                     transition={{
-                      duration: 2.4,
+                      duration: isSurging ? 1.1 : 2.2,
                       repeat: Infinity,
                       ease: 'easeInOut',
                       delay: track.delay
@@ -284,18 +343,18 @@ export default function CyberSecurityChip({ className = '' }) {
                 points="51,41 64,49 51,65 38,57"
                 fill="none"
                 stroke="#00ffff"
-                strokeWidth="0.65"
+                strokeWidth={isSurging ? '1.2' : '0.65'}
                 filter="url(#cyanGlow)"
                 animate={
                   shouldReduceMotion
                     ? {}
                     : {
-                        strokeOpacity: [0.2, 0.95, 0.2],
-                        strokeWidth: [0.5, 0.9, 0.5]
+                        strokeOpacity: isSurging ? [0.6, 1, 0.6] : [0.2, 0.95, 0.2],
+                        strokeWidth: isSurging ? [0.8, 1.4, 0.8] : [0.5, 0.9, 0.5]
                       }
                 }
                 transition={{
-                  duration: 2.4,
+                  duration: isSurging ? 1.0 : 2.4,
                   repeat: Infinity,
                   ease: 'easeInOut'
                 }}
@@ -318,35 +377,144 @@ export default function CyberSecurityChip({ className = '' }) {
                   key={`pin-${idx}`}
                   cx={pin.cx}
                   cy={pin.cy}
-                  r="0.75"
+                  r={isSurging ? '1.2' : '0.75'}
                   fill={pin.fill}
                   animate={
                     shouldReduceMotion
                       ? {}
                       : {
-                          r: [0.65, 1.2, 0.65],
-                          opacity: [0.5, 1, 0.5]
+                          r: isSurging ? [1.0, 1.8, 1.0] : [0.65, 1.2, 0.65],
+                          opacity: isSurging ? [0.8, 1, 0.8] : [0.5, 1, 0.5]
                         }
                   }
                   transition={{
-                    duration: 1.8,
+                    duration: isSurging ? 0.8 : 1.8,
                     repeat: Infinity,
-                    delay: idx * 0.15,
+                    delay: idx * 0.1,
                     ease: 'easeInOut'
                   }}
                 />
               ))}
+
+              {/* 6. LOCALIZED TOUCH/CURSOR ELECTRICAL DISCHARGE ARC FILAMENTS */}
+              {isHovered && (
+                <g>
+                  {/* Expanding High-Voltage Shockwave Wave 1 */}
+                  <motion.circle
+                    cx={touchPos.x}
+                    cy={touchPos.y}
+                    r="2"
+                    fill="none"
+                    stroke="#00ffff"
+                    strokeWidth={isSurging ? '1.6' : '1.0'}
+                    filter="url(#cyanGlow)"
+                    animate={{
+                      r: isSurging ? [2, 38] : [2, 24],
+                      opacity: isSurging ? [0.95, 0] : [0.75, 0],
+                      strokeWidth: isSurging ? [1.8, 0.2] : [1.0, 0.2]
+                    }}
+                    transition={{
+                      duration: isSurging ? 0.7 : 1.4,
+                      repeat: Infinity,
+                      ease: 'easeOut'
+                    }}
+                  />
+
+                  {/* Secondary Expanding Wave */}
+                  <motion.circle
+                    cx={touchPos.x}
+                    cy={touchPos.y}
+                    r="2"
+                    fill="none"
+                    stroke="#ff2d55"
+                    strokeWidth="0.8"
+                    filter="url(#redGlow)"
+                    animate={{
+                      r: isSurging ? [2, 30] : [2, 18],
+                      opacity: isSurging ? [0.9, 0] : [0.65, 0],
+                      strokeWidth: isSurging ? [1.4, 0.2] : [0.8, 0.2]
+                    }}
+                    transition={{
+                      duration: isSurging ? 0.7 : 1.4,
+                      repeat: Infinity,
+                      ease: 'easeOut',
+                      delay: isSurging ? 0.25 : 0.5
+                    }}
+                  />
+
+                  {/* Crackling High-Voltage Electrical Arc 1 (Towards Chip/Buses) */}
+                  <motion.path
+                    d={`M ${touchPos.x} ${touchPos.y} Q ${touchPos.x + 9} ${touchPos.y - 7}, ${touchPos.x + 16} ${touchPos.y - 4}`}
+                    stroke="#00ffff"
+                    strokeWidth={isSurging ? '1.3' : '0.85'}
+                    fill="none"
+                    strokeLinecap="round"
+                    filter="url(#surgeGlow)"
+                    animate={{
+                      opacity: [0.2, 1, 0.4, 0.9, 0.2],
+                      strokeWidth: isSurging ? [1.1, 1.8, 1.1] : [0.6, 1.0, 0.6]
+                    }}
+                    transition={{ duration: 0.18, repeat: Infinity }}
+                  />
+
+                  {/* Crackling High-Voltage Electrical Arc 2 */}
+                  <motion.path
+                    d={`M ${touchPos.x} ${touchPos.y} Q ${touchPos.x - 8} ${touchPos.y + 8}, ${touchPos.x - 15} ${touchPos.y + 12}`}
+                    stroke="#ff2d55"
+                    strokeWidth={isSurging ? '1.3' : '0.85'}
+                    fill="none"
+                    strokeLinecap="round"
+                    filter="url(#redGlow)"
+                    animate={{
+                      opacity: [0.4, 0.9, 0.2, 1, 0.3],
+                      strokeWidth: isSurging ? [1.1, 1.8, 1.1] : [0.6, 1.0, 0.6]
+                    }}
+                    transition={{ duration: 0.22, repeat: Infinity }}
+                  />
+
+                  {/* Crackling High-Voltage Electrical Arc 3 */}
+                  <motion.path
+                    d={`M ${touchPos.x} ${touchPos.y} Q ${touchPos.x - 9} ${touchPos.y - 6}, ${touchPos.x - 17} ${touchPos.y - 10}`}
+                    stroke="#38bdf8"
+                    strokeWidth={isSurging ? '1.1' : '0.75'}
+                    fill="none"
+                    strokeLinecap="round"
+                    filter="url(#cyanGlow)"
+                    animate={{
+                      opacity: [0.3, 0.85, 0.2, 1, 0.3]
+                    }}
+                    transition={{ duration: 0.25, repeat: Infinity }}
+                  />
+
+                  {/* Contact Plasma Spark Core */}
+                  <circle
+                    cx={touchPos.x}
+                    cy={touchPos.y}
+                    r={isSurging ? '2.8' : '1.8'}
+                    fill="#ffffff"
+                    filter="url(#surgeGlow)"
+                  />
+                  <circle
+                    cx={touchPos.x}
+                    cy={touchPos.y}
+                    r={isSurging ? '4.5' : '3.0'}
+                    fill="none"
+                    stroke="#00ffff"
+                    strokeWidth={isSurging ? '1.2' : '0.8'}
+                  />
+                </g>
+              )}
             </svg>
 
-            {/* 6. Dynamic Electromagnetic Energy Light Following Cursor Inside Circuit (Zero Overflow) */}
+            {/* 7. Dynamic Electromagnetic Energy Light Following Cursor Inside Circuit (Zero Overflow) */}
             <motion.div
               animate={{
-                opacity: isHovered ? 0.85 : 0,
-                scale: isHovered ? [1, 1.08, 1] : 1
+                opacity: isSurging ? 1 : isHovered ? 0.88 : 0,
+                scale: isSurging ? [1.1, 1.25, 1.1] : isHovered ? [1, 1.08, 1] : 1
               }}
               transition={{
-                opacity: { duration: 0.35, ease: 'easeOut' },
-                scale: { duration: 2, repeat: Infinity, ease: 'easeInOut' }
+                opacity: { duration: 0.25, ease: 'easeOut' },
+                scale: { duration: isSurging ? 0.8 : 2, repeat: Infinity, ease: 'easeInOut' }
               }}
               style={{
                 left: lightX,
@@ -354,26 +522,8 @@ export default function CyberSecurityChip({ className = '' }) {
                 transform: 'translate(-50%, -50%)',
                 translateZ: 20
               }}
-              className="absolute w-48 h-48 rounded-full bg-[radial-gradient(circle,rgba(0,255,255,0.22)_0%,rgba(56,189,248,0.12)_35%,rgba(244,63,94,0.06)_60%,transparent_75%)] pointer-events-none mix-blend-screen"
+              className="absolute w-52 h-52 rounded-full bg-[radial-gradient(circle,rgba(0,255,255,0.28)_0%,rgba(56,189,248,0.16)_35%,rgba(244,63,94,0.08)_60%,transparent_75%)] pointer-events-none mix-blend-screen"
             />
-
-            {/* 7. Cursor Energy Focus Reticle / Optical Target Node (Follows pointer precisely inside) */}
-            <motion.div
-              animate={{
-                opacity: isHovered ? 0.9 : 0
-              }}
-              transition={{ duration: 0.25 }}
-              style={{
-                left: lightX,
-                top: lightY,
-                transform: 'translate(-50%, -50%)',
-                translateZ: 25
-              }}
-              className="absolute w-8 h-8 rounded-full border border-cyan-400/50 pointer-events-none flex items-center justify-center mix-blend-screen"
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-cyan-300 shadow-[0_0_8px_#00ffff]" />
-              <div className="absolute inset-0 rounded-full border border-dashed border-cyan-300/40 animate-spin" style={{ animationDuration: '6s' }} />
-            </motion.div>
 
             {/* Delicate Beveled Edge Rim (Strictly Contained) */}
             <div className="absolute inset-0 rounded-3xl border border-white/10 pointer-events-none" />
