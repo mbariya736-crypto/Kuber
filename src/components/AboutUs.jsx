@@ -27,8 +27,8 @@ import CyberSecurityChip from './CyberSecurityChip';
 // --- A. AUTOMATION WORKFLOW ANIMATION: EXACT RECURZIV 3D NEURAL CYBER FACE (FRAMELESS / ONLY FACE) ---
 function AutomationStageVisual() {
   return (
-    <div className="w-full h-[440px] sm:h-[490px] flex justify-center items-center">
-      <RecurzivCyberFace className="w-full max-w-[480px]" height="100%" />
+    <div className="w-full h-[370px] sm:h-[410px] flex justify-center items-center">
+      <RecurzivCyberFace className="w-full max-w-[390px]" height="100%" />
     </div>
   );
 }

@@ -32,7 +32,7 @@ export default function RecurzivCyberFace({ className = '', height = '450px', is
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(isBackground ? 42 : 38, width / heightPx, 0.1, 100);
-    camera.position.set(0, isBackground ? 0.05 : 0.04, isBackground ? 7.2 : 3.8);
+    camera.position.set(0, isBackground ? 0.05 : 0.04, isBackground ? 7.2 : 4.4);
 
     const renderer = new THREE.WebGLRenderer({
       antialias: true,
@@ -147,7 +147,7 @@ export default function RecurzivCyberFace({ className = '', height = '450px', is
         const geometry = faceMesh.geometry.clone();
         geometry.center();
 
-        const scale = isBackground ? 1.45 : 2.45;
+        const scale = isBackground ? 1.45 : 1.8;
         headGroup.scale.set(scale, scale, scale);
         headGroup.position.set(0, isBackground ? -0.1 : -0.04, 0);
 
@@ -349,7 +349,7 @@ export default function RecurzivCyberFace({ className = '', height = '450px', is
       style={isBackground ? { width: '100%', height: '100%' } : { height }}
     >
       {/* Soft ambient spatial aura behind the 3D face (pure open stage) */}
-      <div className="absolute w-[340px] sm:w-[420px] h-[340px] sm:h-[420px] bg-gradient-to-tr from-cyan-500/15 via-blue-600/10 to-purple-600/15 rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute w-[260px] sm:w-[320px] h-[260px] sm:h-[320px] bg-gradient-to-tr from-cyan-500/15 via-blue-600/10 to-purple-600/15 rounded-full blur-3xl pointer-events-none -z-10" />
 
       {/* 3D WebGL Canvas Container - Frameless & Open */}
       <div
