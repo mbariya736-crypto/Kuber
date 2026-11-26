@@ -205,66 +205,14 @@ export default function AboutUs() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
-        {/* 2. TOP HEADING & SWITCHER */}
+        {/* 2. TOP HEADING */}
         <div className="mb-6 lg:mb-8 text-left">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-            <div>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#082B59] tracking-tight leading-[1.18]">
-                Our{' '}
-                <span className={`bg-gradient-to-r ${activeTheme.gradientText} bg-clip-text text-transparent transition-all duration-500`}>
-                  Core Services
-                </span>
-              </h2>
-            </div>
-
-            {/* Desktop / Tablet Quick Switcher Indicators */}
-            <div className="hidden sm:flex items-center gap-1.5 p-1 rounded-xl bg-slate-100/80 border border-slate-200/80 self-start md:self-auto">
-              {serviceCards.map((card) => {
-                const isCur = card.id === activeServiceId;
-                const Icon = card.icon;
-                return (
-                  <button
-                    key={card.id}
-                    onClick={() => setActiveServiceId(card.id)}
-                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 cursor-pointer ${
-                      isCur
-                        ? 'bg-white text-[#082B59] shadow-xs font-bold'
-                        : 'text-slate-500 hover:text-slate-800'
-                    }`}
-                  >
-                    <Icon className="w-3.5 h-3.5" style={{ color: isCur ? card.accentColor : undefined }} />
-                    <span>{card.category}</span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Dedicated Mobile Thumb-Friendly Segmented Switcher (Instant one-tap toggle on mobile) */}
-          <div className="sm:hidden mt-3.5 w-full flex items-center justify-between p-1 rounded-2xl bg-slate-100/90 border border-slate-200/80 shadow-xs gap-1">
-            {serviceCards.map((card) => {
-              const isCur = card.id === activeServiceId;
-              const Icon = card.icon;
-              return (
-                <button
-                  key={card.id}
-                  onClick={() => setActiveServiceId(card.id)}
-                  className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer active:scale-95 ${
-                    isCur
-                      ? 'bg-white shadow-xs'
-                      : 'text-slate-600 hover:text-slate-900 bg-transparent'
-                  }`}
-                  style={{
-                    color: isCur ? card.accentColor : undefined,
-                    boxShadow: isCur ? `0 2px 8px -2px ${card.accentColor}30` : undefined
-                  }}
-                >
-                  <Icon className="w-3.5 h-3.5 shrink-0" />
-                  <span className="text-[11px] truncate">{card.category}</span>
-                </button>
-              );
-            })}
-          </div>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#082B59] tracking-tight leading-[1.18]">
+            Our{' '}
+            <span className={`bg-gradient-to-r ${activeTheme.gradientText} bg-clip-text text-transparent transition-all duration-500`}>
+              Core Services
+            </span>
+          </h2>
         </div>
 
         {/* 3. TWO-COLUMN RESPONSIVE LAYOUT */}
