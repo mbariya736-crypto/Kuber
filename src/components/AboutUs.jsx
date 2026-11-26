@@ -17,242 +17,18 @@ import {
   Sliders
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import AiWireframeFace from './AiWireframeFace';
 
 /* ========================================================================= */
 /* 1. INTERACTIVE SERVICE ANIMATIONS (OPEN 3D HOLOGRAPHIC STAGE)             */
 /* ========================================================================= */
 
-// --- A. AUTOMATION WORKFLOW ANIMATION: ONLY STANDALONE 3D TOUCH-INTERACTIVE AI FACE ---
-function AutomationStageVisual({ shouldReduceMotion, cursor }) {
-  const { rotateX, rotateY, eyeX, eyeY, glowX, glowY } = cursor;
-
+// --- A. AUTOMATION WORKFLOW ANIMATION: 3D CYBER POLYGONAL AI FACE (MATCHING ATTACHED IMAGE) ---
+function AutomationStageVisual() {
   return (
-    <motion.div
-      style={{
-        rotateX: shouldReduceMotion ? 0 : rotateX,
-        rotateY: shouldReduceMotion ? 0 : rotateY,
-        transformStyle: 'preserve-3d'
-      }}
-      className="relative w-full h-[380px] sm:h-[440px] flex flex-col items-center justify-center select-none"
-    >
-      {/* Interactive Cursor Spotlight Aura */}
-      <motion.div
-        style={{
-          left: glowX,
-          top: glowY,
-          transform: 'translate(-50%, -50%)'
-        }}
-        className="absolute w-72 h-72 sm:w-84 sm:h-84 bg-gradient-to-r from-blue-400/25 via-cyan-300/20 to-transparent rounded-full blur-3xl pointer-events-none -z-10"
-      />
-
-      {/* Dual Outer Gyroscopic Orbit Rings */}
-      <motion.div
-        animate={shouldReduceMotion ? {} : { rotate: 360 }}
-        transition={{ duration: 24, repeat: Infinity, ease: 'linear' }}
-        className="absolute w-[290px] h-[290px] sm:w-[350px] sm:h-[350px] rounded-full border border-dashed border-[#0866E8]/35 pointer-events-none"
-      />
-      <motion.div
-        animate={shouldReduceMotion ? {} : { rotate: -360 }}
-        transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
-        className="absolute w-[330px] h-[330px] sm:w-[390px] sm:h-[390px] rounded-full border border-cyan-400/20 pointer-events-none"
-      />
-
-      {/* 3D AI Face Container */}
-      <div className="relative z-20 flex flex-col items-center justify-center">
-        <div className="relative w-[250px] h-[280px] sm:w-[290px] sm:h-[330px] flex items-center justify-center">
-          {/* Vertical Laser Scan Beam */}
-          <motion.div
-            animate={shouldReduceMotion ? {} : { top: ['6%', '92%', '6%'], opacity: [0.2, 0.85, 0.2] }}
-            transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-            className="absolute left-4 right-4 h-[2px] bg-gradient-to-r from-transparent via-cyan-300 to-transparent shadow-[0_0_12px_rgba(0,229,255,0.95)] z-30 pointer-events-none"
-          />
-
-          {/* High-Definition 3D Cyber AI Face Vector SVG */}
-          <svg
-            viewBox="0 0 200 240"
-            className="w-full h-full relative z-10 drop-shadow-[0_12px_30px_rgba(8,102,232,0.35)]"
-            fill="none"
-          >
-            <defs>
-              <linearGradient id="aiShellGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#0B2B64" />
-                <stop offset="50%" stopColor="#084EAA" />
-                <stop offset="100%" stopColor="#0866E8" />
-              </linearGradient>
-              <linearGradient id="aiTrimGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#E0F2FE" />
-                <stop offset="50%" stopColor="#7DD3FC" />
-                <stop offset="100%" stopColor="#00E5FF" />
-              </linearGradient>
-              <radialGradient id="pupilGlow" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stopColor="#FFFFFF" />
-                <stop offset="35%" stopColor="#38BDF8" />
-                <stop offset="80%" stopColor="#00E5FF" />
-                <stop offset="100%" stopColor="#0866E8" />
-              </radialGradient>
-              <radialGradient id="coreAura" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stopColor="#00E5FF" stopOpacity="0.9" />
-                <stop offset="100%" stopColor="#0866E8" stopOpacity="0" />
-              </radialGradient>
-            </defs>
-
-            {/* Cranium Halo Wireframe */}
-            <motion.path
-              d="M 46 86 C 46 36, 154 36, 154 86 C 154 125, 142 168, 100 206 C 58 168, 46 125, 46 86 Z"
-              stroke="url(#aiTrimGrad)"
-              strokeWidth="1.5"
-              strokeDasharray="6 4"
-              opacity="0.75"
-              animate={shouldReduceMotion ? {} : { strokeDashoffset: [0, -40] }}
-              transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
-            />
-
-            {/* Sculpted AI Head Shell */}
-            <path
-              d="M 52 82 C 52 38, 148 38, 148 82 C 148 118, 136 158, 100 196 C 64 158, 52 118, 52 82 Z"
-              fill="url(#aiShellGrad)"
-              stroke="url(#aiTrimGrad)"
-              strokeWidth="2.2"
-            />
-
-            {/* Forehead Armor Plate Seams */}
-            <path
-              d="M 68 62 Q 100 70 132 62"
-              stroke="#7DD3FC"
-              strokeWidth="1.6"
-              strokeLinecap="round"
-            />
-            <path
-              d="M 78 50 Q 100 56 122 50"
-              stroke="#38BDF8"
-              strokeWidth="1.2"
-              strokeLinecap="round"
-              opacity="0.8"
-            />
-
-            {/* Forehead Central AI Core Node */}
-            <circle cx="100" cy="52" r="6" fill="url(#coreAura)" />
-            <circle cx="100" cy="52" r="3.2" fill="#00E5FF" />
-            <motion.circle
-              cx="100"
-              cy="52"
-              r="9"
-              stroke="#00E5FF"
-              strokeWidth="1.2"
-              animate={shouldReduceMotion ? {} : { scale: [1, 1.8, 1], opacity: [0.9, 0, 0.9] }}
-              transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
-            />
-
-            {/* Temple Neural Synaptic Circuit Lines */}
-            <path d="M 100 52 L 100 68" stroke="#38BDF8" strokeWidth="1.4" strokeLinecap="round" />
-            <path d="M 74 63 L 64 74 L 64 96" stroke="#00E5FF" strokeWidth="1.2" strokeLinecap="round" opacity="0.85" />
-            <path d="M 126 63 L 136 74 L 136 96" stroke="#00E5FF" strokeWidth="1.2" strokeLinecap="round" opacity="0.85" />
-
-            {/* Cyber Ear/Sensor Ports */}
-            <rect x="44" y="90" width="6" height="18" rx="3" fill="#38BDF8" />
-            <rect x="150" y="90" width="6" height="18" rx="3" fill="#38BDF8" />
-
-            {/* Digital Brow Ridges */}
-            <path d="M 65 88 L 90 92" stroke="#BAE6FD" strokeWidth="2.4" strokeLinecap="round" />
-            <path d="M 135 88 L 110 92" stroke="#BAE6FD" strokeWidth="2.4" strokeLinecap="round" />
-
-            {/* Eye Sockets Contour */}
-            <path
-              d="M 68 104 Q 80 96 92 104 Q 80 112 68 104 Z"
-              fill="#03112E"
-              stroke="#38BDF8"
-              strokeWidth="1.6"
-            />
-            <path
-              d="M 108 104 Q 120 96 132 104 Q 120 112 108 104 Z"
-              fill="#03112E"
-              stroke="#38BDF8"
-              strokeWidth="1.6"
-            />
-
-            {/* Touch/Cursor-Tracking Glowing Pupils with Natural Blink */}
-            <motion.g
-              animate={shouldReduceMotion ? {} : { scaleY: [1, 1, 0.08, 1] }}
-              transition={{ duration: 3.8, repeat: Infinity, times: [0, 0.9, 0.93, 1] }}
-              style={{ transformOrigin: '100px 104px' }}
-            >
-              {/* Left Eye Pupil */}
-              <motion.circle
-                cx="80"
-                cy="104"
-                r="4.2"
-                fill="url(#pupilGlow)"
-                style={{
-                  x: shouldReduceMotion ? 0 : eyeX,
-                  y: shouldReduceMotion ? 0 : eyeY
-                }}
-              />
-              <motion.circle
-                cx="80"
-                cy="104"
-                r="6.5"
-                stroke="#00E5FF"
-                strokeWidth="0.8"
-                opacity="0.75"
-                style={{
-                  x: shouldReduceMotion ? 0 : eyeX,
-                  y: shouldReduceMotion ? 0 : eyeY
-                }}
-              />
-
-              {/* Right Eye Pupil */}
-              <motion.circle
-                cx="120"
-                cy="104"
-                r="4.2"
-                fill="url(#pupilGlow)"
-                style={{
-                  x: shouldReduceMotion ? 0 : eyeX,
-                  y: shouldReduceMotion ? 0 : eyeY
-                }}
-              />
-              <motion.circle
-                cx="120"
-                cy="104"
-                r="6.5"
-                stroke="#00E5FF"
-                strokeWidth="0.8"
-                opacity="0.75"
-                style={{
-                  x: shouldReduceMotion ? 0 : eyeX,
-                  y: shouldReduceMotion ? 0 : eyeY
-                }}
-              />
-            </motion.g>
-
-            {/* Sculpted Nose Bridge */}
-            <path d="M 100 100 L 100 128 L 94 134 L 106 134" stroke="#7DD3FC" strokeWidth="1.6" strokeLinecap="round" />
-
-            {/* Cheekbone Facial Contour Lines */}
-            <path d="M 62 118 Q 74 142 88 156" stroke="#00E5FF" strokeWidth="1.2" strokeDasharray="4 3" opacity="0.7" />
-            <path d="M 138 118 Q 126 142 112 156" stroke="#00E5FF" strokeWidth="1.2" strokeDasharray="4 3" opacity="0.7" />
-
-            {/* Chiseled Cyber Mouth & Lips */}
-            <path d="M 86 150 Q 100 154 114 150" stroke="#BAE6FD" strokeWidth="2" strokeLinecap="round" />
-            <line x1="92" y1="160" x2="108" y2="160" stroke="#00E5FF" strokeWidth="1.4" strokeLinecap="round" />
-
-            {/* Chin Sensor Node */}
-            <circle cx="100" cy="172" r="3.2" fill="#38BDF8" />
-            <circle cx="100" cy="172" r="6" stroke="#00E5FF" strokeWidth="1" strokeDasharray="2 2" opacity="0.8" />
-          </svg>
-
-          {/* Ambient Glowing Hologram Sparkles */}
-          <Sparkles className="w-5 h-5 text-cyan-300 absolute top-2 right-4 animate-pulse pointer-events-none" />
-          <Sparkles className="w-4 h-4 text-blue-300 absolute bottom-6 left-4 animate-pulse pointer-events-none" />
-        </div>
-
-        {/* Touch & Interaction Live Pill */}
-        <div className="mt-4 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-blue-200/80 shadow-sm text-xs font-semibold text-[#082B59]">
-          <span className="w-2 h-2 rounded-full bg-cyan-500 animate-ping" />
-          <span>Interactive AI Face &bull; Touch &amp; Drag</span>
-        </div>
-      </div>
-    </motion.div>
+    <div className="w-full flex items-center justify-center">
+      <AiWireframeFace />
+    </div>
   );
 }
 
@@ -513,13 +289,13 @@ function FilmProductionStageVisual({ shouldReduceMotion, cursor }) {
                 shouldReduceMotion
                   ? {}
                   : {
-                      height: [
-                        `${baseHeight * 0.35}px`,
-                        `${baseHeight}px`,
-                        `${baseHeight * 0.55}px`,
-                        `${baseHeight * 0.9}px`
-                      ]
-                    }
+                    height: [
+                      `${baseHeight * 0.35}px`,
+                      `${baseHeight}px`,
+                      `${baseHeight * 0.55}px`,
+                      `${baseHeight * 0.9}px`
+                    ]
+                  }
               }
               transition={{
                 duration: 1.1,
@@ -770,9 +546,7 @@ export default function AboutUs() {
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#082B59] tracking-tight leading-[1.18] mb-1.5">
                 Our <span className="text-[#0866E8]">Core Services</span>
               </h2>
-              <p className="text-xs sm:text-sm text-slate-500 font-normal">
-                Click any service below to explore its live interactive capability showcase. Move your cursor to inspect in 3D.
-              </p>
+
             </motion.div>
 
             {/* Clickable Service Cards */}
@@ -797,11 +571,10 @@ export default function AboutUs() {
                       transition: { duration: 0.22, ease: [0.16, 1, 0.3, 1] }
                     }}
                     onClick={() => setActiveServiceId(card.id)}
-                    className={`group relative rounded-2xl p-4 sm:p-5 bg-white/95 backdrop-blur-md border transition-all duration-300 overflow-hidden text-left cursor-pointer ${
-                      isSelected
+                    className={`group relative rounded-2xl p-4 sm:p-5 bg-white/95 backdrop-blur-md border transition-all duration-300 overflow-hidden text-left cursor-pointer ${isSelected
                         ? card.activeBorder
                         : 'border-slate-200/90 hover:border-slate-300 shadow-xs hover:shadow-md'
-                    }`}
+                      }`}
                   >
                     {/* Active Accent Indicator Bar */}
                     {isSelected && (
