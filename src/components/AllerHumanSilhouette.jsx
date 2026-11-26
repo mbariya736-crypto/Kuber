@@ -20,7 +20,7 @@ export default function AllerHumanSilhouette({ className = '' }) {
   useEffect(() => {
     let disposed = false;
     let controller = null;
-    let cleanup = () => {};
+    let cleanup = () => { };
 
     const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -40,7 +40,7 @@ export default function AllerHumanSilhouette({ className = '' }) {
           light: false,
           appear: true,
           glitch: false,
-          onGlitch: () => {}
+          onGlitch: () => { }
         });
 
         // Trigger entrance appearance
@@ -97,9 +97,8 @@ export default function AllerHumanSilhouette({ className = '' }) {
       {/* 3D WebGL Canvas */}
       <canvas
         ref={canvasRef}
-        className={`w-full h-full object-contain pointer-events-auto transition-opacity duration-1000 ease-out ${
-          status === 'ready' ? 'opacity-100' : 'opacity-0'
-        }`}
+        className={`w-full h-full object-contain pointer-events-auto transition-opacity duration-1000 ease-out ${status === 'ready' ? 'opacity-100' : 'opacity-0'
+          }`}
       />
 
       {/* Fallback Still Image for devices or while loading */}
@@ -108,17 +107,10 @@ export default function AllerHumanSilhouette({ className = '' }) {
           src="/assets/silhouette-still.webp"
           alt=""
           decoding="async"
-          className={`absolute inset-0 w-full h-full object-contain object-bottom sm:object-right pointer-events-none transition-opacity duration-700 ${
-            status === 'ready' ? 'opacity-0' : 'opacity-90'
-          }`}
+          className={`absolute inset-0 w-full h-full object-contain object-bottom sm:object-right pointer-events-none transition-opacity duration-700 ${status === 'ready' ? 'opacity-0' : 'opacity-90'
+            }`}
         />
       )}
-
-      {/* Gentle bottom feather fade to ensure the human silhouette never displays a harsh or broken cut-off */}
-      <div
-        className="absolute bottom-0 left-0 right-0 h-10 sm:h-14 pointer-events-none bg-gradient-to-t from-[#F4F8FD] via-[#F4F8FD]/80 to-transparent z-10"
-        aria-hidden="true"
-      />
     </div>
   );
 }
