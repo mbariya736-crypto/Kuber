@@ -494,27 +494,15 @@ export function AIServicesExperience({ onOpenContact }) {
                     <div className="space-y-2.5 pt-4 border-t border-slate-100 mb-6">
                       <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
                         <CheckCircle2 className="w-4 h-4 text-[#0866E8] shrink-0 mt-0.5" />
-                        <span>
-                          <strong className="text-[#082B59] font-bold">Instant Response Protocols:</strong> Automatically capture website submissions and route alerts to WhatsApp and email within 3 seconds.
-                        </span>
+                        <span>Capture inquiries from your website, WhatsApp, and email so leads are never missed.</span>
                       </div>
                       <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
                         <CheckCircle2 className="w-4 h-4 text-[#0866E8] shrink-0 mt-0.5" />
-                        <span>
-                          <strong className="text-[#082B59] font-bold">Event-Driven Data Sync:</strong> Clean lead records synced immediately across spreadsheets, databases, and client dashboards without duplicate entries.
-                        </span>
+                        <span>Send instant alerts straight to the right team member via WhatsApp and email.</span>
                       </div>
                       <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
                         <CheckCircle2 className="w-4 h-4 text-[#0866E8] shrink-0 mt-0.5" />
-                        <span>
-                          <strong className="text-[#082B59] font-bold">Contextual Alerts:</strong> Priority routing that tags high-value inquiries directly to designated team members for faster response.
-                        </span>
-                      </div>
-                      <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
-                        <CheckCircle2 className="w-4 h-4 text-[#0866E8] shrink-0 mt-0.5" />
-                        <span>
-                          <strong className="text-[#082B59] font-bold">Verified Operational Output:</strong> Reliable, structured inquiry pipelines with zero manual copy-pasting or lost customer details.
-                        </span>
+                        <span>Organize customer details automatically in your spreadsheets and CRM with zero copy-pasting.</span>
                       </div>
                     </div>
 
@@ -553,27 +541,15 @@ export function AIServicesExperience({ onOpenContact }) {
                     <div className="space-y-2.5 pt-4 border-t border-slate-100 mb-6">
                       <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
                         <CheckCircle2 className="w-4 h-4 text-teal-600 shrink-0 mt-0.5" />
-                        <span>
-                          <strong className="text-[#082B59] font-bold">Multi-Category Trip Intake:</strong> Captures domestic, international, honeymoon, and group travel inquiries across forms and WhatsApp.
-                        </span>
+                        <span>Collect travel inquiries from your website, WhatsApp, and phone calls into one place.</span>
                       </div>
                       <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
                         <CheckCircle2 className="w-4 h-4 text-teal-600 shrink-0 mt-0.5" />
-                        <span>
-                          <strong className="text-[#082B59] font-bold">Smart Package Matching:</strong> Instant matching of itineraries, hotel categories, group sizes, and budget ranges from your catalog.
-                        </span>
+                        <span>Match traveler preferences with relevant destinations, group sizes, and itineraries.</span>
                       </div>
                       <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
                         <CheckCircle2 className="w-4 h-4 text-teal-600 shrink-0 mt-0.5" />
-                        <span>
-                          <strong className="text-[#082B59] font-bold">Instant Team WhatsApp Dispatch:</strong> Automatically alerts your sales desk with client budget, travel dates, and matched packages.
-                        </span>
-                      </div>
-                      <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
-                        <CheckCircle2 className="w-4 h-4 text-teal-600 shrink-0 mt-0.5" />
-                        <span>
-                          <strong className="text-[#082B59] font-bold">Spreadsheet & Lead Sync:</strong> Organizes daily inquiries into high-intent travelers and nurture lists with automated end-of-day reports.
-                        </span>
+                        <span>Alert your travel desk on WhatsApp with traveler details for fast follow-ups.</span>
                       </div>
                     </div>
 
@@ -612,27 +588,15 @@ export function AIServicesExperience({ onOpenContact }) {
                     <div className="space-y-2.5 pt-4 border-t border-slate-100 mb-6">
                       <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
                         <CheckCircle2 className="w-4 h-4 text-[#0866E8] shrink-0 mt-0.5" />
-                        <span>
-                          <strong className="text-[#082B59] font-bold">Buyer Criteria Profiling:</strong> Captures property type (Flats, Villas, Plots), BHK, preferred localities, and loan readiness.
-                        </span>
+                        <span>Capture buyer budget, location preferences, and property requirements.</span>
                       </div>
                       <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
                         <CheckCircle2 className="w-4 h-4 text-[#0866E8] shrink-0 mt-0.5" />
-                        <span>
-                          <strong className="text-[#082B59] font-bold">Automated Inventory Matching:</strong> Instantly matches buyer budget and space needs against available ready-to-move and project units.
-                        </span>
+                        <span>Share matching brochures and project floor plans with interested buyers.</span>
                       </div>
                       <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
                         <CheckCircle2 className="w-4 h-4 text-[#0866E8] shrink-0 mt-0.5" />
-                        <span>
-                          <strong className="text-[#082B59] font-bold">Broker WhatsApp Alerts:</strong> Delivers instant alerts with buyer details, matched listings, and requested site-visit timing.
-                        </span>
-                      </div>
-                      <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
-                        <CheckCircle2 className="w-4 h-4 text-[#0866E8] shrink-0 mt-0.5" />
-                        <span>
-                          <strong className="text-[#082B59] font-bold">Daily Pipeline Organization:</strong> Categorizes leads into serious site visitors vs. nurture prospects with automated daily reports.
-                        </span>
+                        <span>Notify sales agents immediately on WhatsApp for prompt site visit scheduling.</span>
                       </div>
                     </div>
 
@@ -730,26 +694,6 @@ export function AIServicesExperience({ onOpenContact }) {
             </div>
           </div>
         )}
-
-
-        {/* Call to Action Bar */}
-        <div className="text-center p-8 sm:p-12 rounded-[28px] sm:rounded-[32px] bg-[#082B59] text-white shadow-xl relative z-10 overflow-hidden">
-          <div className="relative z-10 max-w-2xl mx-auto">
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-white mb-3">
-              Ready to Discuss Your Business Workflow?
-            </h3>
-
-
-
-            <button
-              onClick={onOpenContact}
-              className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-xl text-sm font-semibold text-white bg-[#0866E8] hover:bg-[#0756C5] shadow-xs hover:shadow-md transition-all cursor-pointer min-h-[44px]"
-            >
-              <span>Speak With Our Team</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
-        </div>
       </div>
     </div>
   );
@@ -789,7 +733,7 @@ export function CyberSecurityExperience({ onOpenContact }) {
       </div>
 
       {/* 3 Core Security Solution Cards (Exact topics from reference image) */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 text-left mb-14 sm:mb-18 relative z-10">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 text-left relative z-10">
         {cyberServices.map((service, idx) => (
           <div
             key={idx}
@@ -812,52 +756,6 @@ export function CyberSecurityExperience({ onOpenContact }) {
             </button>
           </div>
         ))}
-      </div>
-
-      {/* Authentic Visual Banner */}
-      <div className="relative rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 overflow-hidden shadow-sm mb-14 sm:mb-18 z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 items-center">
-          <div className="lg:col-span-7 p-8 sm:p-12 text-left">
-            <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#082B59] mb-3 leading-snug">
-              Hardening Digital Infrastructure
-            </h2>
-            <p className="text-sm text-slate-600 leading-relaxed font-normal mb-6 max-w-xl">
-              Systematic vulnerability testing and rigorous code assessment ensure your software architectures remain resilient against evolving threat vectors and unauthorized intrusion.
-            </p>
-            <button
-              type="button"
-              onClick={onOpenContact}
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-white bg-[#0866E8] hover:bg-[#0756C5] shadow-sm transition-all cursor-pointer"
-            >
-              <span>Schedule an Assessment</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
-          <div className="lg:col-span-5 aspect-[16/10] lg:aspect-auto h-full bg-slate-100">
-            <img
-              src="/assets/cybersecurity-2023-social_uvx3rt.png"
-              alt="Cyber Security Assessment"
-              className="w-full h-full object-cover object-center"
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* Bottom CTA Bar */}
-      <div className="text-center p-8 sm:p-12 rounded-3xl bg-[#082B59] text-white shadow-xl relative z-10">
-        <h3 className="text-2xl sm:text-3xl font-extrabold text-white mb-3">
-          Protect Your Applications &amp; Digital Assets
-        </h3>
-        <p className="text-slate-300 text-sm max-w-xl mx-auto mb-6 font-normal">
-          Get in touch with our security team to discuss application penetration testing, API vulnerability reviews, and security hardening.
-        </p>
-        <button
-          onClick={onOpenContact}
-          className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-xl text-sm font-semibold text-white bg-[#0866E8] hover:bg-[#0756C5] shadow-xs hover:shadow-md transition-all cursor-pointer"
-        >
-          <span>Book a Security Consultation</span>
-          <ArrowRight className="w-4 h-4" />
-        </button>
       </div>
     </div>
   );
@@ -973,25 +871,19 @@ export function AIFilmStudioExperience({ onOpenContact }) {
               </p>
             </div>
 
-            {/* 3 Editorial Checkmarked Deliverables */}
+            {/* Clean Deliverables */}
             <div className="space-y-2.5 pt-4 border-t border-slate-100">
               <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
                 <CheckCircle2 className="w-4 h-4 text-cyan-700 shrink-0 mt-0.5" />
-                <span>
-                  <strong className="text-[#082B59] font-bold">End-to-End Creative Direction:</strong> Complete script consultation, storyboard pacing, studio cinematography, and lighting.
-                </span>
+                <span>Script consultation, storyboard planning, and creative direction.</span>
               </div>
               <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
                 <CheckCircle2 className="w-4 h-4 text-cyan-700 shrink-0 mt-0.5" />
-                <span>
-                  <strong className="text-[#082B59] font-bold">Authentic Narrative Pacing:</strong> Human-crafted storytelling that builds trust and connects with clients, partners, and investors.
-                </span>
+                <span>Professional cinematography, lighting design, and on-location filming.</span>
               </div>
               <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
                 <CheckCircle2 className="w-4 h-4 text-cyan-700 shrink-0 mt-0.5" />
-                <span>
-                  <strong className="text-[#082B59] font-bold">Cinema-Grade Master Cuts:</strong> Editorial color grading, custom soundscapes, and multi-format exports for web and social broadcasts.
-                </span>
+                <span>Color grading, sound design, voiceover, and broadcast-ready delivery.</span>
               </div>
             </div>
           </div>
@@ -1001,7 +893,7 @@ export function AIFilmStudioExperience({ onOpenContact }) {
 
 
       {/* Core Practice Capabilities Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 mb-12 sm:mb-14 text-left">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 text-left">
         {[
           {
             title: 'Commercial Video Production',
@@ -1047,23 +939,6 @@ export function AIFilmStudioExperience({ onOpenContact }) {
             </motion.div>
           );
         })}
-      </div>
-
-      {/* Bottom CTA Bar */}
-      <div className="text-center p-8 sm:p-12 rounded-3xl bg-[#082B59] text-white shadow-xl">
-        <h3 className="text-2xl sm:text-3xl font-extrabold text-white mb-3">
-          Bring Your Story to the Screen
-        </h3>
-
-
-
-        <button
-          onClick={onOpenContact}
-          className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-xl text-sm font-semibold text-white bg-[#0866E8] hover:bg-[#0756C5] shadow-xs hover:shadow-md transition-all cursor-pointer"
-        >
-          <span>Discuss Your Video Project</span>
-          <ArrowRight className="w-4 h-4" />
-        </button>
       </div>
     </div>
   );
