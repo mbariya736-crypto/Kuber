@@ -3,7 +3,10 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import {
   ArrowLeft,
-  ArrowRight
+  ArrowRight,
+  Bot,
+  ShieldCheck,
+  Film
 } from 'lucide-react';
 import {
   AIServicesExperience,
