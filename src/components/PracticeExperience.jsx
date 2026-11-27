@@ -34,6 +34,7 @@ import {
 import ServiceVideoHero from './ServiceVideoHero';
 import ServiceSpecificBackground from './ServiceSpecificBackground';
 import ToursAndTravelsShowcase from './ToursAndTravelsShowcase';
+import RealEstateShowcase from './RealEstateShowcase';
 
 /* ========================================================================= */
 /* 1. SUBJECT-BASED BACKGROUND: Business Automation (Attached AI Poster Visual) */
@@ -613,6 +614,18 @@ export function AIServicesExperience({ onOpenContact }) {
             className="mb-12 sm:mb-16 relative z-10"
           >
             <ToursAndTravelsShowcase onOpenContact={onOpenContact} />
+          </motion.div>
+        )}
+
+        {/* Dynamic Industry Solution Showcase: Real Estate */}
+        {selectedIndustryOption === 'real-estate' && (
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.35, ease: 'easeOut' }}
+            className="mb-12 sm:mb-16 relative z-10"
+          >
+            <RealEstateShowcase onOpenContact={onOpenContact} />
           </motion.div>
         )}
 
