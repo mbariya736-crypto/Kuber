@@ -12,7 +12,8 @@ import {
   MessageSquare,
   Sparkles,
   PhoneCall,
-  Globe
+  Globe,
+  Mail
 } from 'lucide-react';
 import { portfolioProjects, digitalJaalProject } from '../data/portfolioData';
 
@@ -175,18 +176,18 @@ export default function ProjectDetailPage() {
         {project.id === 'digital-jaal-film' && (
           <div className="mb-12 sm:mb-16 p-5 sm:p-6 rounded-2xl bg-white border border-stone-200/90 shadow-xs flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 border border-rose-200 flex items-center justify-center shrink-0">
-                <PhoneCall className="w-5 h-5 text-rose-600" />
+              <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 border border-emerald-200 flex items-center justify-center shrink-0">
+                <PhoneCall className="w-5 h-5 text-emerald-600" />
               </div>
               <div>
                 <span className="text-[11px] font-semibold text-stone-500 uppercase tracking-wider block">
-                  National Cyber Crime Helpline
+                  Call Support
                 </span>
                 <a
-                  href="tel:1930"
-                  className="text-base font-bold text-[#082B59] hover:text-rose-600 transition-colors"
+                  href="tel:+917490923790"
+                  className="text-base font-bold text-[#082B59] hover:text-emerald-600 transition-colors"
                 >
-                  1930 (Toll Free)
+                  +91 7490923790
                 </a>
               </div>
             </div>
@@ -195,19 +196,17 @@ export default function ProjectDetailPage() {
 
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#0866E8] border border-blue-200 flex items-center justify-center shrink-0">
-                <Globe className="w-5 h-5 text-[#0866E8]" />
+                <Mail className="w-5 h-5 text-[#0866E8]" />
               </div>
               <div>
                 <span className="text-[11px] font-semibold text-stone-500 uppercase tracking-wider block">
-                  Official Citizen Reporting Portal
+                  Email Address
                 </span>
                 <a
-                  href="https://cybercrime.gov.in"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="mailto:kuberaistechnologies@gmail.com"
                   className="text-base font-bold text-[#0866E8] hover:underline transition-colors"
                 >
-                  cybercrime.gov.in
+                  kuberaistechnologies@gmail.com
                 </a>
               </div>
             </div>

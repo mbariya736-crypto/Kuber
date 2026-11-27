@@ -786,11 +786,11 @@ export default function Navbar() {
                     </a>
 
                     <a
-                      href="tel:1930"
+                      href="tel:+917490923790"
                       className="flex flex-col items-center justify-center py-2 px-1 rounded-xl bg-blue-50/70 border border-blue-200/80 hover:bg-blue-100/70 transition-colors shadow-2xs text-center group active:scale-95"
                     >
                       <Phone className="w-4 h-4 text-[#0866E8] mb-0.5 group-hover:scale-110 transition-transform" />
-                      <span className="text-[11px] font-bold text-blue-800">Helpline</span>
+                      <span className="text-[11px] font-bold text-blue-800">Call Us</span>
                     </a>
 
                     <a

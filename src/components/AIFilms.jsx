@@ -44,11 +44,11 @@ export default function AIFilms({ onOpenModal }) {
     title: 'DIGITAL JAAL',
     story: 'Ek Cyber Fraud Ki Sachchi Kahani',
     category: 'Public Awareness Film',
-    helpline: '1930',
-    portal: 'cybercrime.gov.in',
+    helpline: '+91 7490923790',
+    portal: 'kuberaistechnologies@gmail.com',
     tag: 'Public Awareness Film',
     creator: 'Kuber AIS Technologies',
-    description: 'An educational public awareness film focused on widespread digital financial traps including fake UPI verification links, fraudulent QR codes, and online lottery schemes. The project emphasizes scam prevention and guides citizens to immediate assistance through National Cyber Helpline 1930 and cybercrime.gov.in.',
+    description: 'An educational public awareness film focused on widespread digital financial traps including fake UPI verification links, fraudulent QR codes, and online lottery schemes. Produced by Kuber AIS Technologies.',
     // If a valid video file/URL exists, set it here; otherwise leave null to prevent fake/broken links
     videoUrl: null
   };

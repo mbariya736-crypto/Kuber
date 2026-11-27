@@ -6,7 +6,8 @@ import {
   PhoneCall, 
   Globe, 
   Maximize2,
-  Film
+  Film,
+  Mail
 } from 'lucide-react';
 
 /**
@@ -97,44 +98,42 @@ export default function CinematicScrollFilmShowcase({
               </div>
             </div>
 
-            {/* Official Helpline & Citizen Portal */}
+            {/* Verified Direct Contact & Inquiries */}
             <div className="flex flex-wrap items-center gap-4 pt-4 border-t border-slate-100 mb-6">
-              {/* National Cyber Helpline 1930 */}
+              {/* Call Support */}
               <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-lg bg-rose-50 text-rose-600 border border-rose-200 flex items-center justify-center shrink-0">
-                  <PhoneCall className="w-4 h-4 text-rose-600" />
+                <div className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 border border-emerald-200 flex items-center justify-center shrink-0">
+                  <PhoneCall className="w-4 h-4 text-emerald-600" />
                 </div>
                 <div>
                   <span className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider block">
-                    National Cyber Helpline
+                    Call Support
                   </span>
                   <a 
-                    href="tel:1930" 
-                    className="text-xs sm:text-sm font-bold text-[#082B59] hover:text-rose-600 transition-colors"
+                    href="tel:+917490923790" 
+                    className="text-xs sm:text-sm font-bold text-[#082B59] hover:text-emerald-600 transition-colors"
                   >
-                    1930 (Toll Free)
+                    +91 7490923790
                   </a>
                 </div>
               </div>
 
               <div className="hidden sm:block h-6 w-px bg-slate-200" />
 
-              {/* Citizen Reporting Portal */}
+              {/* Email Address */}
               <div className="flex items-center gap-2.5">
                 <div className="w-8 h-8 rounded-lg bg-blue-50 text-[#0866E8] border border-blue-200 flex items-center justify-center shrink-0">
-                  <Globe className="w-4 h-4 text-[#0866E8]" />
+                  <Mail className="w-4 h-4 text-[#0866E8]" />
                 </div>
                 <div>
                   <span className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider block">
-                    Official Citizen Portal
+                    Email Address
                   </span>
                   <a
-                    href="https://cybercrime.gov.in"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="mailto:kuberaistechnologies@gmail.com"
                     className="text-xs sm:text-sm font-bold text-[#0866E8] hover:underline transition-colors"
                   >
-                    cybercrime.gov.in
+                    kuberaistechnologies@gmail.com
                   </a>
                 </div>
               </div>

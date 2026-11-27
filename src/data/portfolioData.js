@@ -12,10 +12,10 @@ export const digitalJaalProject = {
   iconColor: 'text-cyan-600',
   image: '/images/digital-jaal.png',
   heroImage: '/images/digital-jaal.png',
-  description: 'Public awareness film educating citizens and small business owners on UPI fraud, deceptive payment links, and rapid response through National Cyber Helpline 1930.',
+  description: 'Public awareness film educating citizens and small business owners on UPI fraud, deceptive payment links, and rapid scam response.',
   overview: 'An educational public awareness film produced to inform citizens and business owners about digital financial fraud, fraudulent QR payments, and practical immediate response protocols.',
   challenge: 'As digital transactions expanded across communities and businesses, deceptive payment links, fake KYC messages, and unsolicited APK downloads surged. Many citizens lost critical time during the golden hour simply because they did not know the immediate reporting process.',
-  solution: 'We produced the "DIGITAL JAAL" awareness initiative using relatable everyday scenarios. The narrative clearly illustrates how social engineering attacks operate and guides viewers to take immediate preventive action and report incidents to the National Cyber Crime Helpline (1930) and cybercrime.gov.in.',
+  solution: 'We produced the "DIGITAL JAAL" awareness initiative using relatable everyday scenarios. The narrative clearly illustrates how social engineering attacks operate and guides viewers to take immediate preventive action.',
   highlights: [
     'Narrative based on real-world Indian cyber fraud reporting patterns',
     'Step-by-step guidance on reporting during the golden hour to freeze transactions',

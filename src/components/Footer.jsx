@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail } from 'lucide-react';
+import { Mail, Phone } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -17,9 +17,13 @@ export default function Footer() {
               <span>kuberaistechnologies@gmail.com</span>
             </a>
 
-            <span className="text-slate-400 text-xs sm:text-sm">
-              Cyber Crime Helpline: <a href="tel:1930" className="font-semibold text-white hover:text-cyan-300 transition-colors">1930</a>
-            </span>
+            <a
+              href="tel:+917490923790"
+              className="flex items-center gap-2 text-xs sm:text-sm text-slate-300 hover:text-white transition-colors"
+            >
+              <Phone className="w-4 h-4 text-emerald-400" />
+              <span>+91 7490923790</span>
+            </a>
           </div>
 
           {/* Copyright Text */}
