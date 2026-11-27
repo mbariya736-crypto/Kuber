@@ -18,7 +18,7 @@ export default function Contact() {
     email: '',
     phone: '',
     companyName: '',
-    service: 'Business Automation',
+    service: 'AI Services',
     description: ''
   });
 
@@ -212,7 +212,7 @@ export default function Contact() {
                         email: '',
                         phone: '',
                         companyName: '',
-                        service: 'Business Automation',
+                        service: 'AI Services',
                         description: ''
                       });
                     }}
@@ -328,7 +328,7 @@ export default function Contact() {
                             : 'border-slate-200 focus:border-[#0866E8] focus:ring-2 focus:ring-blue-100'
                           }`}
                       >
-                        <option value="Business Automation">Business Automation</option>
+                        <option value="AI Services">AI Services</option>
                         <option value="Cyber Security">Cyber Security</option>
                         <option value="Film Production">Film Production</option>
                         <option value="General Inquiry">General Inquiry</option>

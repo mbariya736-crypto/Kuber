@@ -50,8 +50,8 @@ function FilmProductionStageVisual() {
 const SERVICE_THEMES = {
   'ai-services': {
     id: 'ai-services',
-    category: 'AUTOMATION',
-    title: 'Business Automation',
+    category: 'AI',
+    title: 'AI Services',
     accentColor: '#0866E8',
     secondaryColor: '#00d2ff',
     gradientText: 'from-[#0866E8] via-blue-600 to-cyan-500',
@@ -130,8 +130,8 @@ export default function AboutUs() {
   const serviceCards = [
     {
       id: 'ai-services',
-      category: 'AUTOMATION',
-      title: 'Business Automation',
+      category: 'AI',
+      title: 'AI Services',
       description: 'Connected systems to streamline customer inquiries, communication, and routine business workflows.',
       path: '/services/ai-services',
       icon: Brain,

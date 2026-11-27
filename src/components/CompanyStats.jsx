@@ -9,7 +9,7 @@ export default function CompanyStats({ className = "relative mt-2 xs:mt-4 sm:mt-
   const pillars = [
     {
       icon: Bot,
-      title: 'Business Automation',
+      title: 'AI Services',
       description: 'Business process support and automation services.',
       link: '/services/ai-services'
     },

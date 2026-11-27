@@ -96,7 +96,7 @@ export default function Services({ onOpenModal, routePracticeId, onPracticeChang
   const services = [
     {
       id: 'ai-services',
-      name: 'AI & Business Automation',
+      name: 'AI Services',
       icon: Bot,
       path: '/services/ai-services',
       image: '/assets/ai-services.webp',
