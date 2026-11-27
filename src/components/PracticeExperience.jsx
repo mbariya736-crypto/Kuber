@@ -45,19 +45,19 @@ function AIServicesBackground({ activeOption = 'ai-services' }) {
 
   const glowConfig = isTravel
     ? {
-        orb1: 'from-teal-500/25 via-emerald-400/20 to-transparent',
-        orb2: 'from-emerald-400/20 via-cyan-400/20 to-transparent',
-        accent1: 'bg-teal-100/40',
-        gridColor: 'rgba(20, 184, 166, 0.45)'
-      }
+      orb1: 'from-teal-500/25 via-emerald-400/20 to-transparent',
+      orb2: 'from-emerald-400/20 via-cyan-400/20 to-transparent',
+      accent1: 'bg-teal-100/40',
+      gridColor: 'rgba(20, 184, 166, 0.45)'
+    }
     : isRealEstate
-    ? {
+      ? {
         orb1: 'from-blue-600/25 via-indigo-500/20 to-transparent',
         orb2: 'from-indigo-500/20 via-sky-400/20 to-transparent',
         accent1: 'bg-blue-100/40',
         gridColor: 'rgba(59, 130, 246, 0.45)'
       }
-    : {
+      : {
         orb1: 'from-[#0866E8]/20 via-[#00B9E8]/25 to-transparent',
         orb2: 'from-[#00B9E8]/20 via-[#38BDF8]/20 to-transparent',
         accent1: 'bg-blue-100/40',
@@ -366,11 +366,10 @@ export function AIServicesExperience({ onOpenContact }) {
           <button
             type="button"
             onClick={() => setSelectedIndustryOption('ai-services')}
-            className={`flex items-center gap-2 px-4 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap ${
-              selectedIndustryOption === 'ai-services'
+            className={`flex items-center gap-2 px-4 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap ${selectedIndustryOption === 'ai-services'
                 ? 'bg-blue-50 text-[#0866E8] shadow-xs border border-blue-200/90 ring-2 ring-blue-500/20'
                 : 'text-slate-600 hover:text-[#082B59] hover:bg-slate-50 border border-transparent'
-            }`}
+              }`}
           >
             <Bot className="w-4 h-4 text-[#0866E8]" />
             <span>AI Services</span>
@@ -379,11 +378,10 @@ export function AIServicesExperience({ onOpenContact }) {
           <button
             type="button"
             onClick={() => setSelectedIndustryOption('tours-travels')}
-            className={`flex items-center gap-2 px-4 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap ${
-              selectedIndustryOption === 'tours-travels'
+            className={`flex items-center gap-2 px-4 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap ${selectedIndustryOption === 'tours-travels'
                 ? 'bg-teal-50 text-teal-700 shadow-xs border border-teal-200/90 ring-2 ring-teal-500/20'
                 : 'text-slate-600 hover:text-[#082B59] hover:bg-slate-50 border border-transparent'
-            }`}
+              }`}
           >
             <Plane className="w-4 h-4 text-teal-600" />
             <span>Tours & Travels Enquiry Management</span>
@@ -392,11 +390,10 @@ export function AIServicesExperience({ onOpenContact }) {
           <button
             type="button"
             onClick={() => setSelectedIndustryOption('real-estate')}
-            className={`flex items-center gap-2 px-4 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap ${
-              selectedIndustryOption === 'real-estate'
+            className={`flex items-center gap-2 px-4 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap ${selectedIndustryOption === 'real-estate'
                 ? 'bg-blue-50 text-[#0866E8] shadow-xs border border-blue-200/90 ring-2 ring-blue-500/20'
                 : 'text-slate-600 hover:text-[#082B59] hover:bg-slate-50 border border-transparent'
-            }`}
+              }`}
           >
             <Building2 className="w-4 h-4 text-[#0866E8]" />
             <span>Real Estate Lead Management</span>
@@ -554,9 +551,7 @@ export function AIServicesExperience({ onOpenContact }) {
                       Tours & Travels Enquiry Management
                     </h2>
 
-                    <p className="text-slate-600 text-xs sm:text-sm lg:text-base leading-relaxed font-normal mb-5">
-                      Complete client intake, itinerary matching, and qualification pipeline designed for travel agencies, tour operators, and destination planners.
-                    </p>
+
 
                     <div className="space-y-2.5 pt-4 border-t border-slate-100 mb-6">
                       <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
@@ -687,59 +682,61 @@ export function AIServicesExperience({ onOpenContact }) {
           </motion.div>
         )}
 
-        {/* AI Services Solutions Grid (Exact match to reference) */}
-        <div className="my-16 sm:my-20 relative z-10">
-          <div className="max-w-3xl mb-8 sm:mb-12 text-left">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#082B59] tracking-tight">
-              AI Services
-            </h2>
-            <p className="text-sm sm:text-base text-slate-600 mt-2.5 font-normal leading-relaxed">
-              Smart assistants, autonomous agents and automation that save time and grow your business.
-            </p>
-          </div>
+        {/* AI Services Solutions Grid (Show only when AI Services option is selected) */}
+        {selectedIndustryOption === 'ai-services' && (
+          <div className="my-16 sm:my-20 relative z-10">
+            <div className="max-w-3xl mb-8 sm:mb-12 text-left">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#082B59] tracking-tight">
+                AI Services
+              </h2>
+              <p className="text-sm sm:text-base text-slate-600 mt-2.5 font-normal leading-relaxed">
+                Smart assistants, autonomous agents and automation that save time and grow your business.
+              </p>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 text-left items-stretch">
-            {[
-              {
-                title: 'AI Chatbot Development',
-                desc: 'Custom AI chatbots for your website, WhatsApp and customer support that answer questions and capture leads.'
-              },
-              {
-                title: 'AI Agent Development',
-                desc: 'AI agents that research, decide and complete multi-step tasks for your business.'
-              },
-              {
-                title: 'AI Workflow Automation',
-                desc: 'Automate repetitive work by connecting your tools and processes with AI-driven workflows.'
-              },
-              {
-                title: 'AI Sales & Lead Agent',
-                desc: 'An AI agent that finds, qualifies and follows up with sales leads around the clock.'
-              }
-            ].map((solution, idx) => (
-              <div
-                key={idx}
-                className="rounded-2xl bg-white border border-slate-200/90 hover:border-slate-300 p-7 sm:p-8 transition-all duration-200 shadow-xs hover:shadow-md flex flex-col justify-between group"
-              >
-                <div>
-                  <h3 className="text-lg sm:text-xl font-bold text-[#082B59] mb-3 leading-snug group-hover:text-[#0866E8] transition-colors">
-                    {solution.title}
-                  </h3>
-                  <p className="text-sm text-slate-600 leading-relaxed font-normal mb-6">
-                    {solution.desc}
-                  </p>
-                </div>
-                <button
-                  type="button"
-                  onClick={onOpenContact}
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#0866E8] hover:text-[#0756C5] transition-colors cursor-pointer w-fit"
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 text-left items-stretch">
+              {[
+                {
+                  title: 'AI Chatbot Development',
+                  desc: 'Custom AI chatbots for your website, WhatsApp and customer support that answer questions and capture leads.'
+                },
+                {
+                  title: 'AI Agent Development',
+                  desc: 'AI agents that research, decide and complete multi-step tasks for your business.'
+                },
+                {
+                  title: 'AI Workflow Automation',
+                  desc: 'Automate repetitive work by connecting your tools and processes with AI-driven workflows.'
+                },
+                {
+                  title: 'AI Sales & Lead Agent',
+                  desc: 'An AI agent that finds, qualifies and follows up with sales leads around the clock.'
+                }
+              ].map((solution, idx) => (
+                <div
+                  key={idx}
+                  className="rounded-2xl bg-white border border-slate-200/90 hover:border-slate-300 p-7 sm:p-8 transition-all duration-200 shadow-xs hover:shadow-md flex flex-col justify-between group"
                 >
-                  <span>Learn More →</span>
-                </button>
-              </div>
-            ))}
+                  <div>
+                    <h3 className="text-lg sm:text-xl font-bold text-[#082B59] mb-3 leading-snug group-hover:text-[#0866E8] transition-colors">
+                      {solution.title}
+                    </h3>
+                    <p className="text-sm text-slate-600 leading-relaxed font-normal mb-6">
+                      {solution.desc}
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={onOpenContact}
+                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#0866E8] hover:text-[#0756C5] transition-colors cursor-pointer w-fit"
+                  >
+                    <span>Learn More →</span>
+                  </button>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
 
         {/* Call to Action Bar */}

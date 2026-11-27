@@ -311,9 +311,7 @@ export default function ToursAndTravelsShowcase({ onOpenContact }) {
             <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#082B59]">
               Travel Packages & Services Catalog
             </h3>
-            <p className="text-xs sm:text-sm text-slate-600 mt-1">
-              Organized inventory automatically mapped to incoming customer travel inquiries.
-            </p>
+
           </div>
 
           {/* Category Filter Pills */}
@@ -324,8 +322,8 @@ export default function ToursAndTravelsShowcase({ onOpenContact }) {
                 type="button"
                 onClick={() => setActiveCategory(cat)}
                 className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${activeCategory === cat
-                    ? 'bg-teal-600 text-white shadow-xs'
-                    : 'bg-slate-100 hover:bg-slate-200/80 text-slate-700'
+                  ? 'bg-teal-600 text-white shadow-xs'
+                  : 'bg-slate-100 hover:bg-slate-200/80 text-slate-700'
                   }`}
               >
                 {cat}
@@ -428,8 +426,8 @@ export default function ToursAndTravelsShowcase({ onOpenContact }) {
               type="button"
               onClick={() => setActiveLeadIndex(idx)}
               className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${activeLeadIndex === idx
-                  ? 'bg-[#082B59] text-white shadow-xs'
-                  : 'bg-slate-100 hover:bg-slate-200/70 text-slate-700'
+                ? 'bg-[#082B59] text-white shadow-xs'
+                : 'bg-slate-100 hover:bg-slate-200/70 text-slate-700'
                 }`}
             >
               <span>{lead.name}</span>
@@ -535,8 +533,8 @@ export default function ToursAndTravelsShowcase({ onOpenContact }) {
                     </span>
                     <div
                       className={`text-xs p-3 rounded-xl max-w-[85%] leading-relaxed ${msg.sender === 'client'
-                          ? 'bg-white border border-slate-200 text-slate-800'
-                          : 'bg-teal-600 text-white font-medium'
+                        ? 'bg-white border border-slate-200 text-slate-800'
+                        : 'bg-teal-600 text-white font-medium'
                         }`}
                     >
                       {msg.text}
