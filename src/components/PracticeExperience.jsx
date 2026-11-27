@@ -314,7 +314,7 @@ export function AIServicesExperience({ onOpenContact }) {
 
   // Touch device detection to cleanly disable cursor effects on mobile/touch
   const [isTouchDevice, setIsTouchDevice] = useState(false);
-  const [selectedIndustryOption, setSelectedIndustryOption] = useState('ai-services');
+  const [selectedIndustryOption, setSelectedIndustryOption] = useState('tours-travels');
 
   useEffect(() => {
     const checkTouch = () => {
@@ -435,21 +435,8 @@ export function AIServicesExperience({ onOpenContact }) {
           AI Services
         </h1>
 
-        {/* 3 Options Switcher directly in Hero Section */}
+        {/* 2 Options Switcher directly in Hero Section matching reference */}
         <div className="inline-flex p-1.5 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-2xs gap-2 max-w-full overflow-x-auto">
-          <button
-            type="button"
-            onClick={() => setSelectedIndustryOption('ai-services')}
-            className={`flex items-center gap-2 px-4 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap ${
-              selectedIndustryOption === 'ai-services'
-                ? 'bg-blue-50 text-[#0866E8] shadow-xs border border-blue-200/90 ring-2 ring-blue-500/20'
-                : 'text-slate-600 hover:text-[#082B59] hover:bg-slate-50 border border-transparent'
-            }`}
-          >
-            <Bot className="w-4 h-4 text-[#0866E8]" />
-            <span>AI Services</span>
-          </button>
-
           <button
             type="button"
             onClick={() => setSelectedIndustryOption('tours-travels')}

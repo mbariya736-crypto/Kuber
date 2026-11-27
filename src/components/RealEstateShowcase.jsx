@@ -340,11 +340,10 @@ Status: Price checking / browsing only. Added to nurture list without broker ale
                 key={cat}
                 type="button"
                 onClick={() => setActiveCategory(cat)}
-                className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                  activeCategory === cat
+                className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${activeCategory === cat
                     ? 'bg-[#0866E8] text-white shadow-xs'
                     : 'bg-slate-100 hover:bg-slate-200/80 text-slate-700'
-                }`}
+                  }`}
               >
                 {cat}
               </button>
@@ -436,9 +435,7 @@ Status: Price checking / browsing only. Added to nurture list without broker ale
           <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#082B59]">
             Real Estate Lead Qualification & Broker Dispatch
           </h3>
-          <p className="text-xs sm:text-sm text-slate-600 mt-1">
-            See how incoming property inquiries from web forms and WhatsApp are captured, checked for seriousness, matched with inventory, and sent directly to the broker.
-          </p>
+
         </div>
 
         {/* Lead Selector Tabs */}
@@ -448,16 +445,14 @@ Status: Price checking / browsing only. Added to nurture list without broker ale
               key={lead.id}
               type="button"
               onClick={() => setActiveLeadIndex(idx)}
-              className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-                activeLeadIndex === idx
+              className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${activeLeadIndex === idx
                   ? 'bg-[#082B59] text-white shadow-xs'
                   : 'bg-slate-100 hover:bg-slate-200/70 text-slate-700'
-              }`}
+                }`}
             >
               <span>{lead.name}</span>
-              <span className={`text-[10px] px-1.5 py-0.5 rounded ${
-                activeLeadIndex === idx ? 'bg-white/20 text-white' : 'bg-white text-slate-600 border border-slate-200'
-              }`}>
+              <span className={`text-[10px] px-1.5 py-0.5 rounded ${activeLeadIndex === idx ? 'bg-white/20 text-white' : 'bg-white text-slate-600 border border-slate-200'
+                }`}>
                 {lead.location} ({lead.want})
               </span>
             </button>
@@ -505,9 +500,8 @@ Status: Price checking / browsing only. Added to nurture list without broker ale
                     Buyer Qualification Profile
                   </span>
                 </div>
-                <span className={`text-xs font-bold px-2 py-0.5 rounded ${
-                  currentLead.serious ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'
-                }`}>
+                <span className={`text-xs font-bold px-2 py-0.5 rounded ${currentLead.serious ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'
+                  }`}>
                   {currentLead.serious ? 'Serious Buyer' : 'Nurture List'}
                 </span>
               </div>
@@ -559,11 +553,10 @@ Status: Price checking / browsing only. Added to nurture list without broker ale
                       {msg.sender === 'client' ? currentLead.name : 'Real Estate Intake Agent'}
                     </span>
                     <div
-                      className={`text-xs p-3 rounded-xl max-w-[85%] leading-relaxed ${
-                        msg.sender === 'client'
+                      className={`text-xs p-3 rounded-xl max-w-[85%] leading-relaxed ${msg.sender === 'client'
                           ? 'bg-white border border-slate-200 text-slate-800'
                           : 'bg-[#0866E8] text-white font-medium'
-                      }`}
+                        }`}
                     >
                       {msg.text}
                     </div>
