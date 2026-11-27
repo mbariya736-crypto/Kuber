@@ -287,12 +287,40 @@ export function AIServicesExperience({ onOpenContact }) {
     <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 pb-12 sm:pb-16 text-[#082B59]">
       <AIServicesBackground />
 
-      {/* Top Heading */}
-      <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 relative z-20">
-        <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-[#082B59] tracking-tight leading-[1.15] mb-3.5 sm:mb-4">
-          Business Automation Services
+      {/* Top Hero Heading & 2 Industry Options Switcher */}
+      <div className="text-center max-w-4xl mx-auto mb-8 sm:mb-12 relative z-20">
+        <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-[#082B59] tracking-tight leading-[1.15] mb-4 sm:mb-6">
+          AI Services
         </h1>
 
+        {/* 2 Options Switcher directly in Hero Section */}
+        <div className="inline-flex p-1.5 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-2xs gap-2 max-w-full overflow-x-auto">
+          <button
+            type="button"
+            onClick={() => setSelectedIndustryOption('tours-travels')}
+            className={`flex items-center gap-2 px-4 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap ${
+              selectedIndustryOption === 'tours-travels'
+                ? 'bg-teal-50 text-teal-700 shadow-xs border border-teal-200/90 ring-2 ring-teal-500/20'
+                : 'text-slate-600 hover:text-[#082B59] hover:bg-slate-50 border border-transparent'
+            }`}
+          >
+            <Plane className="w-4 h-4 text-teal-600" />
+            <span>Tours & Travels Enquiry Management</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setSelectedIndustryOption('real-estate')}
+            className={`flex items-center gap-2 px-4 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap ${
+              selectedIndustryOption === 'real-estate'
+                ? 'bg-blue-50 text-[#0866E8] shadow-xs border border-blue-200/90 ring-2 ring-blue-500/20'
+                : 'text-slate-600 hover:text-[#082B59] hover:bg-slate-50 border border-transparent'
+            }`}
+          >
+            <Building2 className="w-4 h-4 text-[#0866E8]" />
+            <span>Real Estate Lead Management</span>
+          </button>
+        </div>
       </div>
 
       {/* Dedicated Content Wrapper */}
@@ -370,41 +398,133 @@ export function AIServicesExperience({ onOpenContact }) {
               </div>
             </div>
 
-            {/* Right: Overview Text */}
+            {/* Right: Dynamic Overview Text based on selected Hero Option */}
             <div className="lg:col-span-6 flex flex-col justify-center relative z-20">
-              <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#082B59] mb-4 leading-snug">
-                Practical Workflow Solutions Built for Real Businesses
-              </h2>
-              <div className="space-y-3.5 text-slate-600 text-xs sm:text-sm lg:text-base leading-relaxed font-normal mb-6">
-                <p>
-                  Everyday operations often get slowed down by missed customer messages, disorganized contact sheets, and repetitive manual tasks that take hours away from serving clients.
-                </p>
-                <p>
-                  We help businesses connect their existing tools—including website forms, WhatsApp, email, spreadsheets, and CRM—into one reliable, straightforward workflow. Your team stays informed with instant notifications, customer details are saved neatly, and follow-ups happen on time.
-                </p>
-              </div>
+              <AnimatePresence mode="wait">
+                {selectedIndustryOption === 'tours-travels' ? (
+                  <motion.div
+                    key="hero-tours-travels"
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
+                    className="flex flex-col"
+                  >
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="px-3 py-1 rounded-full text-xs font-semibold bg-teal-50 text-teal-700 border border-teal-200/80">
+                        Travel & Tourism
+                      </span>
+                    </div>
 
-              {/* 3 Editorial Checkmarked Deliverables */}
-              <div className="space-y-2.5 pt-4 border-t border-slate-100">
-                <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
-                  <CheckCircle2 className="w-4 h-4 text-[#0866E8] shrink-0 mt-0.5" />
-                  <span>
-                    <strong className="text-[#082B59] font-bold">Instant Response Protocols:</strong> Automatically capture website submissions and route alerts to WhatsApp and email within 3 seconds.
-                  </span>
-                </div>
-                <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
-                  <CheckCircle2 className="w-4 h-4 text-[#0866E8] shrink-0 mt-0.5" />
-                  <span>
-                    <strong className="text-[#082B59] font-bold">Zero Manual Data Entry:</strong> Seamlessly synchronize customer details, inquiries, and follow-ups directly into organized central spreadsheets.
-                  </span>
-                </div>
-                <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
-                  <CheckCircle2 className="w-4 h-4 text-[#0866E8] shrink-0 mt-0.5" />
-                  <span>
-                    <strong className="text-[#082B59] font-bold">Reliable Tool Integration:</strong> Connect your existing web forms, WhatsApp, email, and CRM with zero disruption to daily company routines.
-                  </span>
-                </div>
-              </div>
+                    <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#082B59] mb-3 leading-snug">
+                      Tours & Travels Enquiry Management
+                    </h2>
+
+                    <p className="text-slate-600 text-xs sm:text-sm lg:text-base leading-relaxed font-normal mb-5">
+                      Complete client intake, itinerary matching, and qualification pipeline designed for travel agencies, tour operators, and destination planners.
+                    </p>
+
+                    <div className="space-y-2.5 pt-4 border-t border-slate-100 mb-6">
+                      <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
+                        <CheckCircle2 className="w-4 h-4 text-teal-600 shrink-0 mt-0.5" />
+                        <span>
+                          <strong className="text-[#082B59] font-bold">Multi-Category Trip Intake:</strong> Captures domestic, international, honeymoon, and group travel inquiries across forms and WhatsApp.
+                        </span>
+                      </div>
+                      <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
+                        <CheckCircle2 className="w-4 h-4 text-teal-600 shrink-0 mt-0.5" />
+                        <span>
+                          <strong className="text-[#082B59] font-bold">Smart Package Matching:</strong> Instant matching of itineraries, hotel categories, group sizes, and budget ranges from your catalog.
+                        </span>
+                      </div>
+                      <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
+                        <CheckCircle2 className="w-4 h-4 text-teal-600 shrink-0 mt-0.5" />
+                        <span>
+                          <strong className="text-[#082B59] font-bold">Instant Team WhatsApp Dispatch:</strong> Automatically alerts your sales desk with client budget, travel dates, and matched packages.
+                        </span>
+                      </div>
+                      <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
+                        <CheckCircle2 className="w-4 h-4 text-teal-600 shrink-0 mt-0.5" />
+                        <span>
+                          <strong className="text-[#082B59] font-bold">Spreadsheet & Lead Sync:</strong> Organizes daily inquiries into high-intent travelers and nurture lists with automated end-of-day reports.
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="pt-2">
+                      <button
+                        type="button"
+                        onClick={onOpenContact}
+                        className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-white bg-teal-600 hover:bg-teal-700 shadow-sm transition-all cursor-pointer w-fit"
+                      >
+                        <span>Request Solution Demo</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="hero-real-estate"
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
+                    className="flex flex-col"
+                  >
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200/80">
+                        Real Estate & Housing
+                      </span>
+                    </div>
+
+                    <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#082B59] mb-3 leading-snug">
+                      Real Estate Lead Management
+                    </h2>
+
+                    <p className="text-slate-600 text-xs sm:text-sm lg:text-base leading-relaxed font-normal mb-5">
+                      High-conversion property buyer qualification and site-visit coordination pipeline for real estate agencies and brokers.
+                    </p>
+
+                    <div className="space-y-2.5 pt-4 border-t border-slate-100 mb-6">
+                      <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
+                        <CheckCircle2 className="w-4 h-4 text-[#0866E8] shrink-0 mt-0.5" />
+                        <span>
+                          <strong className="text-[#082B59] font-bold">Buyer Criteria Profiling:</strong> Captures property type (Flats, Villas, Plots), BHK, preferred localities, and loan readiness.
+                        </span>
+                      </div>
+                      <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
+                        <CheckCircle2 className="w-4 h-4 text-[#0866E8] shrink-0 mt-0.5" />
+                        <span>
+                          <strong className="text-[#082B59] font-bold">Automated Inventory Matching:</strong> Instantly matches buyer budget and space needs against available ready-to-move and project units.
+                        </span>
+                      </div>
+                      <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
+                        <CheckCircle2 className="w-4 h-4 text-[#0866E8] shrink-0 mt-0.5" />
+                        <span>
+                          <strong className="text-[#082B59] font-bold">Broker WhatsApp Alerts:</strong> Delivers instant alerts with buyer details, matched listings, and requested site-visit timing.
+                        </span>
+                      </div>
+                      <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
+                        <CheckCircle2 className="w-4 h-4 text-[#0866E8] shrink-0 mt-0.5" />
+                        <span>
+                          <strong className="text-[#082B59] font-bold">Daily Pipeline Organization:</strong> Categorizes leads into serious site visitors vs. nurture prospects with automated daily reports.
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="pt-2">
+                      <button
+                        type="button"
+                        onClick={onOpenContact}
+                        className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-white bg-[#0866E8] hover:bg-[#0756C5] shadow-sm transition-all cursor-pointer w-fit"
+                      >
+                        <span>Request Solution Demo</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </div>
         </motion.div>
@@ -443,193 +563,6 @@ export function AIServicesExperience({ onOpenContact }) {
                 </motion.div>
               );
             })}
-          </div>
-        </div>
-
-        {/* Real-World Industry Solutions (Attached Demos: Tours & Travels + Real Estate Lead Management) */}
-        <div className="mb-12 sm:mb-16 relative z-10">
-          <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
-            <h2 className="text-xl sm:text-3xl font-bold text-[#082B59] tracking-tight">
-              Specialized Industry Solutions
-            </h2>
-            <p className="text-slate-600 text-xs sm:text-sm mt-2 mb-6">
-              Ready-to-deploy automated enquiry intake, qualification pipelines, and instant WhatsApp team notifications.
-            </p>
-
-            {/* 2 Options Switcher in the Heading */}
-            <div className="inline-flex p-1.5 rounded-2xl bg-slate-100/90 border border-slate-200/90 shadow-2xs gap-1.5 max-w-full overflow-x-auto">
-              <button
-                type="button"
-                onClick={() => setSelectedIndustryOption('tours-travels')}
-                className={`flex items-center gap-2 px-4 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-                  selectedIndustryOption === 'tours-travels'
-                    ? 'bg-white text-teal-700 shadow-xs border border-teal-200/80'
-                    : 'text-slate-600 hover:text-[#082B59] hover:bg-white/60 border border-transparent'
-                }`}
-              >
-                <Plane className="w-4 h-4 text-teal-600" />
-                <span>Tours & Travels Enquiry Management</span>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setSelectedIndustryOption('real-estate')}
-                className={`flex items-center gap-2 px-4 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-                  selectedIndustryOption === 'real-estate'
-                    ? 'bg-white text-[#0866E8] shadow-xs border border-blue-200/80'
-                    : 'text-slate-600 hover:text-[#082B59] hover:bg-white/60 border border-transparent'
-                }`}
-              >
-                <Building2 className="w-4 h-4 text-[#0866E8]" />
-                <span>Real Estate Lead Management</span>
-              </button>
-            </div>
-          </div>
-
-          <div className="max-w-4xl mx-auto">
-            <AnimatePresence mode="wait">
-              {/* Option 1: Tours & Travels Enquiry Management */}
-              {selectedIndustryOption === 'tours-travels' && (
-                <motion.div
-                  key="tours-travels"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.22, ease: "easeOut" }}
-                  className="rounded-[28px] bg-white border border-slate-200/90 hover:border-teal-300 p-6 sm:p-10 transition-all duration-300 shadow-md hover:shadow-xl flex flex-col justify-between group"
-                >
-                  <div>
-                    <div className="flex items-center justify-between gap-3 mb-5">
-                      <div className="w-12 h-12 rounded-2xl bg-teal-50 text-teal-600 border border-teal-200/80 flex items-center justify-center group-hover:scale-105 transition-transform">
-                        <Plane className="w-6 h-6 text-teal-600" />
-                      </div>
-                      <span className="px-3 py-1 rounded-full text-xs font-semibold bg-teal-50 text-teal-700 border border-teal-200/60">
-                        Travel & Tourism
-                      </span>
-                    </div>
-
-                    <h3 className="text-xl sm:text-2xl font-bold text-[#082B59] mb-2 leading-snug group-hover:text-teal-700 transition-colors">
-                      Tours & Travels Enquiry Management
-                    </h3>
-                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal mb-6">
-                      Complete client intake and qualification pipeline designed for travel agencies, tour operators, and destination planners.
-                    </p>
-
-                    <div className="space-y-3.5 pt-5 border-t border-slate-100">
-                      <div className="flex items-start gap-3 text-xs sm:text-sm text-slate-700">
-                        <CheckCircle2 className="w-4 h-4 text-teal-600 shrink-0 mt-0.5" />
-                        <span>
-                          <strong className="text-[#082B59] font-bold">Multi-Category Trip Intake:</strong> Captures domestic, international, honeymoon, and group travel inquiries across forms and WhatsApp.
-                        </span>
-                      </div>
-                      <div className="flex items-start gap-3 text-xs sm:text-sm text-slate-700">
-                        <CheckCircle2 className="w-4 h-4 text-teal-600 shrink-0 mt-0.5" />
-                        <span>
-                          <strong className="text-[#082B59] font-bold">Smart Package Matching:</strong> Instant matching of itineraries, hotel categories, group sizes, and budget ranges from your catalog.
-                        </span>
-                      </div>
-                      <div className="flex items-start gap-3 text-xs sm:text-sm text-slate-700">
-                        <CheckCircle2 className="w-4 h-4 text-teal-600 shrink-0 mt-0.5" />
-                        <span>
-                          <strong className="text-[#082B59] font-bold">Instant Team WhatsApp Dispatch:</strong> Automatically alerts your sales desk with client budget, travel dates, and matched packages.
-                        </span>
-                      </div>
-                      <div className="flex items-start gap-3 text-xs sm:text-sm text-slate-700">
-                        <CheckCircle2 className="w-4 h-4 text-teal-600 shrink-0 mt-0.5" />
-                        <span>
-                          <strong className="text-[#082B59] font-bold">Spreadsheet & Lead Sync:</strong> Organizes daily inquiries into high-intent travelers and nurture lists with automated end-of-day reports.
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="pt-6 mt-8 border-t border-slate-100 flex items-center justify-between">
-                    <span className="text-xs font-semibold text-teal-700 bg-teal-50 px-3 py-1 rounded-lg">
-                      Turnkey Workflow
-                    </span>
-                    <button
-                      type="button"
-                      onClick={onOpenContact}
-                      className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-teal-700 hover:text-teal-800 transition-colors cursor-pointer"
-                    >
-                      <span>Request Solution Demo</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </button>
-                  </div>
-                </motion.div>
-              )}
-
-              {/* Option 2: Real Estate Lead Management */}
-              {selectedIndustryOption === 'real-estate' && (
-                <motion.div
-                  key="real-estate"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.22, ease: "easeOut" }}
-                  className="rounded-[28px] bg-white border border-slate-200/90 hover:border-blue-300 p-6 sm:p-10 transition-all duration-300 shadow-md hover:shadow-xl flex flex-col justify-between group"
-                >
-                  <div>
-                    <div className="flex items-center justify-between gap-3 mb-5">
-                      <div className="w-12 h-12 rounded-2xl bg-blue-50 text-[#0866E8] border border-blue-200/80 flex items-center justify-center group-hover:scale-105 transition-transform">
-                        <Building2 className="w-6 h-6 text-[#0866E8]" />
-                      </div>
-                      <span className="px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200/60">
-                        Real Estate & Housing
-                      </span>
-                    </div>
-
-                    <h3 className="text-xl sm:text-2xl font-bold text-[#082B59] mb-2 leading-snug group-hover:text-[#0866E8] transition-colors">
-                      Real Estate Lead Management
-                    </h3>
-                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal mb-6">
-                      High-conversion property buyer qualification and site-visit coordination pipeline for real estate agencies and brokers.
-                    </p>
-
-                    <div className="space-y-3.5 pt-5 border-t border-slate-100">
-                      <div className="flex items-start gap-3 text-xs sm:text-sm text-slate-700">
-                        <CheckCircle2 className="w-4 h-4 text-[#0866E8] shrink-0 mt-0.5" />
-                        <span>
-                          <strong className="text-[#082B59] font-bold">Buyer Criteria Profiling:</strong> Captures property type (Flats, Villas, Plots), BHK, preferred localities, and loan readiness.
-                        </span>
-                      </div>
-                      <div className="flex items-start gap-3 text-xs sm:text-sm text-slate-700">
-                        <CheckCircle2 className="w-4 h-4 text-[#0866E8] shrink-0 mt-0.5" />
-                        <span>
-                          <strong className="text-[#082B59] font-bold">Automated Inventory Matching:</strong> Instantly matches buyer budget and space needs against available ready-to-move and project units.
-                        </span>
-                      </div>
-                      <div className="flex items-start gap-3 text-xs sm:text-sm text-slate-700">
-                        <CheckCircle2 className="w-4 h-4 text-[#0866E8] shrink-0 mt-0.5" />
-                        <span>
-                          <strong className="text-[#082B59] font-bold">Broker WhatsApp Alerts:</strong> Delivers instant alerts with buyer details, matched listings, and requested site-visit timing.
-                        </span>
-                      </div>
-                      <div className="flex items-start gap-3 text-xs sm:text-sm text-slate-700">
-                        <CheckCircle2 className="w-4 h-4 text-[#0866E8] shrink-0 mt-0.5" />
-                        <span>
-                          <strong className="text-[#082B59] font-bold">Daily Pipeline Organization:</strong> Categorizes leads into serious site visitors vs. nurture prospects with automated daily reports.
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="pt-6 mt-8 border-t border-slate-100 flex items-center justify-between">
-                    <span className="text-xs font-semibold text-blue-700 bg-blue-50 px-3 py-1 rounded-lg">
-                      Turnkey Workflow
-                    </span>
-                    <button
-                      type="button"
-                      onClick={onOpenContact}
-                      className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#0866E8] hover:text-blue-800 transition-colors cursor-pointer"
-                    >
-                      <span>Request Solution Demo</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </button>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
           </div>
         </div>
 
