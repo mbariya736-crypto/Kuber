@@ -816,33 +816,21 @@ export function AIServicesExperience({ onOpenContact }) {
 }
 
 /* ========================================================================= */
-/* 5. CYBER SECURITY EXPERIENCE (Light Theme)                                 */
+/* 5. CYBER SECURITY EXPERIENCE (Human-Designed Enterprise Layout)           */
 /* ========================================================================= */
 export function CyberSecurityExperience({ onOpenContact }) {
-  const protectionAreas = [
+  const cyberServices = [
     {
-      category: 'Phishing & Email Fraud',
-      guidance: 'Identification of deceptive sender addresses, fraudulent vendor invoices, and malicious payment links.',
-      status: 'Protected',
-      badgeClass: 'bg-emerald-50 text-emerald-800 border border-emerald-200'
+      title: 'Web Application Security',
+      description: 'Security review and hardening of web applications against common threats.'
     },
     {
-      category: 'Payment & Wire Verification',
-      guidance: 'Verification protocols for banking details, invoice QR codes, and digital payment gateways.',
-      status: 'Verified',
-      badgeClass: 'bg-teal-50 text-teal-800 border border-teal-200'
+      title: 'Vulnerability Assessment & Penetration Testing (VAPT)',
+      description: 'Scanning and manual penetration testing to find and prioritise weaknesses, with a clear remediation report.'
     },
     {
-      category: 'Account Access & Authentication',
-      guidance: 'Enforcing multi-factor authentication, secure password policies, and role-based staff access.',
-      status: 'Secured',
-      badgeClass: 'bg-emerald-50 text-emerald-800 border border-emerald-200'
-    },
-    {
-      category: 'Incident Response & Recovery',
-      guidance: 'Clear procedures to isolate compromised accounts, secure business assets, and report to Helpline 1930.',
-      status: 'Active Protocol',
-      badgeClass: 'bg-blue-50 text-blue-800 border border-blue-200'
+      title: 'API Security Testing',
+      description: 'Testing of REST and other APIs for authentication, authorisation and injection flaws.'
     }
   ];
 
@@ -850,176 +838,79 @@ export function CyberSecurityExperience({ onOpenContact }) {
     <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 pb-12 sm:pb-16 text-[#082B59]">
       <CyberSecurityBackground />
 
-      {/* Hero Header */}
-      <motion.div
-        initial={{ opacity: 1, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className="text-center max-w-4xl mx-auto mb-8 sm:mb-10 relative"
-      >
-        <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-[#082B59] tracking-tight leading-[1.15] mb-3.5 sm:mb-5">
-          Proactive Security &amp; Protection for{' '}
-          <span className="text-emerald-600">
-            Business Operations
-          </span>
+      {/* Hero Header matching user reference */}
+      <div className="text-left max-w-4xl mb-10 sm:mb-14 relative z-10">
+        <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-[#082B59] tracking-tight leading-[1.15] mb-3">
+          Cyber Security Services
         </h1>
-
-
-      </motion.div>
-
-      {/* Centerpiece Editorial Swapped Showcase (Image Right, Content Left) */}
-      <motion.div
-        initial={{ opacity: 0, y: 18 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className="rounded-[28px] sm:rounded-[36px] bg-white border border-slate-200/90 p-6 sm:p-10 lg:p-12 shadow-xl shadow-blue-900/5 mb-12 sm:mb-16 text-left"
-      >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-
-          {/* Content Left */}
-          <div className="lg:col-span-7 flex flex-col justify-center">
-            <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#082B59] mb-4 leading-snug">
-              Account Security, Threat Audits &amp; Risk Prevention
-            </h2>
-
-            <div className="space-y-3.5 text-slate-600 text-xs sm:text-sm lg:text-base leading-relaxed font-normal mb-6">
-              <p>
-                Many small and growing businesses operate under the misconception that cyber threats only target large corporations. In reality, shared email accounts and unverified payment requests make everyday operations prime targets for wire fraud and account takeover.
-              </p>
-              <p>
-                We conduct practical security reviews of business email suites, cloud storage, and banking portals. We implement multi-factor authentication, establish dual-verification protocols, and train your staff to recognize deceptive scams before financial losses occur.
-              </p>
-            </div>
-
-            {/* 3 Editorial Checkmarked Deliverables */}
-            <div className="space-y-2.5 pt-4 border-t border-slate-100">
-              <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                <span>
-                  <strong className="text-[#082B59] font-bold">Proactive Account Audits:</strong> Comprehensive security reviews of administrative accounts, email suites, and access permissions.
-                </span>
-              </div>
-              <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                <span>
-                  <strong className="text-[#082B59] font-bold">Staff Scam &amp; Phishing Defense:</strong> Hands-on scenario training helping employees recognize fraudulent vendor invoices and fake payment links.
-                </span>
-              </div>
-              <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                <span>
-                  <strong className="text-[#082B59] font-bold">Rapid Incident Recovery:</strong> Clear, step-by-step guidance to freeze unauthorized transactions and report swiftly via Helpline 1930.
-                </span>
-              </div>
-            </div>
-          </div>
-
-          {/* Photographic Image Right (SWAPPED) */}
-          <div className="lg:col-span-5 flex justify-center w-full">
-            <div className="relative rounded-[22px] sm:rounded-[26px] aspect-[16/11] sm:aspect-[4/3] w-full bg-slate-100 border border-slate-200 shadow-lg shadow-blue-900/8 overflow-hidden group">
-              <img
-                src="/assets/cybersecurity-2023-social_uvx3rt.png"
-                alt="Cyber Security & Active Risk Protection"
-                className="w-full h-full object-cover object-center rounded-[20px] sm:rounded-[24px] group-hover:scale-[1.02] transition-transform duration-700 ease-out"
-              />
-              {/* Laser Scanning Sheen Animation Across Cyber Poster */}
-              <motion.div
-                animate={{
-                  x: ['-140%', '240%']
-                }}
-                transition={{
-                  duration: 2.4,
-                  repeat: Infinity,
-                  ease: 'easeInOut',
-                  repeatDelay: 0.9
-                }}
-                className="absolute inset-y-0 w-32 bg-gradient-to-r from-transparent via-emerald-300/30 to-transparent skew-x-[-20deg] pointer-events-none z-20"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none" />
-            </div>
-          </div>
-
-        </div>
-      </motion.div>
-
-      {/* National Cyber Helpline Notice */}
-      <div className="mb-12 sm:mb-16 p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-emerald-50 via-teal-50 to-emerald-50/50 border border-emerald-200/90 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold shadow-xs shrink-0">
-            <PhoneCall className="w-5 h-5" />
-          </div>
-          <div>
-            <p className="text-[11px] text-slate-600 font-medium">National Cyber Crime Helpline</p>
-            <p className="text-base sm:text-lg font-black text-[#082B59] flex items-center gap-2">
-              <span>Dial 1930</span>
-              <span className="px-1.5 py-0.5 rounded text-[9px] bg-emerald-100 text-emerald-800 border border-emerald-300 font-semibold">TOLL FREE</span>
-            </p>
-          </div>
-        </div>
-        <div className="sm:text-right">
-          <p className="text-[11px] text-slate-600 font-medium">Official Reporting Portal</p>
-          <a
-            href="https://cybercrime.gov.in"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xs sm:text-sm font-bold text-emerald-700 hover:text-emerald-800 underline"
-          >
-            cybercrime.gov.in
-          </a>
-        </div>
+        <p className="text-sm sm:text-base lg:text-lg text-slate-600 font-normal leading-relaxed">
+          Testing and hardening of your applications and APIs so attackers find nothing easy to exploit.
+        </p>
       </div>
 
-      {/* Core Practice Capabilities Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 mb-12 sm:mb-14 text-left">
-        {[
-          {
-            title: 'Account & Access Audits',
-            desc: 'Review user permissions, administrative privileges, and authentication policies across all business email and software accounts.',
-            icon: ShieldCheck
-          },
-          {
-            title: 'Employee Phishing Training',
-            desc: 'Practical, scenario-based guidance teaching your team how to detect email spoofing, urgent payment requests, and suspicious links.',
-            icon: Shield
-          },
-          {
-            title: 'Payment & Wire Protection',
-            desc: 'Verifiable safeguards on invoicing procedures, digital payment gateways, and banking updates to prevent fraudulent fund diversion.',
-            icon: Lock
-          },
-          {
-            title: 'Incident Guidance & 1930',
-            desc: 'Step-by-step operating plans to isolate compromised accounts, secure digital assets, and log formal incident reports via 1930.',
-            icon: ShieldAlert
-          }
-        ].map((feat, idx) => {
-          const Icon = feat.icon;
-          return (
-            <div
-              key={feat.title}
-              className="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/90 hover:border-emerald-300 transition-all shadow-md hover:shadow-xl group"
-            >
-              <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform border border-emerald-200">
-                <Icon className="w-5 h-5 text-emerald-600" />
-              </div>
-              <h4 className="text-base font-bold text-[#082B59] mb-2 leading-snug">
-                {feat.title}
-              </h4>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
-                {feat.desc}
+      {/* 3 Core Security Solution Cards (Exact topics from reference image) */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 text-left mb-14 sm:mb-18 relative z-10">
+        {cyberServices.map((service, idx) => (
+          <div
+            key={idx}
+            className="rounded-2xl bg-white border border-slate-200/90 hover:border-slate-300 p-7 sm:p-8 transition-all duration-200 shadow-xs hover:shadow-md flex flex-col justify-between group"
+          >
+            <div>
+              <h3 className="text-lg sm:text-xl font-bold text-[#082B59] mb-3 leading-snug group-hover:text-emerald-700 transition-colors">
+                {service.title}
+              </h3>
+              <p className="text-sm text-slate-600 leading-relaxed font-normal mb-6">
+                {service.description}
               </p>
             </div>
-          );
-        })}
+            <button
+              type="button"
+              onClick={onOpenContact}
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-600 hover:text-emerald-700 transition-colors cursor-pointer w-fit"
+            >
+              <span>Learn More →</span>
+            </button>
+          </div>
+        ))}
+      </div>
+
+      {/* Authentic Visual Banner */}
+      <div className="relative rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 overflow-hidden shadow-sm mb-14 sm:mb-18 z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 items-center">
+          <div className="lg:col-span-7 p-8 sm:p-12 text-left">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#082B59] mb-3 leading-snug">
+              Hardening Digital Infrastructure
+            </h2>
+            <p className="text-sm text-slate-600 leading-relaxed font-normal mb-6 max-w-xl">
+              Systematic vulnerability testing and rigorous code assessment ensure your software architectures remain resilient against evolving threat vectors and unauthorized intrusion.
+            </p>
+            <button
+              type="button"
+              onClick={onOpenContact}
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-white bg-[#0866E8] hover:bg-[#0756C5] shadow-sm transition-all cursor-pointer"
+            >
+              <span>Schedule an Assessment</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
+          <div className="lg:col-span-5 aspect-[16/10] lg:aspect-auto h-full bg-slate-100">
+            <img
+              src="/assets/cybersecurity-2023-social_uvx3rt.png"
+              alt="Cyber Security Assessment"
+              className="w-full h-full object-cover object-center"
+            />
+          </div>
+        </div>
       </div>
 
       {/* Bottom CTA Bar */}
-      <div className="text-center p-8 sm:p-12 rounded-3xl bg-[#082B59] text-white shadow-xl">
+      <div className="text-center p-8 sm:p-12 rounded-3xl bg-[#082B59] text-white shadow-xl relative z-10">
         <h3 className="text-2xl sm:text-3xl font-extrabold text-white mb-3">
-          Protect Your Business Operations &amp; Client Trust
+          Protect Your Applications &amp; Digital Assets
         </h3>
-
-
+        <p className="text-slate-300 text-sm max-w-xl mx-auto mb-6 font-normal">
+          Get in touch with our security team to discuss application penetration testing, API vulnerability reviews, and security hardening.
+        </p>
         <button
           onClick={onOpenContact}
           className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-xl text-sm font-semibold text-white bg-[#0866E8] hover:bg-[#0756C5] shadow-xs hover:shadow-md transition-all cursor-pointer"
