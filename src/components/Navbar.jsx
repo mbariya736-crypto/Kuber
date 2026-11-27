@@ -125,11 +125,10 @@ export default function Navbar() {
       borderColor: 'border-blue-100',
       activeColor: '#0866E8',
       subServices: [
-        'AI Chatbots',
-        'AI Agents',
+        'AI Chatbot Development',
+        'AI Agent Development',
         'AI Workflow Automation',
-        'AI Sales & Lead Generation Agents',
-        'AI Calling Solutions',
+        'AI Sales & Lead Agent',
         'Tours & Travels Enquiry Management',
         'Real Estate Lead Management'
       ]

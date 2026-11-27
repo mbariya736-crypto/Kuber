@@ -269,7 +269,7 @@ export function AIServicesExperience({ onOpenContact }) {
 
   // Touch device detection to cleanly disable cursor effects on mobile/touch
   const [isTouchDevice, setIsTouchDevice] = useState(false);
-  const [selectedIndustryOption, setSelectedIndustryOption] = useState('tours-travels');
+  const [selectedIndustryOption, setSelectedIndustryOption] = useState('ai-services');
 
   useEffect(() => {
     const checkTouch = () => {
@@ -383,8 +383,21 @@ export function AIServicesExperience({ onOpenContact }) {
           AI Services
         </h1>
 
-        {/* 2 Options Switcher directly in Hero Section matching reference */}
+        {/* 3 Industry Options Switcher directly in Hero Section */}
         <div className="inline-flex p-1.5 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-2xs gap-2 max-w-full overflow-x-auto">
+          <button
+            type="button"
+            onClick={() => setSelectedIndustryOption('ai-services')}
+            className={`flex items-center gap-2 px-4 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap ${
+              selectedIndustryOption === 'ai-services'
+                ? 'bg-blue-50 text-[#0866E8] shadow-xs border border-blue-200/90 ring-2 ring-blue-500/20'
+                : 'text-slate-600 hover:text-[#082B59] hover:bg-slate-50 border border-transparent'
+            }`}
+          >
+            <Bot className="w-4 h-4 text-[#0866E8]" />
+            <span>AI Services</span>
+          </button>
+
           <button
             type="button"
             onClick={() => setSelectedIndustryOption('tours-travels')}
@@ -696,38 +709,34 @@ export function AIServicesExperience({ onOpenContact }) {
           </motion.div>
         )}
 
-        {/* Enterprise AI Services Solutions Grid */}
+        {/* AI Services Solutions Grid (Exact match to reference) */}
         <div className="my-16 sm:my-20 relative z-10">
           <div className="max-w-3xl mb-8 sm:mb-12 text-left">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#082B59] tracking-tight">
-              Enterprise AI Solutions
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#082B59] tracking-tight">
+              AI Services
             </h2>
             <p className="text-sm sm:text-base text-slate-600 mt-2.5 font-normal leading-relaxed">
-              Purpose-built automation and intelligent agent architectures designed for mission-critical business workflows.
+              Smart assistants, autonomous agents and automation that save time and grow your business.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 text-left items-stretch">
             {[
               {
-                title: 'AI Chatbots',
-                desc: 'Intelligent conversational assistants deployed across web and WhatsApp channels to qualify visitors and resolve frequent inquiries instantly.'
+                title: 'AI Chatbot Development',
+                desc: 'Custom AI chatbots for your website, WhatsApp and customer support that answer questions and capture leads.'
               },
               {
-                title: 'AI Agents',
-                desc: 'Autonomous task-driven agents executing client intake, structured validation, background verification, and operational handoffs.'
+                title: 'AI Agent Development',
+                desc: 'AI agents that research, decide and complete multi-step tasks for your business.'
               },
               {
                 title: 'AI Workflow Automation',
-                desc: 'Reliable integrations synchronizing website submissions, messaging channels, email, spreadsheets, CRM systems, and databases.'
+                desc: 'Automate repetitive work by connecting your tools and processes with AI-driven workflows.'
               },
               {
-                title: 'AI Sales & Lead Generation Agents',
-                desc: 'Systematic lead capture, multi-parameter qualification, intent scoring, and immediate dispatch to sales specialists.'
-              },
-              {
-                title: 'AI Calling Solutions',
-                desc: 'Conversational voice workflows for appointment scheduling, verification, dispatch confirmations, and proactive outreach.'
+                title: 'AI Sales & Lead Agent',
+                desc: 'An AI agent that finds, qualifies and follows up with sales leads around the clock.'
               }
             ].map((solution, idx) => (
               <div
