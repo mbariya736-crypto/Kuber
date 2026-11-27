@@ -129,7 +129,9 @@ export default function Navbar() {
         'AI Agents',
         'AI Workflow Automation',
         'AI Sales & Lead Generation Agents',
-        'AI Calling Solutions'
+        'AI Calling Solutions',
+        'Tours & Travels Enquiry Management',
+        'Real Estate Lead Management'
       ]
     },
     {
