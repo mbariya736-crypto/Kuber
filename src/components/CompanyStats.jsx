@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useReducedMotion } from 'framer-motion';
-import { Bot, ShieldCheck, Film, Cog } from 'lucide-react';
+import { Bot, ShieldCheck, Film } from 'lucide-react';
 
 export default function CompanyStats({ className = "relative mt-2 xs:mt-4 sm:mt-6 lg:-mt-4 z-20 px-3 xs:px-4 sm:px-6 lg:px-8" }) {
   const shouldReduceMotion = useReducedMotion();
@@ -24,12 +24,6 @@ export default function CompanyStats({ className = "relative mt-2 xs:mt-4 sm:mt-
       title: 'Film Production',
       description: 'Commercial and awareness film production.',
       link: '/services/ai-films'
-    },
-    {
-      icon: Cog,
-      title: 'Business Operations',
-      description: 'Business workflow and process management.',
-      link: '/services'
     }
   ];
 
@@ -51,7 +45,7 @@ export default function CompanyStats({ className = "relative mt-2 xs:mt-4 sm:mt-
           </div>
 
           {/* Service Cards Grid with Scroll-Triggered Stagger */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 text-left items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 text-left items-stretch">
             {pillars.map((item, index) => {
               const Icon = item.icon;
               return (
@@ -70,7 +64,7 @@ export default function CompanyStats({ className = "relative mt-2 xs:mt-4 sm:mt-
                       ease: [0.16, 1, 0.3, 1]
                     }}
                     whileHover={shouldReduceMotion ? {} : { y: -3, transition: { duration: 0.2 } }}
-                    className="p-4 sm:p-5 rounded-xl bg-[#F8FAFD] border border-slate-200/60 hover:border-slate-300 hover:bg-white hover:shadow-xs transition-all duration-200 group flex flex-col h-full"
+                    className="p-5 sm:p-6 rounded-xl bg-[#F8FAFD] border border-slate-200/60 hover:border-slate-300 hover:bg-white hover:shadow-xs transition-all duration-200 group flex flex-col h-full"
                   >
                     {/* Service Icon */}
                     <div className="w-10 h-10 rounded-xl bg-white shadow-xs border border-slate-200/60 text-[#0866E8] flex items-center justify-center mb-3 transition-transform duration-200 group-hover:scale-105 shrink-0">
