@@ -18,7 +18,6 @@ import {
   Clapperboard,
   Aperture,
   Play,
-  Pause,
   ArrowRight,
   Activity,
   Maximize2,
@@ -367,8 +366,8 @@ export function AIServicesExperience({ onOpenContact }) {
             type="button"
             onClick={() => setSelectedIndustryOption('ai-services')}
             className={`flex items-center gap-2 px-4 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap ${selectedIndustryOption === 'ai-services'
-                ? 'bg-blue-50 text-[#0866E8] shadow-xs border border-blue-200/90 ring-2 ring-blue-500/20'
-                : 'text-slate-600 hover:text-[#082B59] hover:bg-slate-50 border border-transparent'
+              ? 'bg-blue-50 text-[#0866E8] shadow-xs border border-blue-200/90 ring-2 ring-blue-500/20'
+              : 'text-slate-600 hover:text-[#082B59] hover:bg-slate-50 border border-transparent'
               }`}
           >
             <Bot className="w-4 h-4 text-[#0866E8]" />
@@ -379,8 +378,8 @@ export function AIServicesExperience({ onOpenContact }) {
             type="button"
             onClick={() => setSelectedIndustryOption('tours-travels')}
             className={`flex items-center gap-2 px-4 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap ${selectedIndustryOption === 'tours-travels'
-                ? 'bg-teal-50 text-teal-700 shadow-xs border border-teal-200/90 ring-2 ring-teal-500/20'
-                : 'text-slate-600 hover:text-[#082B59] hover:bg-slate-50 border border-transparent'
+              ? 'bg-teal-50 text-teal-700 shadow-xs border border-teal-200/90 ring-2 ring-teal-500/20'
+              : 'text-slate-600 hover:text-[#082B59] hover:bg-slate-50 border border-transparent'
               }`}
           >
             <Plane className="w-4 h-4 text-teal-600" />
@@ -391,8 +390,8 @@ export function AIServicesExperience({ onOpenContact }) {
             type="button"
             onClick={() => setSelectedIndustryOption('real-estate')}
             className={`flex items-center gap-2 px-4 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap ${selectedIndustryOption === 'real-estate'
-                ? 'bg-blue-50 text-[#0866E8] shadow-xs border border-blue-200/90 ring-2 ring-blue-500/20'
-                : 'text-slate-600 hover:text-[#082B59] hover:bg-slate-50 border border-transparent'
+              ? 'bg-blue-50 text-[#0866E8] shadow-xs border border-blue-200/90 ring-2 ring-blue-500/20'
+              : 'text-slate-600 hover:text-[#082B59] hover:bg-slate-50 border border-transparent'
               }`}
           >
             <Building2 className="w-4 h-4 text-[#0866E8]" />
@@ -490,9 +489,7 @@ export function AIServicesExperience({ onOpenContact }) {
                       Practical Workflow Solutions Built for Real Businesses
                     </h2>
 
-                    <p className="text-slate-600 text-xs sm:text-sm lg:text-base leading-relaxed font-normal mb-5">
-                      Everyday operations often get slowed down by missed customer messages, disorganized contact sheets, and repetitive manual tasks that take hours away from serving clients. We help businesses connect their existing tools—including website forms, WhatsApp, email, spreadsheets, and CRM—into one reliable, straightforward workflow.
-                    </p>
+
 
                     <div className="space-y-2.5 pt-4 border-t border-slate-100 mb-6">
                       <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
@@ -610,9 +607,7 @@ export function AIServicesExperience({ onOpenContact }) {
                       Real Estate Lead Management
                     </h2>
 
-                    <p className="text-slate-600 text-xs sm:text-sm lg:text-base leading-relaxed font-normal mb-5">
-                      High-conversion property buyer qualification and site-visit coordination pipeline for real estate agencies and brokers.
-                    </p>
+
 
                     <div className="space-y-2.5 pt-4 border-t border-slate-100 mb-6">
                       <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
@@ -689,9 +684,7 @@ export function AIServicesExperience({ onOpenContact }) {
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#082B59] tracking-tight">
                 AI Services
               </h2>
-              <p className="text-sm sm:text-base text-slate-600 mt-2.5 font-normal leading-relaxed">
-                Smart assistants, autonomous agents and automation that save time and grow your business.
-              </p>
+
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 text-left items-stretch">
@@ -875,8 +868,6 @@ export function CyberSecurityExperience({ onOpenContact }) {
 /* ========================================================================= */
 export function AIFilmStudioExperience({ onOpenContact }) {
   const containerRef = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [activeFrame, setActiveFrame] = useState(0);
 
   // Smooth scroll-driven spring physics for natural, reversible movement
   const scrollYMotion = useMotionValue(0);
@@ -918,41 +909,11 @@ export function AIFilmStudioExperience({ onOpenContact }) {
   // Subtle Parallax & Depth Transforms linked to scroll
   const imageParallaxY = useTransform(smoothScroll, [0, 800], [0, -24]);
   const imageScale = useTransform(smoothScroll, [0, 800], [1, 1.04]);
-  const leftCardY = useTransform(smoothScroll, [0, 800], [0, -18]);
-  const rightCardY = useTransform(smoothScroll, [0, 800], [0, -12]);
   const cardY0 = useTransform(smoothScroll, [0, 900], [0, -20]);
   const cardY1 = useTransform(smoothScroll, [0, 900], [0, -12]);
   const cardY2 = useTransform(smoothScroll, [0, 900], [0, -22]);
   const cardY3 = useTransform(smoothScroll, [0, 900], [0, -14]);
 
-  const cinematicFrames = [
-    {
-      title: 'Commercial Films',
-      type: 'Brand & Product Campaigns',
-      src: '/assets/ai-film-studio-hero.webp',
-      aspect: '16:9 Widescreen',
-      resolution: 'Cinema 4K Master',
-      desc: 'Engaging product introductions, commercial spots, and brand stories crafted for digital audiences.'
-    },
-    {
-      title: 'Corporate Profiles',
-      type: 'Mission & Culture Documentaries',
-      src: '/assets/corporate-doc-frame.webp',
-      aspect: '2.39:1 Anamorphic Scope',
-      resolution: '4K Ultra HD',
-      desc: 'Cinematic corporate documentaries highlighting executive vision, operational milestones, and client partnerships.'
-    },
-    {
-      title: 'Public Awareness',
-      type: 'Educational Safety Campaigns',
-      src: '/assets/awareness-film-frame.webp',
-      aspect: '16:9 Broadcast Format',
-      resolution: 'Color Graded Master',
-      desc: 'Compelling public service media like our Digital Jaal project, explaining important civic and cyber awareness topics.'
-    }
-  ];
-
-  const currentFrame = cinematicFrames[activeFrame] || cinematicFrames[0];
 
   return (
     <div ref={containerRef} className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 pb-12 sm:pb-16 text-[#082B59]">
@@ -992,19 +953,6 @@ export function AIFilmStudioExperience({ onOpenContact }) {
                 src="/assets/ai-film-studio-hero.webp"
                 alt="Commercial Film & Video Production"
                 className="w-full h-full object-cover object-center rounded-[20px] sm:rounded-[24px] group-hover:scale-[1.02] transition-transform duration-700 ease-out"
-              />
-              {/* Laser Scanning Sheen Animation Across Film Studio Poster */}
-              <motion.div
-                animate={{
-                  x: ['-140%', '240%']
-                }}
-                transition={{
-                  duration: 2.3,
-                  repeat: Infinity,
-                  ease: 'easeInOut',
-                  repeatDelay: 0.8
-                }}
-                className="absolute inset-y-0 w-32 bg-gradient-to-r from-transparent via-amber-300/30 to-transparent skew-x-[-20deg] pointer-events-none z-20"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none" />
             </div>
@@ -1051,127 +999,6 @@ export function AIFilmStudioExperience({ onOpenContact }) {
         </div>
       </motion.div>
 
-      {/* Interactive Production Timeline Visual */}
-      <div className="mb-12 sm:mb-16">
-        <motion.div
-          style={{ y: rightCardY }}
-          initial={{ opacity: 1, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="rounded-[24px] sm:rounded-[28px] bg-white border border-slate-200/90 p-5 sm:p-8 flex flex-col justify-between shadow-xl shadow-blue-900/5 relative overflow-hidden"
-        >
-          <div>
-            <div className="flex items-center justify-between mb-4 sm:mb-5">
-              <div className="flex items-center gap-2.5">
-                <div className="w-9 h-9 rounded-xl bg-cyan-50 text-cyan-700 flex items-center justify-center border border-cyan-200">
-                  <Film className="w-5 h-5" />
-                </div>
-                <div>
-                  <h3 className="text-xs sm:text-base font-bold text-[#082B59] tracking-wide">
-                    Full-Cycle Video Production
-                  </h3>
-                  <span className="text-[10px] sm:text-[11px] font-medium text-slate-500">
-                    Scriptwriting, Cinematography, Sound &amp; Color
-                  </span>
-                </div>
-              </div>
-              <button
-                type="button"
-                onClick={() => setIsPlaying(!isPlaying)}
-                className="px-2.5 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition-all cursor-pointer flex items-center gap-1.5 text-xs font-semibold min-h-[36px]"
-              >
-                {isPlaying ? <Pause className="w-3.5 h-3.5 text-slate-700" /> : <Play className="w-3.5 h-3.5 text-emerald-600 fill-emerald-600" />}
-                <span>{isPlaying ? 'PAUSE' : 'PLAY'}</span>
-              </button>
-            </div>
-
-            {/* Frame Selector Buttons */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-4">
-              {cinematicFrames.map((frame, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setActiveFrame(idx)}
-                  className={`px-3 py-2.5 rounded-xl text-xs font-semibold transition-all border text-left cursor-pointer truncate min-h-[42px] ${activeFrame === idx
-                    ? 'bg-[#0866E8] text-white border-blue-500 shadow-sm'
-                    : 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200'
-                    }`}
-                >
-                  <span className="block truncate">{frame.title}</span>
-                </button>
-              ))}
-            </div>
-
-            {/* Multi-Track Timeline Visual */}
-            <div className="rounded-2xl bg-slate-50 border border-slate-200 p-3 sm:p-4 text-xs space-y-2.5 sm:space-y-3 relative overflow-hidden">
-              {/* Playhead */}
-              <motion.div
-                className="absolute top-0 bottom-0 w-0.5 bg-[#0866E8] z-20 pointer-events-none"
-                animate={isPlaying ? { left: ['10%', '90%', '10%'] } : {}}
-                transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-              >
-                <div className="w-2 h-2 bg-[#0866E8] rotate-45 -ml-0.75 -mt-0.5" />
-              </motion.div>
-
-              {/* Track V1 */}
-              <div className="flex items-center gap-2 sm:gap-3">
-                <span className="w-6 sm:w-8 text-[10px] text-[#0866E8] font-bold shrink-0">V1</span>
-                <div className="flex-1 h-8 sm:h-9 rounded-lg bg-blue-100/70 border border-blue-200 flex items-center px-2.5 sm:px-3 text-[11px] text-[#082B59] font-medium overflow-hidden justify-between">
-                  <span className="truncate">Primary Cinematography &amp; Product Footage</span>
-                  <span className="text-[10px] text-blue-700 hidden sm:inline shrink-0 ml-1">Video</span>
-                </div>
-              </div>
-
-              {/* Track V2 */}
-              <div className="flex items-center gap-2 sm:gap-3">
-                <span className="w-6 sm:w-8 text-[10px] text-cyan-700 font-bold shrink-0">V2</span>
-                <div className="flex-1 h-8 sm:h-9 rounded-lg bg-cyan-100/70 border border-cyan-200 flex items-center px-2.5 sm:px-3 text-[11px] text-[#082B59] font-medium overflow-hidden justify-between">
-                  <span className="truncate">B-Roll Sequences &amp; Lighting Design</span>
-                  <span className="text-[10px] text-cyan-700 hidden sm:inline shrink-0 ml-1">Studio</span>
-                </div>
-              </div>
-
-              {/* Track A1 */}
-              <div className="flex items-center gap-2 sm:gap-3">
-                <span className="w-6 sm:w-8 text-[10px] text-slate-600 font-bold shrink-0">A1</span>
-                <div className="flex-1 h-7 sm:h-8 rounded-lg bg-slate-100 border border-slate-200 flex items-center px-2.5 sm:px-3 text-[11px] text-slate-700 font-medium overflow-hidden justify-between">
-                  <span className="truncate">Voiceover Narration &amp; Dialogue</span>
-                  <span className="text-[10px] text-slate-500 hidden sm:inline shrink-0 ml-1">Voice</span>
-                </div>
-              </div>
-
-              {/* Track A2 */}
-              <div className="flex items-center gap-2 sm:gap-3">
-                <span className="w-6 sm:w-8 text-[10px] text-slate-600 font-bold shrink-0">A2</span>
-                <div className="flex-1 h-7 sm:h-8 rounded-lg bg-slate-100 border border-slate-200 flex items-center px-2.5 sm:px-3 text-[11px] text-slate-700 font-medium overflow-hidden justify-between">
-                  <span className="truncate">Soundtrack &amp; Audio Mastering</span>
-                  <span className="text-[10px] text-slate-500 hidden sm:inline shrink-0 ml-1">Sound</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Process Badges */}
-          <div className="mt-5 sm:mt-6 pt-3.5 sm:pt-4 border-t border-slate-100">
-            <span className="text-[10px] sm:text-[11px] uppercase font-semibold text-slate-500 block mb-2">
-              Production Process
-            </span>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-[11px] font-semibold">
-              <div className="p-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-700">
-                Scriptwriting
-              </div>
-              <div className="p-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-700">
-                Cinematography
-              </div>
-              <div className="p-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-700">
-                Editorial &amp; Color
-              </div>
-              <div className="p-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-700">
-                Audio Finishing
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      </div>
 
       {/* Core Practice Capabilities Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 mb-12 sm:mb-14 text-left">
