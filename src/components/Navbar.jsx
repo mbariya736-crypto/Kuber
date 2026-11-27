@@ -401,17 +401,28 @@ export default function Navbar() {
                         <AnimatePresence>
                           {servicesDropdownOpen && (
                             <motion.div
-                              initial={{ opacity: 0, y: 8, scale: 0.98 }}
+                              initial={{ opacity: 0, y: 10, scale: 0.98 }}
                               animate={{ opacity: 1, y: 0, scale: 1 }}
-                              exit={{ opacity: 0, y: 4, scale: 0.98 }}
-                              transition={{ duration: 0.16, ease: "easeOut" }}
-                              className="absolute top-full -left-12 lg:-left-16 pt-2 w-[590px] z-50 pointer-events-auto"
+                              exit={{ opacity: 0, y: 6, scale: 0.98 }}
+                              transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
+                              className="absolute top-full -left-16 lg:-left-24 pt-2.5 w-[650px] z-50 pointer-events-auto"
                             >
-                              <div className="bg-white rounded-2xl border border-slate-200/90 shadow-2xl overflow-hidden flex">
-                                
-                                {/* Level 1: The 3 Core Practices */}
-                                <div className="w-[240px] bg-slate-50/80 border-r border-slate-100 p-2.5 flex flex-col justify-center">
-                                  <div className="space-y-1">
+                              <div className="bg-white/98 backdrop-blur-2xl rounded-2xl border border-slate-200/90 shadow-[0_20px_60px_-15px_rgba(8,43,89,0.18)] overflow-hidden flex flex-col relative">
+                                {/* Top Dynamic Gradient Accent Line */}
+                                <div
+                                  className="h-[2.5px] w-full transition-all duration-300"
+                                  style={{
+                                    background: activeHoverCategory === 'ai-services'
+                                      ? 'linear-gradient(90deg, #0866E8, #00B9E8)'
+                                      : activeHoverCategory === 'cyber-security'
+                                      ? 'linear-gradient(90deg, #10B981, #14B8A6)'
+                                      : 'linear-gradient(90deg, #06B6D4, #3B82F6)'
+                                  }}
+                                />
+
+                                <div className="flex">
+                                  {/* Level 1: Left Navigation Rail (The 3 Core Practices) */}
+                                  <div className="w-[230px] bg-slate-50/70 border-r border-slate-100 p-2.5 flex flex-col justify-center gap-1.5 shrink-0">
                                     {serviceItems.map((item) => {
                                       const isHovered = activeHoverCategory === item.id;
                                       const isItemActive = location.pathname === item.path;
@@ -423,20 +434,28 @@ export default function Navbar() {
                                           type="button"
                                           onMouseEnter={() => setActiveHoverCategory(item.id)}
                                           onClick={() => handlePracticeClick(item.path)}
-                                          className={`w-full text-left p-2.5 rounded-xl transition-all duration-150 flex items-center justify-between cursor-pointer border ${
+                                          className={`w-full text-left p-2.5 rounded-xl transition-all duration-200 flex items-center justify-between cursor-pointer border relative overflow-hidden ${
                                             isHovered
-                                              ? 'bg-white shadow-xs border-slate-200 text-[#082B59]'
+                                              ? 'bg-white shadow-xs border-slate-200/90 text-[#082B59]'
                                               : isItemActive
-                                              ? 'bg-blue-50/80 border-blue-200/70 text-[#0866E8]'
-                                              : 'hover:bg-white/80 border-transparent text-slate-700'
+                                              ? 'bg-blue-50/60 border-blue-200/60 text-[#0866E8]'
+                                              : 'hover:bg-white/70 border-transparent text-slate-700'
                                           }`}
                                         >
-                                          <div className="flex items-center gap-2.5 min-w-0">
-                                            <div className={`p-1.5 rounded-lg border ${item.borderColor} ${item.bgColor} ${item.color} shrink-0`}>
+                                          {/* Left Active Indicator Bar */}
+                                          {isHovered && (
+                                            <span
+                                              className="absolute left-0 top-2 bottom-2 w-1 rounded-r-full"
+                                              style={{ backgroundColor: item.activeColor }}
+                                            />
+                                          )}
+
+                                          <div className="flex items-center gap-2.5 min-w-0 pl-1">
+                                            <div className={`p-1.5 rounded-lg border transition-transform duration-200 ${item.borderColor} ${item.bgColor} ${item.color} ${isHovered ? 'scale-105 shadow-2xs' : ''} shrink-0`}>
                                               <IconComponent className="w-4 h-4" />
                                             </div>
                                             <div className="min-w-0 flex-1">
-                                              <div className="text-xs font-bold leading-tight truncate">
+                                              <div className={`text-xs font-bold leading-tight truncate ${isHovered ? 'text-[#0866E8]' : 'text-slate-800'}`}>
                                                 {item.name}
                                               </div>
                                             </div>
@@ -446,52 +465,73 @@ export default function Navbar() {
                                       );
                                     })}
                                   </div>
-                                </div>
 
-                                {/* Level 2: Second Dropdown showing the sub-services of activeHoverCategory */}
-                                <div className="flex-1 p-3.5 bg-white flex flex-col">
-                                  {(() => {
-                                    const activeCategory = serviceItems.find(c => c.id === activeHoverCategory) || serviceItems[0];
-                                    const CategoryIcon = activeCategory.icon;
+                                  {/* Level 2: Right Interactive Sub-Services Grid */}
+                                  <div className="flex-1 p-4 bg-white flex flex-col justify-center min-h-[260px] relative overflow-hidden">
+                                    {/* Subtle Ambient Background Aura */}
+                                    <div
+                                      className="absolute -top-12 -right-12 w-48 h-48 rounded-full blur-3xl pointer-events-none opacity-40 transition-colors duration-500"
+                                      style={{
+                                        backgroundColor: activeHoverCategory === 'ai-services'
+                                          ? '#dbeafe'
+                                          : activeHoverCategory === 'cyber-security'
+                                          ? '#d1fae5'
+                                          : '#cffafe'
+                                      }}
+                                    />
 
-                                    return (
-                                      <div className="flex flex-col h-full">
-                                        {/* Sub-services Category Header */}
-                                        <div className="flex items-center pb-2 mb-2 border-b border-slate-100">
-                                          <div className="flex items-center gap-2">
-                                            <div className={`p-1 rounded-md ${activeCategory.bgColor} ${activeCategory.color}`}>
-                                              <CategoryIcon className="w-3.5 h-3.5" />
-                                            </div>
-                                            <span className="text-xs font-bold text-[#082B59] uppercase tracking-wide">
-                                              {activeCategory.name}
-                                            </span>
-                                          </div>
-                                        </div>
+                                    <AnimatePresence mode="wait">
+                                      {(() => {
+                                        const activeCategory = serviceItems.find(c => c.id === activeHoverCategory) || serviceItems[0];
+                                        const CategoryIcon = activeCategory.icon;
 
-                                        {/* Sub-services list */}
-                                        <div className="space-y-1">
-                                          {activeCategory.subServices.map((subName) => (
-                                            <button
-                                              key={subName}
-                                              type="button"
-                                              onClick={() => handlePracticeClick(activeCategory.path)}
-                                              className="w-full text-left px-2.5 py-1.5 rounded-lg hover:bg-blue-50/60 transition-all flex items-center justify-between group cursor-pointer"
-                                            >
-                                              <div className="flex items-center gap-2">
-                                                <span className="w-1.5 h-1.5 rounded-full bg-blue-500 group-hover:scale-125 transition-transform" />
-                                                <span className="text-xs font-medium text-slate-700 group-hover:text-[#0866E8] group-hover:font-semibold transition-colors">
-                                                  {subName}
-                                                </span>
+                                        return (
+                                          <motion.div
+                                            key={activeCategory.id}
+                                            initial={{ opacity: 0, y: 6 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: -4 }}
+                                            transition={{ duration: 0.16, ease: "easeOut" }}
+                                            className="flex flex-col h-full relative z-10"
+                                          >
+                                            {/* Sub-services Category Header */}
+                                            <div className="flex items-center gap-2 pb-2.5 mb-3 border-b border-slate-100">
+                                              <div className={`p-1.5 rounded-lg border ${activeCategory.borderColor} ${activeCategory.bgColor} ${activeCategory.color} shadow-2xs`}>
+                                                <CategoryIcon className="w-3.5 h-3.5" />
                                               </div>
-                                              <ArrowRight className="w-3 h-3 text-slate-300 group-hover:text-[#0866E8] group-hover:translate-x-0.5 transition-all opacity-0 group-hover:opacity-100" />
-                                            </button>
-                                          ))}
-                                        </div>
-                                      </div>
-                                    );
-                                  })()}
-                                </div>
+                                              <span className="text-xs font-extrabold text-[#082B59] uppercase tracking-wider">
+                                                {activeCategory.name}
+                                              </span>
+                                            </div>
 
+                                            {/* Modern 2-Column Responsive Grid of Sub-services */}
+                                            <div className="grid grid-cols-2 gap-2">
+                                              {activeCategory.subServices.map((subName) => (
+                                                <button
+                                                  key={subName}
+                                                  type="button"
+                                                  onClick={() => handlePracticeClick(activeCategory.path)}
+                                                  className="w-full text-left px-2.5 py-2 rounded-xl bg-slate-50/70 hover:bg-blue-50/80 border border-slate-100/90 hover:border-blue-200/90 transition-all duration-180 flex items-center justify-between group cursor-pointer shadow-2xs hover:shadow-xs"
+                                                >
+                                                  <div className="flex items-center gap-2 min-w-0">
+                                                    <span
+                                                      className="w-1.5 h-1.5 rounded-full shrink-0 transition-transform duration-200 group-hover:scale-125"
+                                                      style={{ backgroundColor: activeCategory.activeColor }}
+                                                    />
+                                                    <span className="text-xs font-semibold text-slate-700 group-hover:text-[#0866E8] transition-colors leading-tight truncate">
+                                                      {subName}
+                                                    </span>
+                                                  </div>
+                                                  <ArrowRight className="w-3 h-3 text-slate-300 group-hover:text-[#0866E8] group-hover:translate-x-0.5 transition-all opacity-0 group-hover:opacity-100 shrink-0 ml-1" />
+                                                </button>
+                                              ))}
+                                            </div>
+                                          </motion.div>
+                                        );
+                                      })()}
+                                    </AnimatePresence>
+                                  </div>
+                                </div>
                               </div>
                             </motion.div>
                           )}
