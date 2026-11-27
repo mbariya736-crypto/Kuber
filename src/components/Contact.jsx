@@ -130,9 +130,6 @@ export default function Contact() {
               <h3 className="text-2xl sm:text-3xl font-extrabold text-[#082B59] mb-1.5 sm:mb-2">
                 Contact us
               </h3>
-              <p className="text-xs sm:text-sm text-slate-600 mb-5 sm:mb-6 leading-relaxed font-normal">
-                Email: <a href="mailto:kuberaistechnologies@gmail.com" className="text-[#0866E8] hover:underline font-semibold">kuberaistechnologies@gmail.com</a> &middot; WhatsApp: <a href="https://wa.me/917490923790" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:underline font-semibold">+91 7490923790</a>
-              </p>
 
               {/* Contact Cards List */}
               <div className="space-y-3">
