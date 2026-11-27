@@ -64,27 +64,6 @@ function AIServicesBackground({ activeOption = 'ai-services' }) {
         gridColor: 'rgba(8, 102, 232, 0.4)'
       };
 
-  const dynamicDepthNodes = isTravel
-    ? [
-        { top: '12%', left: '4%', size: 48, label: 'FLIGHT INTAKE', border: 'border-teal-200/90 text-teal-800 bg-teal-50/80' },
-        { top: '35%', right: '5%', size: 54, label: 'HOTEL MATCH', border: 'border-emerald-200/90 text-emerald-800 bg-emerald-50/80' },
-        { top: '65%', left: '5%', size: 50, label: 'WHATSAPP ALERT', border: 'border-teal-200/90 text-teal-800 bg-teal-50/80' },
-        { top: '83%', right: '7%', size: 44, label: 'ITINERARY SYNC', border: 'border-cyan-200/90 text-cyan-800 bg-cyan-50/80' }
-      ]
-    : isRealEstate
-    ? [
-        { top: '12%', left: '4%', size: 48, label: 'PROPERTY INTAKE', border: 'border-blue-200/90 text-blue-800 bg-blue-50/80' },
-        { top: '35%', right: '5%', size: 54, label: 'CRITERIA FILTER', border: 'border-indigo-200/90 text-indigo-800 bg-indigo-50/80' },
-        { top: '65%', left: '5%', size: 50, label: 'BROKER ALERT', border: 'border-emerald-200/90 text-emerald-800 bg-emerald-50/80' },
-        { top: '83%', right: '7%', size: 44, label: 'INVENTORY SYNC', border: 'border-blue-200/90 text-blue-800 bg-blue-50/80' }
-      ]
-    : [
-        { top: '12%', left: '4%', size: 48, label: 'WEB INTAKE', border: 'border-blue-200/90 text-[#082B59] bg-white/80' },
-        { top: '35%', right: '5%', size: 54, label: 'RECORDS SYNC', border: 'border-blue-200/90 text-[#082B59] bg-white/80' },
-        { top: '65%', left: '5%', size: 50, label: 'NOTIFICATION', border: 'border-blue-200/90 text-[#082B59] bg-white/80' },
-        { top: '83%', right: '7%', size: 44, label: 'DATABASE', border: 'border-blue-200/90 text-[#082B59] bg-white/80' }
-      ];
-
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none z-0 select-none">
       {/* Dynamic Animated Ambient Orbs */}
@@ -138,30 +117,6 @@ function AIServicesBackground({ activeOption = 'ai-services' }) {
           backgroundSize: isRealEstate ? '32px 32px' : '40px 40px'
         }}
       />
-
-      {/* Floating Animated Depth Pills in Background */}
-      {dynamicDepthNodes.map((node, i) => (
-        <motion.div
-          key={`${activeOption}-${node.label}`}
-          initial={{ opacity: 0, y: 10, scale: 0.9 }}
-          animate={{
-            opacity: [0.5, 0.9, 0.5],
-            y: [0, -8, 0],
-            scale: [1, 1.04, 1]
-          }}
-          transition={{
-            duration: 3.2 + i * 0.4,
-            repeat: Infinity,
-            ease: 'easeInOut',
-            delay: i * 0.2
-          }}
-          style={{ top: node.top, left: node.left, right: node.right }}
-          className={`hidden md:flex absolute items-center gap-1.5 px-3 py-1.5 rounded-full border shadow-2xs backdrop-blur-md text-[10px] font-extrabold tracking-wider ${node.border}`}
-        >
-          <span className="w-1.5 h-1.5 rounded-full bg-current animate-ping" />
-          <span>{node.label}</span>
-        </motion.div>
-      ))}
 
       {/* Specialty Background Visual Motifs */}
       {isTravel && (
@@ -396,13 +351,6 @@ export function AIServicesExperience({ onOpenContact }) {
     }
   ];
 
-  const depthNodes = [
-    { top: '10%', left: '4%', depth: 0.8, size: 48, label: 'WEB INTAKE' },
-    { top: '34%', right: '5%', depth: 1.2, size: 54, label: 'RECORDS SYNC' },
-    { top: '64%', left: '5%', depth: 1.0, size: 50, label: 'NOTIFICATION' },
-    { top: '82%', right: '7%', depth: 0.7, size: 44, label: 'DATABASE' }
-  ];
-
   const posterConfigs = {
     'ai-services': {
       src: '/assets/ai-services-poster.jpg',
@@ -513,27 +461,6 @@ export function AIServicesExperience({ onOpenContact }) {
                       className="w-full h-full object-cover object-center rounded-[20px] sm:rounded-[24px] relative z-10 pointer-events-none select-none transition-transform duration-700 ease-out"
                     />
                   </AnimatePresence>
-
-                  {/* Dynamic Category Badge on Poster Top Left */}
-                  <div className="absolute top-3.5 left-3.5 z-25 pointer-events-none">
-                    <span className="px-3 py-1 rounded-full text-[11px] font-black uppercase tracking-wider bg-black/60 text-white backdrop-blur-md border border-white/20 shadow-md">
-                      {activePoster.badge}
-                    </span>
-                  </div>
-
-                  {/* Laser Scanning Sheen Animation Across Poster Picture */}
-                  <motion.div
-                    animate={{
-                      x: ['-140%', '240%']
-                    }}
-                    transition={{
-                      duration: 2.2,
-                      repeat: Infinity,
-                      ease: 'easeInOut',
-                      repeatDelay: 0.8
-                    }}
-                    className={`absolute inset-y-0 w-32 bg-gradient-to-r from-transparent ${activePoster.laserColor} to-transparent skew-x-[-20deg] pointer-events-none z-20`}
-                  />
 
                   {/* Gentle Natural Highlight Sheen */}
                   {!isTouchDevice && !shouldReduceMotion && (
@@ -769,124 +696,97 @@ export function AIServicesExperience({ onOpenContact }) {
           </motion.div>
         )}
 
-        {/* Core AI Services Solutions Grid */}
-        {selectedIndustryOption === 'ai-services' && (
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.35, ease: 'easeOut' }}
-            className="mb-12 sm:mb-16 relative z-10"
-          >
-            <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
-              <h2 className="text-xl sm:text-3xl font-bold text-[#082B59] tracking-tight">
-                Core AI Solutions & Capabilities
-              </h2>
-              <p className="text-xs sm:text-sm text-slate-600 mt-2 font-normal">
-                End-to-end intelligent automation modules designed to streamline operations and accelerate customer response.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 text-left">
-              {[
-                {
-                  title: 'AI Chatbots',
-                  desc: '24/7 intelligent conversational assistants deployed across your website and WhatsApp to qualify visitors and resolve frequent inquiries instantly.',
-                  tag: 'Customer Engagement',
-                  color: 'text-[#0866E8]',
-                  bg: 'bg-blue-50 border-blue-200/80'
-                },
-                {
-                  title: 'AI Agents',
-                  desc: 'Autonomous task-driven agents executing customer intake, complex query resolution, background research, and cross-team operational actions.',
-                  tag: 'Autonomous Execution',
-                  color: 'text-indigo-600',
-                  bg: 'bg-indigo-50 border-indigo-200/80'
-                },
-                {
-                  title: 'AI Workflow Automation',
-                  desc: 'Zero-touch integrations connecting web forms, WhatsApp, email, spreadsheets, CRM, and databases into one seamless pipeline.',
-                  tag: 'System Integration',
-                  color: 'text-teal-600',
-                  bg: 'bg-teal-50 border-teal-200/80'
-                },
-                {
-                  title: 'AI Sales & Lead Generation Agents',
-                  desc: 'High-intent lead capture, multi-parameter qualification, dynamic scoring, and instant routing directly to your sales representatives.',
-                  tag: 'Revenue Acceleration',
-                  color: 'text-amber-600',
-                  bg: 'bg-amber-50 border-amber-200/80'
-                },
-                {
-                  title: 'AI Calling Solutions',
-                  desc: 'Automated conversational voice assistants for proactive client follow-ups, appointment confirmation, reminders, and verification.',
-                  tag: 'Voice Operations',
-                  color: 'text-cyan-600',
-                  bg: 'bg-cyan-50 border-cyan-200/80'
-                }
-              ].map((solution, idx) => (
-                <div
-                  key={idx}
-                  className="rounded-[24px] bg-white border border-slate-200/90 hover:border-blue-300 p-6 sm:p-7 transition-all duration-300 shadow-md hover:shadow-xl flex flex-col justify-between group"
-                >
-                  <div>
-                    <div className="flex items-center justify-between mb-4">
-                      <span className={`px-3 py-1 rounded-full text-[11px] font-bold border ${solution.bg} ${solution.color}`}>
-                        {solution.tag}
-                      </span>
-                    </div>
-                    <h3 className="text-base sm:text-lg font-bold text-[#082B59] mb-2 leading-snug group-hover:text-[#0866E8] transition-colors">
-                      {solution.title}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal mb-5">
-                      {solution.desc}
-                    </p>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={onOpenContact}
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0866E8] hover:text-[#0756C5] transition-colors cursor-pointer w-fit"
-                  >
-                    <span>Inquire About This Solution</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </button>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        )}
-
-        {/* Key Business Benefits Cards Grid */}
-        <div className="mb-12 sm:mb-16 relative z-10">
-          <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
-            <h2 className="text-xl sm:text-3xl font-bold text-[#082B59] tracking-tight">
-              Key Business Benefits
+        {/* Enterprise AI Services Solutions Grid */}
+        <div className="my-16 sm:my-20 relative z-10">
+          <div className="max-w-3xl mb-8 sm:mb-12 text-left">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#082B59] tracking-tight">
+              Enterprise AI Solutions
             </h2>
+            <p className="text-sm sm:text-base text-slate-600 mt-2.5 font-normal leading-relaxed">
+              Purpose-built automation and intelligent agent architectures designed for mission-critical business workflows.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 text-left items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 text-left items-stretch">
+            {[
+              {
+                title: 'AI Chatbots',
+                desc: 'Intelligent conversational assistants deployed across web and WhatsApp channels to qualify visitors and resolve frequent inquiries instantly.'
+              },
+              {
+                title: 'AI Agents',
+                desc: 'Autonomous task-driven agents executing client intake, structured validation, background verification, and operational handoffs.'
+              },
+              {
+                title: 'AI Workflow Automation',
+                desc: 'Reliable integrations synchronizing website submissions, messaging channels, email, spreadsheets, CRM systems, and databases.'
+              },
+              {
+                title: 'AI Sales & Lead Generation Agents',
+                desc: 'Systematic lead capture, multi-parameter qualification, intent scoring, and immediate dispatch to sales specialists.'
+              },
+              {
+                title: 'AI Calling Solutions',
+                desc: 'Conversational voice workflows for appointment scheduling, verification, dispatch confirmations, and proactive outreach.'
+              }
+            ].map((solution, idx) => (
+              <div
+                key={idx}
+                className="rounded-2xl bg-white border border-slate-200/90 hover:border-slate-300 p-7 sm:p-8 transition-all duration-200 shadow-xs hover:shadow-md flex flex-col justify-between group"
+              >
+                <div>
+                  <h3 className="text-lg sm:text-xl font-bold text-[#082B59] mb-3 leading-snug group-hover:text-[#0866E8] transition-colors">
+                    {solution.title}
+                  </h3>
+                  <p className="text-sm text-slate-600 leading-relaxed font-normal mb-6">
+                    {solution.desc}
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={onOpenContact}
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#0866E8] hover:text-[#0756C5] transition-colors cursor-pointer w-fit"
+                >
+                  <span>Learn More →</span>
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Key Business Benefits Cards Grid */}
+        <div className="mb-16 sm:mb-20 relative z-10">
+          <div className="max-w-3xl mb-8 sm:mb-12 text-left">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#082B59] tracking-tight">
+              Operational Impact
+            </h2>
+            <p className="text-sm sm:text-base text-slate-600 mt-2.5 font-normal leading-relaxed">
+              Measurable improvements across client responsiveness, operational accuracy, and team productivity.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-7 text-left items-stretch">
             {benefits.map((benefit) => {
               const Icon = benefit.icon;
               return (
-                <motion.div
+                <div
                   key={benefit.title}
-                  whileHover={{ y: -5 }}
-                  transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-                  className="rounded-[24px] bg-white border border-slate-200/90 hover:border-blue-300 p-6 sm:p-7 transition-all duration-300 shadow-md hover:shadow-xl flex flex-col justify-between group"
+                  className="rounded-2xl bg-white border border-slate-200/90 hover:border-slate-300 p-7 transition-all duration-200 shadow-xs hover:shadow-md flex flex-col justify-between group"
                 >
                   <div>
-                    <div className="w-12 h-12 rounded-2xl bg-blue-50 text-[#0866E8] border border-blue-200/80 flex items-center justify-center mb-5 group-hover:scale-105 transition-all duration-300">
-                      <Icon className="w-6 h-6 text-[#0866E8]" />
+                    <div className="w-11 h-11 rounded-xl bg-blue-50 text-[#0866E8] border border-blue-100 flex items-center justify-center mb-6">
+                      <Icon className="w-5 h-5 text-[#0866E8]" />
                     </div>
 
-                    <h3 className="text-base sm:text-lg font-bold text-[#082B59] mb-2 leading-snug group-hover:text-[#0866E8] transition-colors">
+                    <h3 className="text-base sm:text-lg font-bold text-[#082B59] mb-2 leading-snug">
                       {benefit.title}
                     </h3>
 
-                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                    <p className="text-sm text-slate-600 leading-relaxed font-normal">
                       {benefit.description}
                     </p>
                   </div>
-                </motion.div>
+                </div>
               );
             })}
           </div>
