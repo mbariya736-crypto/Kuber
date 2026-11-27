@@ -195,7 +195,7 @@ export function AIServicesExperience({ onOpenContact }) {
 
   // Touch device detection to cleanly disable cursor effects on mobile/touch
   const [isTouchDevice, setIsTouchDevice] = useState(false);
-  const [selectedIndustryOption, setSelectedIndustryOption] = useState('tours-travels');
+  const [selectedIndustryOption, setSelectedIndustryOption] = useState('ai-services');
 
   useEffect(() => {
     const checkTouch = () => {
@@ -294,8 +294,21 @@ export function AIServicesExperience({ onOpenContact }) {
           AI Services
         </h1>
 
-        {/* 2 Options Switcher directly in Hero Section */}
+        {/* 3 Options Switcher directly in Hero Section */}
         <div className="inline-flex p-1.5 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-2xs gap-2 max-w-full overflow-x-auto">
+          <button
+            type="button"
+            onClick={() => setSelectedIndustryOption('ai-services')}
+            className={`flex items-center gap-2 px-4 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap ${
+              selectedIndustryOption === 'ai-services'
+                ? 'bg-blue-50 text-[#0866E8] shadow-xs border border-blue-200/90 ring-2 ring-blue-500/20'
+                : 'text-slate-600 hover:text-[#082B59] hover:bg-slate-50 border border-transparent'
+            }`}
+          >
+            <Bot className="w-4 h-4 text-[#0866E8]" />
+            <span>AI Services</span>
+          </button>
+
           <button
             type="button"
             onClick={() => setSelectedIndustryOption('tours-travels')}
@@ -402,7 +415,68 @@ export function AIServicesExperience({ onOpenContact }) {
             {/* Right: Dynamic Overview Text based on selected Hero Option */}
             <div className="lg:col-span-6 flex flex-col justify-center relative z-20">
               <AnimatePresence mode="wait">
-                {selectedIndustryOption === 'tours-travels' ? (
+                {selectedIndustryOption === 'ai-services' ? (
+                  <motion.div
+                    key="hero-ai-services"
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
+                    className="flex flex-col"
+                  >
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-[#0866E8] border border-blue-200/80">
+                        AI & Business Automation
+                      </span>
+                    </div>
+
+                    <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#082B59] mb-3 leading-snug">
+                      Practical Workflow Solutions Built for Real Businesses
+                    </h2>
+
+                    <p className="text-slate-600 text-xs sm:text-sm lg:text-base leading-relaxed font-normal mb-5">
+                      Everyday operations often get slowed down by missed customer messages, disorganized contact sheets, and repetitive manual tasks that take hours away from serving clients. We help businesses connect their existing tools—including website forms, WhatsApp, email, spreadsheets, and CRM—into one reliable, straightforward workflow.
+                    </p>
+
+                    <div className="space-y-2.5 pt-4 border-t border-slate-100 mb-6">
+                      <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
+                        <CheckCircle2 className="w-4 h-4 text-[#0866E8] shrink-0 mt-0.5" />
+                        <span>
+                          <strong className="text-[#082B59] font-bold">Instant Response Protocols:</strong> Automatically capture website submissions and route alerts to WhatsApp and email within 3 seconds.
+                        </span>
+                      </div>
+                      <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
+                        <CheckCircle2 className="w-4 h-4 text-[#0866E8] shrink-0 mt-0.5" />
+                        <span>
+                          <strong className="text-[#082B59] font-bold">Event-Driven Data Sync:</strong> Clean lead records synced immediately across spreadsheets, databases, and client dashboards without duplicate entries.
+                        </span>
+                      </div>
+                      <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
+                        <CheckCircle2 className="w-4 h-4 text-[#0866E8] shrink-0 mt-0.5" />
+                        <span>
+                          <strong className="text-[#082B59] font-bold">Contextual Alerts:</strong> Priority routing that tags high-value inquiries directly to designated team members for faster response.
+                        </span>
+                      </div>
+                      <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
+                        <CheckCircle2 className="w-4 h-4 text-[#0866E8] shrink-0 mt-0.5" />
+                        <span>
+                          <strong className="text-[#082B59] font-bold">Verified Operational Output:</strong> Reliable, structured inquiry pipelines with zero manual copy-pasting or lost customer details.
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="pt-2">
+                      <button
+                        type="button"
+                        onClick={onOpenContact}
+                        className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-white bg-[#0866E8] hover:bg-[#0756C5] shadow-sm transition-all cursor-pointer w-fit"
+                      >
+                        <span>Speak With Our Team</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                  </motion.div>
+                ) : selectedIndustryOption === 'tours-travels' ? (
                   <motion.div
                     key="hero-tours-travels"
                     initial={{ opacity: 0, y: 8 }}
@@ -539,6 +613,92 @@ export function AIServicesExperience({ onOpenContact }) {
             className="mb-12 sm:mb-16 relative z-10"
           >
             <ToursAndTravelsShowcase onOpenContact={onOpenContact} />
+          </motion.div>
+        )}
+
+        {/* Core AI Services Solutions Grid */}
+        {selectedIndustryOption === 'ai-services' && (
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.35, ease: 'easeOut' }}
+            className="mb-12 sm:mb-16 relative z-10"
+          >
+            <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
+              <h2 className="text-xl sm:text-3xl font-bold text-[#082B59] tracking-tight">
+                Core AI Solutions & Capabilities
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-600 mt-2 font-normal">
+                End-to-end intelligent automation modules designed to streamline operations and accelerate customer response.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 text-left">
+              {[
+                {
+                  title: 'AI Chatbots',
+                  desc: '24/7 intelligent conversational assistants deployed across your website and WhatsApp to qualify visitors and resolve frequent inquiries instantly.',
+                  tag: 'Customer Engagement',
+                  color: 'text-[#0866E8]',
+                  bg: 'bg-blue-50 border-blue-200/80'
+                },
+                {
+                  title: 'AI Agents',
+                  desc: 'Autonomous task-driven agents executing customer intake, complex query resolution, background research, and cross-team operational actions.',
+                  tag: 'Autonomous Execution',
+                  color: 'text-indigo-600',
+                  bg: 'bg-indigo-50 border-indigo-200/80'
+                },
+                {
+                  title: 'AI Workflow Automation',
+                  desc: 'Zero-touch integrations connecting web forms, WhatsApp, email, spreadsheets, CRM, and databases into one seamless pipeline.',
+                  tag: 'System Integration',
+                  color: 'text-teal-600',
+                  bg: 'bg-teal-50 border-teal-200/80'
+                },
+                {
+                  title: 'AI Sales & Lead Generation Agents',
+                  desc: 'High-intent lead capture, multi-parameter qualification, dynamic scoring, and instant routing directly to your sales representatives.',
+                  tag: 'Revenue Acceleration',
+                  color: 'text-amber-600',
+                  bg: 'bg-amber-50 border-amber-200/80'
+                },
+                {
+                  title: 'AI Calling Solutions',
+                  desc: 'Automated conversational voice assistants for proactive client follow-ups, appointment confirmation, reminders, and verification.',
+                  tag: 'Voice Operations',
+                  color: 'text-cyan-600',
+                  bg: 'bg-cyan-50 border-cyan-200/80'
+                }
+              ].map((solution, idx) => (
+                <div
+                  key={idx}
+                  className="rounded-[24px] bg-white border border-slate-200/90 hover:border-blue-300 p-6 sm:p-7 transition-all duration-300 shadow-md hover:shadow-xl flex flex-col justify-between group"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <span className={`px-3 py-1 rounded-full text-[11px] font-bold border ${solution.bg} ${solution.color}`}>
+                        {solution.tag}
+                      </span>
+                    </div>
+                    <h3 className="text-base sm:text-lg font-bold text-[#082B59] mb-2 leading-snug group-hover:text-[#0866E8] transition-colors">
+                      {solution.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal mb-5">
+                      {solution.desc}
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={onOpenContact}
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0866E8] hover:text-[#0756C5] transition-colors cursor-pointer w-fit"
+                  >
+                    <span>Inquire About This Solution</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              ))}
+            </div>
           </motion.div>
         )}
 
