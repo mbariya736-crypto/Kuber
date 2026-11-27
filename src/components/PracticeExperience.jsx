@@ -328,28 +328,6 @@ export function AIServicesExperience({ onOpenContact }) {
     mouseY.set(0);
   };
 
-  const benefits = [
-    {
-      icon: Clock,
-      title: 'Faster Customer Response Management',
-      description: 'Ensure new inquiries from your website, WhatsApp, and email are acknowledged immediately so potential clients never feel ignored.'
-    },
-    {
-      icon: Inbox,
-      title: 'Better Inquiry Tracking',
-      description: 'Keep all customer contact details, messages, and follow-up notes organized in one clear location instead of lost across separate inboxes.'
-    },
-    {
-      icon: CheckCircle2,
-      title: 'Reduced Manual Work',
-      description: 'Eliminate repetitive copy-pasting between spreadsheets, forms, and email so your team can focus on client service and real business.'
-    },
-    {
-      icon: Users,
-      title: 'Improved Team Coordination',
-      description: 'Automatically notify the right staff member when action is needed, keeping everyone aligned on next steps and pending tasks.'
-    }
-  ];
 
   const posterConfigs = {
     'ai-services': {
@@ -763,43 +741,6 @@ export function AIServicesExperience({ onOpenContact }) {
           </div>
         </div>
 
-        {/* Key Business Benefits Cards Grid */}
-        <div className="mb-16 sm:mb-20 relative z-10">
-          <div className="max-w-3xl mb-8 sm:mb-12 text-left">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#082B59] tracking-tight">
-              Operational Impact
-            </h2>
-            <p className="text-sm sm:text-base text-slate-600 mt-2.5 font-normal leading-relaxed">
-              Measurable improvements across client responsiveness, operational accuracy, and team productivity.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-7 text-left items-stretch">
-            {benefits.map((benefit) => {
-              const Icon = benefit.icon;
-              return (
-                <div
-                  key={benefit.title}
-                  className="rounded-2xl bg-white border border-slate-200/90 hover:border-slate-300 p-7 transition-all duration-200 shadow-xs hover:shadow-md flex flex-col justify-between group"
-                >
-                  <div>
-                    <div className="w-11 h-11 rounded-xl bg-blue-50 text-[#0866E8] border border-blue-100 flex items-center justify-center mb-6">
-                      <Icon className="w-5 h-5 text-[#0866E8]" />
-                    </div>
-
-                    <h3 className="text-base sm:text-lg font-bold text-[#082B59] mb-2 leading-snug">
-                      {benefit.title}
-                    </h3>
-
-                    <p className="text-sm text-slate-600 leading-relaxed font-normal">
-                      {benefit.description}
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
 
         {/* Call to Action Bar */}
         <div className="text-center p-8 sm:p-12 rounded-[28px] sm:rounded-[32px] bg-[#082B59] text-white shadow-xl relative z-10 overflow-hidden">
