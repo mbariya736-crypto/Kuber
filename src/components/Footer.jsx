@@ -10,11 +10,11 @@ export default function Footer() {
           {/* Essential Contact Information */}
           <div className="flex flex-wrap items-center justify-center sm:justify-start gap-5 sm:gap-8">
             <a
-              href="mailto:contact@kuber-ais.com"
+              href="mailto:kuberaistechnologies@gmail.com"
               className="inline-flex items-center gap-2 hover:text-cyan-300 transition-colors"
             >
               <Mail className="w-4 h-4 text-[#00B9E8]" />
-              <span>contact@kuber-ais.com</span>
+              <span>kuberaistechnologies@gmail.com</span>
             </a>
 
             <span className="text-slate-400 text-xs sm:text-sm">

@@ -14,12 +14,13 @@ import {
 export default function Contact() {
   const shouldReduceMotion = useReducedMotion();
   const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
+    firstName: '',
+    lastName: '',
     phone: '',
-    companyName: '',
-    service: 'AI Services',
-    description: ''
+    country: '',
+    email: '',
+    service: '',
+    message: ''
   });
 
   const [submitted, setSubmitted] = useState(false);
@@ -28,24 +29,27 @@ export default function Contact() {
 
   const validate = () => {
     const errs = {};
-    if (!formData.fullName.trim()) {
-      errs.fullName = 'Full name is required';
+    if (!formData.firstName.trim()) {
+      errs.firstName = 'First name is required';
+    }
+    if (!formData.lastName.trim()) {
+      errs.lastName = 'Last name is required';
+    }
+    if (!formData.phone.trim()) {
+      errs.phone = 'Contact number is required';
+    } else if (formData.phone.trim().length < 7) {
+      errs.phone = 'Please enter a valid contact number';
     }
     if (!formData.email.trim()) {
       errs.email = 'Email address is required';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       errs.email = 'Please enter a valid email address';
     }
-    if (!formData.phone.trim()) {
-      errs.phone = 'Phone number is required';
-    } else if (formData.phone.trim().length < 7) {
-      errs.phone = 'Please enter a valid phone number';
-    }
     if (!formData.service) {
       errs.service = 'Please select a service';
     }
-    if (!formData.description.trim()) {
-      errs.description = 'Please describe your project details';
+    if (!formData.message.trim()) {
+      errs.message = 'Please enter your message or inquiry';
     }
     return errs;
   };
@@ -75,6 +79,36 @@ export default function Contact() {
 
   const contactCards = [
     {
+      id: 'email',
+      name: 'Email Address',
+      value: 'kuberaistechnologies@gmail.com',
+      href: 'mailto:kuberaistechnologies@gmail.com',
+      isExternal: false,
+      icon: Mail,
+      iconStyle: 'bg-[#0866E8] text-white',
+      hoverBorder: 'hover:border-blue-300'
+    },
+    {
+      id: 'whatsapp',
+      name: 'WhatsApp',
+      value: '+91 7490923790',
+      href: 'https://wa.me/917490923790?text=Hello%20Kuber%20AIS%20Technologies%2C%20I%20would%20like%20to%20inquire%20about%20your%20services.',
+      isExternal: true,
+      icon: MessageSquare,
+      iconStyle: 'bg-emerald-500 text-white',
+      hoverBorder: 'hover:border-emerald-300'
+    },
+    {
+      id: 'phone',
+      name: 'Call Support',
+      value: '+91 7490923790',
+      href: 'tel:+917490923790',
+      isExternal: false,
+      icon: Phone,
+      iconStyle: 'bg-[#00B9E8] text-white',
+      hoverBorder: 'hover:border-cyan-300'
+    },
+    {
       id: 'instagram',
       name: 'Instagram',
       value: '@kuberaistechnologies',
@@ -83,36 +117,6 @@ export default function Contact() {
       icon: Instagram,
       iconStyle: 'bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white',
       hoverBorder: 'hover:border-rose-300'
-    },
-    {
-      id: 'whatsapp',
-      name: 'WhatsApp',
-      value: 'Chat on WhatsApp',
-      href: 'https://wa.me/?text=Hello%20Kuber%20AIS%20Technologies%2C%20I%20would%20like%20to%20discuss%20a%20project.',
-      isExternal: true,
-      icon: MessageSquare,
-      iconStyle: 'bg-emerald-500 text-white',
-      hoverBorder: 'hover:border-emerald-300'
-    },
-    {
-      id: 'email',
-      name: 'Email',
-      value: 'contact@kuber-ais.com',
-      href: 'mailto:contact@kuber-ais.com',
-      isExternal: false,
-      icon: Mail,
-      iconStyle: 'bg-[#0866E8] text-white',
-      hoverBorder: 'hover:border-blue-300'
-    },
-    {
-      id: 'phone',
-      name: 'Phone Support',
-      value: 'Helpline: 1930',
-      href: 'tel:1930',
-      isExternal: false,
-      icon: Phone,
-      iconStyle: 'bg-[#00B9E8] text-white',
-      hoverBorder: 'hover:border-cyan-300'
     }
   ];
 
@@ -134,9 +138,12 @@ export default function Contact() {
             className="lg:col-span-5 flex flex-col justify-between"
           >
             <div>
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-[#082B59] mb-2 sm:mb-3">
-                Get In Touch
+              <h3 className="text-2xl sm:text-3xl font-extrabold text-[#082B59] mb-1.5 sm:mb-2">
+                Contact us
               </h3>
+              <p className="text-xs sm:text-sm text-slate-600 mb-5 sm:mb-6 leading-relaxed font-normal">
+                Email: <a href="mailto:kuberaistechnologies@gmail.com" className="text-[#0866E8] hover:underline font-semibold">kuberaistechnologies@gmail.com</a> &middot; WhatsApp: <a href="https://wa.me/917490923790" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:underline font-semibold">+91 7490923790</a>
+              </p>
 
               {/* Contact Cards List */}
               <div className="space-y-3">
@@ -198,93 +205,94 @@ export default function Contact() {
                     <CheckCircle className="w-7 h-7" />
                   </div>
                   <h3 className="text-xl sm:text-2xl font-bold text-[#082B59] mb-1.5">
-                    Message Sent Successfully
+                    Inquiry Sent Successfully
                   </h3>
                   <p className="text-slate-600 max-w-md mx-auto text-sm leading-relaxed mb-5 font-normal">
-                    Thank you, <strong className="text-slate-800">{formData.fullName}</strong>. We've received your inquiry and will reply shortly.
+                    Thank you, <strong className="text-slate-800">{formData.firstName} {formData.lastName}</strong>. We've received your inquiry and will reply shortly.
                   </p>
                   <button
                     type="button"
                     onClick={() => {
                       setSubmitted(false);
                       setFormData({
-                        fullName: '',
-                        email: '',
+                        firstName: '',
+                        lastName: '',
                         phone: '',
-                        companyName: '',
-                        service: 'AI Services',
-                        description: ''
+                        country: '',
+                        email: '',
+                        service: '',
+                        message: ''
                       });
                     }}
                     className="px-5 py-2.5 rounded-full text-xs font-bold bg-slate-100 hover:bg-slate-200 text-[#082B59] transition-colors cursor-pointer"
                   >
-                    Send Another Message
+                    Send Another Inquiry
                   </button>
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} noValidate className="space-y-4 sm:space-y-5">
 
-                  {/* Row 1: Full Name & Email Address */}
+                  {/* Row 1: First Name & Last Name */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
-                        Full Name <span className="text-[#0866E8]">*</span>
+                        First name <span className="text-[#0866E8]">*</span>
                       </label>
                       <input
                         type="text"
-                        name="fullName"
-                        value={formData.fullName}
+                        name="firstName"
+                        value={formData.firstName}
                         onChange={handleChange}
-                        placeholder="Your name"
-                        className={`w-full px-3.5 py-2.5 rounded-xl border text-sm text-slate-800 focus:outline-none transition-all ${errors.fullName
+                        placeholder="First name"
+                        className={`w-full px-3.5 py-2.5 rounded-xl border text-sm text-slate-800 focus:outline-none transition-all ${errors.firstName
                             ? 'border-rose-300 focus:border-rose-500 focus:ring-2 focus:ring-rose-100 bg-rose-50/20'
                             : 'border-slate-200 focus:border-[#0866E8] focus:ring-2 focus:ring-blue-100 bg-white'
                           }`}
                       />
-                      {errors.fullName && (
+                      {errors.firstName && (
                         <p className="text-xs text-rose-500 mt-1 flex items-center gap-1 font-medium">
                           <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                          <span>{errors.fullName}</span>
+                          <span>{errors.firstName}</span>
                         </p>
                       )}
                     </div>
 
                     <div>
                       <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
-                        Email Address <span className="text-[#0866E8]">*</span>
+                        Last name <span className="text-[#0866E8]">*</span>
                       </label>
                       <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
+                        type="text"
+                        name="lastName"
+                        value={formData.lastName}
                         onChange={handleChange}
-                        placeholder="name@company.com"
-                        className={`w-full px-3.5 py-2.5 rounded-xl border text-sm text-slate-800 focus:outline-none transition-all ${errors.email
+                        placeholder="Last name"
+                        className={`w-full px-3.5 py-2.5 rounded-xl border text-sm text-slate-800 focus:outline-none transition-all ${errors.lastName
                             ? 'border-rose-300 focus:border-rose-500 focus:ring-2 focus:ring-rose-100 bg-rose-50/20'
                             : 'border-slate-200 focus:border-[#0866E8] focus:ring-2 focus:ring-blue-100 bg-white'
                           }`}
                       />
-                      {errors.email && (
+                      {errors.lastName && (
                         <p className="text-xs text-rose-500 mt-1 flex items-center gap-1 font-medium">
                           <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                          <span>{errors.email}</span>
+                          <span>{errors.lastName}</span>
                         </p>
                       )}
                     </div>
                   </div>
 
-                  {/* Row 2: Phone Number & Company Name */}
+                  {/* Row 2: Contact Number & Country */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
-                        Phone Number <span className="text-[#0866E8]">*</span>
+                        Contact number <span className="text-[#0866E8]">*</span>
                       </label>
                       <input
                         type="tel"
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        placeholder="+91 98765 43210"
+                        placeholder="+91 7490923790"
                         className={`w-full px-3.5 py-2.5 rounded-xl border text-sm text-slate-800 focus:outline-none transition-all ${errors.phone
                             ? 'border-rose-300 focus:border-rose-500 focus:ring-2 focus:ring-rose-100 bg-rose-50/20'
                             : 'border-slate-200 focus:border-[#0866E8] focus:ring-2 focus:ring-blue-100 bg-white'
@@ -300,20 +308,44 @@ export default function Contact() {
 
                     <div>
                       <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
-                        Company Name
+                        Country
                       </label>
                       <input
                         type="text"
-                        name="companyName"
-                        value={formData.companyName}
+                        name="country"
+                        value={formData.country}
                         onChange={handleChange}
-                        placeholder="Company name (optional)"
+                        placeholder="e.g. India"
                         className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:border-[#0866E8] focus:ring-2 focus:ring-blue-100 text-sm text-slate-800 focus:outline-none transition-all bg-white"
                       />
                     </div>
                   </div>
 
-                  {/* Row 3: Service Selection */}
+                  {/* Row 3: Email ID */}
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                      Email ID <span className="text-[#0866E8]">*</span>
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder="name@company.com"
+                      className={`w-full px-3.5 py-2.5 rounded-xl border text-sm text-slate-800 focus:outline-none transition-all ${errors.email
+                          ? 'border-rose-300 focus:border-rose-500 focus:ring-2 focus:ring-rose-100 bg-rose-50/20'
+                          : 'border-slate-200 focus:border-[#0866E8] focus:ring-2 focus:ring-blue-100 bg-white'
+                        }`}
+                    />
+                    {errors.email && (
+                      <p className="text-xs text-rose-500 mt-1 flex items-center gap-1 font-medium">
+                        <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                        <span>{errors.email}</span>
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Row 4: Service Selection */}
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
                       Service <span className="text-[#0866E8]">*</span>
@@ -328,6 +360,7 @@ export default function Contact() {
                             : 'border-slate-200 focus:border-[#0866E8] focus:ring-2 focus:ring-blue-100'
                           }`}
                       >
+                        <option value="">Select a service</option>
                         <option value="AI Services">AI Services</option>
                         <option value="Cyber Security">Cyber Security</option>
                         <option value="Film Production">Film Production</option>
@@ -347,26 +380,26 @@ export default function Contact() {
                     )}
                   </div>
 
-                  {/* Row 4: Project Details */}
+                  {/* Row 5: Message */}
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
-                      Project Details <span className="text-[#0866E8]">*</span>
+                      Message <span className="text-[#0866E8]">*</span>
                     </label>
                     <textarea
                       rows={4}
-                      name="description"
-                      value={formData.description}
+                      name="message"
+                      value={formData.message}
                       onChange={handleChange}
-                      placeholder="Brief description of your requirements..."
-                      className={`w-full px-3.5 py-2.5 rounded-xl border text-sm text-slate-800 focus:outline-none transition-all ${errors.description
+                      placeholder="Write your message or inquiry here..."
+                      className={`w-full px-3.5 py-2.5 rounded-xl border text-sm text-slate-800 focus:outline-none transition-all ${errors.message
                           ? 'border-rose-300 focus:border-rose-500 focus:ring-2 focus:ring-rose-100 bg-rose-50/20'
                           : 'border-slate-200 focus:border-[#0866E8] focus:ring-2 focus:ring-blue-100 bg-white'
                         }`}
                     />
-                    {errors.description && (
+                    {errors.message && (
                       <p className="text-xs text-rose-500 mt-1 flex items-center gap-1 font-medium">
                         <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                        <span>{errors.description}</span>
+                        <span>{errors.message}</span>
                       </p>
                     )}
                   </div>
@@ -380,11 +413,11 @@ export default function Contact() {
                     {loading ? (
                       <>
                         <Loader2 className="w-4 h-4 animate-spin" />
-                        <span>Sending Message...</span>
+                        <span>Sending inquiry...</span>
                       </>
                     ) : (
                       <>
-                        <span>Send Message</span>
+                        <span>Send inquiry</span>
                         <ArrowRight className="w-4 h-4" />
                       </>
                     )}

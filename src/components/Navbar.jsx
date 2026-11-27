@@ -776,7 +776,7 @@ export default function Navbar() {
                 <div className="px-3.5 sm:px-4 py-2.5 border-t border-slate-100 bg-slate-50/60 relative z-10">
                   <div className="grid grid-cols-3 gap-2">
                     <a
-                      href="https://wa.me/?text=Hello%20Kuber%20AIS%20Technologies%2C%20I%20would%20like%20to%20discuss%20a%20project."
+                      href="https://wa.me/917490923790?text=Hello%20Kuber%20AIS%20Technologies%2C%20I%20would%20like%20to%20discuss%20a%20project."
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex flex-col items-center justify-center py-2 px-1 rounded-xl bg-emerald-50/70 border border-emerald-200/80 hover:bg-emerald-100/70 transition-colors shadow-2xs text-center group active:scale-95"
@@ -794,7 +794,7 @@ export default function Navbar() {
                     </a>
 
                     <a
-                      href="mailto:contact@kuber-ais.com"
+                      href="mailto:kuberaistechnologies@gmail.com"
                       className="flex flex-col items-center justify-center py-2 px-1 rounded-xl bg-indigo-50/70 border border-indigo-200/80 hover:bg-indigo-100/70 transition-colors shadow-2xs text-center group active:scale-95"
                     >
                       <Mail className="w-4 h-4 text-indigo-600 mb-0.5 group-hover:scale-110 transition-transform" />
