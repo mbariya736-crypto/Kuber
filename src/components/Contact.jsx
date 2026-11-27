@@ -4,7 +4,6 @@ import {
   Mail,
   Phone,
   MessageSquare,
-  Instagram,
   ArrowRight,
   CheckCircle,
   AlertCircle,
@@ -107,16 +106,6 @@ export default function Contact() {
       icon: Phone,
       iconStyle: 'bg-[#00B9E8] text-white',
       hoverBorder: 'hover:border-cyan-300'
-    },
-    {
-      id: 'instagram',
-      name: 'Instagram',
-      value: '@kuberaistechnologies',
-      href: 'https://www.instagram.com/kuberaistechnologies',
-      isExternal: true,
-      icon: Instagram,
-      iconStyle: 'bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white',
-      hoverBorder: 'hover:border-rose-300'
     }
   ];
 
