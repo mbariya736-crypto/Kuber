@@ -410,119 +410,82 @@ export default function Navbar() {
                               <div className="bg-white rounded-2xl border border-slate-200/90 shadow-2xl overflow-hidden flex">
                                 
                                 {/* Level 1: The 3 Core Practices */}
-                                <div className="w-[260px] bg-slate-50/80 border-r border-slate-100 p-3 flex flex-col justify-between">
-                                  <div>
-                                    <div className="px-2.5 py-1 text-[11px] font-extrabold uppercase tracking-wider text-slate-400 mb-1.5 flex items-center justify-between">
-                                      <span>Our Business Services</span>
-                                      <span className="text-[10px] bg-blue-100/70 text-[#0866E8] px-1.5 py-0.5 rounded-full font-bold">
-                                        3 Practices
-                                      </span>
-                                    </div>
+                                <div className="w-[240px] bg-slate-50/80 border-r border-slate-100 p-2.5 flex flex-col justify-center">
+                                  <div className="space-y-1">
+                                    {serviceItems.map((item) => {
+                                      const isHovered = activeHoverCategory === item.id;
+                                      const isItemActive = location.pathname === item.path;
+                                      const IconComponent = item.icon;
 
-                                    <div className="space-y-1">
-                                      {serviceItems.map((item) => {
-                                        const isHovered = activeHoverCategory === item.id;
-                                        const isItemActive = location.pathname === item.path;
-                                        const IconComponent = item.icon;
-
-                                        return (
-                                          <button
-                                            key={item.id}
-                                            type="button"
-                                            onMouseEnter={() => setActiveHoverCategory(item.id)}
-                                            onClick={() => handlePracticeClick(item.path)}
-                                            className={`w-full text-left p-2.5 rounded-xl transition-all duration-150 flex items-center justify-between cursor-pointer border ${
-                                              isHovered
-                                                ? 'bg-white shadow-xs border-slate-200 text-[#082B59]'
-                                                : isItemActive
-                                                ? 'bg-blue-50/80 border-blue-200/70 text-[#0866E8]'
-                                                : 'hover:bg-white/80 border-transparent text-slate-700'
-                                            }`}
-                                          >
-                                            <div className="flex items-center gap-2.5 min-w-0">
-                                              <div className={`p-1.5 rounded-lg border ${item.borderColor} ${item.bgColor} ${item.color} shrink-0`}>
-                                                <IconComponent className="w-4 h-4" />
-                                              </div>
-                                              <div className="min-w-0 flex-1">
-                                                <div className="text-xs font-bold leading-tight truncate">
-                                                  {item.name}
-                                                </div>
+                                      return (
+                                        <button
+                                          key={item.id}
+                                          type="button"
+                                          onMouseEnter={() => setActiveHoverCategory(item.id)}
+                                          onClick={() => handlePracticeClick(item.path)}
+                                          className={`w-full text-left p-2.5 rounded-xl transition-all duration-150 flex items-center justify-between cursor-pointer border ${
+                                            isHovered
+                                              ? 'bg-white shadow-xs border-slate-200 text-[#082B59]'
+                                              : isItemActive
+                                              ? 'bg-blue-50/80 border-blue-200/70 text-[#0866E8]'
+                                              : 'hover:bg-white/80 border-transparent text-slate-700'
+                                          }`}
+                                        >
+                                          <div className="flex items-center gap-2.5 min-w-0">
+                                            <div className={`p-1.5 rounded-lg border ${item.borderColor} ${item.bgColor} ${item.color} shrink-0`}>
+                                              <IconComponent className="w-4 h-4" />
+                                            </div>
+                                            <div className="min-w-0 flex-1">
+                                              <div className="text-xs font-bold leading-tight truncate">
+                                                {item.name}
                                               </div>
                                             </div>
-                                            <ChevronRight className={`w-3.5 h-3.5 shrink-0 transition-transform ${isHovered ? 'text-[#0866E8] translate-x-0.5' : 'text-slate-300'}`} />
-                                          </button>
-                                        );
-                                      })}
-                                    </div>
-                                  </div>
-
-                                  <div className="pt-2.5 mt-2 border-t border-slate-200/60 px-2">
-                                    <Link
-                                      to="/services"
-                                      onClick={() => setServicesDropdownOpen(false)}
-                                      className="text-[11px] font-bold text-[#0866E8] hover:text-[#0756C5] flex items-center gap-1 group"
-                                    >
-                                      <span>All Services Overview</span>
-                                      <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-                                    </Link>
+                                          </div>
+                                          <ChevronRight className={`w-3.5 h-3.5 shrink-0 transition-transform ${isHovered ? 'text-[#0866E8] translate-x-0.5' : 'text-slate-300'}`} />
+                                        </button>
+                                      );
+                                    })}
                                   </div>
                                 </div>
 
                                 {/* Level 2: Second Dropdown showing the sub-services of activeHoverCategory */}
-                                <div className="flex-1 p-3.5 bg-white flex flex-col justify-between">
+                                <div className="flex-1 p-3.5 bg-white flex flex-col">
                                   {(() => {
                                     const activeCategory = serviceItems.find(c => c.id === activeHoverCategory) || serviceItems[0];
                                     const CategoryIcon = activeCategory.icon;
 
                                     return (
-                                      <div className="flex flex-col h-full justify-between">
-                                        <div>
-                                          {/* Sub-services Category Header */}
-                                          <div className="flex items-center justify-between pb-2 mb-2 border-b border-slate-100">
-                                            <div className="flex items-center gap-2">
-                                              <div className={`p-1 rounded-md ${activeCategory.bgColor} ${activeCategory.color}`}>
-                                                <CategoryIcon className="w-3.5 h-3.5" />
-                                              </div>
-                                              <span className="text-xs font-bold text-[#082B59] uppercase tracking-wide">
-                                                {activeCategory.name}
-                                              </span>
+                                      <div className="flex flex-col h-full">
+                                        {/* Sub-services Category Header */}
+                                        <div className="flex items-center pb-2 mb-2 border-b border-slate-100">
+                                          <div className="flex items-center gap-2">
+                                            <div className={`p-1 rounded-md ${activeCategory.bgColor} ${activeCategory.color}`}>
+                                              <CategoryIcon className="w-3.5 h-3.5" />
                                             </div>
-                                            <span className="text-[10px] font-semibold text-slate-400">
-                                              {activeCategory.subServices.length} Solutions
+                                            <span className="text-xs font-bold text-[#082B59] uppercase tracking-wide">
+                                              {activeCategory.name}
                                             </span>
-                                          </div>
-
-                                          {/* Sub-services list from attachment */}
-                                          <div className="space-y-1">
-                                            {activeCategory.subServices.map((subName) => (
-                                              <button
-                                                key={subName}
-                                                type="button"
-                                                onClick={() => handlePracticeClick(activeCategory.path)}
-                                                className="w-full text-left px-2.5 py-1.5 rounded-lg hover:bg-blue-50/60 transition-all flex items-center justify-between group cursor-pointer"
-                                              >
-                                                <div className="flex items-center gap-2">
-                                                  <span className="w-1.5 h-1.5 rounded-full bg-blue-500 group-hover:scale-125 transition-transform" />
-                                                  <span className="text-xs font-medium text-slate-700 group-hover:text-[#0866E8] group-hover:font-semibold transition-colors">
-                                                    {subName}
-                                                  </span>
-                                                </div>
-                                                <ArrowRight className="w-3 h-3 text-slate-300 group-hover:text-[#0866E8] group-hover:translate-x-0.5 transition-all opacity-0 group-hover:opacity-100" />
-                                              </button>
-                                            ))}
                                           </div>
                                         </div>
 
-                                        {/* Bottom Explore Link */}
-                                        <div className="pt-2.5 mt-2 border-t border-slate-100">
-                                          <button
-                                            type="button"
-                                            onClick={() => handlePracticeClick(activeCategory.path)}
-                                            className="w-full py-1.5 px-3 rounded-lg bg-slate-50 hover:bg-blue-50 text-[11px] font-bold text-[#0866E8] border border-slate-200/60 hover:border-blue-200 transition-all flex items-center justify-between cursor-pointer"
-                                          >
-                                            <span>Explore All {activeCategory.name}</span>
-                                            <ArrowRight className="w-3.5 h-3.5" />
-                                          </button>
+                                        {/* Sub-services list */}
+                                        <div className="space-y-1">
+                                          {activeCategory.subServices.map((subName) => (
+                                            <button
+                                              key={subName}
+                                              type="button"
+                                              onClick={() => handlePracticeClick(activeCategory.path)}
+                                              className="w-full text-left px-2.5 py-1.5 rounded-lg hover:bg-blue-50/60 transition-all flex items-center justify-between group cursor-pointer"
+                                            >
+                                              <div className="flex items-center gap-2">
+                                                <span className="w-1.5 h-1.5 rounded-full bg-blue-500 group-hover:scale-125 transition-transform" />
+                                                <span className="text-xs font-medium text-slate-700 group-hover:text-[#0866E8] group-hover:font-semibold transition-colors">
+                                                  {subName}
+                                                </span>
+                                              </div>
+                                              <ArrowRight className="w-3 h-3 text-slate-300 group-hover:text-[#0866E8] group-hover:translate-x-0.5 transition-all opacity-0 group-hover:opacity-100" />
+                                            </button>
+                                          ))}
                                         </div>
                                       </div>
                                     );
@@ -690,9 +653,6 @@ export default function Navbar() {
                                             <span className={`text-xs font-bold block truncate ${isCategoryExpanded ? 'text-[#0866E8]' : 'text-slate-800'}`}>
                                               {item.name}
                                             </span>
-                                            <span className="text-[10px] text-slate-400 font-medium">
-                                              {item.subServices.length} Solutions
-                                            </span>
                                           </div>
                                         </div>
 
@@ -729,38 +689,12 @@ export default function Navbar() {
                                                 <ArrowRight className="w-3 h-3 text-slate-300 group-hover:text-[#0866E8] group-hover:translate-x-0.5 transition-all shrink-0" />
                                               </button>
                                             ))}
-
-                                            <div className="pt-1.5 mt-1 border-t border-slate-200/50">
-                                              <button
-                                                type="button"
-                                                onClick={() => handlePracticeClick(item.path)}
-                                                className="w-full py-1.5 px-2.5 rounded-lg bg-blue-50 hover:bg-blue-100/70 text-[11px] font-bold text-[#0866E8] transition-colors flex items-center justify-between cursor-pointer"
-                                              >
-                                                <span>View Full {item.name}</span>
-                                                <ArrowRight className="w-3 h-3" />
-                                              </button>
-                                            </div>
                                           </motion.div>
                                         )}
                                       </AnimatePresence>
                                     </div>
                                   );
                                 })}
-
-                                {/* Bottom Link to View All Services */}
-                                <div className="pt-1 text-center">
-                                  <Link
-                                    to="/services"
-                                    onClick={() => {
-                                      setMobileMenuOpen(false);
-                                      setMobileServicesExpanded(false);
-                                    }}
-                                    className="inline-flex items-center gap-1 text-[11px] font-bold text-[#0866E8] hover:underline py-1"
-                                  >
-                                    <span>All Services Overview</span>
-                                    <ArrowRight className="w-3 h-3" />
-                                  </Link>
-                                </div>
                               </motion.div>
                             )}
                           </AnimatePresence>
