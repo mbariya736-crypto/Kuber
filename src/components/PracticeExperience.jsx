@@ -39,46 +39,164 @@ import RealEstateShowcase from './RealEstateShowcase';
 /* ========================================================================= */
 /* 1. SUBJECT-BASED BACKGROUND: Business Automation (Attached AI Poster Visual) */
 /* ========================================================================= */
-function AIServicesBackground() {
+function AIServicesBackground({ activeOption = 'ai-services' }) {
+  const isTravel = activeOption === 'tours-travels';
+  const isRealEstate = activeOption === 'real-estate';
+
+  const glowConfig = isTravel
+    ? {
+        orb1: 'from-teal-500/25 via-emerald-400/20 to-transparent',
+        orb2: 'from-emerald-400/20 via-cyan-400/20 to-transparent',
+        accent1: 'bg-teal-100/40',
+        gridColor: 'rgba(20, 184, 166, 0.45)'
+      }
+    : isRealEstate
+    ? {
+        orb1: 'from-blue-600/25 via-indigo-500/20 to-transparent',
+        orb2: 'from-indigo-500/20 via-sky-400/20 to-transparent',
+        accent1: 'bg-blue-100/40',
+        gridColor: 'rgba(59, 130, 246, 0.45)'
+      }
+    : {
+        orb1: 'from-[#0866E8]/20 via-[#00B9E8]/25 to-transparent',
+        orb2: 'from-[#00B9E8]/20 via-[#38BDF8]/20 to-transparent',
+        accent1: 'bg-blue-100/40',
+        gridColor: 'rgba(8, 102, 232, 0.4)'
+      };
+
+  const dynamicDepthNodes = isTravel
+    ? [
+        { top: '12%', left: '4%', size: 48, label: 'FLIGHT INTAKE', border: 'border-teal-200/90 text-teal-800 bg-teal-50/80' },
+        { top: '35%', right: '5%', size: 54, label: 'HOTEL MATCH', border: 'border-emerald-200/90 text-emerald-800 bg-emerald-50/80' },
+        { top: '65%', left: '5%', size: 50, label: 'WHATSAPP ALERT', border: 'border-teal-200/90 text-teal-800 bg-teal-50/80' },
+        { top: '83%', right: '7%', size: 44, label: 'ITINERARY SYNC', border: 'border-cyan-200/90 text-cyan-800 bg-cyan-50/80' }
+      ]
+    : isRealEstate
+    ? [
+        { top: '12%', left: '4%', size: 48, label: 'PROPERTY INTAKE', border: 'border-blue-200/90 text-blue-800 bg-blue-50/80' },
+        { top: '35%', right: '5%', size: 54, label: 'CRITERIA FILTER', border: 'border-indigo-200/90 text-indigo-800 bg-indigo-50/80' },
+        { top: '65%', left: '5%', size: 50, label: 'BROKER ALERT', border: 'border-emerald-200/90 text-emerald-800 bg-emerald-50/80' },
+        { top: '83%', right: '7%', size: 44, label: 'INVENTORY SYNC', border: 'border-blue-200/90 text-blue-800 bg-blue-50/80' }
+      ]
+    : [
+        { top: '12%', left: '4%', size: 48, label: 'WEB INTAKE', border: 'border-blue-200/90 text-[#082B59] bg-white/80' },
+        { top: '35%', right: '5%', size: 54, label: 'RECORDS SYNC', border: 'border-blue-200/90 text-[#082B59] bg-white/80' },
+        { top: '65%', left: '5%', size: 50, label: 'NOTIFICATION', border: 'border-blue-200/90 text-[#082B59] bg-white/80' },
+        { top: '83%', right: '7%', size: 44, label: 'DATABASE', border: 'border-blue-200/90 text-[#082B59] bg-white/80' }
+      ];
+
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none z-0 select-none">
-      {/* Gentle gradient wash and ambient depth highlights */}
-      <motion.div
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.25, 0.55, 0.25]
-        }}
-        transition={{
-          duration: 3.5,
-          repeat: Infinity,
-          ease: 'easeInOut'
-        }}
-        className="absolute top-1/4 left-1/4 w-[520px] h-[520px] bg-gradient-to-tr from-[#0866E8]/20 via-[#00B9E8]/25 to-transparent rounded-full blur-[140px]"
-      />
-      <motion.div
-        animate={{
-          scale: [1, 1.15, 1],
-          opacity: [0.2, 0.45, 0.2]
-        }}
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-          ease: 'easeInOut',
-          delay: 1
-        }}
-        className="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] bg-gradient-to-tl from-[#00B9E8]/20 via-[#38BDF8]/20 to-transparent rounded-full blur-[150px]"
-      />
-      <div className="absolute top-10 right-10 w-80 h-80 bg-blue-100/40 rounded-full blur-[120px]" />
+      {/* Dynamic Animated Ambient Orbs */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={`orb1-${activeOption}`}
+          initial={{ opacity: 0 }}
+          animate={{
+            opacity: [0.25, 0.55, 0.25],
+            scale: [1, 1.2, 1]
+          }}
+          exit={{ opacity: 0 }}
+          transition={{
+            duration: 3.5,
+            repeat: Infinity,
+            ease: 'easeInOut'
+          }}
+          className={`absolute top-1/4 left-1/4 w-[520px] h-[520px] bg-gradient-to-tr ${glowConfig.orb1} rounded-full blur-[140px]`}
+        />
+      </AnimatePresence>
+
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={`orb2-${activeOption}`}
+          initial={{ opacity: 0 }}
+          animate={{
+            opacity: [0.2, 0.45, 0.2],
+            scale: [1, 1.15, 1]
+          }}
+          exit={{ opacity: 0 }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: 'easeInOut',
+            delay: 0.5
+          }}
+          className={`absolute bottom-1/3 right-1/4 w-[500px] h-[500px] bg-gradient-to-tl ${glowConfig.orb2} rounded-full blur-[150px]`}
+        />
+      </AnimatePresence>
+
+      <div className={`absolute top-10 right-10 w-80 h-80 ${glowConfig.accent1} rounded-full blur-[120px]`} />
+
+      {/* Grid Pattern */}
       <div
-        className="absolute inset-0 opacity-[0.03]"
+        className="absolute inset-0 opacity-[0.035] transition-opacity duration-700"
         style={{
           backgroundImage: `
-            linear-gradient(to right, rgba(8, 102, 232, 0.4) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(8, 102, 232, 0.4) 1px, transparent 1px)
+            linear-gradient(to right, ${glowConfig.gridColor} 1px, transparent 1px),
+            linear-gradient(to bottom, ${glowConfig.gridColor} 1px, transparent 1px)
           `,
-          backgroundSize: '40px 40px'
+          backgroundSize: isRealEstate ? '32px 32px' : '40px 40px'
         }}
       />
+
+      {/* Floating Animated Depth Pills in Background */}
+      {dynamicDepthNodes.map((node, i) => (
+        <motion.div
+          key={`${activeOption}-${node.label}`}
+          initial={{ opacity: 0, y: 10, scale: 0.9 }}
+          animate={{
+            opacity: [0.5, 0.9, 0.5],
+            y: [0, -8, 0],
+            scale: [1, 1.04, 1]
+          }}
+          transition={{
+            duration: 3.2 + i * 0.4,
+            repeat: Infinity,
+            ease: 'easeInOut',
+            delay: i * 0.2
+          }}
+          style={{ top: node.top, left: node.left, right: node.right }}
+          className={`hidden md:flex absolute items-center gap-1.5 px-3 py-1.5 rounded-full border shadow-2xs backdrop-blur-md text-[10px] font-extrabold tracking-wider ${node.border}`}
+        >
+          <span className="w-1.5 h-1.5 rounded-full bg-current animate-ping" />
+          <span>{node.label}</span>
+        </motion.div>
+      ))}
+
+      {/* Specialty Background Visual Motifs */}
+      {isTravel && (
+        <motion.div
+          initial={{ opacity: 0, rotate: -15, scale: 0.9 }}
+          animate={{ opacity: 0.14, rotate: 8, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+          className="absolute right-[-40px] top-[18%] w-[420px] h-[420px] pointer-events-none"
+        >
+          <svg viewBox="0 0 200 200" className="w-full h-full stroke-teal-600 fill-none" strokeWidth="1.2">
+            <circle cx="100" cy="100" r="85" strokeDasharray="4 6" opacity="0.6" />
+            <circle cx="100" cy="100" r="60" opacity="0.4" />
+            <path d="M20 100 Q100 25 180 100" strokeDasharray="6 4" strokeWidth="2" stroke="currentColor" />
+            <path d="M35 145 Q100 65 165 145" strokeDasharray="4 4" opacity="0.5" />
+          </svg>
+        </motion.div>
+      )}
+
+      {isRealEstate && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 0.12, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+          className="absolute left-[-30px] top-[20%] w-[440px] h-[440px] pointer-events-none"
+        >
+          <svg viewBox="0 0 200 200" className="w-full h-full stroke-blue-600 fill-none" strokeWidth="1">
+            <rect x="30" y="30" width="140" height="140" strokeDasharray="4 4" opacity="0.5" />
+            <line x1="30" y1="90" x2="170" y2="90" strokeDasharray="2 4" />
+            <line x1="100" y1="30" x2="100" y2="170" strokeDasharray="2 4" />
+            <polygon points="30,30 100,5 170,30" opacity="0.6" />
+          </svg>
+        </motion.div>
+      )}
     </div>
   );
 }
@@ -285,9 +403,31 @@ export function AIServicesExperience({ onOpenContact }) {
     { top: '82%', right: '7%', depth: 0.7, size: 44, label: 'DATABASE' }
   ];
 
+  const posterConfigs = {
+    'ai-services': {
+      src: '/assets/ai-services-poster.jpg',
+      alt: 'AI & Business Automation Services',
+      laserColor: 'via-cyan-300/35',
+      badge: 'AI Services'
+    },
+    'tours-travels': {
+      src: '/assets/tours-travels-poster.jpg',
+      alt: 'Tours & Travels Enquiry Management',
+      laserColor: 'via-teal-300/40',
+      badge: 'Tours & Travels'
+    },
+    'real-estate': {
+      src: '/assets/real-estate-poster.jpg',
+      alt: 'Real Estate Lead Management',
+      laserColor: 'via-blue-300/40',
+      badge: 'Real Estate Hub'
+    }
+  };
+  const activePoster = posterConfigs[selectedIndustryOption] || posterConfigs['ai-services'];
+
   return (
     <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 pb-12 sm:pb-16 text-[#082B59]">
-      <AIServicesBackground />
+      <AIServicesBackground activeOption={selectedIndustryOption} />
 
       {/* Top Hero Heading & 2 Industry Options Switcher */}
       <div className="text-center max-w-4xl mx-auto mb-8 sm:mb-12 relative z-20">
@@ -369,17 +509,30 @@ export function AIServicesExperience({ onOpenContact }) {
                   }}
                   className="relative rounded-[22px] sm:rounded-[26px] aspect-[16/10] w-full bg-slate-100 border border-slate-200 shadow-lg shadow-blue-900/8 group overflow-hidden cursor-default transition-shadow duration-500 hover:shadow-2xl hover:shadow-blue-900/12"
                 >
-                  {/* The Original Poster Image with subtle parallax */}
-                  <motion.img
-                    src="/assets/ai-services-poster.jpg"
-                    alt="AI & Business Automation"
-                    style={(isTouchDevice || shouldReduceMotion) ? {} : {
-                      x: parallaxImgX,
-                      y: parallaxImgY,
-                      scale: 1.05
-                    }}
-                    className="w-full h-full object-cover object-center rounded-[20px] sm:rounded-[24px] relative z-10 pointer-events-none select-none transition-transform duration-700 ease-out"
-                  />
+                  {/* Dynamic Poster Picture with Smooth Crossfade Animation */}
+                  <AnimatePresence mode="wait">
+                    <motion.img
+                      key={activePoster.src}
+                      src={activePoster.src}
+                      alt={activePoster.alt}
+                      initial={{ opacity: 0, scale: 0.98 }}
+                      animate={{ opacity: 1, scale: 1.05 }}
+                      exit={{ opacity: 0, scale: 1.02 }}
+                      transition={{ duration: 0.45, ease: 'easeOut' }}
+                      style={(isTouchDevice || shouldReduceMotion) ? {} : {
+                        x: parallaxImgX,
+                        y: parallaxImgY
+                      }}
+                      className="w-full h-full object-cover object-center rounded-[20px] sm:rounded-[24px] relative z-10 pointer-events-none select-none transition-transform duration-700 ease-out"
+                    />
+                  </AnimatePresence>
+
+                  {/* Dynamic Category Badge on Poster Top Left */}
+                  <div className="absolute top-3.5 left-3.5 z-25 pointer-events-none">
+                    <span className="px-3 py-1 rounded-full text-[11px] font-black uppercase tracking-wider bg-black/60 text-white backdrop-blur-md border border-white/20 shadow-md">
+                      {activePoster.badge}
+                    </span>
+                  </div>
 
                   {/* Laser Scanning Sheen Animation Across Poster Picture */}
                   <motion.div
@@ -392,7 +545,7 @@ export function AIServicesExperience({ onOpenContact }) {
                       ease: 'easeInOut',
                       repeatDelay: 0.8
                     }}
-                    className="absolute inset-y-0 w-32 bg-gradient-to-r from-transparent via-cyan-300/30 to-transparent skew-x-[-20deg] pointer-events-none z-20"
+                    className={`absolute inset-y-0 w-32 bg-gradient-to-r from-transparent ${activePoster.laserColor} to-transparent skew-x-[-20deg] pointer-events-none z-20`}
                   />
 
                   {/* Gentle Natural Highlight Sheen */}
