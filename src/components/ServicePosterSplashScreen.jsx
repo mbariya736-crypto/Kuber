@@ -34,7 +34,7 @@ export default function ServicePosterSplashScreen({ serviceId = 'ai-services', o
       scanBeamColor: 'from-transparent via-emerald-400/40 to-transparent',
     },
     'ai-films': {
-      title: 'AI Film & Video Production',
+      title: 'AI Film Services',
       subtitle: 'Cinematic Storytelling • AI Visual Generation • Commercial Media',
       posterImage: '/assets/Futuristic-studio-for-AI-driven-creations.webp',
       icon: Film,

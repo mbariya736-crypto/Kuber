@@ -645,10 +645,12 @@ export function AIServicesExperience({ onOpenContact }) {
         {selectedIndustryOption === 'ai-services' && (
           <div className="my-16 sm:my-20 relative z-10">
             <div className="max-w-3xl mb-8 sm:mb-12 text-left">
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#082B59] tracking-tight">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#082B59] tracking-tight mb-2 sm:mb-3">
                 AI Services
               </h2>
-
+              <p className="text-sm sm:text-base lg:text-lg text-slate-600 font-normal leading-relaxed">
+                Smart assistants, autonomous agents and automation that save time and grow your business.
+              </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 text-left items-stretch">
@@ -762,183 +764,90 @@ export function CyberSecurityExperience({ onOpenContact }) {
 }
 
 /* ========================================================================= */
-/* 6. FILM PRODUCTION EXPERIENCE (Light Theme with Scroll Motion)             */
+/* 6. AI FILM SERVICES EXPERIENCE (Clean Human-Designed Layout)              */
 /* ========================================================================= */
 export function AIFilmStudioExperience({ onOpenContact }) {
-  const containerRef = useRef(null);
-
-  // Smooth scroll-driven spring physics for natural, reversible movement
-  const scrollYMotion = useMotionValue(0);
-  const smoothScroll = useSpring(scrollYMotion, {
-    stiffness: 90,
-    damping: 24,
-    mass: 0.4
-  });
-
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-
-    let parent = el.parentElement;
-    while (parent && parent !== document.body) {
-      const overflowY = window.getComputedStyle(parent).overflowY;
-      if (overflowY === 'auto' || overflowY === 'scroll') break;
-      parent = parent.parentElement;
+  const filmServices = [
+    {
+      title: 'AI Short Film Production',
+      desc: 'Complete short films made with AI, from concept to final cut.'
+    },
+    {
+      title: 'AI Long Film Production',
+      desc: 'Feature-length AI films with story, characters, scenes and sound.'
+    },
+    {
+      title: 'AI Reels Production',
+      desc: 'Short vertical videos for Instagram, YouTube Shorts and social media.'
+    },
+    {
+      title: 'AI Advertisement Films',
+      desc: 'Eye-catching ad films for products, services and campaigns.'
+    },
+    {
+      title: 'AI Brand Videos & Logo Animations',
+      desc: 'Brand story videos and animated logo reveals that build recognition.'
+    },
+    {
+      title: 'AI Animation & Animated Films',
+      desc: 'Animated characters, explainer animations and animated films.'
+    },
+    {
+      title: 'AI Scriptwriting & Story Development',
+      desc: 'Scripts, storylines and character development for films, ads and videos.'
+    },
+    {
+      title: 'AI Video Editing & Post-Production',
+      desc: 'Editing, colour, sound, subtitles and final polish for your videos.'
+    },
+    {
+      title: 'AI Music Videos',
+      desc: 'Music videos with AI visuals matched to your track and mood.'
+    },
+    {
+      title: 'AI Documentary Films',
+      desc: 'Documentary-style films that tell real stories with AI visuals and narration.'
     }
-    const scrollTarget = (parent && parent !== document.body) ? parent : window;
-
-    let ticking = false;
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const currentY = scrollTarget === window ? window.scrollY : scrollTarget.scrollTop;
-          scrollYMotion.set(currentY);
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    scrollTarget.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => scrollTarget.removeEventListener('scroll', handleScroll);
-  }, [scrollYMotion]);
-
-  // Subtle Parallax & Depth Transforms linked to scroll
-  const imageParallaxY = useTransform(smoothScroll, [0, 800], [0, -24]);
-  const imageScale = useTransform(smoothScroll, [0, 800], [1, 1.04]);
-  const cardY0 = useTransform(smoothScroll, [0, 900], [0, -20]);
-  const cardY1 = useTransform(smoothScroll, [0, 900], [0, -12]);
-  const cardY2 = useTransform(smoothScroll, [0, 900], [0, -22]);
-  const cardY3 = useTransform(smoothScroll, [0, 900], [0, -14]);
-
+  ];
 
   return (
-    <div ref={containerRef} className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 pb-12 sm:pb-16 text-[#082B59]">
+    <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 pb-12 sm:pb-16 text-[#082B59]">
       <AIFilmStudioBackground />
 
-      {/* Header */}
-      <motion.div
-        initial={{ opacity: 1, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className="text-center max-w-4xl mx-auto mb-8 sm:mb-10 relative"
-      >
-        <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-[#082B59] tracking-tight leading-[1.15] mb-3.5 sm:mb-5">
-          Corporate Films, Commercials &amp;{' '}
-          <span className="text-[#0866E8]">
-            Visual Storytelling
-          </span>
+      {/* Hero Header matching user reference */}
+      <div className="text-left max-w-4xl mb-10 sm:mb-14 relative z-10">
+        <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-[#082B59] tracking-tight leading-[1.15] mb-3">
+          AI Film Services
         </h1>
+        <p className="text-sm sm:text-base lg:text-lg text-slate-600 font-normal leading-relaxed">
+          AI-powered films, reels, ads, brand videos and animation, from script to final edit.
+        </p>
+      </div>
 
-
-
-      </motion.div>
-
-      {/* Main Editorial Showcase (Image Left, Content Right) */}
-      <motion.div
-        initial={{ opacity: 0, y: 18 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className="rounded-[28px] sm:rounded-[36px] bg-white border border-slate-200/90 p-6 sm:p-10 lg:p-12 shadow-xl shadow-blue-900/5 mb-12 sm:mb-16 text-left"
-      >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-
-          {/* Photographic Image Left */}
-          <div className="lg:col-span-5 flex justify-center w-full">
-            <div className="relative rounded-[22px] sm:rounded-[26px] aspect-[16/11] sm:aspect-[4/3] w-full bg-slate-100 border border-slate-200 shadow-lg shadow-blue-900/8 overflow-hidden group">
-              <img
-                src="/assets/ai-film-studio-hero.webp"
-                alt="Commercial Film & Video Production"
-                className="w-full h-full object-cover object-center rounded-[20px] sm:rounded-[24px] group-hover:scale-[1.02] transition-transform duration-700 ease-out"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none" />
-            </div>
-          </div>
-
-          {/* Editorial Content Right */}
-          <div className="lg:col-span-7 flex flex-col justify-center">
-            <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#082B59] mb-4 leading-snug">
-              Brand Commercials &amp; Corporate Media Production
-            </h2>
-
-            <div className="space-y-3.5 text-slate-600 text-xs sm:text-sm lg:text-base leading-relaxed font-normal mb-6">
-              <p>
-                Commercial brand media and corporate videos often suffer from generic templates that fail to communicate genuine values or build lasting customer connection.
-              </p>
-              <p>
-                We partner closely with your team to produce authentic human stories. From initial script consultation and storyboard development to on-location cinematography and post-production color grading, every frame is crafted to build credibility.
+      {/* 10 Core Film Solution Cards (Exact topics from reference image) */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 text-left relative z-10">
+        {filmServices.map((service, idx) => (
+          <div
+            key={idx}
+            className="rounded-2xl bg-white border border-slate-200/90 hover:border-slate-300 p-7 sm:p-8 transition-all duration-200 shadow-xs hover:shadow-md flex flex-col justify-between group"
+          >
+            <div>
+              <h3 className="text-lg sm:text-xl font-bold text-[#082B59] mb-3 leading-snug group-hover:text-cyan-700 transition-colors">
+                {service.title}
+              </h3>
+              <p className="text-sm text-slate-600 leading-relaxed font-normal mb-6">
+                {service.desc}
               </p>
             </div>
-
-            {/* Clean Deliverables */}
-            <div className="space-y-2.5 pt-4 border-t border-slate-100">
-              <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
-                <CheckCircle2 className="w-4 h-4 text-cyan-700 shrink-0 mt-0.5" />
-                <span>Script consultation, storyboard planning, and creative direction.</span>
-              </div>
-              <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
-                <CheckCircle2 className="w-4 h-4 text-cyan-700 shrink-0 mt-0.5" />
-                <span>Professional cinematography, lighting design, and on-location filming.</span>
-              </div>
-              <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-snug">
-                <CheckCircle2 className="w-4 h-4 text-cyan-700 shrink-0 mt-0.5" />
-                <span>Color grading, sound design, voiceover, and broadcast-ready delivery.</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </motion.div>
-
-
-      {/* Core Practice Capabilities Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 text-left">
-        {[
-          {
-            title: 'Commercial Video Production',
-            desc: 'Compelling product commercials and brand campaign videos designed to capture audience attention and communicate clear business value.',
-            icon: Film,
-            yMotion: cardY0
-          },
-          {
-            title: 'Corporate Documentaries',
-            desc: 'Authentic cinematic stories highlighting your company’s founding mission, leadership vision, operational depth, and client partnerships.',
-            icon: Clapperboard,
-            yMotion: cardY1
-          },
-          {
-            title: 'Awareness & Educational Films',
-            desc: 'Purpose-driven educational films—like our official Digital Jaal project—designed to explain complex topics like cyber fraud clearly.',
-            icon: Aperture,
-            yMotion: cardY2
-          },
-          {
-            title: 'Complete Post-Production',
-            desc: 'Expert editorial pacing, color grading, clean voiceover capture, original scoring, and audio mastering delivered in ready-to-broadcast formats.',
-            icon: Sparkles,
-            yMotion: cardY3
-          }
-        ].map((feat, idx) => {
-          const Icon = feat.icon;
-          return (
-            <motion.div
-              key={feat.title}
-              style={{ y: feat.yMotion }}
-              className="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/90 hover:border-blue-300 transition-all shadow-md hover:shadow-xl group"
+            <button
+              type="button"
+              onClick={onOpenContact}
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-cyan-700 hover:text-cyan-800 transition-colors cursor-pointer w-fit"
             >
-              <div className="w-10 h-10 rounded-xl bg-cyan-50 text-cyan-700 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform border border-cyan-200">
-                <Icon className="w-5 h-5 text-cyan-700" />
-              </div>
-              <h4 className="text-base font-bold text-[#082B59] mb-2 leading-snug">
-                {feat.title}
-              </h4>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
-                {feat.desc}
-              </p>
-            </motion.div>
-          );
-        })}
+              <span>Learn More →</span>
+            </button>
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -995,7 +904,7 @@ export default function PracticeExperience({ practiceId, onClose, onOpenContact 
         };
       case 'ai-films':
         return {
-          title: 'Film Production',
+          title: 'AI Film Services',
           themeColor: 'text-cyan-800'
         };
       default:

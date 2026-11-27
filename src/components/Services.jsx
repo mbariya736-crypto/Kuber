@@ -116,7 +116,7 @@ export default function Services({ onOpenModal, routePracticeId, onPracticeChang
     },
     {
       id: 'ai-films',
-      name: 'AI Film & Video Production',
+      name: 'AI Film Services',
       icon: Film,
       path: '/services/ai-films',
       image: '/assets/ai-film-studio-hero.webp',

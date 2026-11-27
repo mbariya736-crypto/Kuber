@@ -35,30 +35,30 @@ export default function ServiceDetailPage({ practiceId: propPracticeId }) {
       accentBg: 'bg-blue-50 border-blue-200/80',
       nextServices: [
         { id: 'cyber-security', title: 'Cyber Security Services', path: '/services/cyber-security' },
-        { id: 'ai-films', title: 'AI Film & Video Production', path: '/services/ai-films' }
+        { id: 'ai-films', title: 'AI Film Services', path: '/services/ai-films' }
       ]
     },
     'cyber-security': {
       title: 'Cyber Security Services',
       category: 'Cyber Security Services',
-      tag: 'Defense, Audits & Scam Prevention',
+      tag: 'Defense, Audits & Threat Prevention',
       icon: ShieldCheck,
       accentColor: 'text-emerald-600',
       accentBg: 'bg-emerald-50 border-emerald-200/80',
       nextServices: [
-        { id: 'ai-services', title: 'AI & Business Automation', path: '/services/ai-services' },
-        { id: 'ai-films', title: 'AI Film & Video Production', path: '/services/ai-films' }
+        { id: 'ai-services', title: 'AI Services', path: '/services/ai-services' },
+        { id: 'ai-films', title: 'AI Film Services', path: '/services/ai-films' }
       ]
     },
     'ai-films': {
-      title: 'AI Film & Video Production',
-      category: 'AI Film & Video Production',
-      tag: 'Commercials & Public Awareness Media',
+      title: 'AI Film Services',
+      category: 'AI Film Services',
+      tag: 'AI-Powered Films & Commercial Media',
       icon: Film,
       accentColor: 'text-cyan-700',
       accentBg: 'bg-cyan-50 border-cyan-200/80',
       nextServices: [
-        { id: 'ai-services', title: 'AI & Business Automation', path: '/services/ai-services' },
+        { id: 'ai-services', title: 'AI Services', path: '/services/ai-services' },
         { id: 'cyber-security', title: 'Cyber Security Services', path: '/services/cyber-security' }
       ]
     }

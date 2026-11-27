@@ -153,9 +153,9 @@ export default function Navbar() {
     {
       id: 'ai-films',
       name: 'AI Film Services',
-      title: 'AI Film & Video Production',
+      title: 'AI Film Services',
       path: '/services/ai-films',
-      description: 'High-quality commercials, corporate stories & public awareness films',
+      description: 'AI-powered films, reels, ads, brand videos and animation',
       icon: Film,
       color: 'text-cyan-600',
       bgColor: 'bg-cyan-50',
@@ -163,10 +163,15 @@ export default function Navbar() {
       activeColor: '#06B6D4',
       subServices: [
         'AI Short Film Production',
-        'AI Advertisement Videos',
-        'AI Reels & Promotional Videos',
-        'AI Animation & Brand Videos',
-        'AI Video Editing'
+        'AI Long Film Production',
+        'AI Reels Production',
+        'AI Advertisement Films',
+        'AI Brand Videos & Logo Animations',
+        'AI Animation & Animated Films',
+        'AI Scriptwriting & Story Development',
+        'AI Video Editing & Post-Production',
+        'AI Music Videos',
+        'AI Documentary Films'
       ]
     }
   ];
