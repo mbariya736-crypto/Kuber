@@ -8,6 +8,7 @@ import ImageModal from './components/ImageModal';
 import ScrollToTop from './components/ScrollToTop';
 import SplashScreen from './components/SplashScreen';
 import GlobalParticleBackground from './components/GlobalParticleBackground';
+import FloatingSideActions from './components/FloatingSideActions';
 
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
@@ -100,6 +101,9 @@ export default function App() {
 
       {/* Corporate Navy Footer (Hidden on service/project detail pages) */}
       {!hideMainNavbarAndFooter && <Footer />}
+
+      {/* Unique Floating Quick Connect Actions (WhatsApp & Contact) */}
+      <FloatingSideActions />
 
       {/* Lightbox Modal */}
       <ImageModal
