@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import {
   ArrowLeft,
   ArrowRight,
@@ -13,24 +12,17 @@ import {
   CyberSecurityExperience,
   AIFilmStudioExperience
 } from '../components/PracticeExperience';
-import ServiceSpecificBackground from '../components/ServiceSpecificBackground';
-import ServicePosterSplashScreen from '../components/ServicePosterSplashScreen';
 
 export default function ServiceDetailPage({ practiceId: propPracticeId }) {
   const { practiceId: paramPracticeId } = useParams();
   const navigate = useNavigate();
-  const shouldReduceMotion = useReducedMotion();
 
   const activeId = propPracticeId || paramPracticeId || 'ai-services';
   const normalizedId = activeId === 'ai-film-studio' ? 'ai-films' : activeId;
 
-  // Poster Splash Screen state: triggers every time a service page opens
-  const [splashVisible, setSplashVisible] = useState(true);
-
-  // Trigger splash animation on mount / service change
+  // Scroll to top on mount / service change
   useEffect(() => {
     window.scrollTo(0, 0);
-    setSplashVisible(true);
   }, [normalizedId]);
 
   const serviceMeta = {
@@ -81,17 +73,6 @@ export default function ServiceDetailPage({ practiceId: propPracticeId }) {
 
   return (
     <div className="min-h-screen flex flex-col text-[#082B59] bg-[#F8FAFD] relative">
-      {/* 0. POSTER-DRIVEN SPLASH SCREEN (Plays ONLY on page open according to the service poster) */}
-      <AnimatePresence mode="wait">
-        {splashVisible && (
-          <ServicePosterSplashScreen
-            key={`splash-${normalizedId}`}
-            serviceId={normalizedId}
-            onComplete={() => setSplashVisible(false)}
-          />
-        )}
-      </AnimatePresence>
-
       {/* 1. DEDICATED SERVICE DETAIL TOP HEADER */}
       <header className="sticky top-0 z-50 w-full backdrop-blur-md bg-white/90 border-b border-slate-200/80 py-3 px-4 sm:px-8 flex items-center justify-between gap-3 shadow-2xs">
         {/* Prominent Back to Services Link */}
